@@ -1,0 +1,12 @@
+package {{ basePath config.package }}
+
+{{#each model.components.schemas~}}
+{{#if (ifeq this.type "object") }}
+type {{ucFirst @key}} struct {
+{{#each properties}}
+    {{ucFirst @key}} {{type_go this}} `json:"{{@key}}" yaml:"{{@key}}"`
+{{/each}}
+}
+{{/if}}
+
+{{/each~}}

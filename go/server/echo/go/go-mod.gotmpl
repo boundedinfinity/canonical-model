@@ -1,0 +1,13 @@
+// Generated
+
+module {{ .Project.Module }}
+
+go {{ .Project.Version }}
+
+{{ if .Project.Requires -}}
+require (
+{{- range .Project.Requires }}
+    {{ .Package }} {{ .Version -}}
+{{ end }}
+)
+{{ end -}}

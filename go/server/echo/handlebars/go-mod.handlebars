@@ -1,0 +1,13 @@
+// Generated
+
+module {{ project.module }}
+
+go {{ project.version }}
+
+{{#if project.requires}}
+require (
+    {{#each project.requires}}
+    {{ this.package }} {{ this.version }}
+    {{/each}}
+)
+{{/if}}
