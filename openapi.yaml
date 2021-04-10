@@ -32,6 +32,10 @@ components:
                     type: array
                     items:
                         $ref: '#/components/tag'
+                status:
+                    $ref: '#/components/status'
+            x-bi-go:
+                package: boundedinfinity/test/gomux/model
         tag:
             type: object
             properties:
