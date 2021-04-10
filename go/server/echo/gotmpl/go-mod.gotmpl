@@ -1,0 +1,13 @@
+// Generated
+
+module {{ .Model.X_Bi_Go.Module.Name }}
+
+go {{ .Model.X_Bi_Go.Module.Version }}
+
+{{ if .Model.X_Bi_Go.Module.Requires -}}
+require (
+{{- range .Model.X_Bi_Go.Module.Requires }}
+    {{ .Package }} {{ .Version -}}
+{{ end }}
+)
+{{ end -}}

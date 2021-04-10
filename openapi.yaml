@@ -1,98 +1,88 @@
 openapi: 3.0.0
 x-bi-go:
-  module: boundedinfinity/test/gomux
-  version: '1.16'
-  input: go/server/echo/go2
-#   output: /tmp/generator/go/server/echo/go
-#   requires:
-#   - package: gopkg.in/yaml.v2
-#     version: v2.4.0
-#   - package: github.com/labstack/echo/v4
-#     version: v4.2.1
-#   - package: gopkg.in/go-playground/validator.v9
-#     version: v9.31.0
-#   templates:
-#   - input: go-mod.gotmpl
-#     output: go.mod
-info:
-  version: 1.0.0
-  title: Test API
-  description: My test API
-servers:
-  - url: http://localhost:8080
-paths: 
-  /v1/tag:
-    post:
-      description: Search tags
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/tagGetRequest'
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/tagGetResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/tagGetResponse'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/tagGetResponse'
-components:
-  x-bi-go-schemas:
+    templateRoot: go/server/echo/gotmpl
+    genRoot: /tmp/codegen/go/server/echo/gotmpl
+    module: 
+        name: boundedinfinity/test/gomux
+        version: '1.16'
+        requires:
+            -   package: gopkg.in/yaml.v2
+                version: v2.4.0
+            -   package: github.com/labstack/echo/v4
+                version: v4.2.1
+            -   package: gopkg.in/go-playground/validator.v10
+                version: v10.5.0
     templates:
-      - input: model.gotmpl
-        output: model/model.gen.go
-  schemas:
-    tagGetRequest:
-      x-bi-go:
-        package: model
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-      x-bi-go-package: model
-    tagGetResponse:
-      x-bi-go:
-        package: model
-      type: object
-      properties:
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/tag'
+        -   input: go-mod.gotmpl
+            output: go.mod
+        -   input: main.go.gotmpl
+            package: boundedinfinity/test/gomux
+components:
+    x-bi-go:
+        schemas:
+            templates:
+                -   input: model.go.gotmpl
+    schemas:
+        tagResponse:
+            type: object
+            properties:
+                trackingId:
+                    type: string
+                tags:
+                    type: array
+                    items:
+                        $ref: '#/components/tag'
+        tag:
+            type: object
+            properties:
+                id:
+                    type: string
+                text:
+                    type: string
+                description:
+                    type: string
+            x-bi-go:
+                package: boundedinfinity/test/gomux/model
         status:
-          $ref: '#/components/schemas/status'
-    tag:
-      x-bi-go:
-        package: model
-      type: object
-      properties:
-        id:
-          type: string
-        text:
-          type: string
-        description:
-          type: string
-    status:
-      x-bi-go:
-        package: model
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    
+            type: object
+            properties:
+                code:
+                    type: integer
+                message:
+                    type: string
+            x-bi-go:
+                package: boundedinfinity/test/gomux/model
+info:
+    version: 1.0.0
+    title: Test API
+    description: My test API
+servers:
+    -   url: http://localhost:8080
+# paths: 
+#     /v1/tag:
+#         post:
+#             description: Search tags
+#             requestBody:
+#                 content:
+#                     application/json:
+#                         schema:
+#                             $ref: '#/components/schemas/tagGetRequest'
+#             responses:
+#                 '200':
+#                     description: Success
+#                     content:
+#                         application/json:
+#                             schema:
+#                                 $ref: '#/components/schemas/tagGetResponse'
+#                 '400':
+#                     description: Bad Request
+#                     content:
+#                         application/json:
+#                             schema:
+#                                 $ref: '#/components/schemas/tagGetResponse'
+#                 '500':
+#                     description: Internal server error
+#                     content:
+#                         application/json:
+#                             schema:
+#                                 $ref: '#/components/schemas/tagGetResponse'

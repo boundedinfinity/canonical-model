@@ -1,0 +1,9 @@
+package {{ .Package.Get }}
+
+{{ if peq .Schema.Type "object" -}}
+type {{ ucFirst .Name.Get }} struct {
+{{- range $pk, $pv := .Schema.Properties }}
+    {{ ucFirst $pk }} {{ type_go $pv }} `json:"{{ $pk }}" yaml:"{{ $pk }}" xml:"{{ $pk }}"`
+{{- end }}
+}
+{{ end -}}
