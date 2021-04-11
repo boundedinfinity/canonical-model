@@ -17,12 +17,24 @@ x-bi-go:
             output: go.mod
         -   input: main.go.gotmpl
             package: boundedinfinity/test/gomux
-components:
-    x-bi-go:
+    paths:
+        package: boundedinfinity/test/gomux/web
+        templates:
+            -   input: web.go.gotmpl
+    components:
         schemas:
+            package: boundedinfinity/test/gomux/model
             templates:
                 -   input: model.go.gotmpl
+components:
     schemas:
+        tagRequest:
+            type: object
+            properties:
+                trackingId:
+                    type: string
+                term:
+                    type: string
         tagResponse:
             type: object
             properties:
@@ -34,8 +46,6 @@ components:
                         $ref: '#/components/tag'
                 status:
                     $ref: '#/components/status'
-            x-bi-go:
-                package: boundedinfinity/test/gomux/model
         tag:
             type: object
             properties:
@@ -45,8 +55,6 @@ components:
                     type: string
                 description:
                     type: string
-            x-bi-go:
-                package: boundedinfinity/test/gomux/model
         status:
             type: object
             properties:
@@ -54,39 +62,37 @@ components:
                     type: integer
                 message:
                     type: string
-            x-bi-go:
-                package: boundedinfinity/test/gomux/model
 info:
     version: 1.0.0
     title: Test API
     description: My test API
 servers:
     -   url: http://localhost:8080
-# paths: 
-#     /v1/tag:
-#         post:
-#             description: Search tags
-#             requestBody:
-#                 content:
-#                     application/json:
-#                         schema:
-#                             $ref: '#/components/schemas/tagGetRequest'
-#             responses:
-#                 '200':
-#                     description: Success
-#                     content:
-#                         application/json:
-#                             schema:
-#                                 $ref: '#/components/schemas/tagGetResponse'
-#                 '400':
-#                     description: Bad Request
-#                     content:
-#                         application/json:
-#                             schema:
-#                                 $ref: '#/components/schemas/tagGetResponse'
-#                 '500':
-#                     description: Internal server error
-#                     content:
-#                         application/json:
-#                             schema:
-#                                 $ref: '#/components/schemas/tagGetResponse'
+paths:
+    /v1/tag:
+        post:
+            description: Search tags
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/tagGetRequest'
+            responses:
+                '200':
+                    description: Success
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/tagGetResponse'
+                '400':
+                    description: Bad Request
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/tagGetResponse'
+                '500':
+                    description: Internal server error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/tagGetResponse'
