@@ -1,0 +1,16 @@
+package web
+
+import (
+	"boundedinfinity/echo_blueprint/model"
+	
+	echo "github.com/labstack/echo/v4"
+)
+
+func (t *Server) init{{ filename .Output }}Post(c echo.Context) error {
+    t.e.POST("{{ .Name }}", t.handle{{ filename .Output }}Post)
+    return nil
+}
+
+func (t *Server) handle{{ filename .Output }}Post(c echo.Context) error {
+    return nil
+}

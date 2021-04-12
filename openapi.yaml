@@ -3,39 +3,31 @@ x-bi-go:
     templateRoot: go/server/echo/gotmpl
     genRoot: /tmp/codegen/go/server/echo/gotmpl
     module: 
-        name: boundedinfinity/test/gomux
-        version: '1.16'
-        requires:
-            -   package: gopkg.in/yaml.v2
-                version: v2.4.0
-            -   package: github.com/labstack/echo/v4
-                version: v4.2.1
-            -   package: gopkg.in/go-playground/validator.v10
-                version: v10.5.0
-    templates:
-        -   input: go-mod.gotmpl
-            output: go.mod
-        -   input: main.go.gotmpl
-            package: boundedinfinity/test/gomux
-    paths:
-        package: boundedinfinity/test/gomux/web
+        name: boundedinfinity/test/gomux        
+    global:
         templates:
-            -   input: web.go.gotmpl
+            -   input: go.mod.gotmpl
+            -   input: main.go.gotmpl
+            -   input: web/main.go.gotmpl
     components:
         schemas:
             package: boundedinfinity/test/gomux/model
             templates:
-                -   input: model.go.gotmpl
+                -   input: model/model.go.gotmpl
+    paths:
+        templates:
+            -   input: web/pathItem.go.gotmpl
+    
 components:
     schemas:
-        tagRequest:
+        tagGetRequest:
             type: object
             properties:
                 trackingId:
                     type: string
                 term:
                     type: string
-        tagResponse:
+        tagGetResponse:
             type: object
             properties:
                 trackingId:
