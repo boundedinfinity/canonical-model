@@ -11,6 +11,17 @@ func (t *Server) init{{ filename .Output }}Post(c echo.Context) error {
     return nil
 }
 
+{{ if .PathItem.Post }}
+
 func (t *Server) handle{{ filename .Output }}Post(c echo.Context) error {
+    var request model.{{ ucFirst (basePath ((index .PathItem.Post.RequestBody.Content "application/json").Schema.Ref.Get)) }}
+    var request model.{{ ucFirst (basePath (index (index .PathItem.Post.Responses "200").Content "application/json").Schema.Ref.Get) }}
+
+    if err := c.Bind(&request); err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+	}
+
     return nil
 }
+
+{{ end }}

@@ -1,9 +1,7 @@
 package model
 
-{{ if peq .Schema.Type "object" -}}
-type {{ ucFirst .Name }} struct {
-{{- range $pk, $pv := .Schema.Properties }}
-    {{ ucFirst $pk }} {{ type_go $pv }} `json:"{{ $pk }}" yaml:"{{ $pk }}" xml:"{{ $pk }}"`
+type {{ ucFirst .Type.Name.Get }} struct {
+{{- range $property := .Type.Properties }}
+    {{ ucFirst $property.Name.Get }} {{ $property }} `json:"{{ $property }}" yaml:"{{ $property }}" xml:"{{ $property }}"`
 {{- end }}
 }
-{{ end -}}

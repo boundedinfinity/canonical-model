@@ -17,7 +17,7 @@ x-bi-go:
     paths:
         templates:
             -   input: web/pathItem.go.gotmpl
-    
+
 components:
     schemas:
         tagGetRequest:
@@ -43,6 +43,7 @@ components:
             properties:
                 id:
                     type: string
+                    minimum: 
                 text:
                     type: string
                 description:

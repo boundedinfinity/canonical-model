@@ -1,0 +1,82 @@
+version: 0.0.1
+name: boundedinfinity/generation_test
+
+generation:
+    templateDir: go/server/echo/gotmpl
+    outputDir: /tmp/codegen/go/server/echo/gotmpl
+    global:
+        templates:
+            -   input: go.mod.gotmpl
+            -   input: main.go.gotmpl
+            -   input: web/main.go.gotmpl
+    types:
+        templates:
+            -   input: model/model.go.gotmpl
+    # operations:
+    #     templates:
+    #         -   input: web/type.go.gotmpl
+
+operations:
+    -   name: AddTag
+        input:
+            type: AddTagRequest
+        output:
+            type: AddTagResponse
+
+types:
+    -   name: AddTagRequest
+        description: Add tag request.
+        properties:
+            -   name: TrackingID
+                type: string
+                validations:
+                    minimum: 2
+                    maximum: 50
+            -   name: Tag
+                type: Tag
+                validations:
+                    minimum: 2
+                    maximum: 50
+
+    -   name: AddTagResponse
+        description: Add tag response.
+        properties:
+            -   name: TrackingID
+                type: string
+                validations:
+                    minimum: 2
+                    maximum: 50
+            -   name: Tag
+                type: Tag
+                validations:
+                    minimum: 2
+                    maximum: 50
+
+    -   name: Tag
+        description: The tag.
+        properties:
+            -   name: Id
+                type: string
+                description: The Tag ID
+                validations:
+                    minimum: 2
+                    maximum: 50
+            -   name: Text
+                type: string
+                description: The user visible text of the tag
+                validations:
+                    minimum: 2
+                    maximum: 200
+
+    -   name: Status
+        description: A common status.
+        properties:
+            -   name: Code
+                type: integer
+                description: The number status.
+            -   name: Message
+                type: string
+                description: The status message.
+                validations:
+                    minimum: 2
+                    maximum: 200
