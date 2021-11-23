@@ -1,0 +1,31 @@
+$id: https://www.boundedinfinity.com/json-schema/company
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A company record
+type: object
+properties:
+    name:
+        description: Name of company
+        type: string
+        maxLength: 200
+    image:
+        description: Link to image of company
+        type: string
+        maxLength: 1000
+    addresses:
+        description: List of addresses
+        type: array
+        items:
+            type: object
+            properties:
+                title:
+                    description: Title of address
+                    type: string
+                address:
+                    description: Address
+                    $ref: https://www.boundedinfinity.com/json-schema/mailing-address
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/json-schema/label-simple
+required:
+    -   name

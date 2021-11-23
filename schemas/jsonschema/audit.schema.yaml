@@ -1,0 +1,18 @@
+$id: https://www.boundedinfinity.com/json-schema/audit
+$schema: https://json-schema.org/draft/2020-12/schema
+description: Auditing information
+type: object
+properties:
+    creation-date:
+        description: Record creation date
+        type: string
+        format: date
+    modified-dates:
+        description: List of record modification dates
+        type: list
+        items:
+            type: object
+            properties:
+                date:
+                    type: string
+                    format: date
