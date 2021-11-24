@@ -10,22 +10,19 @@ properties:
         items:
             type: string
             maxLength: 50
+            minLength: 1
     image:
         description: Link to image of person
         type: string
         maxLength: 1000
         format: uri-reference
-    birth-date:
-        description: The birth date
-        type: string
-        format: date
-    death-date:
-        description: The death date
-        type: string
-        format: date
+    dates:
+        type: array
+        items:
+            types: https://www.boundedinfinity.com/json-schema/date
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/json-schema/label-simple
+            $ref: https://www.boundedinfinity.com/json-schema/label/simple
 required:
     -   names

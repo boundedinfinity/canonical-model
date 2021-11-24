@@ -10,22 +10,22 @@ properties:
         description: Email addresses
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/json-schema/email-address
+            $ref: https://www.boundedinfinity.com/json-schema/address/email
     numbers:
         description: Telephone numbers
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/json-schema/nanp-telephone
+            $ref: https://www.boundedinfinity.com/json-schema/telephone/nanp
     mailing-addresses:
         description: List of mailing addresses
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/json-schema/mailing-address
+            $ref: https://www.boundedinfinity.com/json-schema/address/mailing
     internet-addresses:
         description: List of internet addresses
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/json-schema/internet-address
+            $ref: https://www.boundedinfinity.com/json-schema/address/internet
     companies:
         description: List of companies
         type: array
@@ -38,7 +38,7 @@ properties:
                     maxLength: 200
                 company:
                     description: Company
-                    $ref: https://www.boundedinfinity.com/json-schema/company
+                    $ref: https://www.boundedinfinity.com/json-schema/corporation/company
                 start-date:
                     description: Start Date
                     type: string
@@ -52,7 +52,7 @@ properties:
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/json-schema/label-simple
+            $ref: https://www.boundedinfinity.com/json-schema/label/simple
     audit:
         $ref: https://www.boundedinfinity.com/json-schema/notes
 required:

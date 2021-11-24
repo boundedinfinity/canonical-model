@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/json-schema/label-kv
+$id: https://www.boundedinfinity.com/json-schema/label/kv
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A key/value label
 type: object

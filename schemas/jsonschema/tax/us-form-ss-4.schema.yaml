@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/json-schema/us-form-ss-4
+$id: https://www.boundedinfinity.com/json-schema/tax/us-form-ss-4
 $schema: https://json-schema.org/draft/2020-12/schema
 description: |
   US Form SS-4

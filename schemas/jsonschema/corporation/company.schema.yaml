@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/json-schema/company
+$id: https://www.boundedinfinity.com/json-schema/corporation/company
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A company record
 type: object
@@ -22,10 +22,10 @@ properties:
                     type: string
                 address:
                     description: Address
-                    $ref: https://www.boundedinfinity.com/json-schema/mailing-address
+                    $ref: https://www.boundedinfinity.com/json-schema/address/mailing
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/json-schema/label-simple
+            $ref: https://www.boundedinfinity.com/json-schema/label/simple
 required:
     -   name

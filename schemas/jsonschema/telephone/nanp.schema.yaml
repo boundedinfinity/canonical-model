@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/json-schema/nanp-telephone
+$id: https://www.boundedinfinity.com/json-schema/telephone/nanp
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A NANP telephone number plan
 type: object

@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/json-schema/mailing-address
+$id: https://www.boundedinfinity.com/json-schema/address/mailing
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A US mailing address
 type: object
@@ -31,11 +31,11 @@ properties:
         type: string
         maxLength: 200
     zip-code:
-        $ref: https://www.boundedinfinity.com/json-schema/zip-code
+        $ref: https://www.boundedinfinity.com/json-schema/address/zip-code
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/json-schema/label-simple
+            $ref: https://www.boundedinfinity.com/json-schema/label/simple
 required:
     -   address
     -   city

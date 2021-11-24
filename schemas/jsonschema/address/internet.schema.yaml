@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/json-schema/internet-address
+$id: https://www.boundedinfinity.com/json-schema/address/internet
 $schema: https://json-schema.org/draft/2020-12/schema
 description: An internet address
 type: object
