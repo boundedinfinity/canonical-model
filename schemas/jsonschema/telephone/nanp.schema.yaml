@@ -27,6 +27,8 @@ properties:
         description: Extention number
         type: string
         pattern: ^[0-9]{1,10}$
+    audit:
+        $ref: https://www.boundedinfinity.com/json-schema/util/audit
 required:
     -   area-code
     -   exchange-code

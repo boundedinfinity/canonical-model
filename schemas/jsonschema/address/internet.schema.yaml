@@ -11,13 +11,9 @@ properties:
         description: Email follwoing the RFC 5321, section 4.1.2 specification.
         type: string
         format: uri-reference
-    start-date:
-        description: The starting date of this email address
-        type: string
-        format: date
-    end-date:
-        description: The ending date of this email address
-        type: string
-        format: date
+    dates:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/json-schema/time/date
 required:
     -   address

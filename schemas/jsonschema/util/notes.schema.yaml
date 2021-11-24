@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/json-schema/notes
+$id: https://www.boundedinfinity.com/json-schema/util/notes
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A list of notes
 type: array
@@ -14,4 +14,4 @@ items:
             description: The note text
             maxLength: 20000
         audit:
-            $ref: https://www.boundedinfinity.com/json-schema/audit
+            $ref: https://www.boundedinfinity.com/json-schema/util/audit

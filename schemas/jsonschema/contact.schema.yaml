@@ -54,6 +54,6 @@ properties:
         items:
             $ref: https://www.boundedinfinity.com/json-schema/label/simple
     audit:
-        $ref: https://www.boundedinfinity.com/json-schema/notes
+        $ref: https://www.boundedinfinity.com/json-schema/util/notes
 required:
     -   person

@@ -28,4 +28,4 @@ properties:
             -   C Corporation
             -   S Corporation
     audit:
-        $ref: https://www.boundedinfinity.com/json-schema/audit
+        $ref: https://www.boundedinfinity.com/json-schema/util/audit

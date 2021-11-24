@@ -7,14 +7,10 @@ properties:
         description: Title of the email address
         type: string
         maxLength: 200
-    start-date:
-        description: The starting date of this email address
-        type: string
-        format: date
-    end-date:
-        description: The ending date of this email address
-        type: string
-        format: date
+    dates:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/json-schema/time/date
     addresses:
         description: List of address lines
         type: array
