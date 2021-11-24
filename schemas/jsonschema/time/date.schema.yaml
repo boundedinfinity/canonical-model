@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/json-schema/date
+$id: https://www.boundedinfinity.com/json-schema/time/date
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A date and description
 type: object

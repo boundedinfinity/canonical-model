@@ -19,7 +19,7 @@ properties:
     dates:
         type: array
         items:
-            types: https://www.boundedinfinity.com/json-schema/date
+            types: https://www.boundedinfinity.com/json-schema/time/date
     labels:
         type: array
         items:
