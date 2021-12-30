@@ -1,0 +1,54 @@
+$id: https://www.boundedinfinity.com/schema/people/contact
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A contact record
+type: object
+properties:
+    person:
+        description: Contact person
+        $ref: https://www.boundedinfinity.com/schema/people/person
+    emails:
+        description: Email addresses
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/address/email
+    telephone-numbers:
+        description: Telephone numbers
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/telephone/nanp
+    mailing-addresses:
+        description: List of mailing addresses
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/address/mailing
+    internet-addresses:
+        description: List of internet addresses
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/address/internet
+    employment:
+        description: Employment history
+        type: array
+        items:
+            type: object
+            properties:
+                title:
+                    description: Job title
+                    type: string
+                    maxLength: 200
+                company:
+                    $ref: https://www.boundedinfinity.com/schema/corporation/company
+                dates:
+                    type: array
+                    items:
+                        types: https://www.boundedinfinity.com/schema/time/date
+            required:
+                -   company
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/simple
+    audit:
+        $ref: https://www.boundedinfinity.com/schema/util/notes
+required:
+    -   person

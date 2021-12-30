@@ -4,21 +4,21 @@ info:
 mappings:
     package:
         "https://www.boundedinfinity.com/codegen": "codegen/model"
-        "https://www.boundedinfinity.com/json-schema": "codegen/model"
+        "https://www.boundedinfinity.com/schema": "codegen/model"
     language:
         "string": "string"
         "integer": "int64"
         "number": "float64"
 models:
-    -   $ref: https://www.boundedinfinity.com/json-schema/label/simple
+    -   $ref: https://www.boundedinfinity.com/schema/label/simple
 # operations:
 #     -   name: AddLabel
 #         input: 
 #             name: request
-#             $ref: https://www.boundedinfinity.com/json-schema/label/simple-add-request
+#             $ref: https://www.boundedinfinity.com/schema/label/simple-add-request
 #         output: 
 #             name: response
-#             $ref: https://www.boundedinfinity.com/json-schema/label/simple-add-response
+#             $ref: https://www.boundedinfinity.com/schema/label/simple-add-response
 templates:
     files:
         -   name: file://../../templates/go/server/echo/gotmpl/model/model.go.gotmpl

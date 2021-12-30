@@ -1,0 +1,92 @@
+$id: https://www.boundedinfinity.com/schema/util/codegen
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A company record
+type: object
+properties:
+    info:
+        type: object
+        properties:
+            name: 
+                type: string
+            version: 
+                type: string
+    type-map:
+        type: object
+        description: Maps Schema types to language types
+        properties:
+            lang-type:
+                type: string
+                description: The language type
+            schema-id:
+                type: string
+                description: The shema ID to which to map to the language type
+    models:
+        type: array
+        items:
+            type: string
+            description: Title should be model name
+            # Don't know how to represent a reference to a schema in a schema
+            format: uri-reference
+    operations:
+        type: array
+        items:
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: Name of the operation
+                description:
+                    type: string
+                    description: Description of the operation
+                input:
+                    type: object
+                    properties:
+                        name: 
+                            type: string
+                        $ref:
+                            type: string
+                output:
+                    type: object
+                    properties:
+                        name: 
+                            type: string
+                        $ref:
+                            type: string
+    templates:
+        type: array
+        items:
+            type: object
+            properties:
+                header:
+                    type: string
+                    description: |
+                      Header to add to the generated template.
+                      Usually something like a notice that this file is generated
+                      and a copyright.
+                path:
+                    type: string
+                    description: URI of template
+                type:
+                    type: string
+                    description: Template type
+                    enum:
+                        -   model
+                        -   operation
+                        -   namespace
+                namespace:
+                    type: string
+                    description: |
+                      The namespace to which the template applies.
+                      If this is template this template isn't applied to any namepace.
+                recurse:
+                    type: boolean
+                    description: |
+                        If this template should recurse be applied to the
+                        children namespaces of the current namespace.
+                        Defaults to false.
+
+required:
+    -   models
+    -   operations
+    -   templates
+
