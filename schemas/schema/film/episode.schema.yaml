@@ -7,6 +7,10 @@ properties:
         type: string
     sub-title:
         type: string
+    actors:
+        type: array
+        items:
+            type: https://www.boundedinfinity.com/schema/film/actor
     people:
         type: array
         items:

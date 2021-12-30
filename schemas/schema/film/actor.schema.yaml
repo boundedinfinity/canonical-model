@@ -1,6 +1,6 @@
 $id: https://www.boundedinfinity.com/schema/film/actor
 $schema: https://json-schema.org/draft/2020-12/schema
-description: A movie record
+description: An actor record
 type: object
 properties:
     role:
