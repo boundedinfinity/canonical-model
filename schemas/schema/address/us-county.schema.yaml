@@ -1,0 +1,13 @@
+$id: https://www.boundedinfinity.com/json-schema/address/us-county
+$schema: https://json-schema.org/draft/2020-12/schema
+description: US County
+type: object
+properties:
+    fips:
+        title: The 2 digit state Federal Information Processing System (FIPS) code
+        type: integer
+    name:
+        title: The county name
+        type: string
+        minLength: 2
+        maxLength: 50
