@@ -1,0 +1,17 @@
+$id: https://www.boundedinfinity.com/schema/banking/account
+$schema: https://json-schema.org/draft/2020-12/schema
+description: Bank
+type: object
+properties:
+    name:
+        description: The name of the account
+        type: string
+    description:
+        description: The description of the account
+        type: string
+    routing-number:
+        description: The Bank Routing Number
+        type: string
+required:
+    - name
+    - routing-number

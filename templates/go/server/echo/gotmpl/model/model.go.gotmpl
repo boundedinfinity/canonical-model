@@ -1,7 +1,0 @@
-package model
-
-type {{ ucFirst .Type.Name.Get }} struct {
-{{- range $property := .Type.Properties }}
-    {{ ucFirst $property.Name.Get }} {{ $property }} `json:"{{ $property }}" yaml:"{{ $property }}" xml:"{{ $property }}"`
-{{- end }}
-}

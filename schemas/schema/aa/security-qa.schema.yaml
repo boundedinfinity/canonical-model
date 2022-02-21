@@ -1,0 +1,11 @@
+$id: https://www.boundedinfinity.com/schema/aa/security-qa
+$schema: https://json-schema.org/draft/2020-12/schema
+description: Double Entry Bookkeeping Account
+type: object
+properties:
+    question:
+        description: The security question
+        type: string
+    answer:
+        description: The security answer
+        type: string
