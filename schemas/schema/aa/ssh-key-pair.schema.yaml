@@ -1,0 +1,18 @@
+$id: https://www.boundedinfinity.com/schema/aa/ssh-key-pair
+$schema: https://json-schema.org/draft/2020-12/schema
+description: SSH Key pair
+type: object
+properties:
+    public-key:
+        description: The public key
+        type: string
+    private-key:
+        description: The private key
+        type: string
+    algorithm:
+        description: The algorithm used to generate the key
+        type: string
+required:
+    - public-key
+    - private-key
+    - algorithm

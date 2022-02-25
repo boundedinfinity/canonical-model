@@ -19,4 +19,5 @@ properties:
 required:
     - name
     - account-number
+    - type
     - bank

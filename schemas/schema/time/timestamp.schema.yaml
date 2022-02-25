@@ -1,0 +1,12 @@
+$id: https://www.boundedinfinity.com/schema/time/timestamp
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A date and description
+type: object
+properties:
+    description:
+        description: A descripton of this timestamp
+        type: string
+    date:
+        description: The date
+        type: string
+        format: date-time
