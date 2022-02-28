@@ -4,9 +4,11 @@ description: A date and description
 type: object
 properties:
     description:
-        description: A descripton of this date
+        description: The date description
         type: string
     date:
-        description: The date
+        description: The date string
         type: string
         format: date
+required:
+    - date

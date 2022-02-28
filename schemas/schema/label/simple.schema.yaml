@@ -3,9 +3,19 @@
 $id: https://www.boundedinfinity.com/schema/label/simple
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A simple label
-type: string
-maxLength: 200
-
+type: object
+properties:
+    name:
+        description: The label name
+        type: string
+        maxLength: 200
+        minLength: 2
+    description:
+        description: The label description
+        type: string
+        maxLength: 1000
+required:
+    - name
 ---
 
 $id: https://www.boundedinfinity.com/schema/label/simple-add-request
