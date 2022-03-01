@@ -15,14 +15,16 @@ properties:
         description: List of addresses
         type: array
         items:
-            type: object
-            properties:
-                title:
-                    description: Title of address
-                    type: string
-                address:
-                    description: Address
-                    $ref: https://www.boundedinfinity.com/schema/address/mailing
+            $ref: https://www.boundedinfinity.com/schema/address/mailing
+    telephone-numbers:
+        description: Telephone numbers
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/telephone/nanp
+    dates:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/time/date
     labels:
         type: array
         items:

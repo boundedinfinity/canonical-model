@@ -15,5 +15,9 @@ properties:
         type: array
         items:
             $ref: https://www.boundedinfinity.com/schema/time/date
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/simple
 required:
     -   address

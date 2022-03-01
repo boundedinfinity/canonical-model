@@ -26,9 +26,13 @@ properties:
     extention:
         description: Extention number
         type: string
-        pattern: ^[0-9]{1,10}$
+        pattern: ^[0-9;,*#]{1,30}$
     audit:
         $ref: https://www.boundedinfinity.com/schema/util/audit
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/simple
 required:
     -   area-code
     -   exchange-code
