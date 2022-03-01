@@ -27,8 +27,6 @@ properties:
         description: Extention number
         type: string
         pattern: ^[0-9;,*#]{1,30}$
-    audit:
-        $ref: https://www.boundedinfinity.com/schema/util/audit
     labels:
         type: array
         items:

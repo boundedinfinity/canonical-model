@@ -27,5 +27,3 @@ properties:
             -   Partnership
             -   C Corporation
             -   S Corporation
-    audit:
-        $ref: https://www.boundedinfinity.com/schema/util/audit

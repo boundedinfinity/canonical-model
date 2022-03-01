@@ -13,5 +13,3 @@ items:
             type: string
             description: The note text
             maxLength: 20000
-        audit:
-            $ref: https://www.boundedinfinity.com/schema/util/audit

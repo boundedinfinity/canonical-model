@@ -27,28 +27,13 @@ properties:
         items:
             $ref: https://www.boundedinfinity.com/schema/address/internet
     employment:
-        description: Employment history
+        description: Employment
         type: array
         items:
-            type: object
-            properties:
-                title:
-                    description: Job title
-                    type: string
-                    maxLength: 200
-                company:
-                    $ref: https://www.boundedinfinity.com/schema/corporation/company
-                dates:
-                    type: array
-                    items:
-                        types: https://www.boundedinfinity.com/schema/time/date
-            required:
-                -   company
+            $ref: https://www.boundedinfinity.com/schema/people/employment
     labels:
         type: array
         items:
             $ref: https://www.boundedinfinity.com/schema/label/simple
-    audit:
-        $ref: https://www.boundedinfinity.com/schema/util/notes
 required:
     -   person
