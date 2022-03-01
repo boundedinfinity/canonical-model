@@ -1,6 +1,6 @@
-$id: https://www.boundedinfinity.com/schema/calendar/event
+$id: https://www.boundedinfinity.com/schema/calendar/task
 $schema: https://json-schema.org/draft/2020-12/schema
-description: Calendar Event
+description: Calendar Task
 type: object
 properties:
     title:
@@ -9,9 +9,7 @@ properties:
     description:
         description: The description of the event
         type: string
-    start:
-        $ref: https://www.boundedinfinity.com/schema/time/timestamp
-    end:
+    by:
         $ref: https://www.boundedinfinity.com/schema/time/timestamp
     required:
         type: array
@@ -31,16 +29,10 @@ properties:
             - default
             - public
             - private
-    show-as:
-        type: string
-        enum:
-            - busy
-            - free
     labels:
         type: array
         items:
             $ref: https://www.boundedinfinity.com/schema/label/simple
 required:
     - title
-    - start
-    - end
+    - by

@@ -1,14 +1,5 @@
 $id: https://www.boundedinfinity.com/schema/time/date
 $schema: https://json-schema.org/draft/2020-12/schema
-description: A date and description
-type: object
-properties:
-    description:
-        description: The date description
-        type: string
-    date:
-        description: The date string
-        type: string
-        format: date
-required:
-    - date
+description: Date
+type: string
+format: date
