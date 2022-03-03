@@ -8,4 +8,5 @@ properties:
     date:
         $ref: https://www.boundedinfinity.com/schema/time/date
 required:
-    - name
+    - label
+    - date
