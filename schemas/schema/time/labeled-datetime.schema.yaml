@@ -1,0 +1,11 @@
+$id: https://www.boundedinfinity.com/schema/label/labled-datetime.yaml
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A simple label
+type: object
+properties:
+    label:
+        $ref: https://www.boundedinfinity.com/schema/label/simple
+    datetime:
+        $ref: https://www.boundedinfinity.com/schema/time/datetime
+required:
+    - name
