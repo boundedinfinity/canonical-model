@@ -16,3 +16,107 @@ properties:
         description: The label description
         type: string
         maxLength: 1000
+
+---
+
+$id: https://www.boundedinfinity.com/schema/label/kv-get-request
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A key / value label get request
+type: object
+properties:
+    trackingId:
+        type: string
+required:
+    - trackingId
+
+---
+
+$id: https://www.boundedinfinity.com/schema/label/kv-get-response
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A key / value label get response
+type: object
+properties:
+    trackingId:
+        type: string
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/kv
+    errors:
+        type: array
+        items:
+            type: string
+required:
+    - trackingId
+    - labels
+
+---
+
+$id: https://www.boundedinfinity.com/schema/label/kv-add-request
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A key / value label add request
+type: object
+properties:
+    trackingId:
+        type: string
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/kv
+required:
+    - trackingId
+    - labels
+
+---
+
+$id: https://www.boundedinfinity.com/schema/label/kv-add-response
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A key / value label add response
+type: object
+properties:
+    trackingId:
+        type: string
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/kv
+    errors:
+        type: array
+        items:
+            type: string
+required:
+    - trackingId
+    - labels
+
+---
+
+$id: https://www.boundedinfinity.com/schema/label/kv-delete-request
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A key / value label delete request
+type: object
+properties:
+    trackingId:
+        type: string
+required:
+    - trackingId
+
+---
+
+$id: https://www.boundedinfinity.com/schema/label/kv-delete-response
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A key / value label delete response
+type: object
+properties:
+    trackingId:
+        type: string
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/kv
+    errors:
+        type: array
+        items:
+            type: string
+required:
+    - trackingId
+    - labels
