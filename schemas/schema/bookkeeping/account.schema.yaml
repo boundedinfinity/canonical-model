@@ -9,3 +9,14 @@ properties:
     description:
         description: The description of the account
         type: string
+    type:
+        $ref: https://www.boundedinfinity.com/schema/bookkeeping/account-type
+    parent:
+        $ref: https://www.boundedinfinity.com/schema/bookkeeping/account
+    dates:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/labled-datetime
+required:
+    - name
+    - type

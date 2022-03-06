@@ -4,13 +4,7 @@ description: A person record
 type: object
 properties:
     names:
-        description: List of names
-        type: array
-        minItems: 1
-        items:
-            type: string
-            maxLength: 50
-            minLength: 1
+        $ref: https://www.boundedinfinity.com/schema/people/name
     image:
         description: Link to image of person
         type: string

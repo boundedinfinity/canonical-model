@@ -1,0 +1,7 @@
+$id: https://www.boundedinfinity.com/schema/banking/card-type
+$schema: https://json-schema.org/draft/2020-12/schema
+description: Card Type
+type: string
+enum:
+    -   Credit
+    -   Debit

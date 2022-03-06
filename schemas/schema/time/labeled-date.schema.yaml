@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/label/labled-date.yaml
+$id: https://www.boundedinfinity.com/schema/label/labeled-date
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A simple label
 type: object

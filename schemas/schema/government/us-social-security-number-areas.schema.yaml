@@ -1,0 +1,13 @@
+$id: https://www.boundedinfinity.com/schema/government/us-social-security-number-area
+$schema: https://json-schema.org/draft/2020-12/schema
+description: Social Security Number
+type: object
+properties:
+    location:
+        type: string
+    numbers:
+        type: array
+        items:
+            type: string
+
+# https://en.wikipedia.org/wiki/Social_Security_number#List_of_Social_Security_area_numbers

@@ -1,0 +1,27 @@
+$id: https://www.boundedinfinity.com/schema/people/name
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A person's name
+type: object
+properties:
+    prefixes:
+        type: array
+        items:
+            type: string
+            maxLength: 10
+            minLength: 1
+    names:
+        description: List of names
+        type: array
+        minItems: 1
+        items:
+            type: string
+            maxLength: 50
+            minLength: 1
+    suffixes:
+        type: array
+        items:
+            type: string
+            maxLength: 10
+            minLength: 1
+required:
+    -   names

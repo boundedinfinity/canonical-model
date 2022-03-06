@@ -16,6 +16,10 @@ properties:
         $ref: https://www.boundedinfinity.com/schema/banking/account-type
     bank:
         $ref: https://www.boundedinfinity.com/schema/banking/bank
+    swift-code:
+        type: string
+    iban-number:
+        type: string
 required:
     - name
     - account-number
