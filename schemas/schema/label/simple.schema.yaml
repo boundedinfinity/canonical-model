@@ -5,6 +5,12 @@ $schema: https://json-schema.org/draft/2020-12/schema
 description: A simple label
 type: object
 properties:
+    id:
+        description: The label ID
+        type: number
+        persistence:
+            primary: true
+            generated: increment
     name:
         description: The label name
         type: string

@@ -1,0 +1,10 @@
+{{#each data}}
+import {{ name }} from './{{ name }}'
+{{/each}}
+
+export default {
+{{#each data}}
+    {{ name }},
+{{/each}}
+
+}

@@ -1,3 +1,7 @@
-export function {{ getName obj }}Validator(item: {{ getName obj }}): Error[] {
+import { {{ getName obj }} } from './{{ getName obj }}.model'
 
+export function {{ getName obj }}Validator(item: {{ getName obj }}): string[] {
+    const output: string[] = []
+
+    return output
 }

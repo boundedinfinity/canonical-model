@@ -3,8 +3,17 @@ $schema: https://json-schema.org/draft/2020-12/schema
 description: A simple label
 type: object
 properties:
+    id:
+        description: The label date ID
+        type: number
+        persistence:
+            primary: true
+            generated: increment
     label:
         $ref: https://www.boundedinfinity.com/schema/label/simple
+        persistence:
+            relationship: many-to-one
+            eager: true
     date:
         $ref: https://www.boundedinfinity.com/schema/time/date
 required:
