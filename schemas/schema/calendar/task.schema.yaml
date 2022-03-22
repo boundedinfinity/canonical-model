@@ -32,7 +32,7 @@ properties:
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/simple
+            $ref: https://www.boundedinfinity.com/schema/label/label
 required:
     - title
     - by

@@ -14,4 +14,4 @@ properties:
     dates:
         type: array
         items:
-            types: https://www.boundedinfinity.com/schema/time/date
+            types: https://www.boundedinfinity.com/schema/time/sdate

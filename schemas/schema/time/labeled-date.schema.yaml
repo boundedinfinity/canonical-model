@@ -10,12 +10,12 @@ properties:
             primary: true
             generated: increment
     label:
-        $ref: https://www.boundedinfinity.com/schema/label/simple
+        $ref: https://www.boundedinfinity.com/schema/label/label
         persistence:
-            relationship: many-to-one
+            relation: many-to-one
             eager: true
     date:
-        $ref: https://www.boundedinfinity.com/schema/time/date
+        $ref: https://www.boundedinfinity.com/schema/time/sdate
 required:
     - label
     - date

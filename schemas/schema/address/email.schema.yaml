@@ -14,10 +14,10 @@ properties:
     dates:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/time/date
+            $ref: https://www.boundedinfinity.com/schema/time/sdate
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/simple
+            $ref: https://www.boundedinfinity.com/schema/label/label
 required:
     -   address

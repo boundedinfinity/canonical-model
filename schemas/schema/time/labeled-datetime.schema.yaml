@@ -4,7 +4,7 @@ description: A simple label
 type: object
 properties:
     label:
-        $ref: https://www.boundedinfinity.com/schema/label/simple
+        $ref: https://www.boundedinfinity.com/schema/label/label
     datetime:
         $ref: https://www.boundedinfinity.com/schema/time/datetime
 required:

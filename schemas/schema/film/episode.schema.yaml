@@ -16,12 +16,12 @@ properties:
         items:
             type: https://www.boundedinfinity.com/schema/film/person
     labels:
-        type: array:
+        type: array
         items:
-            type: https://www.boundedinfinity.com/schema/label/kv
+            type: https://www.boundedinfinity.com/schema/label/kvlabel
     dates:
         type: array
         items:
-            type: https://www.boundedinfinity.com/schema/time/date
+            type: https://www.boundedinfinity.com/schema/time/sdate
 required:
     -   title
