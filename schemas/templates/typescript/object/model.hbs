@@ -1,9 +1,0 @@
-{{#each (getImports obj) }}
-import { {{ getType this }} } from '{{ getImportPath this }}'
-{{/each}}
-
-export class {{ getType obj }} {
-    {{#each obj.properties}}
-    {{ @key }}{{#if (propOptional ../obj @key) }}?{{/if}}: {{ getType this }};
-    {{/each}}
-}
