@@ -1,9 +1,0 @@
-import { JsonObject, JsonProperty } from 'typescript-json-serializer';
-
-@JsonObject()
-export class {{ getType obj }} {
-    {{#each obj.properties}}
-    @JsonProperty()
-    {{ @key }}{{#if (notInList ../obj.required @key) }}?{{/if}}: {{ getType this }};
-    {{/each}}
-}

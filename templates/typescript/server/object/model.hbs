@@ -1,12 +1,18 @@
 import { JsonObject, JsonProperty } from 'typescript-json-serializer';
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
+{{#each obj.properties}}
+{{#unless (isBuiltin this) }}
+import { {{ getTypeName this }} } from './{{ getTypeName this }}.model'
+{{/unless}}
+{{/each}}
+
 @Entity()
 @JsonObject()
-export class {{ getType obj }} {
+export class {{ getTypeName obj }} {
     {{#each obj.properties}}
     {{#if (eq @key 'id')}}@PrimaryGeneratedColumn(){{else}}@Column(){{/if}}
     @JsonProperty()
-    {{ @key }}{{#if (notInList ../obj.required @key) }}?{{/if}}: {{ getType this }};
+    {{ @key }}{{#unless (inList ../obj.required @key) }}?{{/unless}}: {{ getTypeName this }};
     {{/each}}
 }
