@@ -1,9 +1,0 @@
-{{#if obj.format }}
-    {{#if (inList obj.format 'date' 'date-time' 'time' )}}
-export class {{ getTypeName obj }} = Date
-    {{ else }}
-export type {{ getTypeName obj }} = string
-    {{/if}}
-{{ else }}
-export type {{ getTypeName obj }} = string
-{{/if}}
