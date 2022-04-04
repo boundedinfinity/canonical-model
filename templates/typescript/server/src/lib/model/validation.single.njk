@@ -1,0 +1,13 @@
+import { ValidationSchema } from 'class-validator';
+
+export const {{ obj | idType }}ValidationSchema: ValidationSchema = {
+    name: '{{ obj | idType }}Schema',
+    properties: {
+    {%- for name, prop in obj.properties %}
+        {{ name }}: [
+            {% if prop.maxLength %}{ type: 'maxLength', constraints: [{{ prop.maxLength }}] },{% endif %}
+            {% if prop.minLength %}{ type: 'minLength', constraints: [{{ prop.minLength }}] },{% endif %}
+        ],
+    {%- endfor %}
+    }
+}

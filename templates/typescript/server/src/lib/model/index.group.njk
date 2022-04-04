@@ -1,0 +1,17 @@
+import { registerSchema } from 'class-validator';
+
+{% for obj in objs %}
+import { {{ obj | idType }} } from './{{ obj | idType }}.class'
+{%- endfor %}
+{% for obj in objs %}
+import { {{ obj | idType }}ValidationSchema } from './{{ obj | idType }}.validation'
+{%- endfor %}
+{% for obj in objs %}
+registerSchema({{ obj | idType }}ValidationSchema); 
+{%- endfor %}
+
+export {
+    {%- for obj in objs %}
+    {{ obj | idType }},
+    {%- endfor %}
+}

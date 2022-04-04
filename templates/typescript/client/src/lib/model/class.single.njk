@@ -1,0 +1,27 @@
+import { JsonObject, JsonProperty } from 'typescript-json-serializer';
+
+{% if obj.type == 'string' -%}
+@JsonObject()
+export class {{ obj | idType }} {
+    @JsonProperty()
+    {%- if inList(obj.format, 'date', 'datetime', 'time') %}
+    value: Date
+    {%- else %}
+    value: string
+    {% endif %}
+}
+{%- elif obj.type == 'object' -%}
+{%- for name, prop in obj.properties -%}
+{%- if not isBuiltin(prop) -%}
+import { {{ prop | langType }} } from './{{ prop | langType }}.class'
+{% endif %}
+{%- endfor %}
+
+@JsonObject()
+export class {{ obj | idType }} {
+    {% for name, prop in obj.properties %}
+    @JsonProperty()
+    {{ name }}{% if not isRequired(name) %}?{% endif %}: {{ prop | langType }}
+    {% endfor %}
+}
+{% endif %}

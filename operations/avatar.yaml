@@ -1,0 +1,11 @@
+functions:
+    -   name: get-label
+        input: https://www.boundedinfinity.com/schema/label/label-get-request
+        output: https://www.boundedinfinity.com/schema/label/label-get-response
+    -   name: add-label
+        input: https://www.boundedinfinity.com/schema/label/label-add-request
+        output: https://www.boundedinfinity.com/schema/label/label-add-response
+    -   name: delete-label
+        input: https://www.boundedinfinity.com/schema/label/label-delete-request
+        output: https://www.boundedinfinity.com/schema/label/label-delete-response
+

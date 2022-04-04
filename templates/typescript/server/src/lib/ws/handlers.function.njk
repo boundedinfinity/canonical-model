@@ -1,0 +1,9 @@
+{% for fn in fns %}
+import { {{ fn.input | idType }} } from '../model/{{ fn.input | idType }}.class'
+import { {{ fn.output | idType }} } from '../model/{{ fn.output | idType }}.class'
+{%- endfor %}
+{% for fn in fns %}
+export function {{ fn.name | normalizeName }}(request: {{ fn.input | idType }}, response: {{ fn.output | idType }}) {
+    
+}
+{% endfor %}

@@ -24,106 +24,106 @@ properties:
 required:
     - name
 
-# ---
+---
 
-# $id: https://www.boundedinfinity.com/schema/label/label-get-request
-# $schema: https://json-schema.org/draft/2020-12/schema
-# description: A simple label get request
-# type: object
-# properties:
-#     trackingId:
-#         type: string
-# required:
-#     - trackingId
+$id: https://www.boundedinfinity.com/schema/label/label-get-request
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A simple label get request
+type: object
+properties:
+    trackingId:
+        type: string
+required:
+    - trackingId
 
-# ---
+---
 
-# $id: https://www.boundedinfinity.com/schema/label/label-get-response
-# $schema: https://json-schema.org/draft/2020-12/schema
-# description: A simple label get response
-# type: object
-# properties:
-#     trackingId:
-#         type: string
-#     labels:
-#         type: array
-#         items:
-#             $ref: https://www.boundedinfinity.com/schema/label/label
-#     errors:
-#         type: array
-#         items:
-#             type: string
-# required:
-#     - trackingId
-#     - labels
+$id: https://www.boundedinfinity.com/schema/label/label-get-response
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A simple label get response
+type: object
+properties:
+    trackingId:
+        type: string
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/label
+    errors:
+        type: array
+        items:
+            type: string
+required:
+    - trackingId
+    - labels
 
-# ---
+---
 
-# $id: https://www.boundedinfinity.com/schema/label/label-add-request
-# $schema: https://json-schema.org/draft/2020-12/schema
-# description: A simple label add request
-# type: object
-# properties:
-#     trackingId:
-#         type: string
-#     labels:
-#         type: array
-#         items:
-#             $ref: https://www.boundedinfinity.com/schema/label/label
-# required:
-#     - trackingId
-#     - labels
+$id: https://www.boundedinfinity.com/schema/label/label-add-request
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A simple label add request
+type: object
+properties:
+    trackingId:
+        type: string
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/label
+required:
+    - trackingId
+    - labels
 
-# ---
+---
 
-# $id: https://www.boundedinfinity.com/schema/label/label-add-response
-# $schema: https://json-schema.org/draft/2020-12/schema
-# description: A simple label add response
-# type: object
-# properties:
-#     trackingId:
-#         type: string
-#     labels:
-#         type: array
-#         items:
-#             $ref: https://www.boundedinfinity.com/schema/label/label
-#     errors:
-#         type: array
-#         items:
-#             type: string
-# required:
-#     - trackingId
-#     - labels
+$id: https://www.boundedinfinity.com/schema/label/label-add-response
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A simple label add response
+type: object
+properties:
+    trackingId:
+        type: string
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/label
+    errors:
+        type: array
+        items:
+            type: string
+required:
+    - trackingId
+    - labels
 
-# ---
+---
 
-# $id: https://www.boundedinfinity.com/schema/label/label-delete-request
-# $schema: https://json-schema.org/draft/2020-12/schema
-# description: A simple label delete request
-# type: object
-# properties:
-#     trackingId:
-#         type: string
-# required:
-#     - trackingId
+$id: https://www.boundedinfinity.com/schema/label/label-delete-request
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A simple label delete request
+type: object
+properties:
+    trackingId:
+        type: string
+required:
+    - trackingId
 
-# ---
+---
 
-# $id: https://www.boundedinfinity.com/schema/label/label-delete-response
-# $schema: https://json-schema.org/draft/2020-12/schema
-# description: A simple label delete response
-# type: object
-# properties:
-#     trackingId:
-#         type: string
-#     labels:
-#         type: array
-#         items:
-#             $ref: https://www.boundedinfinity.com/schema/label/label
-#     errors:
-#         type: array
-#         items:
-#             type: string
-# required:
-#     - trackingId
-#     - labels
+$id: https://www.boundedinfinity.com/schema/label/label-delete-response
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A simple label delete response
+type: object
+properties:
+    trackingId:
+        type: string
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/label
+    errors:
+        type: array
+        items:
+            type: string
+required:
+    - trackingId
+    - labels
