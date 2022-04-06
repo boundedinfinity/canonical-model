@@ -1,9 +1,34 @@
-{% for fn in fns %}
-import { {{ fn.input | idType }} } from '../model/{{ fn.input | idType }}.class'
-import { {{ fn.output | idType }} } from '../model/{{ fn.output | idType }}.class'
+import { Server } from "socket.io";
+import { JsonSerializer, throwError } from 'typescript-json-serializer';
+import { getConnection } from "typeorm";
+
+{%- for fn in fns %}
+import { {{ fn.input | idType }} } from '$lib/model/{{ fn.input | idType }}.class'
+import { {{ fn.output | idType }} } from '$lib/model/{{ fn.output | idType }}.class'
 {%- endfor %}
+
 {% for fn in fns %}
-export function {{ fn.name | normalizeName }}(request: {{ fn.input | idType }}, response: {{ fn.output | idType }}) {
-    
+import  { {{ fn.name | normalizeName }}Handler } from './{{ fn.name | normalizeName }}Handler'
+{%- endfor %}
+
+const serializer = new JsonSerializer({
+    errorCallback: throwError,
+});
+
+export function handle(io: Server) {
+    io.on("connection", async (socket) => {
+        console.log("WS connection");
+        const connection = await getConnection();
+
+        {%- for fn in fns %}        
+        socket.on('{{ fn.input | idType }}', async (args) => {
+            console.log(`received {{ fn.input | idType }} ${(args)}`);        
+            const request = serializer.deserialize(args, {{ fn.input | idType }}) as {{ fn.input | idType }};
+            const response = new {{ fn.output | idType }}()
+            await {{ fn.name | normalizeName }}Handler(request, response, connection)
+            const json = serializer.serialize(response);
+            io.emit('{{ fn.output | idType }}', json)
+        });
+        {%- endfor %}
+    });
 }
-{% endfor %}

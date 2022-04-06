@@ -1,0 +1,53 @@
+import ioClient from "socket.io-client";
+import { JsonSerializer, throwError } from 'typescript-json-serializer';
+import { writable } from "svelte/store";
+
+{%- for fn in fns %}
+import { {{ fn.input | idType }} } from '$lib/model/{{ fn.input | idType }}.class'
+import { {{ fn.output | idType }} } from '$lib/model/{{ fn.output | idType }}.class'
+{%- endfor %}
+
+const ENDPOINT = "http://localhost:3001";
+const socket = ioClient(ENDPOINT, { secure: false });
+const serializer = new JsonSerializer({
+    errorCallback: throwError,
+});
+
+{% for fn in fns %}
+function {{ fn.name | normalizeName }}(request: {{ fn.input | idType }}) {
+    const name = {{ fn.input | idType }}.constructor.name
+    const data = serializer.serialize(request);
+
+    console.log(`sending ${name}: ${data}`)
+    socket.emit(name, data)
+}
+{% endfor %}
+
+{% for fn in fns -%}
+const {{ fn.name | normalizeName | lcFirst }}Store = writable<{{ fn.output | idType }}>(null);
+{% endfor %}
+
+socket.onAny(async (event, args) => {
+    console.log(`receive ${event}`);
+    
+    switch (event) {
+        {%- for fn in fns %}
+        case "{{ fn.output | idType }}":
+            const {{ fn.name | normalizeName | lcFirst }}Response = serializer.deserialize(args, {{ fn.output | idType }}) as {{ fn.output | idType }};
+            {{ fn.name | normalizeName | lcFirst }}Store.set({{ fn.name | normalizeName | lcFirst }}Response)
+            break;
+        {%- endfor %}
+        default:
+            console.log(`unkown event ${event}`);
+    }
+});
+
+export {
+    {%- for fn in fns %}
+    {{ fn.name | normalizeName | lcFirst }}Store,
+    {%- endfor %}
+
+    {%- for fn in fns %}
+    {{ fn.name | normalizeName }},
+    {%- endfor %}
+}
