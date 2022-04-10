@@ -13,7 +13,7 @@ export class {{ obj | idType }} {
 {%- elif obj.type == 'object' -%}
 {%- for name, prop in obj.properties -%}
 {%- if not isBuiltin(prop) -%}
-import { {{ prop | langType }} } from './{{ prop | langType }}.class'
+import {% if isArray(prop) %}type {% endif %}{ {{ prop | langType }} } from './{{ prop | langType }}.class'
 {% endif %}
 {%- endfor %}
 
@@ -21,7 +21,7 @@ import { {{ prop | langType }} } from './{{ prop | langType }}.class'
 export class {{ obj | idType }} {
     {% for name, prop in obj.properties %}
     @JsonProperty()
-    {{ name }}{% if not isRequired(name) %}?{% endif %}: {{ prop | langType }}
+    {{ name }}{% if not isRequired(name) %}?{% endif %}: {{ prop | langType }}{% if isArray(prop) %}[] = []{% endif %}
     {% endfor %}
 }
 {% endif %}

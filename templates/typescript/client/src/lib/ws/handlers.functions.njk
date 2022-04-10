@@ -9,6 +9,7 @@ import { {{ fn.output | idType }} } from '$lib/model/{{ fn.output | idType }}.cl
 
 const ENDPOINT = "http://localhost:3001";
 const socket = ioClient(ENDPOINT, { secure: false });
+
 const serializer = new JsonSerializer({
     errorCallback: throwError,
 });
@@ -27,21 +28,13 @@ function {{ fn.name | normalizeName }}(request: {{ fn.input | idType }}) {
 const {{ fn.name | normalizeName | lcFirst }}Store = writable<{{ fn.output | idType }}>(null);
 {% endfor %}
 
-socket.onAny(async (event, args) => {
-    console.log(`receive ${event}`);
-    
-    switch (event) {
-        {%- for fn in fns %}
-        case "{{ fn.output | idType }}":
-            const {{ fn.name | normalizeName | lcFirst }}Response = serializer.deserialize(args, {{ fn.output | idType }}) as {{ fn.output | idType }};
-            {{ fn.name | normalizeName | lcFirst }}Store.set({{ fn.name | normalizeName | lcFirst }}Response)
-            break;
-        {%- endfor %}
-        default:
-            console.log(`unkown event ${event}`);
-    }
+{%- for fn in fns %}
+socket.on('{{ fn.output | idType }}', async (args) => {
+    console.log(`received {{ fn.output | idType }} ${args}`);
+    const response = serializer.deserialize(args, {{ fn.output | idType }}) as {{ fn.output | idType }};
+    {{ fn.name | normalizeName | lcFirst }}Store.set(response)
 });
-
+{% endfor %}
 export {
     {%- for fn in fns %}
     {{ fn.name | normalizeName | lcFirst }}Store,

@@ -30,6 +30,8 @@ $id: https://www.boundedinfinity.com/schema/label/label-get-request
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A simple label get request
 type: object
+generation:
+    persist: false
 properties:
     trackingId:
         type: string
@@ -42,6 +44,8 @@ $id: https://www.boundedinfinity.com/schema/label/label-get-response
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A simple label get response
 type: object
+generation:
+    persist: false
 properties:
     trackingId:
         type: string
@@ -63,6 +67,8 @@ $id: https://www.boundedinfinity.com/schema/label/label-add-request
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A simple label add request
 type: object
+generation:
+    persist: false
 properties:
     trackingId:
         type: string
@@ -80,6 +86,8 @@ $id: https://www.boundedinfinity.com/schema/label/label-add-response
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A simple label add response
 type: object
+generation:
+    persist: false
 properties:
     trackingId:
         type: string
@@ -101,6 +109,8 @@ $id: https://www.boundedinfinity.com/schema/label/label-delete-request
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A simple label delete request
 type: object
+generation:
+    persist: false
 properties:
     trackingId:
         type: string
@@ -113,6 +123,8 @@ $id: https://www.boundedinfinity.com/schema/label/label-delete-response
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A simple label delete response
 type: object
+generation:
+    persist: false
 properties:
     trackingId:
         type: string

@@ -1,11 +1,20 @@
 functions:
-    -   name: get-label
+    -   name: label-get
         input: https://www.boundedinfinity.com/schema/label/label-get-request
         output: https://www.boundedinfinity.com/schema/label/label-get-response
-    -   name: add-label
+    -   name: label-add
         input: https://www.boundedinfinity.com/schema/label/label-add-request
         output: https://www.boundedinfinity.com/schema/label/label-add-response
-    -   name: delete-label
+    -   name: label-delete
         input: https://www.boundedinfinity.com/schema/label/label-delete-request
         output: https://www.boundedinfinity.com/schema/label/label-delete-response
 
+    -   name: kvlabel-get
+        input: https://www.boundedinfinity.com/schema/label/kvlabel-get-request
+        output: https://www.boundedinfinity.com/schema/label/kvlabel-get-response
+    -   name: kvlabel-add
+        input: https://www.boundedinfinity.com/schema/label/kvlabel-add-request
+        output: https://www.boundedinfinity.com/schema/label/kvlabel-add-response
+    -   name: kvlabel-delete
+        input: https://www.boundedinfinity.com/schema/label/kvlabel-delete-request
+        output: https://www.boundedinfinity.com/schema/label/kvlabel-delete-response

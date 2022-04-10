@@ -21,106 +21,118 @@ required:
     -   name
     -   value
 
-# ---
+---
 
-# $id: https://www.boundedinfinity.com/schema/label/kvlabel-get-request
-# $schema: https://json-schema.org/draft/2020-12/schema
-# description: A key / value label get request
-# type: object
-# properties:
-#     trackingId:
-#         type: string
-# required:
-#     - trackingId
+$id: https://www.boundedinfinity.com/schema/label/kvlabel-get-request
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A key / value label get request
+type: object
+generation:
+    persist: false
+properties:
+    trackingId:
+        type: string
+required:
+    - trackingId
 
-# ---
+---
 
-# $id: https://www.boundedinfinity.com/schema/label/kvlabel-get-response
-# $schema: https://json-schema.org/draft/2020-12/schema
-# description: A key / value label get response
-# type: object
-# properties:
-#     trackingId:
-#         type: string
-#     labels:
-#         type: array
-#         items:
-#             $ref: https://www.boundedinfinity.com/schema/label/kvlabel
-#     errors:
-#         type: array
-#         items:
-#             type: string
-# required:
-#     - trackingId
-#     - labels
+$id: https://www.boundedinfinity.com/schema/label/kvlabel-get-response
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A key / value label get response
+type: object
+generation:
+    persist: false
+properties:
+    trackingId:
+        type: string
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/kvlabel
+    errors:
+        type: array
+        items:
+            type: string
+required:
+    - trackingId
+    - labels
 
-# ---
+---
 
-# $id: https://www.boundedinfinity.com/schema/label/kvlabel-add-request
-# $schema: https://json-schema.org/draft/2020-12/schema
-# description: A key / value label add request
-# type: object
-# properties:
-#     trackingId:
-#         type: string
-#     labels:
-#         type: array
-#         items:
-#             $ref: https://www.boundedinfinity.com/schema/label/kvlabel
-# required:
-#     - trackingId
-#     - labels
+$id: https://www.boundedinfinity.com/schema/label/kvlabel-add-request
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A key / value label add request
+type: object
+generation:
+    persist: false
+properties:
+    trackingId:
+        type: string
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/kvlabel
+required:
+    - trackingId
+    - labels
 
-# ---
+---
 
-# $id: https://www.boundedinfinity.com/schema/label/kvlabel-add-response
-# $schema: https://json-schema.org/draft/2020-12/schema
-# description: A key / value label add response
-# type: object
-# properties:
-#     trackingId:
-#         type: string
-#     labels:
-#         type: array
-#         items:
-#             $ref: https://www.boundedinfinity.com/schema/label/kvlabel
-#     errors:
-#         type: array
-#         items:
-#             type: string
-# required:
-#     - trackingId
-#     - labels
+$id: https://www.boundedinfinity.com/schema/label/kvlabel-add-response
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A key / value label add response
+type: object
+generation:
+    persist: false
+properties:
+    trackingId:
+        type: string
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/kvlabel
+    errors:
+        type: array
+        items:
+            type: string
+required:
+    - trackingId
+    - labels
 
-# ---
+---
 
-# $id: https://www.boundedinfinity.com/schema/label/kvlabel-delete-request
-# $schema: https://json-schema.org/draft/2020-12/schema
-# description: A key / value label delete request
-# type: object
-# properties:
-#     trackingId:
-#         type: string
-# required:
-#     - trackingId
+$id: https://www.boundedinfinity.com/schema/label/kvlabel-delete-request
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A key / value label delete request
+type: object
+generation:
+    persist: false
+properties:
+    trackingId:
+        type: string
+required:
+    - trackingId
 
-# ---
+---
 
-# $id: https://www.boundedinfinity.com/schema/label/kvlabel-delete-response
-# $schema: https://json-schema.org/draft/2020-12/schema
-# description: A key / value label delete response
-# type: object
-# properties:
-#     trackingId:
-#         type: string
-#     labels:
-#         type: array
-#         items:
-#             $ref: https://www.boundedinfinity.com/schema/label/kvlabel
-#     errors:
-#         type: array
-#         items:
-#             type: string
-# required:
-#     - trackingId
-#     - labels
+$id: https://www.boundedinfinity.com/schema/label/kvlabel-delete-response
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A key / value label delete response
+type: object
+generation:
+    persist: false
+properties:
+    trackingId:
+        type: string
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/kvlabel
+    errors:
+        type: array
+        items:
+            type: string
+required:
+    - trackingId
+    - labels
