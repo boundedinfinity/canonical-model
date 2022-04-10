@@ -7,6 +7,7 @@ export const {{ obj | idType }}ValidationSchema: ValidationSchema = {
         {{ name }}: [
             {% if prop.maxLength %}{ type: 'maxLength', constraints: [{{ prop.maxLength }}] },{% endif %}
             {% if prop.minLength %}{ type: 'minLength', constraints: [{{ prop.minLength }}] },{% endif %}
+            {% if prop.format == 'email' %}{ type: 'isEmail' },{% endif %}
         ],
     {%- endfor %}
     }

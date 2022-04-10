@@ -14,7 +14,8 @@ properties:
     dates:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/time/date
+            type: string
+            format: date
     labels:
         type: array
         items:

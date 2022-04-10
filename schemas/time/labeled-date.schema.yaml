@@ -15,7 +15,8 @@ properties:
             relation: many-to-one
             eager: true
     date:
-        $ref: https://www.boundedinfinity.com/schema/time/date
+        type: string
+        format: date
 required:
     - label
     - date

@@ -6,7 +6,8 @@ properties:
     label:
         $ref: https://www.boundedinfinity.com/schema/label/label
     datetime:
-        $ref: https://www.boundedinfinity.com/schema/time/datetime
+        type: string
+        format: date
 required:
     - label
     - datetime
