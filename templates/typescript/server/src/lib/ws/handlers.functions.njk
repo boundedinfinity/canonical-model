@@ -2,20 +2,21 @@ import { Server } from "socket.io";
 import { JsonSerializer, throwError } from 'typescript-json-serializer';
 import { getConnection } from "typeorm";
 
+
 {% for fn in fns %}
 import { {{ fn.input | idType }} } from '$lib/model/{{ fn.input | idType }}.class'
 import { {{ fn.output | idType }} } from '$lib/model/{{ fn.output | idType }}.class'
 {%- endfor %}
 
 {% for fn in fns %}
-import { {{ fn.name | normalizeName }}Handler } from './{{ fn.name | normalizeName }}.handler'
+import { {{ fn.name | normalizeName }}Handler } from '$lib/handlers/{{ fn.name | normalizeName }}.handler'
 {%- endfor %}
 
 const serializer = new JsonSerializer({
     errorCallback: throwError,
 });
 
-export function handle(io: Server) {
+export function handleWs(io: Server) {
     io.on("connection", async (socket) => {
         console.log("WS connection");
         const connection = await getConnection();

@@ -1,29 +1,29 @@
-$id: https://www.boundedinfinity.com/schema/label/kvlabel
+$id: https://www.boundedinfinity.com/schema/label/labeled-value
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A key/value label
 type: object
 properties:
-    name:
-        description: The label name
+    id:
+        description: The label date ID
         type: string
-        maxLength: 200
-        minLength: 2
+        format: uuid
+        persist:
+            primary: true
+            generated: increment
+    label:
+        $ref: https://www.boundedinfinity.com/schema/label/label
     value:
         description: The label value
         type: string
         maxLength: 200
-    description:
-        description: The label description
-        type: string
-        maxLength: 1000
 
 required:
-    -   name
+    -   label
     -   value
 
 ---
 
-$id: https://www.boundedinfinity.com/schema/label/kvlabel-get-request
+$id: https://www.boundedinfinity.com/schema/label/labeled-value-get-request
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A key / value label get request
 type: object
@@ -37,7 +37,7 @@ required:
 
 ---
 
-$id: https://www.boundedinfinity.com/schema/label/kvlabel-get-response
+$id: https://www.boundedinfinity.com/schema/label/labeled-value-get-response
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A key / value label get response
 type: object
@@ -49,7 +49,7 @@ properties:
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/kvlabel
+            $ref: https://www.boundedinfinity.com/schema/label/labeled-value
     errors:
         type: array
         items:
@@ -60,7 +60,7 @@ required:
 
 ---
 
-$id: https://www.boundedinfinity.com/schema/label/kvlabel-add-request
+$id: https://www.boundedinfinity.com/schema/label/labeled-value-add-request
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A key / value label add request
 type: object
@@ -72,14 +72,14 @@ properties:
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/kvlabel
+            $ref: https://www.boundedinfinity.com/schema/label/labeled-value
 required:
     - trackingId
     - labels
 
 ---
 
-$id: https://www.boundedinfinity.com/schema/label/kvlabel-add-response
+$id: https://www.boundedinfinity.com/schema/label/labeled-value-add-response
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A key / value label add response
 type: object
@@ -91,7 +91,7 @@ properties:
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/kvlabel
+            $ref: https://www.boundedinfinity.com/schema/label/labeled-value
     errors:
         type: array
         items:
@@ -102,7 +102,7 @@ required:
 
 ---
 
-$id: https://www.boundedinfinity.com/schema/label/kvlabel-delete-request
+$id: https://www.boundedinfinity.com/schema/label/labeled-value-delete-request
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A key / value label delete request
 type: object
@@ -116,7 +116,7 @@ required:
 
 ---
 
-$id: https://www.boundedinfinity.com/schema/label/kvlabel-delete-response
+$id: https://www.boundedinfinity.com/schema/label/labeled-value-delete-response
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A key / value label delete response
 type: object
@@ -128,7 +128,7 @@ properties:
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/kvlabel
+            $ref: https://www.boundedinfinity.com/schema/label/labeled-value
     errors:
         type: array
         items:

@@ -1,3 +1,8 @@
+templates:
+models:
+    -   names: https://www.boundedinfinity.com/schema/label/label
+        
+
 functions:
     -   name: label-get
         input: https://www.boundedinfinity.com/schema/label/label-get-request
@@ -9,12 +14,12 @@ functions:
         input: https://www.boundedinfinity.com/schema/label/label-delete-request
         output: https://www.boundedinfinity.com/schema/label/label-delete-response
 
-    -   name: kvlabel-get
-        input: https://www.boundedinfinity.com/schema/label/kvlabel-get-request
-        output: https://www.boundedinfinity.com/schema/label/kvlabel-get-response
-    -   name: kvlabel-add
-        input: https://www.boundedinfinity.com/schema/label/kvlabel-add-request
-        output: https://www.boundedinfinity.com/schema/label/kvlabel-add-response
-    -   name: kvlabel-delete
-        input: https://www.boundedinfinity.com/schema/label/kvlabel-delete-request
-        output: https://www.boundedinfinity.com/schema/label/kvlabel-delete-response
+    -   name: labeled-value-get
+        input: https://www.boundedinfinity.com/schema/label/labeled-value-get-request
+        output: https://www.boundedinfinity.com/schema/label/labeled-value-get-response
+    -   name: labeled-value-add
+        input: https://www.boundedinfinity.com/schema/label/labeled-value-add-request
+        output: https://www.boundedinfinity.com/schema/label/labeled-value-add-response
+    -   name: labeled-value-delete
+        input: https://www.boundedinfinity.com/schema/label/labeled-value-delete-request
+        output: https://www.boundedinfinity.com/schema/label/labeled-value-delete-response

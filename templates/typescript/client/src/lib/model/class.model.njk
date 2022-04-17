@@ -1,27 +1,61 @@
-import { JsonObject, JsonProperty } from 'typescript-json-serializer';
-
-{% if obj.type == 'string' -%}
-@JsonObject()
-export class {{ obj | idType }} {
-    @JsonProperty()
-    {%- if inList(obj.format, 'date', 'datetime', 'time') %}
-    value: Date
-    {%- else %}
-    value: string
-    {% endif %}
-}
-{%- elif obj.type == 'object' -%}
-{%- for name, prop in obj.properties -%}
-{%- if not isBuiltin(prop) -%}
-import {% if isArray(prop) %}type {% endif %}{ {{ prop | langType }} } from './{{ prop | langType }}.class'
-{% endif %}
+{%- if propsContainsRef(obj) %}
+import { Type } from 'class-transformer';
+import { ValidateNested } from 'class-validator';
+{%- endif %}
+{%- if propsContainsStringFormat(obj, 'email') %}
+import { IsEmail } from 'class-validator';
+{%- endif %}
+{%- if propsContainsStringFormat(obj, 'uuid') %}
+import { IsUUID } from 'class-validator';
+{%- endif %}
+{%- if propsContainsStringFormat(obj, 'date') or propsContainsStringFormat(obj, 'date-time') %}
+import { IsDate } from 'class-validator';
+{%- endif %}
+{%- if propsContainsConstraint(obj, 'maxLength') or propsContainsStringFormat(obj, 'date-time') %}
+import { MaxLength } from 'class-validator';
+{%- endif %}
+{%- if propsContainsConstraint(obj, 'minLength') or propsContainsStringFormat(obj, 'date-time') %}
+import { MinLength } from 'class-validator';
+{%- endif %}
+{%- for name, prop in obj.properties %}
+{%- if not isBuiltin(prop) %}
+import { {{ prop | langType }} } from '$lib/model/{{ prop | langType }}.class'
+{%- endif %}
 {%- endfor %}
 
-@JsonObject()
+{%- if obj.description %}
+
+/**
+ * {{ obj.description }}
+ */
+{%- endif %}
 export class {{ obj | idType }} {
-    {% for name, prop in obj.properties %}
-    @JsonProperty()
+    {%- for name, prop in obj.properties %}
+    {%- if prop.description %}
+
+    /**
+    * {{ prop.description }}
+    */
+    {%- endif %}
+    {%- if prop.format == 'email' %}
+    @IsEmail()
+    {%- endif %}
+    {%- if prop.format == 'uuid' %}
+    @IsUUID()
+    {%- endif %}
+    {%- if prop.format == 'date' or prop.format == 'date-time' %}
+    @IsDate()
+    {%- endif %}
+    {%- if prop.maxLength %}
+    @MaxLength({{ prop.maxLength }})
+    {%- endif %}
+    {%- if prop.minLength %}
+    @MinLength({{ prop.minLength }})
+    {%- endif %}
+    {%- if not isBuiltin(prop) %}
+    @ValidateNested()
+    @Type(() => {{ prop | langType }})
+    {%- endif %}
     {{ name }}{% if not isRequired(name) %}?{% endif %}: {{ prop | langType }}{% if isArray(prop) %}[] = []{% endif %}
-    {% endfor %}
+    {%- endfor %}
 }
-{% endif %}

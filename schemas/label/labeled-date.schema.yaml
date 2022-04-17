@@ -1,0 +1,24 @@
+$id: https://www.boundedinfinity.com/schema/label/labeled-date
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A simple label
+type: object
+properties:
+    id:
+        description: The label date ID
+        type: string
+        format: uuid
+        persist:
+            primary: true
+            generated: increment
+    label:
+        $ref: https://www.boundedinfinity.com/schema/label/label
+        persist:
+            relation: many-to-one
+            eager: true
+    date:
+        type: string
+        format: date
+        description: The Date
+required:
+    - label
+    - date

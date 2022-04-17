@@ -1,22 +1,20 @@
-$id: https://www.boundedinfinity.com/schema/label/labeled-date
+$id: https://www.boundedinfinity.com/schema/label/labeled-datetime
 $schema: https://json-schema.org/draft/2020-12/schema
-description: A simple label
+description: A simple key value label where the value is a datetime (timestamp).
 type: object
 properties:
     id:
         description: The label date ID
-        type: number
-        persistence:
+        type: string
+        format: uuid
+        persist:
             primary: true
             generated: increment
     label:
         $ref: https://www.boundedinfinity.com/schema/label/label
-        persistence:
-            relation: many-to-one
-            eager: true
-    date:
+    datetime:
         type: string
         format: date
 required:
     - label
-    - date
+    - datetime
