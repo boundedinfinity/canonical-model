@@ -1,0 +1,21 @@
+---
+
+$id: https://www.boundedinfinity.com/schema/hardware/cpu
+$schema: https://json-schema.org/draft/2020-12/schema
+description: The central processing unit (CPU) specification
+type: object
+properties:
+    id:
+        description: The central processing unit (CPU) ID
+        type: string
+        format: uuid
+        persist:
+            primary: true
+            generated: increment
+    name:
+        description: The central processing unit (CPU) name
+        type: string
+        maxLength: 200
+        minLength: 2 
+required:
+    - name

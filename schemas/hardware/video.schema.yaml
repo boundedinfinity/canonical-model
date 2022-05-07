@@ -1,0 +1,21 @@
+---
+
+$id: https://www.boundedinfinity.com/schema/hardware/video-type
+$schema: https://json-schema.org/draft/2020-12/schema
+description: The memory specification
+type: object
+properties:
+    id:
+        description: The video type ID
+        type: string
+        format: uuid
+        persist:
+            primary: true
+            generated: increment
+    name:
+        description: The video type name
+        type: string
+        maxLength: 200
+        minLength: 2 
+required:
+    - name

@@ -1,0 +1,83 @@
+---
+
+$id: https://www.boundedinfinity.com/schema/hardware/motherboard
+$schema: https://json-schema.org/draft/2020-12/schema
+description: The mother board specification
+type: object
+properties:
+    id:
+        description: The label ID
+        type: string
+        format: uuid
+        persist:
+            primary: true
+            generated: increment
+    name:
+        description: The motherboard name
+        type: string
+        maxLength: 200
+        minLength: 2 
+    cpu-sockets:
+        description: The motherboard central processing unit (CPU) sockets
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/hardware/cpu-socket
+        minItems: 1
+    cpus:
+        description: The motherboard central processing units (CPU)
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/hardware/cpu
+    usb-ports:
+        description: The list of universal serial bus (USB) ports
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/hardware/usb
+required:
+    - name
+    - cpu-sockets
+
+---
+
+$id: https://www.boundedinfinity.com/schema/hardware/chipset
+$schema: https://json-schema.org/draft/2020-12/schema
+description: The motherboard chipset specification
+type: object
+properties:
+    id:
+        description: The motherboard chipset ID
+        type: string
+        format: uuid
+        persist:
+            primary: true
+            generated: increment
+    name:
+        description: The motherboard chipset name
+        type: string
+        maxLength: 200
+        minLength: 2 
+required:
+    - name
+
+
+---
+
+$id: https://www.boundedinfinity.com/schema/hardware/cpu-socket
+$schema: https://json-schema.org/draft/2020-12/schema
+description: The central processing unit (CPU) socket specification
+type: object
+properties:
+    id:
+        description: The central processing unit (CPU) socket ID
+        type: string
+        format: uuid
+        persist:
+            primary: true
+            generated: increment
+    name:
+        description: The central processing unit (CPU) socket name
+        type: string
+        maxLength: 200
+        minLength: 2 
+required:
+    - name

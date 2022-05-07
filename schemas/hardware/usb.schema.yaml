@@ -1,0 +1,29 @@
+---
+
+$id: https://www.boundedinfinity.com/schema/hardware/usb
+$schema: https://json-schema.org/draft/2020-12/schema
+description: The univeral serial bus (USB) specification
+type: object
+properties:
+    id:
+        description: The univeral serial bus (USB) ID
+        type: string
+        format: uuid
+        persist:
+            primary: true
+            generated: increment
+    type:
+        description: The univeral serial bus (USB) type
+        type: string
+    version:
+        description: The univeral serial bus (USB) version
+        type: string
+    connector:
+        description: The univeral serial bus (USB) connector
+        type: string
+        
+required:
+    - name
+    - type
+    - version
+    - connector
