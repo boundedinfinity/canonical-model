@@ -17,7 +17,8 @@ const serializer = new JsonSerializer({
 
 export async function handleRest(app: Application, options) {
     app.use(cors(options))
-    const connection = await getConnection();
+    // const connection = await getConnection();
+    const connection = null;
 
     app.get("/", (req: Request, res: Response): void => {
         res.send("Hello Typescript with Node.js!");

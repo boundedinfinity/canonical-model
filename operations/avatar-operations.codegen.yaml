@@ -1,9 +1,7 @@
-templates:
 models:
-    -   names: https://www.boundedinfinity.com/schema/label/label
-        
+    -   path: ../codegen-templates/schemas/label/label.schema.yaml
 
-functions:
+operations:
     -   name: label-get
         input: https://www.boundedinfinity.com/schema/label/label-get-request
         output: https://www.boundedinfinity.com/schema/label/label-get-response
