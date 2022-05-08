@@ -1,6 +1,7 @@
 templates:
     -   input: ../codegen-templates/templates/typescript/server
         output: ../avatar/server-node
-    -   input: ../codegen-templates/templates/typescript/server/src/lib/handlers/handler.function.njk
+    -   input: ../codegen-templates/templates/typescript/server/src/lib/handlers/handler.operation.njk
+        root: ../codegen-templates/templates/typescript/server
         output: ../avatar/server-node
         createOnly: true

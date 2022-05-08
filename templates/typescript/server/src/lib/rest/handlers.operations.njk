@@ -1,7 +1,7 @@
 import type { Request, Response, Application } from "express";
-import { JsonSerializer, throwError } from 'typescript-json-serializer';
 import { getConnection } from "typeorm";
 import cors from "cors";
+import { instanceToPlain, plainToInstance } from 'class-transformer';
 {% for fn in fns %}
 import { {{ fn.input | idType }} } from '$lib/model/{{ fn.input | idType }}.class'
 import { {{ fn.output | idType }} } from '$lib/model/{{ fn.output | idType }}.class'
@@ -11,10 +11,6 @@ import { {{ fn.output | idType }} } from '$lib/model/{{ fn.output | idType }}.cl
 import { {{ fn.name | normalizeName }}Handler } from '$lib/handlers/{{ fn.name | normalizeName }}.handler'
 {%- endfor %}
 
-const serializer = new JsonSerializer({
-    errorCallback: throwError,
-});
-
 export async function handleRest(app: Application, options) {
     app.use(cors(options))
     // const connection = await getConnection();
@@ -23,24 +19,23 @@ export async function handleRest(app: Application, options) {
     app.get("/", (req: Request, res: Response): void => {
         res.send("Hello Typescript with Node.js!");
     });
-
-    {%- for fn in fns %}
+    {% for fn in fns %}
     app.post("/{{ fn.name }}", async (req: Request, res: Response) => {
         console.log(`received {{ fn.input | idType }} ${req.body}`);
         const response = new {{ fn.output | idType }}()
         let status: number = 200
 
         try {
-            const request = serializer.deserialize(req.body, {{ fn.input | idType }}) as {{ fn.input | idType }};
+            const request = plainToInstance({{ fn.input | idType }}, req.body);
             await {{ fn.name | normalizeName }}Handler(request, response, connection)
         } catch(error) {
             status = 500
-            response.errors.push(error)
+            response.errors.push(`${error}`)
         }
         
-        const json = serializer.serialize(response);
+        const json = instanceToPlain(response);
         res.statusCode = status
-        res.send(json)
+        res.json(json)
     })
-    {%- endfor %}
+    {% endfor %}
 }
