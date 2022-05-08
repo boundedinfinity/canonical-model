@@ -4,5 +4,3 @@ templates:
     -   input: ../codegen-templates/templates/typescript/server/src/lib/handlers/handler.function.njk
         output: ../avatar/server-node
         createOnly: true
-    -   input: ../codegen-templates/templates/typescript/client
-        output: ../avatar/client
