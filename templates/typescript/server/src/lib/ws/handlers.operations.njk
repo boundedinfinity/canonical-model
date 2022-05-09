@@ -20,17 +20,20 @@ export function handleWs(io: Server) {
 
         {%- for fn in fns %}        
         socket.on('{{ fn.input | idType }}', async (args) => {
-            console.log(`received {{ fn.input | idType }} ${(args)}`);
+            console.log(`received {{ fn.input | idType }} ${args}`);
             const response = new {{ fn.output | idType }}()
             try {
-                const request = plainToInstance({{ fn.input | idType }}, args);
+                const inputJson = JSON.parse(args)
+                const request = plainToInstance({{ fn.input | idType }}, inputJson);
                 await {{ fn.name | normalizeName }}Handler(request, response, connection)
             } catch(error) {
                 response.errors.push(`${error}`)
             }
             
-            let json = JSON.stringify(instanceToPlain(response));
-            io.emit('{{ fn.output | idType }}', json)
+            let outputJson = instanceToPlain(response)
+            let raw = JSON.stringify(outputJson);
+            console.log(`sending {{ fn.output | idType }} ${raw}`);
+            io.emit('{{ fn.output | idType }}', raw)
         });
         {%- endfor %}
     });
