@@ -1,0 +1,29 @@
+# https://en.wikipedia.org/wiki/Suffix_(name)
+# https://en.wikipedia.org/wiki/Bachelor%27s_degree
+# https://en.wikipedia.org/wiki/Master%27s_degree
+# https://en.wikipedia.org/wiki/Doctorate
+
+-   id:  https://www.boundedinfinity.com/schema/people/suffix/ba
+    title: Bachelor of Arts
+    abbreviation: BA
+    description: |
+        A degree from a university or other higher learning instituion awarded 
+        for an undergraduate program in the arts or other disciplines.
+-   id:  https://www.boundedinfinity.com/schema/people/suffix/ab
+    abbreviation: AB
+    $ref: https://www.boundedinfinity.com/schema/people/suffix/ba
+-   id:  https://www.boundedinfinity.com/schema/people/suffix/bs
+    title: Bachelor of Science
+    abbreviation: BA
+    description: |
+        A degree from a university or other higher learning instituion awarded
+        for an undergraduate program in the sciences.
+-   id:  https://www.boundedinfinity.com/schema/people/suffix/bsc
+    abbreviation: B.Sc.
+    $ref: https://www.boundedinfinity.com/schema/people/suffix/bs
+-   id:  https://www.boundedinfinity.com/schema/people/suffix/sb
+    abbreviation: SB
+    $ref: https://www.boundedinfinity.com/schema/people/suffix/sb
+-   id:  https://www.boundedinfinity.com/schema/people/suffix/scb
+    abbreviation: ScB
+    $ref: https://www.boundedinfinity.com/schema/people/scb

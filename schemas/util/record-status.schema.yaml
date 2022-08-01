@@ -1,0 +1,12 @@
+$id: https://www.boundedinfinity.com/schema/util/record-status
+$schema: https://json-schema.org/draft/2020-12/schema
+description: The record status
+type: string
+enum:
+    -   Enabled
+    -   Disabled
+    -   Hidden
+enum-description:
+    Enabled: This record is enabled
+    Disabled: This record is disabled
+    Hidden: This record is hidden

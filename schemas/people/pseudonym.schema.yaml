@@ -1,0 +1,14 @@
+$id: https://www.boundedinfinity.com/schema/people/pseudonym
+$schema: https://json-schema.org/draft/2020-12/schema
+title: A person's pseudonym
+type: object
+properties:
+    type:
+        $ref: https://www.boundedinfinity.com/schema/people/pseudonym-type
+    text:
+        description: The pseudonym text
+        type: string
+        maxLength: 50
+        minLength: 1
+required:
+    -   text
