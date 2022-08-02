@@ -1,0 +1,6 @@
+$id: https://www.boundedinfinity.com/schema/label/labeled-date-data
+$schema: https://json-schema.org/draft/2020-12/schema
+title: List of labeled date data
+type: array
+items:
+    $ref: https://www.boundedinfinity.com/schema/label/labeled-date

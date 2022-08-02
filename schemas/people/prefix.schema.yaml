@@ -6,6 +6,10 @@ description: |
     a surname or full name to address a person.
 type: object
 properties:
+    id:
+        type: string
+        description: The suffix ID
+        format: uri
     text:
         type: string
         description: The full text text of the prefix
@@ -23,3 +27,4 @@ properties:
         $ref: https://www.boundedinfinity.com/schema/util/record-status
 required:
     -   text
+    -   status

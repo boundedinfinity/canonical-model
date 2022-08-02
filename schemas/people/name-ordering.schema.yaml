@@ -1,13 +1,12 @@
 # https://en.wikipedia.org/wiki/Personal_name#Name_order
 
-$id: https://www.boundedinfinity.com/schema/people/name-order
+$id: https://www.boundedinfinity.com/schema/people/name-ordering
 $schema: https://json-schema.org/draft/2020-12/schema
-description: A person's name order
+description: A person's name ordering
 type: string
 enum:
     -   Given name, Family name
-    -   Disabled
-    -   Hidden
+    -   Family name, Given name
 enum-description:
     Given name, Family name: Western name order
     Family name, Given name: Eastern name order

@@ -27,3 +27,4 @@ properties:
         $ref: https://www.boundedinfinity.com/schema/util/record-status
 required:
     -   text
+    -   status
