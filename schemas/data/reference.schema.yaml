@@ -14,7 +14,7 @@ properties:
     description:
         $ref:  https://www.boundedinfinity.com/schema/util/description
 required:
-    - text
+    -   url
 
 ---
 
