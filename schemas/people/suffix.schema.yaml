@@ -1,3 +1,5 @@
+---
+
 $id: https://www.boundedinfinity.com/schema/people/suffix
 $schema: https://json-schema.org/draft/2020-12/schema
 title: A person's name suffix
@@ -28,3 +30,12 @@ properties:
 required:
     -   text
     -   status
+
+---
+
+$id: https://www.boundedinfinity.com/schema/people/suffix-data
+$schema: https://json-schema.org/draft/2020-12/schema
+title: List of name suffix data
+type: array
+items:
+    $ref: https://www.boundedinfinity.com/schema/people/suffix

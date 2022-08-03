@@ -1,3 +1,5 @@
+-- 
+
 $id: https://www.boundedinfinity.com/schema/people/prefix
 $schema: https://json-schema.org/draft/2020-12/schema
 title: The prefix for a person's name
@@ -28,3 +30,12 @@ properties:
 required:
     -   text
     -   status
+
+-- 
+
+$id: https://www.boundedinfinity.com/schema/people/prefix-data
+$schema: https://json-schema.org/draft/2020-12/schema
+title: List of name prefix data
+type: array
+items:
+    $ref: https://www.boundedinfinity.com/schema/people/prefix
