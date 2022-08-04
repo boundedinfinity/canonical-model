@@ -5,6 +5,10 @@ $schema: https://json-schema.org/draft/2020-12/schema
 description: An definition of a word, phrase or other topic
 type: object
 properties:
+    id:
+        description: The label ID
+        type: string
+        format: uuid
     title:
         description: The definition text.
         type: string
@@ -22,7 +26,7 @@ properties:
     description:
         $ref:  https://www.boundedinfinity.com/schema/util/description
 required:
-    - text
+    - title
 
 ---
 

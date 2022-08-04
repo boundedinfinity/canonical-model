@@ -1,3 +1,5 @@
+---
+
 $id: https://www.boundedinfinity.com/schema/label/labeled-datetime
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A simple key value label where the value is a datetime (timestamp).
@@ -13,8 +15,18 @@ properties:
     label:
         $ref: https://www.boundedinfinity.com/schema/label/label
     datetime:
+        description: RFC3339 datetime
         type: string
         format: date
 required:
     - label
     - datetime
+
+---
+
+$id: https://www.boundedinfinity.com/schema/label/labeled-datetime-data
+$schema: https://json-schema.org/draft/2020-12/schema
+title: List of labeled RFC3339 datetime data
+type: array
+items:
+    $ref: https://www.boundedinfinity.com/schema/label/labeled-datetime
