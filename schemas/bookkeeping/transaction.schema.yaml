@@ -6,16 +6,12 @@ properties:
     description:
         description: The description of the transaction
         type: string
-    debits:
+    entries:
         type: array
-        minItems: 1
+        minItems: 2
+        uniqueItems: true
         items:
-            $ref: https://www.boundedinfinity.com/schema/bookkeeping/transaction-action
-    credits:
-        type: array
-        minItems: 1
-        items:
-            $ref: https://www.boundedinfinity.com/schema/bookkeeping/transaction-action
+            $ref: https://www.boundedinfinity.com/schema/bookkeeping/transaction-entry
     labels:
         type: array
         items:
