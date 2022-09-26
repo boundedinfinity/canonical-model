@@ -19,7 +19,7 @@ type Name struct {
 func (t Name) Validate() error {
 	for i, prefix := range t.Prefixes.Get() {
 		if err := prefix.Validate(); err != nil {
-			return fmt.Errorf("prefixes[%v] %w", err, i)
+			return fmt.Errorf("prefixes[%v] %w", i, err)
 		}
 	}
 
@@ -45,7 +45,7 @@ func (t Name) Validate() error {
 
 	for i, suffix := range t.Suffixes.Get() {
 		if err := suffix.Validate(); err != nil {
-			return fmt.Errorf("suffixes[%v] %w", err, i)
+			return fmt.Errorf("suffixes[%v] %w", i, err)
 		}
 	}
 
