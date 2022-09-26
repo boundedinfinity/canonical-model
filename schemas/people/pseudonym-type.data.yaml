@@ -1,17 +1,33 @@
 # https://en.wikipedia.org/wiki/Pseudonym
+# https://en.wikipedia.org/wiki/Maiden_and_married_names
 
 -   id: https://www.boundedinfinity.com/schema/people/pseudonym-type/nickname
     title: Nickname
-    description: A person's nick name.
+    description: >
+        A type of pseudonym which is used as a substitue for the proper
+        name of a familiar person.
+    links:
+        -   title: Wikipedia
+            url: https://en.wikipedia.org/wiki/Nickname
 -   id: https://www.boundedinfinity.com/schema/people/pseudonym-type/alias
     title: Alias
     description: A person alias
 -   id: https://www.boundedinfinity.com/schema/people/pseudonym-type/stage-name
     title: Stage name
-    description: A person's stage name
+    description: >
+        A type of pseudonym used by performers and entertainer such as actors
+        singers, comedians, and musicians.
+    links:
+        -   title: Wikipedia
+            url: https://en.wikipedia.org/wiki/Stage_name
 -   id: https://www.boundedinfinity.com/schema/people/pseudonym-type/ring-name
     title: Ring name
-    description: A person's ring name
+    description: >
+        A type of pseudonym used by athletes in sports such as professional 
+        wrestling, mixed martial arts and boxing.
+    links:
+        -   title: Wikipedia
+            url: https://en.wikipedia.org/wiki/Ring_name
 -   id: https://www.boundedinfinity.com/schema/people/pseudonym-type/pen-name
     title: Pen
     description: A person's pen name
