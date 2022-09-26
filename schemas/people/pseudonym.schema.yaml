@@ -6,14 +6,14 @@ properties:
     text:
         description: The pseudonym text
         type: string
-        maxLength: 50
+        maxLength: 20
         minLength: 1
     type:
         $ref: https://www.boundedinfinity.com/schema/people/pseudonym-type
 required:
     -   text
 
--- 
+---
 
 $id: https://www.boundedinfinity.com/schema/people/pseudonym-data
 $schema: https://json-schema.org/draft/2020-12/schema
