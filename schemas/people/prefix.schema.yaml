@@ -1,4 +1,4 @@
--- 
+---
 
 $id: https://www.boundedinfinity.com/schema/people/prefix
 $schema: https://json-schema.org/draft/2020-12/schema
@@ -12,16 +12,18 @@ properties:
         type: string
         description: The suffix ID
         format: uri
-    text:
+    title:
         type: string
         description: The full text text of the prefix
         maxLength: 20
         minLength: 1
     abbreviation:
-        type: string
-        description: The prefix abbreivation
-        maxLength: 5
-        minLength: 1
+        type: array
+        description: A list of suffix abbreviations
+        items:
+            description: The suffix abbreviation
+            maxLength: 5
+            minLength: 1
     description:
         $ref: https://www.boundedinfinity.com/schema/util/description
         description: The prefix description
@@ -31,7 +33,7 @@ required:
     -   text
     -   status
 
--- 
+---
 
 $id: https://www.boundedinfinity.com/schema/people/prefix-data
 $schema: https://json-schema.org/draft/2020-12/schema

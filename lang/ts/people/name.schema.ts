@@ -1,29 +1,31 @@
-class Name {
-    prefixes: string[] = []
-    names: string[] = []
-    suffixes: string[] = []
+import { NamePrefix } from "./name-prefix.schema";
+import { NameSuffix } from "./name-suffix.schema";
 
-    fullName(): string {
-        let name: string = ""
+export class Name {
+    prefixes: NamePrefix[] = [];
+    givenNames: string[] = [];
+    familyNames: string[] = [];
+    suffixes: NameSuffix[] = [];
 
-        if(this.prefixes) {
-            name += this.prefixes.join(" ")
-            name += " "
+    toString(): string {
+        let names: string[] = [];
+
+        if (this.prefixes && this.prefixes.length > 0) {
+            names.push(...this.prefixes.map(p => p.toString()))
         }
 
-        if(this.names) {
-            name += this.names.join(" ")
-            name += " "
+        if (this.givenNames && this.givenNames.length > 0) {
+            names.push(...this.givenNames)
         }
 
-        if(this.suffixes) {
-            name += this.suffixes.join(" ")
+        if (this.familyNames && this.familyNames.length > 0) {
+            names.push(...this.familyNames)
         }
-        
-        return name
-    }
 
-    validate() {
-        
+        if (this.suffixes && this.suffixes.length > 0) {
+            names.push(...this.suffixes.map(p => p.toString()))
+        }
+
+        return names.join(" ");
     }
 }

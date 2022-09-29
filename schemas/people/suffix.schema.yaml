@@ -18,10 +18,12 @@ properties:
         maxLength: 20
         minLength: 1
     abbreviation:
-        type: string
-        description: The suffix abbreviation
-        maxLength: 5
-        minLength: 1
+        type: array
+        description: A list of suffix abbreviations
+        items:
+            description: The suffix abbreviation
+            maxLength: 5
+            minLength: 1
     description:
         $ref: https://www.boundedinfinity.com/schema/util/description
         description: The suffix description

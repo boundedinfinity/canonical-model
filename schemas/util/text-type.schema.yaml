@@ -5,6 +5,8 @@ type: string
 enum:
     -   Plain
     -   Markdown
+    -   HTML
 enum-description:
     Plain: Plain text
     Markdown: Markdown formatted text
+    HTML: Hyper Text Markup Language (HTML)
