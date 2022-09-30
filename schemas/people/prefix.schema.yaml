@@ -19,7 +19,11 @@ properties:
         minLength: 1
     abbreviation:
         type: array
-        description: A list of suffix abbreviations
+        description: > 
+            A list of suffix abbreviations.
+
+            The first abbreviation should be the primary or most well-known
+            abbreviation.
         items:
             description: The suffix abbreviation
             maxLength: 5

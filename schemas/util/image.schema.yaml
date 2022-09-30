@@ -1,0 +1,23 @@
+$id: https://www.boundedinfinity.com/schema/util/image
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A image record
+type: object
+properties:
+    id:
+        type: string
+    title:
+        type: string
+        maxLength: 25
+        minLength: 1
+    alternatives:
+        type: array
+        items:
+            type: string
+            maxLength: 10
+            minLength: 1
+    description:
+        $ref:  https://www.boundedinfinity.com/schema/util/description
+    mime-type:
+        $ref: https://www.boundedinfinity.com/schema/util/mime-type
+required:
+    -   name
