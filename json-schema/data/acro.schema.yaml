@@ -1,0 +1,22 @@
+$id: https://www.boundedinfinity.com/schema/data/acro
+$schema: https://json-schema.org/draft/2020-12/schema
+description: An acroymn definition
+type: object
+properties:
+    title:
+        description: The acronym title
+        type: string
+        maxLength: 200
+    abbr:
+        description: An abbreviation
+        type: string
+    dates:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/time/labeled-datetime
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/label
+required:
+    - title

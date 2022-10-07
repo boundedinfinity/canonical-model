@@ -1,0 +1,6 @@
+$id: https://www.boundedinfinity.com/schema/people/suffix-data
+$schema: https://json-schema.org/draft/2020-12/schema
+title: List of name suffix data
+type: array
+items:
+    $ref: https://www.boundedinfinity.com/schema/people/suffix

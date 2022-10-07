@@ -5,6 +5,3 @@ type: string
 enum:
     - Checking
     - Savings
-enum-description:
-    Checking: A bank checking account
-    Savings: A bank savings account

@@ -1,7 +1,6 @@
 $id: https://www.boundedinfinity.com/schema/util/description
 $schema: https://json-schema.org/draft/2020-12/schema
-title: A Description
-description: The description is Markdown formatted block of text.
+title: A description
 type: string
-maxLength: 500
+maxLength: 200
 minLength: 1

@@ -27,15 +27,6 @@ required:
 
 ---
 
-$id: https://www.boundedinfinity.com/schema/label/label-data
-$schema: https://json-schema.org/draft/2020-12/schema
-title: List of label data
-type: array
-items:
-    $ref: https://www.boundedinfinity.com/schema/label/label
-
----
-
 $id: https://www.boundedinfinity.com/schema/label/label-get-request
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A simple label get request

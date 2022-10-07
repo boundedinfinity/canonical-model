@@ -1,5 +1,3 @@
----
-
 $id: https://www.boundedinfinity.com/schema/people/prefix
 $schema: https://json-schema.org/draft/2020-12/schema
 title: The prefix for a person's name
@@ -8,26 +6,16 @@ description: |
     a surname or full name to address a person.
 type: object
 properties:
-    id:
-        type: string
-        description: The suffix ID
-        format: uri
-    title:
+    text:
         type: string
         description: The full text text of the prefix
         maxLength: 20
         minLength: 1
     abbreviation:
-        type: array
-        description: > 
-            A list of suffix abbreviations.
-
-            The first abbreviation should be the primary or most well-known
-            abbreviation.
-        items:
-            description: The suffix abbreviation
-            maxLength: 5
-            minLength: 1
+        type: string
+        description: The prefix abbreivation
+        maxLength: 5
+        minLength: 1
     description:
         $ref: https://www.boundedinfinity.com/schema/util/description
         description: The prefix description
@@ -35,13 +23,3 @@ properties:
         $ref: https://www.boundedinfinity.com/schema/util/record-status
 required:
     -   text
-    -   status
-
----
-
-$id: https://www.boundedinfinity.com/schema/people/prefix-data
-$schema: https://json-schema.org/draft/2020-12/schema
-title: List of name prefix data
-type: array
-items:
-    $ref: https://www.boundedinfinity.com/schema/people/prefix

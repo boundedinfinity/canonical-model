@@ -29,7 +29,5 @@ properties:
         type: array
         items:
             $ref: https://www.boundedinfinity.com/schema/people/suffix
-    ordering:
-        $ref: https://www.boundedinfinity.com/schema/people/name-ordering
 required:
     -   names

@@ -1,5 +1,3 @@
----
-
 $id: https://www.boundedinfinity.com/schema/label/labeled-date
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A simple label
@@ -20,16 +18,7 @@ properties:
     date:
         type: string
         format: date
-        description: RFC3339 datetime
+        description: The Date
 required:
     - label
     - date
-
----
-
-$id: https://www.boundedinfinity.com/schema/label/labeled-date-data
-$schema: https://json-schema.org/draft/2020-12/schema
-title: List of labeled RFC3339 date data
-type: array
-items:
-    $ref: https://www.boundedinfinity.com/schema/label/labeled-date

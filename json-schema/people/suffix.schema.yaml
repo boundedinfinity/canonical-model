@@ -1,5 +1,3 @@
----
-
 $id: https://www.boundedinfinity.com/schema/people/suffix
 $schema: https://json-schema.org/draft/2020-12/schema
 title: A person's name suffix
@@ -18,16 +16,10 @@ properties:
         maxLength: 20
         minLength: 1
     abbreviation:
-        type: array
-        description: >
-            A list of suffix abbreviations.
-
-            The first abbreviation should be the primary or most well-known
-            abbreviation.
-        items:
-            description: The suffix abbreviation
-            maxLength: 5
-            minLength: 1
+        type: string
+        description: The suffix abbreviation
+        maxLength: 5
+        minLength: 1
     description:
         $ref: https://www.boundedinfinity.com/schema/util/description
         description: The suffix description
@@ -35,13 +27,3 @@ properties:
         $ref: https://www.boundedinfinity.com/schema/util/record-status
 required:
     -   text
-    -   status
-
----
-
-$id: https://www.boundedinfinity.com/schema/people/suffix-data
-$schema: https://json-schema.org/draft/2020-12/schema
-title: List of name suffix data
-type: array
-items:
-    $ref: https://www.boundedinfinity.com/schema/people/suffix
