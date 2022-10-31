@@ -3,6 +3,9 @@ $schema: https://json-schema.org/draft/2020-12/schema
 description: Double Entry Bookkeeping Account
 type: object
 properties:
+    id:
+        description: The URL representing the ID of this account.
+        type: uri
     name:
         description: The name of the account
         type: string
@@ -12,7 +15,8 @@ properties:
     type:
         $ref: https://www.boundedinfinity.com/schema/bookkeeping/account-type
     parent:
-        $ref: https://www.boundedinfinity.com/schema/bookkeeping/account
+        description: URL representing the parent ID
+        type: uri
     dates:
         type: array
         items:
