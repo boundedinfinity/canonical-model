@@ -22,5 +22,7 @@ properties:
         items:
             $ref: https://www.boundedinfinity.com/schema/label/labled-datetime
 required:
+    - id
     - name
     - type
+    - parent

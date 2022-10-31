@@ -1,9 +1,20 @@
+-   name: Owns
+    id: https://www.boundedinfinity.com/schema/bookkeeping/account/owns
+-   name: Owes
+    id: https://www.boundedinfinity.com/schema/bookkeeping/account/owns
 -   name: Asset
+    id: https://www.boundedinfinity.com/schema/bookkeeping/account/asset
     description: |
-      An asset is a present right of an entity to an economic benefit.
-    type: Asset
+      Anything that has current or future economic value to a business.
+    parent: https://www.boundedinfinity.com/schema/bookkeeping/account/owns
 -   name: Liability
+    id: https://www.boundedinfinity.com/schema/bookkeeping/account/liability
     description: |
-      A liability is a present obligation of an entity to transfer an economic 
-      benefit.
-    type: Liability
+      A liability is a present or future obligation of an entity to transfer 
+      an economic benefit.
+    parent: https://www.boundedinfinity.com/schema/bookkeeping/account/owes
+-   name: Equity
+    id: https://www.boundedinfinity.com/schema/bookkeeping/account/equity
+    description: |
+      The value attributable to the owners of a business.
+    parent: https://www.boundedinfinity.com/schema/bookkeeping/account/owes

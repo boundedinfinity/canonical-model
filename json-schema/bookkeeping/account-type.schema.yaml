@@ -1,28 +1,7 @@
----
-
 $id: https://www.boundedinfinity.com/schema/bookkeeping/account-type
 $schema: https://json-schema.org/draft/2020-12/schema
-description: Double Entry Book Keeping Account Type
-type: object
-properties:
-    name:
-        description: The name of the account type
-        type: string
-    description:
-        description: The description of the account type
-        type: string
-    labels:
-        type: array
-        items:
-            $ref: https://www.boundedinfinity.com/schema/label/label
-
-# ---
-
-# $id: https://www.boundedinfinity.com/schema/bookkeeping/account-type
-# $schema: https://json-schema.org/draft/2020-12/schema
-# description: Double Entry Book Keeping Account Types
-# type: string
-# enum:
-#     -   Asset
-#     -   Liability
-#     -   Equity
+description: Double Entry Book Keeping Account Types
+type: string
+enum:
+    -   Owns
+    -   Owes
