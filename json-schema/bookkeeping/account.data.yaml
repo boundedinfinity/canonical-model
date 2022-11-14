@@ -1,9 +1,0 @@
--   name: Asset
-    description: |
-      An asset is a present right of an entity to an economic benefit.
-    type: Asset
--   name: Liability
-    description: |
-      A liability is a present obligation of an entity to transfer an economic 
-      benefit.
-    type: Liability

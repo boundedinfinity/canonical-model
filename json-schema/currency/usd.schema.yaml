@@ -1,5 +1,0 @@
-$id: https://www.boundedinfinity.com/schema/currency/usd
-$schema: https://json-schema.org/draft/2020-12/schema
-description: US dollar
-type: number
-minimum: 0
