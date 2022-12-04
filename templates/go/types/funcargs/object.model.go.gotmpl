@@ -1,0 +1,12 @@
+package {{ .Package }}
+
+type Arg func(*{{ .Type }})
+{{ $type := .Type }}
+
+{{- range .Properties }}
+func {{ .Name }}(v {{ .Name }}) Arg {
+    return func(t *{{ $type }} {
+        t.{{ .Name }} = v
+    }
+}
+{{ end }}   

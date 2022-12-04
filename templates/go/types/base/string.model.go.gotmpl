@@ -1,0 +1,40 @@
+package {{ .Package }}
+
+// Source: {{ .Source }}
+
+{{if .HasValidation -}}
+import (
+	"fmt"
+)
+
+{{ end -}}
+{{if .Description.Defined -}}
+// {{ .Type }} {{ .Description }}
+{{end -}}
+type {{ .Type }} string
+
+{{if .HasValidation -}}
+// Validate validates the {{ .Type }} type.
+{{ end -}}
+{{if .Minimum.Defined -}}
+//         Minimum: {{ .Minimum }}
+{{ end -}}
+{{if .Maximum.Defined -}}
+//         Maximum: {{ .Maximum }}
+{{end -}}
+func (t {{ .Type }}) Validate() error {
+    {{if .Minimum.Defined -}}
+    if len(t) < {{ .Minimum }} {
+        return fmt.Errorf("%v length is less than the minimum of {{ .Minimum }}", t)
+    }
+
+    {{ end -}}
+    {{if .Maximum.Defined -}}
+    if len(t) < {{ .Maximum }} {
+        return fmt.Errorf("%v length is greater than the maximum of {{ .Maximum }}", t)
+    }
+
+    {{end -}}
+    
+    return nil
+}

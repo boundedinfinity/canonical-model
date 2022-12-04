@@ -1,0 +1,27 @@
+package {{ .Package }}
+
+// Source: {{ .Source }}
+
+{{if .HasValidation -}}
+import (
+	"fmt"
+)
+
+{{ end -}}
+{{if .Description.Defined -}}
+// {{ .Type }} {{ .Description }}
+{{end -}}
+type {{ .Type }} struct {
+{{- range .Properties}}
+    {{ .Name }} {{ .Type }}
+{{- end}}
+}
+
+func (t {{ .Type }}) Validate() error {
+{{- range .Properties }}
+    if err := t.{{ .Name }}.Validate(); err != nil {
+        return fmt.Errorf("{{ .Name }} %v", err)
+    }
+{{ end }}   
+    return nil
+}

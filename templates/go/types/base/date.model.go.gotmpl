@@ -1,0 +1,41 @@
+package {{ .Package }}
+
+// Source: {{ .Source }}
+
+{{if .HasValidation -}}
+import (
+	"fmt"
+    "github.com/boundedinfinity/rfc3339date"
+)
+
+{{ end -}}
+{{if .Description.Defined -}}
+// {{ .Type }} {{ .Description }}
+{{end -}}
+type {{ .Type }} rfc3339date.Rfc3339Date
+
+{{if .HasValidation -}}
+// Validate validates the {{ .Type }} type.
+{{ end -}}
+{{if .Before.Defined -}}
+//         Before: {{ .Before }}
+{{ end -}}
+{{if .After.Defined -}}
+//         After: {{ .After }}
+{{end -}}
+func (t {{ .Type }}) Validate() error {
+    {{if .Before.Defined -}}
+    if t < {{ .Before }} {
+        return fmt.Errorf("%v is less than the minimum of {{ .Before }}", t)
+    }
+
+    {{ end -}}
+    {{if .After.Defined -}}
+    if t < {{ .After }} {
+        return fmt.Errorf("%v is greater than the maximum of {{ .After }}", t)
+    }
+
+    {{end -}}
+    
+    return nil
+}

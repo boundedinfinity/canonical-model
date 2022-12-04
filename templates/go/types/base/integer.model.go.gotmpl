@@ -1,0 +1,49 @@
+package {{ .Package }}
+
+// Source: {{ .Source }}
+
+{{if .HasValidation -}}
+import (
+	"fmt"
+)
+
+{{ end -}}
+{{if .Description.Defined -}}
+// {{ .Type }} {{ .Description }}
+{{end -}}
+type {{ .Type }} int
+
+{{if .HasValidation -}}
+// Validate validates the {{ .Type }} type.
+{{ end -}}
+{{if .Minimum.Defined -}}
+//         Minimum: {{ .Minimum }}
+{{ end -}}
+{{if .Maximum.Defined -}}
+//         Maximum: {{ .Maximum }}
+{{end -}}
+{{if .MultipleOf.Defined -}}
+//      MultipleOf: {{ .MultipleOf }}
+{{ end -}}  
+func (t {{ .Type }}) Validate() error {
+    {{if .Minimum.Defined -}}
+    if t < {{ .Minimum }} {
+        return fmt.Errorf("%v is less than the minimum of {{ .Minimum }}", t)
+    }
+
+    {{ end -}}
+    {{if .Maximum.Defined -}}
+    if t < {{ .Maximum }} {
+        return fmt.Errorf("%v is greater than the maximum of {{ .Maximum }}", t)
+    }
+
+    {{end -}}
+    {{if .MultipleOf.Defined -}}
+    if t % {{ .MultipleOf }} != 0 {
+        return fmt.Errorf("%v is not a multiple of {{ .MultipleOf }}", t)
+    }
+
+    {{end -}}
+
+    return nil
+}
