@@ -1,0 +1,20 @@
+package {{ PACKAGE . }}
+
+// Schema ID: {{ .Id }}
+
+import (
+	"net/url"
+)
+
+{{if .Description.Defined -}}
+// {{ BASE_TYPE . }} {{ .Description }}
+{{end -}}
+type {{ BASE_TYPE . }} string
+
+func (t {{ BASE_TYPE . }}) Validate() error {
+    if _, err := url.Parse(string(t)); err != nil {
+		return err
+	}
+
+    return nil
+}

@@ -1,6 +1,6 @@
-package {{ .Package }}
+package {{ PACKAGE . }}
 
-// Source: {{ .Source }}
+// Schema ID: {{ .Id }}
 
 {{if .HasValidation -}}
 import (
@@ -8,6 +8,15 @@ import (
 )
 
 {{ end -}}
+{{if .Description.Defined -}}
+// {{ BASE_TYPE . }} {{ .Description }}
+{{end -}}
+type {{ BASE_TYPE . }} struct {
+{{- range .Properties}}
+    {{ PASCAL .Name }} {{ BASE_TYPE . }}
+{{- end}}
+}
+
 {{if .Description.Defined -}}
 // {{ .Type }} {{ .Description }}
 {{end -}}
