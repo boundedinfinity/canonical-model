@@ -1,32 +1,23 @@
-package {{ PACKAGE . }}
+{{if .CurrNs -}}
+package {{ .CurrNs | BASE | SNAKE }}
 
-// Schema ID: {{ .Id }}
-
-{{if .HasValidation -}}
+{{end -}}
+{{if .Validation -}}
 import (
 	"fmt"
 )
 
-{{ end -}}
-{{if .Description.Defined -}}
-// {{ BASE_TYPE . }} {{ .Description }}
 {{end -}}
-type {{ BASE_TYPE . }} struct {
+{{if .Description -}}
+// {{.SchemaNs | BASE | PASCAL }} {{ .Description }}
+{{end -}}
+type {{.SchemaNs | BASE | PASCAL }} struct {
 {{- range .Properties}}
-    {{ PASCAL .Name }} {{ BASE_TYPE . }}
+    {{ .Name }} 
 {{- end}}
 }
 
-{{if .Description.Defined -}}
-// {{ .Type }} {{ .Description }}
-{{end -}}
-type {{ .Type }} struct {
-{{- range .Properties}}
-    {{ .Name }} {{ .Type }}
-{{- end}}
-}
-
-func (t {{ .Type }}) Validate() error {
+func (t {{.SchemaNs | BASE | PASCAL }}) Validate() error {
 {{- range .Properties }}
     if err := t.{{ .Name }}.Validate(); err != nil {
         return fmt.Errorf("{{ .Name }} %v", err)
@@ -34,3 +25,5 @@ func (t {{ .Type }}) Validate() error {
 {{ end }}   
     return nil
 }
+
+{{ DUMP . }}

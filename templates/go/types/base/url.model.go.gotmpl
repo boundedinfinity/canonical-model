@@ -1,20 +1,24 @@
-package {{ PACKAGE . }}
+{{if .CurrNs -}}
+package {{ .CurrNs | BASE | SNAKE }}
 
-// Schema ID: {{ .Id }}
-
+{{end -}}
+{{if .Validation -}}
 import (
 	"net/url"
 )
 
-{{if .Description.Defined -}}
-// {{ BASE_TYPE . }} {{ .Description }}
 {{end -}}
-type {{ BASE_TYPE . }} string
+{{if .Description -}}
+// {{.SchemaNs | BASE | PASCAL }} {{ .Description }}
+{{end -}}
+type {{.SchemaNs | BASE | PASCAL }} string
 
-func (t {{ BASE_TYPE . }}) Validate() error {
+func (t {{.SchemaNs | BASE | PASCAL }}) Validate() error {
     if _, err := url.Parse(string(t)); err != nil {
 		return err
 	}
 
     return nil
 }
+
+{{ DUMP . }}
