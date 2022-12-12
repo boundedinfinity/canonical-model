@@ -2,7 +2,7 @@
 package {{ .CurrNs | BASE | SNAKE }}
 
 {{end -}}
-{{if .Validation -}}
+{{if .HasValidation -}}
 import (
 	"net/url"
 )
@@ -20,5 +20,3 @@ func (t {{.SchemaNs | BASE | PASCAL }}) Validate() error {
 
     return nil
 }
-
-{{ DUMP . }}

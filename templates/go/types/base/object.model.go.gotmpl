@@ -2,28 +2,66 @@
 package {{ .CurrNs | BASE | SNAKE }}
 
 {{end -}}
-{{if .Validation -}}
+{{if .HasValidation -}}
 import (
 	"fmt"
+{{- range .Properties}}
+    {{template "IMPORT_SWITCH" .}}
+{{- end}}
 )
 
 {{end -}}
 {{if .Description -}}
-// {{.SchemaNs | BASE | PASCAL }} {{ .Description }}
+// {{template "NAME" .}} {{ .Description }}
 {{end -}}
-type {{.SchemaNs | BASE | PASCAL }} struct {
-{{- range .Properties}}
-    {{ .Name }} 
+type {{template "NAME" .}} struct {
+{{- range .Properties}}    
+    {{template "NAME" .}} {{template "TYPE_SWITCH" .}}
 {{- end}}
 }
 
 func (t {{.SchemaNs | BASE | PASCAL }}) Validate() error {
 {{- range .Properties }}
-    if err := t.{{ .Name }}.Validate(); err != nil {
-        return fmt.Errorf("{{ .Name }} %v", err)
+    if err := t.{{template "NAME" .}}.Validate(); err != nil {
+        return fmt.Errorf("{{template "NAME" .}} %v : %w", err)
     }
 {{ end }}   
     return nil
 }
 
-{{ DUMP . }}
+{{- define "NAME" -}}
+    {{- if .IsPublic -}}
+        {{ .Name | BASE | PASCAL }}
+    {{- else -}}
+        {{ .Name | BASE | CAMEL }}
+    {{- end -}}
+{{- end -}}
+
+{{- define "IMPORT_SWITCH" -}}
+    {{- if eq .SchemaType "ref" -}}
+        {{template "IMPORT_SWITCH" .Ref}}
+    {{- else if eq .SchemaType "array" -}}
+        {{template "IMPORT_SWITCH" .Items}}
+    {{- else -}}
+        {{- if ne (.SchemaNs | DIR) .CurrNs -}}"{{- .SchemaNs | DIR -}}"{{- end -}}        
+    {{- end -}}
+{{- end}}
+
+{{- define "TYPE_SWITCH" -}}
+    {{- if eq .SchemaType "ref" -}}
+        {{template "TYPE_SWITCH" .Ref}}
+    {{- else if eq .SchemaType "array" -}}
+        []{{template "TYPE_SWITCH" .Items}}
+    {{- else -}}
+        {{template "TYPE_NAME" .}}
+    {{- end -}}
+{{- end}}
+
+{{- define "TYPE_NAME" -}}
+    {{- if .SchemaNs -}}
+        {{- if ne (.SchemaNs | DIR) .CurrNs -}}{{- .SchemaNs | DIR | BASE -}}.{{- end -}}
+        {{- .SchemaNs | BASE | PASCAL -}}
+    {{- else -}}
+        {{- if eq .SchemaType "string" -}}string{{- end -}}
+    {{- end -}}
+{{- end -}}
