@@ -1,7 +1,0 @@
-import { Connection } from "typeorm";
-import { {{ fn.input | idType }} } from '$lib/model/{{ fn.input | idType }}.class';
-import { {{ fn.output | idType }} } from '$lib/model/{{ fn.output | idType }}.class';
-
-export async function {{ fn.name | normalizeName }}Handler(request: {{ fn.input | idType }}, response: {{ fn.output | idType }}, connection: Connection) {
-
-}

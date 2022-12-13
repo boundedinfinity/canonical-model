@@ -1,49 +1,64 @@
-package {{ .Package }}
+{{if .CurrNs -}}
+package {{ .CurrNs | BASE | SNAKE }}
 
-// Source: {{ .Source }}
-
+{{end -}}
 {{if .HasValidation -}}
 import (
 	"fmt"
+    {{if .Regex.Defined }}"regexp"{{end}}
 )
 
-{{ end -}}
-{{if .Description.Defined -}}
-// {{ .Type }} {{ .Description }}
 {{end -}}
-type {{ .Type }} int
+{{if .Description -}}
+// {{template "NAME" .}} {{ .Description }}
+{{end -}}
+type {{template "NAME" .}} int
 
 {{if .HasValidation -}}
-// Validate validates the {{ .Type }} type.
+// Validate validates the {{template "NAME" .}} type.
 {{ end -}}
-{{if .Minimum.Defined -}}
-//         Minimum: {{ .Minimum }}
-{{ end -}}
-{{if .Maximum.Defined -}}
-//         Maximum: {{ .Maximum }}
-{{end -}}
-{{if .MultipleOf.Defined -}}
-//      MultipleOf: {{ .MultipleOf }}
-{{ end -}}  
-func (t {{ .Type }}) Validate() error {
-    {{if .Minimum.Defined -}}
-    if t < {{ .Minimum }} {
-        return fmt.Errorf("%v is less than the minimum of {{ .Minimum }}", t)
+{{if .Min.Defined}}//    Min: {{ .Min -}}{{end}}
+{{if .Max.Defined}}//    Max: {{ .Max -}}{{end}}
+{{if .Regex.Defined}}//    Regex: {{ .Regex }}{{end}}
+func (t {{template "NAME" .}}) Validate() error {
+    {{if .Min.Defined -}}
+    if len(t) < {{ .Min }} {
+        return fmt.Errorf("%v length is less than the minimum of {{ .Min }}", t)
     }
 
     {{ end -}}
-    {{if .Maximum.Defined -}}
-    if t < {{ .Maximum }} {
-        return fmt.Errorf("%v is greater than the maximum of {{ .Maximum }}", t)
-    }
-
-    {{end -}}
-    {{if .MultipleOf.Defined -}}
-    if t % {{ .MultipleOf }} != 0 {
-        return fmt.Errorf("%v is not a multiple of {{ .MultipleOf }}", t)
+    {{if .Max.Defined -}}
+    if len(t) < {{ .Max }} {
+        return fmt.Errorf("%v length is greater than the maximum of {{ .Max }}", t)
     }
 
     {{end -}}
 
+    {{if .Regex.Defined -}}
+    if !regex.Match([]byte(t)) {
+		return fmt.Errorf("%v doesn't match '%v'", t, `{{ .Regex }}`)
+	}
+
+    {{end -}}
+    
     return nil
 }
+
+{{if .Regex.Defined -}}
+var (
+	regex *regexp.Regexp
+)
+
+func init() {
+	regex = regexp.MustCompile(`{{ .Regex }}`)
+}
+
+{{end -}}
+
+{{- define "NAME" -}}
+    {{- if .IsPublic -}}
+        {{ .Name | BASE | PASCAL }}
+    {{- else -}}
+        {{ .Name | BASE | CAMEL }}
+    {{- end -}}
+{{- end }}

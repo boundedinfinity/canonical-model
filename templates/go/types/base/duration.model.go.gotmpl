@@ -1,41 +1,46 @@
-package {{ .Package }}
+{{if .CurrNs -}}
+package {{ .CurrNs | BASE | SNAKE }}
 
-// Source: {{ .Source }}
+{{end -}}
 
-{{if .HasValidation -}}
 import (
+{{if .HasValidation -}}
 	"fmt"
+{{- end }}
     "github.com/boundedinfinity/rfc3339date"
 )
 
-{{ end -}}
-{{if .Description.Defined -}}
-// {{ .Type }} {{ .Description }}
+{{if .Description -}}
+// {{template "NAME" .}} {{ .Description }}
 {{end -}}
-type {{ .Type }} rfc3339date.Rfc3339Date
+type {{template "NAME" .}} rfc3339date.Rfc3339Duration
 
 {{if .HasValidation -}}
-// Validate validates the {{ .Type }} type.
+// Validate validates the {{template "NAME" .}} type.
 {{ end -}}
-{{if .Before.Defined -}}
-//         Before: {{ .Before }}
-{{ end -}}
-{{if .After.Defined -}}
-//         After: {{ .After }}
-{{end -}}
-func (t {{ .Type }}) Validate() error {
-    {{if .Before.Defined -}}
-    if t < {{ .Before }} {
-        return fmt.Errorf("%v is less than the minimum of {{ .Before }}", t)
+{{if .Min.Defined}}//    Min: {{ .Min -}}{{end}}
+{{if .Max.Defined}}//    Max: {{ .Max -}}{{end}}
+func (t {{template "NAME" .}}) Validate() error {
+    {{if .Min.Defined -}}
+    if len(t) < {{ .Min }} {
+        return fmt.Errorf("%v length is less than the minimum of {{ .Min }}", t)
     }
 
     {{ end -}}
-    {{if .After.Defined -}}
-    if t < {{ .After }} {
-        return fmt.Errorf("%v is greater than the maximum of {{ .After }}", t)
+    {{if .Max.Defined -}}
+    if len(t) < {{ .Max }} {
+        return fmt.Errorf("%v length is greater than the maximum of {{ .Max }}", t)
     }
 
     {{end -}}
-    
+
     return nil
 }
+
+{{- define "NAME" -}}
+    {{- if .IsPublic -}}
+        {{ .Name | BASE | PASCAL }}
+    {{- else -}}
+        {{ .Name | BASE | CAMEL }}
+    {{- end -}}
+{{- end }}

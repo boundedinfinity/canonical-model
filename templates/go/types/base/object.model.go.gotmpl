@@ -21,11 +21,24 @@ type {{template "NAME" .}} struct {
 }
 
 func (t {{.SchemaNs | BASE | PASCAL }}) Validate() error {
-{{- range .Properties }}
+{{- range .Properties -}}
+    {{if eq .SchemaType "ref"}}
     if err := t.{{template "NAME" .}}.Validate(); err != nil {
-        return fmt.Errorf("{{template "NAME" .}} %v : %w", err)
+        return fmt.Errorf("{{template "NAME" .}}: %w", err)
     }
-{{ end }}   
+
+    {{- else if eq .SchemaType "array"}}
+    for i, v := range t.{{template "NAME" .}} {
+        if err := v.Validate(); err != nil {
+            return fmt.Errorf("{{template "NAME" .}}[%v]: %w", i, err)
+        }
+    }
+
+    {{ else }}
+    // TODO {{ template "NAME" . }}
+    {{end -}}
+
+{{ end }}
     return nil
 }
 
@@ -42,9 +55,10 @@ func (t {{.SchemaNs | BASE | PASCAL }}) Validate() error {
         {{template "IMPORT_SWITCH" .Ref}}
     {{- else if eq .SchemaType "array" -}}
         {{template "IMPORT_SWITCH" .Items}}
-    {{- else -}}
-        {{- if ne (.SchemaNs | DIR) .CurrNs -}}"{{- .SchemaNs | DIR -}}"{{- end -}}        
-    {{- end -}}
+    {{- else if .SchemaNs -}}
+        {{- $x := .SchemaNs | DIR -}}
+        {{- if ne .CurrNs $x -}}"{{- $x -}}"{{- end -}}        
+    {{- end -}}    
 {{- end}}
 
 {{- define "TYPE_SWITCH" -}}
@@ -64,4 +78,4 @@ func (t {{.SchemaNs | BASE | PASCAL }}) Validate() error {
     {{- else -}}
         {{- if eq .SchemaType "string" -}}string{{- end -}}
     {{- end -}}
-{{- end -}}
+{{- end }}

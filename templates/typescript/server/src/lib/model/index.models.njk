@@ -1,9 +1,0 @@
-{% for obj in objs %}
-import { {{ obj | idType }} } from './{{ obj | idType }}.class'
-{%- endfor %}
-
-export {
-    {%- for obj in objs %}
-    {{ obj | idType }},
-    {%- endfor %}
-}

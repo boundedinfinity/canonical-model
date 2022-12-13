@@ -9,11 +9,11 @@ import (
 
 {{end -}}
 {{if .Description -}}
-// {{.SchemaNs | BASE | PASCAL }} {{ .Description }}
+// {{ .SchemaNs | BASE | PASCAL }} {{ .Description }}
 {{end -}}
-type {{.SchemaNs | BASE | PASCAL }} string
+type {{ .SchemaNs | BASE | PASCAL }} string
 
-func (t {{.SchemaNs | BASE | PASCAL }}) Validate() error {
+func (t {{ .SchemaNs | BASE | PASCAL }}) Validate() error {
     if _, err := url.Parse(string(t)); err != nil {
 		return err
 	}
