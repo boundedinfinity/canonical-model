@@ -1,19 +1,19 @@
-{{if .CurrNs -}}
-package {{ .CurrNs | BASE | SNAKE }}
+[[if .CurrNs -]]
+package [[ .CurrNs | BASE | SNAKE ]]
 
-{{end -}}
-{{if .HasValidation -}}
+[[end -]]
+[[if .HasValidation -]]
 import (
 	"net/url"
 )
 
-{{end -}}
-{{if .Description -}}
-// {{ .SchemaNs | BASE | PASCAL }} {{ .Description }}
-{{end -}}
-type {{ .SchemaNs | BASE | PASCAL }} string
+[[end -]]
+[[if .Description -]]
+// [[ .SchemaNs | BASE | PASCAL ]] [[ .Description ]]
+[[end -]]
+type [[ .SchemaNs | BASE | PASCAL ]] string
 
-func (t {{ .SchemaNs | BASE | PASCAL }}) Validate() error {
+func (t [[ .SchemaNs | BASE | PASCAL ]]) Validate() error {
     if _, err := url.Parse(string(t)); err != nil {
 		return err
 	}

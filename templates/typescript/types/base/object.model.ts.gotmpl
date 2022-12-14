@@ -1,0 +1,66 @@
+[[- define "IMPORT_SWITCH" -]]
+    [[- if eq .SchemaType "ref" -]]
+        [[template "IMPORT_SWITCH" .Ref]]
+    [[- else if eq .SchemaType "array" -]]
+        [[template "IMPORT_SWITCH" .Items]]
+    [[- else if .SchemaNs -]]
+        import { [[template "TYPE_SWITCH" .]], validate[[template "TYPE_SWITCH" .]] } from '[[template "IMPORT_PATH" .]]';
+    [[- end -]]    
+[[- end]]
+
+[[- define "IMPORT_PATH" -]]
+    [[- $rel := PATH_REL .CurrNs .SchemaNs -]]
+    [[- $rel | DIR ]]/[[ $rel | BASE | PASCAL -]].object.model
+[[- end -]]
+
+[[- range .Properties]]
+    [[template "IMPORT_SWITCH" .]]
+[[- end]]
+
+[[if .Description -]]
+/** 
+ * [[ .Description ]]
+ */
+[[end -]]
+export class [[template "NAME" .]] {
+[[- range .Properties]]    
+    [[template "NAME" .]] : [[template "TYPE_SWITCH" .]];
+[[- end]]
+}
+
+export function validate(t: [[template "NAME" .]]) {
+[[- range .Properties -]]
+    [[template "VALIDATE_SWITCH" .]]
+[[ end ]]
+}
+
+[[- define "VALIDATE_SWITCH" -]]
+    [[if eq .SchemaType "ref"]]
+        validate[[template "TYPE_SWITCH" .Ref -]](t.[[template "NAME" .]]);
+    [[else if eq .SchemaType "array"]]
+        for(const v in t.[[template "NAME" .]]) {
+            validate[[template "TYPE_SWITCH" .Items]](v);
+        }
+    [[else]]
+        // TODO [[ template "NAME" . ]]
+    [[end]]
+[[- end]]
+
+[[- define "NAME" -]]
+    [[ .Name | BASE | CAMEL ]]
+[[- end ]]
+
+[[- define "TYPE_SWITCH" -]]
+    [[- if eq .SchemaType "ref" -]]
+        [[template "TYPE_SWITCH" .Ref]]
+    [[- else if eq .SchemaType "array" -]]
+        [[template "TYPE_SWITCH" .Items]][]
+    [[- else -]]
+        [[- if .SchemaNs -]]
+            [[- .SchemaNs | BASE | PASCAL -]]
+        [[- else -]]
+            [[- if eq .SchemaType "string" -]]string[[- end -]]
+        [[- end -]]
+    [[- end -]]
+[[- end]]
+

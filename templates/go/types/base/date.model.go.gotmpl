@@ -1,43 +1,43 @@
-{{if .CurrNs -}}
-package {{ .CurrNs | BASE | SNAKE }}
+[[if .CurrNs -]]
+package [[ .CurrNs | BASE | SNAKE ]]
 
-{{end -}}
+[[end -]]
 
 import (
-{{if .HasValidation -}}
+[[if .HasValidation -]]
 	"fmt"
-{{- end }}
+[[- end ]]
     "github.com/boundedinfinity/rfc3339date"
 )
 
-{{if .Description -}}
-// {{ .SchemaNs | BASE | PASCAL }} {{ .Description }}
-{{end -}}
-type {{ .SchemaNs | BASE | PASCAL }} rfc3339date.Rfc3339Date
+[[if .Description -]]
+// [[ .SchemaNs | BASE | PASCAL ]] [[ .Description ]]
+[[end -]]
+type [[ .SchemaNs | BASE | PASCAL ]] rfc3339date.Rfc3339Date
 
-{{if .HasValidation -}}
-// Validate validates the {{ .SchemaNs | BASE | PASCAL }} type.
-{{ end -}}
-{{if .Before.Defined -}}
-//         Before: {{ .Before }}
-{{ end -}}
-{{if .After.Defined -}}
-//         After: {{ .After }}
-{{end -}}
-func (t {{ .SchemaNs | BASE | PASCAL }}) Validate() error {
-{{if .Before.Defined -}}
+[[if .HasValidation -]]
+// Validate validates the [[ .SchemaNs | BASE | PASCAL ]] type.
+[[ end -]]
+[[if .Before.Defined -]]
+//         Before: [[ .Before ]]
+[[ end -]]
+[[if .After.Defined -]]
+//         After: [[ .After ]]
+[[end -]]
+func (t [[ .SchemaNs | BASE | PASCAL ]]) Validate() error {
+[[if .Before.Defined -]]
     if t.Before(before) {
-        return fmt.Errorf("%v is before {{ .Before }}", t)
+        return fmt.Errorf("%v is before [[ .Before ]]", t)
     }
 
-{{ end -}}
-{{if .After.Defined -}}
+[[ end -]]
+[[if .After.Defined -]]
     if t.After(after) {
-        return fmt.Errorf("%v is after {{ .After }}", t)
+        return fmt.Errorf("%v is after [[ .After ]]", t)
     }
 
-{{end -}}
-{{if .Within.Defined -}}
+[[end -]]
+[[if .Within.Defined -]]
     if t.Within(within) {
         half := within / 2
 	    before := time.Now().Add(half)
@@ -45,40 +45,40 @@ func (t {{ .SchemaNs | BASE | PASCAL }}) Validate() error {
         return fmt.Errorf("%v after %v and before %v", t, before, after)
     }
 
-{{end -}}
+[[end -]]
 
     return nil
 }
 
 var(
-    {{if .Before.Defined -}}before rfc3339date.Rfc3339Date{{- end}}
-    {{if .After.Defined -}}after rfc3339date.Rfc3339Date{{- end}}
-    {{if .Within.Defined -}}within rfc3339date.Rfc3339Duration{{- end}}
+    [[if .Before.Defined -]]before rfc3339date.Rfc3339Date[[- end]]
+    [[if .After.Defined -]]after rfc3339date.Rfc3339Date[[- end]]
+    [[if .Within.Defined -]]within rfc3339date.Rfc3339Duration[[- end]]
 )
 
-{{if .HasValidation -}}
+[[if .HasValidation -]]
 func init() {
     var err error
-{{if .Before.Defined -}}
-    before, err = rfc3339date.ParseDate("{{ .After }}")
+[[if .Before.Defined -]]
+    before, err = rfc3339date.ParseDate("[[ .After ]]")
 
     if err != nil {
         panic(err)
     }
-{{ end -}}
-{{if .After.Defined -}}
-    after, err = rfc3339date.ParseDate("{{ .After }}")
+[[ end -]]
+[[if .After.Defined -]]
+    after, err = rfc3339date.ParseDate("[[ .After ]]")
 
     if err != nil {
         panic(err)
     }
-{{ end -}}
-{{if .Within.Defined -}}
-    within, err = rfc3339date.ParseDate("{{ .Within }}")
+[[ end -]]
+[[if .Within.Defined -]]
+    within, err = rfc3339date.ParseDate("[[ .Within ]]")
 
     if err != nil {
         panic(err)
     }
-{{ end -}}
+[[ end -]]
 }
-{{ end }}
+[[ end ]]

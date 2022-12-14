@@ -1,81 +1,87 @@
-{{if .CurrNs -}}
-package {{ .CurrNs | BASE | SNAKE }}
+[[if .CurrNs -]]
+package [[ .CurrNs | BASE | SNAKE ]]
 
-{{end -}}
-{{if .HasValidation -}}
+[[end -]]
+[[if .HasValidation -]]
 import (
 	"fmt"
-{{- range .Properties}}
-    {{template "IMPORT_SWITCH" .}}
-{{- end}}
+[[- range .Properties]]
+    [[template "IMPORT_SWITCH" .]]
+[[- end]]
 )
 
-{{end -}}
-{{if .Description -}}
-// {{template "NAME" .}} {{ .Description }}
-{{end -}}
-type {{template "NAME" .}} struct {
-{{- range .Properties}}    
-    {{template "NAME" .}} {{template "TYPE_SWITCH" .}}
-{{- end}}
+[[end -]]
+[[if .Description -]]
+// [[template "NAME" .]] [[ .Description ]]
+[[end -]]
+type [[template "NAME" .]] struct {
+[[- range .Properties]]    
+    [[template "NAME" .]] [[template "TYPE_SWITCH" .]]
+[[- end]]
 }
 
-func (t {{.SchemaNs | BASE | PASCAL }}) Validate() error {
-{{- range .Properties -}}
-    {{if eq .SchemaType "ref"}}
-    if err := t.{{template "NAME" .}}.Validate(); err != nil {
-        return fmt.Errorf("{{template "NAME" .}}: %w", err)
-    }
-
-    {{- else if eq .SchemaType "array"}}
-    for i, v := range t.{{template "NAME" .}} {
-        if err := v.Validate(); err != nil {
-            return fmt.Errorf("{{template "NAME" .}}[%v]: %w", i, err)
-        }
-    }
-
-    {{ else }}
-    // TODO {{ template "NAME" . }}
-    {{end -}}
-
-{{ end }}
+func (t [[.SchemaNs | BASE | PASCAL ]]) Validate() error {
+[[- range .Properties -]]
+    [[template "VALIDATE_SWITCH" .]]
+[[ end ]]
     return nil
 }
 
-{{- define "NAME" -}}
-    {{- if .IsPublic -}}
-        {{ .Name | BASE | PASCAL }}
-    {{- else -}}
-        {{ .Name | BASE | CAMEL }}
-    {{- end -}}
-{{- end -}}
+[[- define "VALIDATE_SWITCH" -]]
+[[ $res := RES_SCHEMA . ]]
+$res = [[ $res.SchemaNs ]]
 
-{{- define "IMPORT_SWITCH" -}}
-    {{- if eq .SchemaType "ref" -}}
-        {{template "IMPORT_SWITCH" .Ref}}
-    {{- else if eq .SchemaType "array" -}}
-        {{template "IMPORT_SWITCH" .Items}}
-    {{- else if .SchemaNs -}}
-        {{- $x := .SchemaNs | DIR -}}
-        {{- if ne .CurrNs $x -}}"{{- $x -}}"{{- end -}}        
-    {{- end -}}    
-{{- end}}
+[[ if RES_SCHEMA_NS .]]
+    [[if eq .SchemaType "ref"]]
+        if err := t.[[template "NAME" .]].Validate(); err != nil {
+            return fmt.Errorf("[[template "NAME" .]]: %w", err)
+        }
+    [[else if eq .SchemaType "array"]]
+        [[if .Items.SchemaType]]
+        for i, v := range t.[[template "NAME" .]] {
+            if err := v.Validate(); err != nil {
+                return fmt.Errorf("[[template "NAME" .]][%v]: %w", i, err)
+            }
+        }
+        [[end]]
+    [[else]]
+        // TODO [[ template "NAME" . ]]
+    [[end]]
+[[- end]]
+[[- end]]
 
-{{- define "TYPE_SWITCH" -}}
-    {{- if eq .SchemaType "ref" -}}
-        {{template "TYPE_SWITCH" .Ref}}
-    {{- else if eq .SchemaType "array" -}}
-        []{{template "TYPE_SWITCH" .Items}}
-    {{- else -}}
-        {{template "TYPE_NAME" .}}
-    {{- end -}}
-{{- end}}
+[[- define "NAME" -]]
+    [[- if .IsPublic -]]
+        [[ .Name | BASE | PASCAL ]]
+    [[- else -]]
+        [[ .Name | BASE | CAMEL ]]
+    [[- end -]]
+[[- end -]]
 
-{{- define "TYPE_NAME" -}}
-    {{- if .SchemaNs -}}
-        {{- if ne (.SchemaNs | DIR) .CurrNs -}}{{- .SchemaNs | DIR | BASE -}}.{{- end -}}
-        {{- .SchemaNs | BASE | PASCAL -}}
-    {{- else -}}
-        {{- if eq .SchemaType "string" -}}string{{- end -}}
-    {{- end -}}
-{{- end }}
+[[- define "IMPORT_SWITCH" -]]
+    [[ $type := RESOLVE . ]]
+    [[- if $type.SchemaNs -]]
+        [[- $ns := $type.SchemaNs | DIR -]]
+        [[- if ne .CurrNs $ns -]]"[[- $ns -]]"[[- end -]]        
+    [[- end -]]    
+[[- end]]
+
+
+[[- define "TYPE_SWITCH" -]]
+    [[- if eq .SchemaType "ref" -]]
+        [[template "TYPE_SWITCH" .Ref]]
+    [[- else if eq .SchemaType "array" -]]
+        [][[template "TYPE_SWITCH" .Items]]
+    [[- else -]]
+        [[template "TYPE_NAME" .]]
+    [[- end -]]
+[[- end]]
+
+[[- define "TYPE_NAME" -]]
+    [[- if .SchemaNs -]]
+        [[- if ne (.SchemaNs | DIR) .CurrNs -]][[- .SchemaNs | DIR | BASE -]].[[- end -]]
+        [[- .SchemaNs | BASE | PASCAL -]]
+    [[- else -]]
+        [[- if eq .SchemaType "string" -]]string[[- end -]]
+    [[- end -]]
+[[- end ]]

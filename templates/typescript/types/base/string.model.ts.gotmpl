@@ -1,64 +1,41 @@
-{{if .CurrNs -}}
-package {{ .CurrNs | BASE | SNAKE }}
+[[if .Description -]]
+/** 
+ * [[ .Description ]]
+ */
+[[end -]]
+export type [[template "NAME" .]] = string;
 
-{{end -}}
-{{if .HasValidation -}}
-import (
-	"fmt"
-    {{if .Regex.Defined }}"regexp"{{end}}
-)
-
-{{end -}}
-{{if .Description -}}
-// {{template "NAME" .}} {{ .Description }}
-{{end -}}
-type {{template "NAME" .}} string
-
-{{if .HasValidation -}}
-// Validate validates the {{template "NAME" .}} type.
-{{ end -}}
-{{if .Min.Defined}}//    Min: {{ .Min -}}{{end}}
-{{if .Max.Defined}}//    Max: {{ .Max -}}{{end}}
-{{if .Regex.Defined}}//    Regex: {{ .Regex }}{{end}}
-func (t {{template "NAME" .}}) Validate() error {
-    {{if .Min.Defined -}}
-    if len(t) < {{ .Min }} {
-        return fmt.Errorf("%v length is less than the minimum of {{ .Min }}", t)
+[[if .HasValidation -]]
+/**
+ * Validate validates the [[template "NAME" .]] type.
+ *
+ * @param v [[template "NAME" .]]
+ *
+ * @throws an error if validation fails
+ */
+export function validate[[template "NAME" .]](v: [[template "NAME" .]]) {
+    [[if .Min.Defined -]]
+    if(v.length < [[ .Min ]]) {
+        throw new Error(`${v} is less than the minimum of [[ .Min ]]`);
     }
-
-    {{ end -}}
-    {{if .Max.Defined -}}
-    if len(t) < {{ .Max }} {
-        return fmt.Errorf("%v length is greater than the maximum of {{ .Max }}", t)
+    [[end]]
+    [[if .Max.Defined -]]
+    if(v.length < [[ .Max ]]) {
+        throw new Error(`${v} is less than the maximum of [[ .Max ]]`);
     }
-
-    {{end -}}
-
-    {{if .Regex.Defined -}}
-    if !regex.Match([]byte(t)) {
-		return fmt.Errorf("%v doesn't match '%v'", t, `{{ .Regex }}`)
-	}
-
-    {{end -}}
-    
-    return nil
+    [[end]]
+    [[if .Max.Defined -]]
+    if(!regex.test(v)) {
+        throw new Error(`'${v}' doesn't match '[[ .Regex ]]'`);
+    }
+    [[end]]
 }
+[[ end -]]
 
-{{if .Regex.Defined -}}
-var (
-	regex *regexp.Regexp
-)
+[[if .Regex.Defined]]
+const regex = /[[ .Regex ]]/;
+[[end -]]
 
-func init() {
-	regex = regexp.MustCompile(`{{ .Regex }}`)
-}
-
-{{end -}}
-
-{{- define "NAME" -}}
-    {{- if .IsPublic -}}
-        {{ .Name | BASE | PASCAL }}
-    {{- else -}}
-        {{ .Name | BASE | CAMEL }}
-    {{- end -}}
-{{- end }}
+[[- define "NAME" -]]
+    [[ .Name | BASE | PASCAL ]]
+[[- end ]]

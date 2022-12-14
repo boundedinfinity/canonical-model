@@ -1,0 +1,23 @@
+[[if .Description -]]
+/** 
+ * [[ .Description ]]
+ */
+[[end -]]
+export type [[template "NAME" .]] = string;
+
+[[if .HasValidation -]]
+/**
+ * Validate validates the [[template "NAME" .]] type.
+ *
+ * @param v [[template "NAME" .]]
+ *
+ * @throws an error if validation fails
+ */
+export function validate(v: [[template "NAME" .]]) {
+    new URL(v)
+}
+[[ end -]]
+
+[[- define "NAME" -]]
+    [[ .Name | BASE | PASCAL ]]
+[[- end ]]

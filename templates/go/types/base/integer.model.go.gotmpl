@@ -1,64 +1,64 @@
-{{if .CurrNs -}}
-package {{ .CurrNs | BASE | SNAKE }}
+[[if .CurrNs -]]
+package [[ .CurrNs | BASE | SNAKE ]]
 
-{{end -}}
-{{if .HasValidation -}}
+[[end -]]
+[[if .HasValidation -]]
 import (
 	"fmt"
-    {{if .Regex.Defined }}"regexp"{{end}}
+    [[if .Regex.Defined ]]"regexp"[[end]]
 )
 
-{{end -}}
-{{if .Description -}}
-// {{template "NAME" .}} {{ .Description }}
-{{end -}}
-type {{template "NAME" .}} int
+[[end -]]
+[[if .Description -]]
+// [[template "NAME" .]] [[ .Description ]]
+[[end -]]
+type [[template "NAME" .]] int
 
-{{if .HasValidation -}}
-// Validate validates the {{template "NAME" .}} type.
-{{ end -}}
-{{if .Min.Defined}}//    Min: {{ .Min -}}{{end}}
-{{if .Max.Defined}}//    Max: {{ .Max -}}{{end}}
-{{if .Regex.Defined}}//    Regex: {{ .Regex }}{{end}}
-func (t {{template "NAME" .}}) Validate() error {
-    {{if .Min.Defined -}}
-    if len(t) < {{ .Min }} {
-        return fmt.Errorf("%v length is less than the minimum of {{ .Min }}", t)
+[[if .HasValidation -]]
+// Validate validates the [[template "NAME" .]] type.
+[[ end -]]
+[[if .Min.Defined]]//    Min: [[ .Min -]][[end]]
+[[if .Max.Defined]]//    Max: [[ .Max -]][[end]]
+[[if .Regex.Defined]]//    Regex: [[ .Regex ]][[end]]
+func (t [[template "NAME" .]]) Validate() error {
+    [[if .Min.Defined -]]
+    if len(t) < [[ .Min ]] {
+        return fmt.Errorf("%v length is less than the minimum of [[ .Min ]]", t)
     }
 
-    {{ end -}}
-    {{if .Max.Defined -}}
-    if len(t) < {{ .Max }} {
-        return fmt.Errorf("%v length is greater than the maximum of {{ .Max }}", t)
+    [[ end -]]
+    [[if .Max.Defined -]]
+    if len(t) < [[ .Max ]] {
+        return fmt.Errorf("%v length is greater than the maximum of [[ .Max ]]", t)
     }
 
-    {{end -}}
+    [[end -]]
 
-    {{if .Regex.Defined -}}
+    [[if .Regex.Defined -]]
     if !regex.Match([]byte(t)) {
-		return fmt.Errorf("%v doesn't match '%v'", t, `{{ .Regex }}`)
+		return fmt.Errorf("%v doesn't match '%v'", t, `[[ .Regex ]]`)
 	}
 
-    {{end -}}
+    [[end -]]
     
     return nil
 }
 
-{{if .Regex.Defined -}}
+[[if .Regex.Defined -]]
 var (
 	regex *regexp.Regexp
 )
 
 func init() {
-	regex = regexp.MustCompile(`{{ .Regex }}`)
+	regex = regexp.MustCompile(`[[ .Regex ]]`)
 }
 
-{{end -}}
+[[end -]]
 
-{{- define "NAME" -}}
-    {{- if .IsPublic -}}
-        {{ .Name | BASE | PASCAL }}
-    {{- else -}}
-        {{ .Name | BASE | CAMEL }}
-    {{- end -}}
-{{- end }}
+[[- define "NAME" -]]
+    [[- if .IsPublic -]]
+        [[ .Name | BASE | PASCAL ]]
+    [[- else -]]
+        [[ .Name | BASE | CAMEL ]]
+    [[- end -]]
+[[- end ]]
