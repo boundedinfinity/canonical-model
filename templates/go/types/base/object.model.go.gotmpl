@@ -6,7 +6,11 @@ package [[ .CurrNs | BASE | SNAKE ]]
 import (
 	"fmt"
 [[- range .Properties]]
-    [[template "IMPORT_SWITCH" .]]
+    [[ $type := RESOLVE . ]]
+    [[- if $type.SchemaNs -]]
+        [[- $ns := $type.SchemaNs | DIR -]]
+        [[- if ne .CurrNs $ns -]]"[[- $ns -]]"[[- end -]]
+    [[- end -]]
 [[- end]]
 )
 
@@ -15,8 +19,14 @@ import (
 // [[template "NAME" .]] [[ .Description ]]
 [[end -]]
 type [[template "NAME" .]] struct {
-[[- range .Properties]]    
-    [[template "NAME" .]] [[template "TYPE_SWITCH" .]]
+[[- range .Properties]]
+    [[template "NAME" .]] [[$type := RESOLVE . -]][[if $type.SchemaNs -]]
+        [[- template "ARRAY" . -]][[- template "TYPE_NAME" $type -]]
+    [[- else if eq $type.SchemaType "string" -]]
+        [[- template "ARRAY" . -]]string    
+    [[- else -]]
+        // TODO [[$type.SchemaType]]
+    [[- end -]]
 [[- end]]
 }
 
@@ -28,10 +38,8 @@ func (t [[.SchemaNs | BASE | PASCAL ]]) Validate() error {
 }
 
 [[- define "VALIDATE_SWITCH" -]]
-[[ $res := RES_SCHEMA . ]]
-$res = [[ $res.SchemaNs ]]
-
-[[ if RES_SCHEMA_NS .]]
+[[ $type := RESOLVE . ]]
+[[if $type.SchemaNs -]]
     [[if eq .SchemaType "ref"]]
         if err := t.[[template "NAME" .]].Validate(); err != nil {
             return fmt.Errorf("[[template "NAME" .]]: %w", err)
@@ -58,25 +66,6 @@ $res = [[ $res.SchemaNs ]]
     [[- end -]]
 [[- end -]]
 
-[[- define "IMPORT_SWITCH" -]]
-    [[ $type := RESOLVE . ]]
-    [[- if $type.SchemaNs -]]
-        [[- $ns := $type.SchemaNs | DIR -]]
-        [[- if ne .CurrNs $ns -]]"[[- $ns -]]"[[- end -]]        
-    [[- end -]]    
-[[- end]]
-
-
-[[- define "TYPE_SWITCH" -]]
-    [[- if eq .SchemaType "ref" -]]
-        [[template "TYPE_SWITCH" .Ref]]
-    [[- else if eq .SchemaType "array" -]]
-        [][[template "TYPE_SWITCH" .Items]]
-    [[- else -]]
-        [[template "TYPE_NAME" .]]
-    [[- end -]]
-[[- end]]
-
 [[- define "TYPE_NAME" -]]
     [[- if .SchemaNs -]]
         [[- if ne (.SchemaNs | DIR) .CurrNs -]][[- .SchemaNs | DIR | BASE -]].[[- end -]]
@@ -85,3 +74,7 @@ $res = [[ $res.SchemaNs ]]
         [[- if eq .SchemaType "string" -]]string[[- end -]]
     [[- end -]]
 [[- end ]]
+
+[[- define "ARRAY" -]]
+[[- if eq .SchemaType "array" -]][][[- end -]]
+[[- end]]
