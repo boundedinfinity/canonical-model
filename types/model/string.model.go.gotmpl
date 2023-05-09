@@ -56,7 +56,7 @@ func init() {
 [[end -]]
 
 [[- define "NAME" -]]
-    [[- if .IsPublic -]]
+    [[- if eq .Visibility "public" -]]
         [[ .Name | BASE | PASCAL ]]
     [[- else -]]
         [[ .Name | BASE | CAMEL ]]

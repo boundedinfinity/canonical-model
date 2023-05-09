@@ -2,24 +2,24 @@
 package [[ .CurrNs | BASE | SNAKE ]]
 
 [[end -]]
-[[if .HasValidation -]]
+
 import (
+[[if .HasValidation -]]
 	"fmt"
-    [[if .Regex.Defined ]]"regexp"[[end]]
+[[- end ]]
+    "github.com/boundedinfinity/rfc3339date"
 )
 
-[[end -]]
 [[if .Description -]]
 // [[template "NAME" .]] [[ .Description ]]
 [[end -]]
-type [[template "NAME" .]] int
+type [[template "NAME" .]] rfc3339date.Rfc3339Duration
 
 [[if .HasValidation -]]
 // Validate validates the [[template "NAME" .]] type.
 [[ end -]]
 [[if .Min.Defined]]//    Min: [[ .Min -]][[end]]
 [[if .Max.Defined]]//    Max: [[ .Max -]][[end]]
-[[if .Regex.Defined]]//    Regex: [[ .Regex ]][[end]]
 func (t [[template "NAME" .]]) Validate() error {
     [[if .Min.Defined -]]
     if len(t) < [[ .Min ]] {
@@ -34,29 +34,11 @@ func (t [[template "NAME" .]]) Validate() error {
 
     [[end -]]
 
-    [[if .Regex.Defined -]]
-    if !regex.Match([]byte(t)) {
-		return fmt.Errorf("%v doesn't match '%v'", t, `[[ .Regex ]]`)
-	}
-
-    [[end -]]
-    
     return nil
 }
 
-[[if .Regex.Defined -]]
-var (
-	regex *regexp.Regexp
-)
-
-func init() {
-	regex = regexp.MustCompile(`[[ .Regex ]]`)
-}
-
-[[end -]]
-
 [[- define "NAME" -]]
-    [[- if .IsPublic -]]
+    [[- if eq .Visibility "public" -]]
         [[ .Name | BASE | PASCAL ]]
     [[- else -]]
         [[ .Name | BASE | CAMEL ]]
