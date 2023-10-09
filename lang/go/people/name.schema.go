@@ -1,22 +1,25 @@
-package main
+package people
 
 import (
 	"fmt"
 	"strings"
+
+	"github.com/google/uuid"
 
 	"github.com/boundedinfinity/commons/slices"
 	"github.com/boundedinfinity/optioner"
 )
 
 type Name struct {
-	Prefixes    optioner.Option[[]Prefix]
-	GivenNames  []string
-	FamilyNames []string
-	Suffixes    optioner.Option[[]Suffix]
-	Ordering    NameOrdering
+	Id          optioner.Option[uuid.UUID]    `json:"id,omitempty"`
+	Prefixes    optioner.Option[[]Prefix]     `json:"prefixes,omitempty"`
+	GivenNames  []string                      `json:"givenNames,omitempty"`
+	FamilyNames []string                      `json:"familyNames,omitempty"`
+	Suffixes    optioner.Option[[]Suffix]     `json:"suffixes,omitempty"`
+	Ordering    optioner.Option[NameOrdering] `json:"ordering,omitempty"`
 }
 
-func (t Name) Validate() error {
+func (t Name) Validate(groups ...string) error {
 	for i, prefix := range t.Prefixes.Get() {
 		if err := prefix.Validate(); err != nil {
 			return fmt.Errorf("prefixes[%v] %w", i, err)
@@ -52,35 +55,34 @@ func (t Name) Validate() error {
 	return nil
 }
 
+func toStrings[T any](ts []T) []string {
+	return slices.Map(ts, func(t T) string { return fmt.Sprintf("%v", t) })
+}
+
 func (t Name) String() string {
-	var name []string
+	var names []string
 
-	prefixesFn := func(p Prefix) string {
-		return p.String()
+	if t.Prefixes.Defined() && len(t.Prefixes.Get()) > 0 {
+		names = append(names, toStrings(t.Prefixes.Get())...)
 	}
 
-	suffixesFn := func(p Suffix) string {
-		return p.String()
-	}
+	ordering := t.Ordering.OrElse(GivenNameFamilyName)
 
-	if t.Prefixes.Defined() {
-		ss := slices.Map(t.Prefixes.Get(), prefixesFn)
-		name = append(name, strings.Join(ss, " "))
-	}
-
-	switch t.Ordering {
+	switch ordering {
 	case FamilyNameGivenName:
-		name = append(name, strings.Join(t.FamilyNames, " "))
-		name = append(name, strings.Join(t.GivenNames, " "))
+		names = append(names, strings.Join(t.FamilyNames, " "))
+		names = append(names, strings.Join(t.GivenNames, " "))
 	default:
-		name = append(name, strings.Join(t.GivenNames, " "))
-		name = append(name, strings.Join(t.FamilyNames, " "))
+		names = append(names, strings.Join(t.GivenNames, " "))
+		names = append(names, strings.Join(t.FamilyNames, " "))
 	}
 
-	if t.Suffixes.Defined() {
-		ss := slices.Map(t.Suffixes.Get(), suffixesFn)
-		name = append(name, strings.Join(ss, " "))
+	if t.Suffixes.Defined() && len(t.Suffixes.Get()) > 0 {
+		names = append(names, toStrings(t.Suffixes.Get())...)
 	}
 
-	return strings.Join(name, " ")
+	s := strings.Join(names, " ")
+	s = strings.Join(strings.Fields(s), " ")
+
+	return s
 }
