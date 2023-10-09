@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/boundedinfinity/optioner"
+	o "github.com/boundedinfinity/optioner"
 	"github.com/boundedinfinity/schema/people"
 
 	"github.com/google/uuid"
@@ -12,28 +12,35 @@ import (
 )
 
 var (
+	// person2 = people.BuildPerson().
+	// 	Id("792ce7f5-0586-42a4-ac2f-7f3fd276c3c5").
+	// 	Name(people.BuildName().
+	// 		Id("d34a65f3-9761-43cf-ae31-1711c307a355").
+	// 		Must(),
+	// 	).Must()
+
 	person1 = people.Person{
-		Id: optioner.Some(uuid.MustParse("792ce7f5-0586-42a4-ac2f-7f3fd276c3c5")),
+		Id: o.Some(uuid.MustParse("792ce7f5-0586-42a4-ac2f-7f3fd276c3c5")),
 		Name: people.Name{
-			Id: optioner.Some(uuid.MustParse("d34a65f3-9761-43cf-ae31-1711c307a355")),
-			Prefixes: optioner.Some([]people.Prefix{
+			Id: o.Some(uuid.MustParse("d34a65f3-9761-43cf-ae31-1711c307a355")),
+			Prefixes: o.Some([]people.Prefix{
 				{
-					Id:           optioner.Some(uuid.MustParse("b5a5b96c-5955-44c4-8d53-2c7fd1090a02")),
+					Id:           o.Some(uuid.MustParse("b5a5b96c-5955-44c4-8d53-2c7fd1090a02")),
 					Text:         "Mister",
-					Abbreviation: optioner.Some([]string{"Mr."}),
+					Abbreviation: o.Some([]string{"Mr."}),
 				},
 			}),
 			GivenNames:  []string{"James"},
 			FamilyNames: []string{"Bond"},
-			Suffixes: optioner.Some([]people.Suffix{
+			Suffixes: o.Some([]people.Suffix{
 				{
-					Id:           optioner.Some(uuid.MustParse("d4033138-e658-4b34-a2fa-55aefeff1250")),
+					Id:           o.Some(uuid.MustParse("d4033138-e658-4b34-a2fa-55aefeff1250")),
 					Text:         "Junior",
-					Abbreviation: optioner.Some([]string{"Jr."}),
-					Format:       optioner.Some(people.Abbreviation),
+					Abbreviation: o.Some([]string{"Jr."}),
+					Format:       o.Some(people.Abbreviation),
 				},
 			}),
-			Ordering: optioner.Some(people.GivenNameFamilyName),
+			Format: o.Some(people.GivenNameFamilyName),
 		},
 	}
 )

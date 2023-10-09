@@ -6,9 +6,12 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/boundedinfinity/commons/slices"
 	"github.com/boundedinfinity/optioner"
 )
+
+// ///////////////////////////////////////////////////
+// Model
+// ///////////////////////////////////////////////////
 
 type Name struct {
 	Id          optioner.Option[uuid.UUID]    `json:"id,omitempty"`
@@ -16,7 +19,7 @@ type Name struct {
 	GivenNames  []string                      `json:"givenNames,omitempty"`
 	FamilyNames []string                      `json:"familyNames,omitempty"`
 	Suffixes    optioner.Option[[]Suffix]     `json:"suffixes,omitempty"`
-	Ordering    optioner.Option[NameOrdering] `json:"ordering,omitempty"`
+	Format      optioner.Option[NameOrdering] `json:"ordering,omitempty"`
 }
 
 func (t Name) Validate(groups ...string) error {
@@ -55,10 +58,6 @@ func (t Name) Validate(groups ...string) error {
 	return nil
 }
 
-func toStrings[T any](ts []T) []string {
-	return slices.Map(ts, func(t T) string { return fmt.Sprintf("%v", t) })
-}
-
 func (t Name) String() string {
 	var names []string
 
@@ -66,7 +65,7 @@ func (t Name) String() string {
 		names = append(names, toStrings(t.Prefixes.Get())...)
 	}
 
-	ordering := t.Ordering.OrElse(GivenNameFamilyName)
+	ordering := t.Format.OrElse(GivenNameFamilyName)
 
 	switch ordering {
 	case FamilyNameGivenName:
@@ -85,4 +84,102 @@ func (t Name) String() string {
 	s = strings.Join(strings.Fields(s), " ")
 
 	return s
+}
+
+// ///////////////////////////////////////////////////
+// Builder
+// ///////////////////////////////////////////////////
+
+type nameFn func(*Name) error
+
+type nameBuilder struct {
+	fns []nameFn
+}
+
+func BuildName() *nameBuilder {
+	return &nameBuilder{
+		fns: make([]nameFn, 0),
+	}
+}
+
+func (t *nameBuilder) Build() (Name, error) {
+	var v Name
+
+	for _, fn := range t.fns {
+		if err := fn(&v); err != nil {
+			return v, err
+		}
+	}
+
+	return v, nil
+}
+
+func (t *nameBuilder) Must() Name {
+	v, err := t.Build()
+
+	if err != nil {
+		panic(err)
+	}
+
+	return v
+}
+
+func (t *nameBuilder) Id(v string) *nameBuilder {
+	t.fns = append(t.fns, func(p *Name) error {
+		id, err := uuid.Parse(v)
+
+		if err != nil {
+			return err
+		}
+
+		p.Id = optioner.Some(id)
+		return nil
+	})
+
+	return t
+}
+
+func (t *nameBuilder) GivenName(v string) *nameBuilder {
+	t.fns = append(t.fns, func(p *Name) error {
+		p.GivenNames = sAppend(p.GivenNames, v)
+		return nil
+	})
+
+	return t
+}
+
+func (t *nameBuilder) FamilyName(v string) *nameBuilder {
+	t.fns = append(t.fns, func(p *Name) error {
+		p.FamilyNames = sAppend(p.FamilyNames, v)
+		return nil
+	})
+
+	return t
+}
+
+func (t *nameBuilder) Prefix(v Prefix) error {
+	t.fns = append(t.fns, func(p *Name) error {
+		p.Prefixes = soAppend(p.Prefixes, v)
+		return nil
+	})
+
+	return nil
+}
+
+func (t *nameBuilder) Suffix(v Suffix) error {
+	t.fns = append(t.fns, func(p *Name) error {
+		p.Suffixes = soAppend(p.Suffixes, v)
+		return nil
+	})
+
+	return nil
+}
+
+func (t *nameBuilder) Format(v NameOrdering) *nameBuilder {
+	t.fns = append(t.fns, func(p *Name) error {
+		p.Format = optioner.Some(v)
+		return nil
+	})
+
+	return t
 }
