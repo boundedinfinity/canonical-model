@@ -4,12 +4,12 @@ go 1.18
 
 require (
 	github.com/boundedinfinity/commons v1.0.7
-	github.com/boundedinfinity/enumer v1.0.6
+	github.com/boundedinfinity/enumer v1.0.9
 	github.com/boundedinfinity/go-commoner v1.0.23
 	github.com/boundedinfinity/optioner v1.0.1
-	github.com/clarketm/json v1.17.1
+	github.com/boundedinfinity/rfc3339date v1.0.1
 	github.com/google/uuid v1.3.1
-	github.com/stretchr/testify v1.7.4
+	github.com/stretchr/testify v1.8.1
 )
 
 require (

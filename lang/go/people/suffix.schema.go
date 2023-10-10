@@ -6,11 +6,11 @@ import (
 )
 
 type Suffix struct {
-	Id           optioner.Option[uuid.UUID]          `json:"id,omitempty"`
-	Text         string                              `json:"text,omitempty"`
-	Abbreviation optioner.Option[[]string]           `json:"abbreviation,omitempty"`
-	Description  optioner.Option[string]             `json:"description,omitempty"`
-	Format       optioner.Option[PrefixSuffixFormat] `json:"format,omitempty"`
+	Id           optioner.Option[uuid.UUID]    `json:"id,omitempty"`
+	Text         string                        `json:"text,omitempty"`
+	Abbreviation optioner.Option[[]string]     `json:"abbreviation,omitempty"`
+	Description  optioner.Option[string]       `json:"description,omitempty"`
+	Format       optioner.Option[SuffixFormat] `json:"format,omitempty"`
 }
 
 func (t Suffix) Validate(groups ...string) error {
@@ -20,9 +20,9 @@ func (t Suffix) Validate(groups ...string) error {
 func (t Suffix) String() string {
 	var s string
 
-	format := t.Format.OrElse(Abbreviation)
+	format := t.Format.OrElse(SuffixFormats.Abbreviation)
 
-	if format == Abbreviation && len(t.Abbreviation.Get()) > 0 {
+	if format == SuffixFormats.Abbreviation && len(t.Abbreviation.Get()) > 0 {
 		s = t.Abbreviation.Get()[0]
 	} else {
 		s = t.Text
@@ -116,7 +116,7 @@ func (t *suffixBuilder) Description(v string) *suffixBuilder {
 	return t
 }
 
-func (t *suffixBuilder) Format(v PrefixSuffixFormat) *suffixBuilder {
+func (t *suffixBuilder) Format(v SuffixFormat) *suffixBuilder {
 	t.fns = append(t.fns, func(p *Suffix) error {
 		p.Format = optioner.Some(v)
 		return nil

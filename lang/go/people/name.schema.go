@@ -14,12 +14,12 @@ import (
 // ///////////////////////////////////////////////////
 
 type Name struct {
-	Id          optioner.Option[uuid.UUID]    `json:"id,omitempty"`
-	Prefixes    optioner.Option[[]Prefix]     `json:"prefixes,omitempty"`
-	GivenNames  []string                      `json:"givenNames,omitempty"`
-	FamilyNames []string                      `json:"familyNames,omitempty"`
-	Suffixes    optioner.Option[[]Suffix]     `json:"suffixes,omitempty"`
-	Format      optioner.Option[NameOrdering] `json:"ordering,omitempty"`
+	Id          optioner.Option[uuid.UUID]  `json:"id,omitempty"`
+	Prefixes    optioner.Option[[]Prefix]   `json:"prefixes,omitempty"`
+	GivenNames  []string                    `json:"givenNames,omitempty"`
+	FamilyNames []string                    `json:"familyNames,omitempty"`
+	Suffixes    optioner.Option[[]Suffix]   `json:"suffixes,omitempty"`
+	Format      optioner.Option[NameFormat] `json:"ordering,omitempty"`
 }
 
 func (t Name) Validate(groups ...string) error {
@@ -65,10 +65,10 @@ func (t Name) String() string {
 		names = append(names, toStrings(t.Prefixes.Get())...)
 	}
 
-	ordering := t.Format.OrElse(GivenNameFamilyName)
+	ordering := t.Format.OrElse(NameFormats.GivenNameFamilyName)
 
 	switch ordering {
-	case FamilyNameGivenName:
+	case NameFormats.FamilyNameGivenName:
 		names = append(names, strings.Join(t.FamilyNames, " "))
 		names = append(names, strings.Join(t.GivenNames, " "))
 	default:
@@ -175,7 +175,7 @@ func (t *nameBuilder) Suffix(v Suffix) error {
 	return nil
 }
 
-func (t *nameBuilder) Format(v NameOrdering) *nameBuilder {
+func (t *nameBuilder) Format(v NameFormat) *nameBuilder {
 	t.fns = append(t.fns, func(p *Name) error {
 		p.Format = optioner.Some(v)
 		return nil

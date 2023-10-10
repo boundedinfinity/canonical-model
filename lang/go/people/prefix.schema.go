@@ -10,17 +10,17 @@ import (
 // ///////////////////////////////////////////////////
 
 type Prefix struct {
-	Id           optioner.Option[uuid.UUID]          `json:"id,omitempty"`
-	Text         string                              `json:"text,omitempty"`
-	Abbreviation optioner.Option[[]string]           `json:"abbreviation,omitempty"`
-	Description  optioner.Option[string]             `json:"description,omitempty"`
-	Format       optioner.Option[PrefixSuffixFormat] `json:"format,omitempty"`
+	Id           optioner.Option[uuid.UUID]    `json:"id,omitempty"`
+	Text         string                        `json:"text,omitempty"`
+	Abbreviation optioner.Option[[]string]     `json:"abbreviation,omitempty"`
+	Description  optioner.Option[string]       `json:"description,omitempty"`
+	Format       optioner.Option[PrefixFormat] `json:"format,omitempty"`
 }
 
 func (t Prefix) String() string {
 	var s string
 
-	if (t.Format.Empty() || t.Format.Get() == Abbreviation) && len(t.Abbreviation.Get()) > 0 {
+	if (t.Format.Empty() || t.Format.Get() == PrefixFormats.Abbreviation) && len(t.Abbreviation.Get()) > 0 {
 		s = t.Abbreviation.Get()[0]
 	} else {
 		s = t.Text
@@ -118,7 +118,7 @@ func (t *prefixBuilder) Description(v string) *prefixBuilder {
 	return t
 }
 
-func (t *prefixBuilder) Format(v PrefixSuffixFormat) *prefixBuilder {
+func (t *prefixBuilder) Format(v PrefixFormat) *prefixBuilder {
 	t.fns = append(t.fns, func(p *Prefix) error {
 		p.Format = optioner.Some(v)
 		return nil
