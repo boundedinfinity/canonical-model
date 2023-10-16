@@ -1,16 +1,15 @@
 package people
 
 import (
-	"github.com/boundedinfinity/optioner"
 	"github.com/google/uuid"
 )
 
 type Suffix struct {
-	Id           optioner.Option[uuid.UUID]    `json:"id,omitempty"`
-	Text         string                        `json:"text,omitempty"`
-	Abbreviation optioner.Option[[]string]     `json:"abbreviation,omitempty"`
-	Description  optioner.Option[string]       `json:"description,omitempty"`
-	Format       optioner.Option[SuffixFormat] `json:"format,omitempty"`
+	Id           uuid.UUID    `json:"id,omitempty"`
+	Text         string       `json:"text,omitempty"`
+	Abbreviation []string     `json:"abbreviation,omitempty"`
+	Description  string       `json:"description,omitempty"`
+	Format       SuffixFormat `json:"format,omitempty"`
 }
 
 func (t Suffix) Validate(groups ...string) error {
@@ -20,10 +19,8 @@ func (t Suffix) Validate(groups ...string) error {
 func (t Suffix) String() string {
 	var s string
 
-	format := t.Format.OrElse(SuffixFormats.Abbreviation)
-
-	if format == SuffixFormats.Abbreviation && len(t.Abbreviation.Get()) > 0 {
-		s = t.Abbreviation.Get()[0]
+	if (t.Format == SuffixFormats.Abbreviation) && len(t.Abbreviation) > 0 {
+		s = t.Abbreviation[0]
 	} else {
 		s = t.Text
 	}
@@ -77,7 +74,7 @@ func (t *suffixBuilder) Id(v string) *suffixBuilder {
 			return err
 		}
 
-		p.Id = optioner.Some(id)
+		p.Id = id
 		return nil
 	})
 
@@ -95,12 +92,7 @@ func (t *suffixBuilder) Text(v string) *suffixBuilder {
 
 func (t *suffixBuilder) Abbreviation(v string) error {
 	t.fns = append(t.fns, func(p *Suffix) error {
-		if p.Abbreviation.Empty() {
-			p.Abbreviation = optioner.Some(make([]string, 0))
-		}
-
-		p.Abbreviation = optioner.Some(append(p.Abbreviation.Get(), v))
-
+		p.Abbreviation = append(p.Abbreviation, v)
 		return nil
 	})
 
@@ -109,7 +101,7 @@ func (t *suffixBuilder) Abbreviation(v string) error {
 
 func (t *suffixBuilder) Description(v string) *suffixBuilder {
 	t.fns = append(t.fns, func(p *Suffix) error {
-		p.Description = optioner.Some(v)
+		p.Description = v
 		return nil
 	})
 
@@ -118,7 +110,7 @@ func (t *suffixBuilder) Description(v string) *suffixBuilder {
 
 func (t *suffixBuilder) Format(v SuffixFormat) *suffixBuilder {
 	t.fns = append(t.fns, func(p *Suffix) error {
-		p.Format = optioner.Some(v)
+		p.Format = v
 		return nil
 	})
 

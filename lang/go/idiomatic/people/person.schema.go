@@ -1,7 +1,6 @@
 package people
 
 import (
-	"github.com/boundedinfinity/optioner"
 	"github.com/google/uuid"
 )
 
@@ -10,9 +9,9 @@ import (
 // ///////////////////////////////////////////////////
 
 type Person struct {
-	Id      optioner.Option[uuid.UUID] `json:"id"`
-	Name    Name                       `json:"name"`
-	Aliases optioner.Option[[]Name]    `json:"aliases"`
+	Id         uuid.UUID `json:"id,omitempty"`
+	Name       Name      `json:"name,omitempty"`
+	Pseudonyms []Name    `json:"pseudonyms,omitempty"`
 }
 
 func (t Person) String() string {
@@ -65,7 +64,7 @@ func (t *personBuilder) Id(v string) *personBuilder {
 			return err
 		}
 
-		p.Id = optioner.Some(id)
+		p.Id = id
 		return nil
 	})
 
@@ -83,12 +82,7 @@ func (t *personBuilder) Name(v Name) error {
 
 func (t *personBuilder) AlsoKnownAs(v Name) error {
 	t.fns = append(t.fns, func(p *Person) error {
-		if p.Aliases.Empty() {
-			p.Aliases = optioner.Some(make([]Name, 0))
-		}
-
-		p.Aliases = optioner.Some(append(p.Aliases.Get(), v))
-
+		p.Pseudonyms = append(p.Pseudonyms, v)
 		return nil
 	})
 

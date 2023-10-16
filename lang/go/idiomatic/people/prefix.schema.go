@@ -1,7 +1,6 @@
 package people
 
 import (
-	"github.com/boundedinfinity/optioner"
 	"github.com/google/uuid"
 )
 
@@ -10,18 +9,18 @@ import (
 // ///////////////////////////////////////////////////
 
 type Prefix struct {
-	Id           optioner.Option[uuid.UUID]    `json:"id,omitempty"`
-	Text         string                        `json:"text,omitempty"`
-	Abbreviation optioner.Option[[]string]     `json:"abbreviation,omitempty"`
-	Description  optioner.Option[string]       `json:"description,omitempty"`
-	Format       optioner.Option[PrefixFormat] `json:"format,omitempty"`
+	Id           uuid.UUID    `json:"id,omitempty"`
+	Text         string       `json:"text,omitempty"`
+	Abbreviation []string     `json:"abbreviation,omitempty"`
+	Description  string       `json:"description,omitempty"`
+	Format       PrefixFormat `json:"format,omitempty"`
 }
 
 func (t Prefix) String() string {
 	var s string
 
-	if (t.Format.Empty() || t.Format.Get() == PrefixFormats.Abbreviation) && len(t.Abbreviation.Get()) > 0 {
-		s = t.Abbreviation.Get()[0]
+	if (t.Format == PrefixFormats.Abbreviation) && len(t.Abbreviation) > 0 {
+		s = t.Abbreviation[0]
 	} else {
 		s = t.Text
 	}
@@ -79,7 +78,7 @@ func (t *prefixBuilder) Id(v string) *prefixBuilder {
 			return err
 		}
 
-		p.Id = optioner.Some(id)
+		p.Id = id
 		return nil
 	})
 
@@ -97,12 +96,7 @@ func (t *prefixBuilder) Text(v string) *prefixBuilder {
 
 func (t *prefixBuilder) Abbreviation(v string) error {
 	t.fns = append(t.fns, func(p *Prefix) error {
-		if p.Abbreviation.Empty() {
-			p.Abbreviation = optioner.Some(make([]string, 0))
-		}
-
-		p.Abbreviation = optioner.Some(append(p.Abbreviation.Get(), v))
-
+		p.Abbreviation = append(p.Abbreviation, v)
 		return nil
 	})
 
@@ -111,7 +105,7 @@ func (t *prefixBuilder) Abbreviation(v string) error {
 
 func (t *prefixBuilder) Description(v string) *prefixBuilder {
 	t.fns = append(t.fns, func(p *Prefix) error {
-		p.Description = optioner.Some(v)
+		p.Description = v
 		return nil
 	})
 
@@ -120,7 +114,7 @@ func (t *prefixBuilder) Description(v string) *prefixBuilder {
 
 func (t *prefixBuilder) Format(v PrefixFormat) *prefixBuilder {
 	t.fns = append(t.fns, func(p *Prefix) error {
-		p.Format = optioner.Some(v)
+		p.Format = v
 		return nil
 	})
 

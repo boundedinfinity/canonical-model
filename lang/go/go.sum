@@ -1,9 +1,7 @@
 github.com/boundedinfinity/commons v1.0.7 h1:3x3N209mE2PIuAVEdKRNu8s+kK/tIcFeVghftC3k+5U=
 github.com/boundedinfinity/commons v1.0.7/go.mod h1:UxkXbk82NXamTm57Ujqc4EBAppmifDaH+T0Z4q/yYqU=
-github.com/boundedinfinity/enumer v1.0.9 h1:hdWkNVryxIslKVq0euh11wXbCNxzNDY1XfI9orrwu/A=
-github.com/boundedinfinity/enumer v1.0.9/go.mod h1:uyjpNfwDNkv4N5shaRUJ9WsC7hI3P4/pPhEz+NSSKdk=
-github.com/boundedinfinity/go-commoner v1.0.23 h1:6tJpUY2VKwz/M1nzpuR55AHGssffwaOBBerQ8ftJkzM=
-github.com/boundedinfinity/go-commoner v1.0.23/go.mod h1:NtJk5jQO+YEXMZ9T+vTpQE3tCFTz+8Sr/N+ofQi5FSg=
+github.com/boundedinfinity/enumer v1.0.10 h1:D3aoVu8mDk2mK+c/d5SEXL+eFXHbQhpuwOx3zjzawvI=
+github.com/boundedinfinity/enumer v1.0.10/go.mod h1:uyjpNfwDNkv4N5shaRUJ9WsC7hI3P4/pPhEz+NSSKdk=
 github.com/boundedinfinity/go-trier v1.0.1 h1:38WkKsL9NEoi8hlZy8RyI6xjgS4GLvqr0dXJQ0oYqn4=
 github.com/boundedinfinity/go-trier v1.0.1/go.mod h1:XmkIbcEA+ks9eBmxm7LqgVR+ogWs6lzI026K2v4DDu8=
 github.com/boundedinfinity/optioner v1.0.1 h1:+JQavAt3cuXmYChFX651fk8RNzLg4xiMGKhxUFQztPM=
