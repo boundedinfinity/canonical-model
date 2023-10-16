@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/boundedinfinity/schema/idiomatic/internal"
 	"github.com/boundedinfinity/schema/idiomatic/people"
 
 	"github.com/google/uuid"
@@ -12,20 +13,18 @@ import (
 )
 
 var (
-	// person2 = people.BuildPerson().
-	// 	Id("792ce7f5-0586-42a4-ac2f-7f3fd276c3c5").
-	// 	Name(people.BuildName().
-	// 		Id("d34a65f3-9761-43cf-ae31-1711c307a355").
-	// 		Must(),
-	// 	).Must()
-
 	person1 = people.Person{
 		Id: uuid.MustParse("792ce7f5-0586-42a4-ac2f-7f3fd276c3c5"),
 		Name: people.Name{
 			Id: uuid.MustParse("d34a65f3-9761-43cf-ae31-1711c307a355"),
 			Prefixes: []people.Prefix{
 				{
-					Id:           uuid.MustParse("b5a5b96c-5955-44c4-8d53-2c7fd1090a02"),
+					WithIdDescFormat: internal.WithIdDescFormat[people.PrefixFormat]{
+						WithIdDesc: internal.WithIdDesc{
+							Id: uuid.MustParse("b5a5b96c-5955-44c4-8d53-2c7fd1090a02"),
+						},
+					},
+
 					Text:         "Mister",
 					Abbreviation: []string{"Mr."},
 				},
@@ -68,9 +67,7 @@ func Test_Person_JSON_Serialize(t *testing.T) {
                 {
                     "id":"b5a5b96c-5955-44c4-8d53-2c7fd1090a02",
                     "text":"Mister",
-                    "abbreviation":["Mr."],
-                    "description":null,
-                    "format":null
+                    "abbreviation":["Mr."]
                 }
             ],
             "givenNames":["James"],
@@ -79,13 +76,10 @@ func Test_Person_JSON_Serialize(t *testing.T) {
                 {
                     "id":"d4033138-e658-4b34-a2fa-55aefeff1250",
                     "text":"Junior",
-                    "abbreviation":["Jr."],
-                    "description":null,
-                    "format":null
+                    "abbreviation":["Jr."]
                 }
             ],
             "ordering":"GivenNameFamilyName"
-        },
-        "aliases":null
+        }
     }`)
 }

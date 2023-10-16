@@ -10,6 +10,7 @@ require (
 	github.com/boundedinfinity/rfc3339date v1.0.1
 	github.com/google/uuid v1.3.1
 	github.com/stretchr/testify v1.8.1
+	golang.org/x/exp v0.0.0-20231006140011-7918f672742d
 )
 
 require (
