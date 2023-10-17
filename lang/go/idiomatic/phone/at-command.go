@@ -6,6 +6,6 @@ package phone
 type AtCommand string
 
 type atCommands struct {
-	Pause2          NapaPhoneFormat `json:"pause-2,omitempty" enum:","`
-	PauseIndefinite NapaPhoneFormat `json:"pause-indefinite,omitempty" enum:";"`
+	Pause2          AtCommand `json:"pause-2,omitempty" enum:","`
+	PauseIndefinite AtCommand `json:"pause-indefinite,omitempty" enum:";"`
 }

@@ -71,20 +71,16 @@ var NapaPhoneFormats = struct {
 	Values []NapaPhoneFormat
 }{
 	napaPhoneFormats: napaPhoneFormats{
-		DotSeparated:         NapaPhoneFormat("DotSeparated"),
-		DashSeparated:        NapaPhoneFormat("DashSeparated"),
-		ParenthesesAndDashes: NapaPhoneFormat("ParenthesesAndDashes"),
-		None:                 NapaPhoneFormat("None"),
+		Full:   NapaPhoneFormat("Full"),
+		Common: NapaPhoneFormat("Common"),
 	},
 	Err: fmt.Errorf("invalid NapaPhoneFormat"),
 }
 
 func init() {
 	NapaPhoneFormats.Values = []NapaPhoneFormat{
-		NapaPhoneFormats.DotSeparated,
-		NapaPhoneFormats.DashSeparated,
-		NapaPhoneFormats.ParenthesesAndDashes,
-		NapaPhoneFormats.None,
+		NapaPhoneFormats.Full,
+		NapaPhoneFormats.Common,
 	}
 }
 

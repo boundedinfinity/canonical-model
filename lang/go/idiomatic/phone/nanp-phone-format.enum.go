@@ -5,8 +5,6 @@ package phone
 type NapaPhoneFormat string
 
 type napaPhoneFormats struct {
-	DotSeparated         NapaPhoneFormat
-	DashSeparated        NapaPhoneFormat
-	ParenthesesAndDashes NapaPhoneFormat
-	None                 NapaPhoneFormat
+	Full   NapaPhoneFormat
+	Common NapaPhoneFormat
 }

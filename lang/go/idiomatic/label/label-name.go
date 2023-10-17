@@ -47,10 +47,12 @@ func init() {
 
 func processNames() {
 	for _, name := range Data {
-		if _, ok := Lookup[name.Abbreviation]; !ok {
-			Lookup[name.Abbreviation] = name
-		} else {
-			panic(fmt.Errorf("already contains %v", name.Abbreviation))
+		if !stringer.IsEmpty(name.Abbreviation) {
+			if _, ok := Lookup[name.Abbreviation]; !ok {
+				Lookup[name.Abbreviation] = name
+			} else {
+				panic(fmt.Errorf("already contains %v", name.Abbreviation))
+			}
 		}
 
 		if _, ok := Lookup[name.Name]; !ok {
