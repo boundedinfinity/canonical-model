@@ -11,19 +11,19 @@ import (
 // https://en.wikipedia.org/wiki/North_American_Numbering_Plan
 // https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers
 
-type NanpPhone struct {
+type NanpNumber struct {
 	Id              uuid.UUID                `json:"id,omitempty"`
 	Title           string                   `json:"title,omitempty"`
 	CountryCode     []Digit                  `json:"country-code,omitempty"`
 	Npa             []Digit                  `json:"npa,omitempty"`
-	CoCode          []Digit                  `json:"co,omitempty"`
+	Nxx             []Digit                  `json:"nxx,omitempty"`
 	LineNumber      []Digit                  `json:"line-number,omitempty"`
 	Extention       Extention                `json:"extention,omitempty"`
 	SeparatorFormat NapaPhoneSeparatorFormat `json:"separator-format,omitempty"`
 	Format          NapaPhoneFormat          `json:"format,omitempty"`
 }
 
-func (t NanpPhone) String() string {
+func (t NanpNumber) String() string {
 	var sb stringer.Builder[string]
 	format, _ := slicer.FirstNotZero(t.Format, NapaPhoneFormats.Common)
 	separatorFormat, _ := slicer.FirstNotZero(t.SeparatorFormat, NapaPhoneSeparatorFormats.ParenthesesAndDashes)
@@ -68,7 +68,7 @@ func (t NanpPhone) String() string {
 		sb.WriteString(") ")
 	}
 
-	for _, code := range t.CoCode {
+	for _, code := range t.Nxx {
 		sb.WriteString(fmt.Sprint(code.Number))
 	}
 
@@ -87,8 +87,8 @@ func (t NanpPhone) String() string {
 	return sb.String()
 }
 
-func FromString(s string) (NanpPhone, error) {
-	phone := NanpPhone{}
+func FromString(s string) (NanpNumber, error) {
+	phone := NanpNumber{}
 
 	return phone, nil
 }
