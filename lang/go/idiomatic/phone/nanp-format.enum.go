@@ -1,6 +1,6 @@
 package phone
 
-//go:generate enumer -path=./nanp-phone-format.enum.go
+//go:generate enumer -path=./nanp-format.enum.go
 
 type NapaPhoneFormat string
 

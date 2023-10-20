@@ -25,9 +25,16 @@ func Test_NanpNumber_Format_Default(t *testing.T) {
 			{Number: 5},
 			{Number: 5},
 		},
+		Extention: phone.Extention{
+			Items: []phone.ExtentionItem{
+				phone.AtCommands.Pause2Seconds,
+				phone.AtCommands.Pause2Seconds,
+				phone.NewDigitMust(1),
+			},
+		},
 	}
 
-	assert.Equal(t, `(555) 555-5555`, actual.String())
+	assert.Equal(t, `(555) 555-5555 ext ,,1`, actual.String())
 }
 
 func Test_NanpNumber_Format_Dashes(t *testing.T) {

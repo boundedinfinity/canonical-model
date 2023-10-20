@@ -84,6 +84,10 @@ func (t NanpNumber) String() string {
 		sb.WriteString(fmt.Sprint(code.Number))
 	}
 
+	if t.Extention.Has() {
+		sb.WriteString(" " + t.Extention.String())
+	}
+
 	return sb.String()
 }
 

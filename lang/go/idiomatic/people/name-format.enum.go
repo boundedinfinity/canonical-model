@@ -5,6 +5,6 @@ package people
 type NameFormat string
 
 type nameFormats struct {
-	GivenNameFamilyName NameFormat
-	FamilyNameGivenName NameFormat
+	GivenNameFamilyName NameFormat `enum:"given-name-family-name"`
+	FamilyNameGivenName NameFormat `enum:"family-name-given-name"`
 }
