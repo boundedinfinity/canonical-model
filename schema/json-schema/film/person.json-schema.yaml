@@ -1,0 +1,15 @@
+$id: https://www.boundedinfinity.com/schema/film/person
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A movie record
+type: object
+properties:
+    title:
+        type: string
+    person:
+        type: array
+        items:
+            types: https://www.boundedinfinity.com/schema/people/person
+    dates:
+        type: array
+        items:
+            types: https://www.boundedinfinity.com/schema/time/sdate

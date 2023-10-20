@@ -65,20 +65,20 @@ func Test_NanpNumber_Format_Dots(t *testing.T) {
 	actual := phone.NanpNumber{
 		SeparatorFormat: phone.NapaPhoneSeparatorFormats.DotSeparated,
 		Npa: []phone.Digit{
-			{Number: 5},
-			{Number: 5},
-			{Number: 5},
+			phone.NewDigitMust(5),
+			phone.NewDigitMust(5),
+			phone.NewDigitMust(5),
 		},
 		Nxx: []phone.Digit{
-			{Number: 5},
-			{Number: 5},
-			{Number: 5},
+			phone.NewDigitMust(5),
+			phone.NewDigitMust(5),
+			phone.NewDigitMust(5),
 		},
 		LineNumber: []phone.Digit{
-			{Number: 5},
-			{Number: 5},
-			{Number: 5},
-			{Number: 5},
+			phone.NewDigitMust(5),
+			phone.NewDigitMust(5),
+			phone.NewDigitMust(5),
+			phone.NewDigitMust(5),
 		},
 	}
 

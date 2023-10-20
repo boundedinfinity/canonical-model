@@ -1,0 +1,29 @@
+$id: https://www.boundedinfinity.com/schema/corporation/llc
+$schema: https://json-schema.org/draft/2020-12/schema
+description: Limited Liability Company
+type: object
+properties:
+    title:
+        description: Title
+        type: string
+        maxLength: 200
+    formation-date:
+        description: Formation Date
+        type: string
+        format: date
+    formation-state:
+        $ref: https://www.boundedinfinity.com/schema/address/us-state
+    members:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/people/contact
+    managers:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/people/contact
+    tax-status:
+        type: string
+        enum:
+            -   Partnership
+            -   C Corporation
+            -   S Corporation

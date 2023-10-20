@@ -1,0 +1,30 @@
+$id: https://www.boundedinfinity.com/schema/banking/account
+$schema: https://json-schema.org/draft/2020-12/schema
+description: Banking Account
+type: object
+properties:
+    name:
+        description: The name of the account
+        type: string
+    alias:
+        description: An alias for the account
+        type: string
+    description:
+        description: The description of the account
+        type: string
+    account-number:
+        description: The bank account number
+        type: string
+    type:
+        $ref: https://www.boundedinfinity.com/schema/banking/account-type
+    bank-id:
+        $ref: https://www.boundedinfinity.com/schema/banking/bank-id
+    bank-info:
+        $ref: https://www.boundedinfinity.com/schema/banking/bank
+    swift:
+        $ref: https://www.boundedinfinity.com/schema/banking/swift
+    iban:
+        $ref: https://www.boundedinfinity.com/schema/banking/iban
+required:
+    - account-number
+    - bank-id

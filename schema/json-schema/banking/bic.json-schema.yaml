@@ -1,0 +1,17 @@
+$id: https://www.boundedinfinity.com/schema/banking/bic
+$schema: https://json-schema.org/draft/2020-12/schema
+description: |
+    <p>
+        The Business Identifier Codes (BIC) formatted number.
+    </p>
+    <p>
+        <p>References:</p>
+        <ul>
+            <li>https://en.wikipedia.org/wiki/ISO_9362</li>
+            <li>https://www.theswiftcodes.com/</li>
+        </ul>
+    </p>
+type: string
+minLength: 9
+maxLength: 9
+regex: '[a-zA-Z]{4}[a-zA-Z]{2}\d{2}\d{3}'

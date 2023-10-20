@@ -1,0 +1,32 @@
+# https://en.wikipedia.org/wiki/Pseudonym
+
+-   id: https://www.boundedinfinity.com/schema/people/pseudonym-type/nickname
+    title: Nickname
+    description: A person's nick name.
+-   id: https://www.boundedinfinity.com/schema/people/pseudonym-type/alias
+    title: Alias
+    description: A person alias
+-   id: https://www.boundedinfinity.com/schema/people/pseudonym-type/stage-name
+    title: Stage name
+    description: A person's stage name
+-   id: https://www.boundedinfinity.com/schema/people/pseudonym-type/ring-name
+    title: Ring name
+    description: A person's ring name
+-   id: https://www.boundedinfinity.com/schema/people/pseudonym-type/pen-name
+    title: Pen
+    description: A person's pen name
+-   id: https://www.boundedinfinity.com/schema/people/pseudonym-type/nom-de-plume
+    title: Nom de plume
+    $ref: https://www.boundedinfinity.com/schema/people/pseudonym-type/pen-name
+-   id: https://www.boundedinfinity.com/schema/people/pseudonym-type/regnal-name
+    title: Regnal name
+    description: A person's regnal name
+-   id: https://www.boundedinfinity.com/schema/people/pseudonym-type/regnant-name
+    title: Regnant name
+    $ref: https://www.boundedinfinity.com/schema/people/pseudonym-type/regnal-name
+-   id: https://www.boundedinfinity.com/schema/people/pseudonym-type/reign-name
+    title: Reign name
+    $ref: https://www.boundedinfinity.com/schema/people/pseudonym-type/reign-name
+-   id: https://www.boundedinfinity.com/schema/people/pseudonym-type/online-name
+    title: Online name
+    description: A person's online name

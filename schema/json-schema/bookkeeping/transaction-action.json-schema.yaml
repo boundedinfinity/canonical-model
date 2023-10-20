@@ -1,0 +1,16 @@
+$id: https://www.boundedinfinity.com/schema/bookkeeping/transaction-action
+$schema: https://json-schema.org/draft/2020-12/schema
+description: Double Entry Bookkeeping Transaction Debit
+type: object
+properties:
+    account:
+        $ref: https://www.boundedinfinity.com/schema/bookkeeping/account
+    amount:
+        $ref: https://www.boundedinfinity.com/schema/currency/usd
+    date:
+        type: string
+        format: date
+required:
+    - account
+    - amount
+    - date

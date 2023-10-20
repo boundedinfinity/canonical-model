@@ -1,0 +1,9 @@
+$id: https://www.boundedinfinity.com/schema/banking/bank-id
+$schema: https://json-schema.org/draft/2020-12/schema
+description: |
+    <p>An system unique bank ID</p>
+    <p>
+        The is used for external entities to link to a bank record.
+    </p>
+type: string
+format: uri-reference

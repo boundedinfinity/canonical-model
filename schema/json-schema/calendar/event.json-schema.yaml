@@ -1,0 +1,46 @@
+$id: https://www.boundedinfinity.com/schema/calendar/event
+$schema: https://json-schema.org/draft/2020-12/schema
+description: Calendar Event
+type: object
+properties:
+    title:
+        description: The event title
+        type: string
+    description:
+        description: The description of the event
+        type: string
+    start:
+        $ref: https://www.boundedinfinity.com/schema/time/timestamp
+    end:
+        $ref: https://www.boundedinfinity.com/schema/time/timestamp
+    required:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/people/contact
+    optional:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/people/contact
+    notifications:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/calendar/notification
+    visibility:
+        type: string
+        enum:
+            - default
+            - public
+            - private
+    show-as:
+        type: string
+        enum:
+            - busy
+            - free
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/label
+required:
+    - title
+    - start
+    - end

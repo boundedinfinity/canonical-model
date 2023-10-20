@@ -1,0 +1,33 @@
+# https://en.wikipedia.org/wiki/Personal_name
+
+$id: https://www.boundedinfinity.com/schema/people/name
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A person's name
+type: object
+properties:
+    prefixes:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/people/prefix
+    given-names:
+        description: List of given names
+        type: array
+        minItems: 1
+        items:
+            type: string
+            maxLength: 50
+            minLength: 1
+    family-names:
+        description: List of family names
+        type: array
+        minItems: 1
+        items:
+            type: string
+            maxLength: 50
+            minLength: 1
+    suffixes:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/people/suffix
+required:
+    -   names

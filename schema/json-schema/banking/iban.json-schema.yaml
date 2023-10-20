@@ -1,0 +1,14 @@
+$id: https://www.boundedinfinity.com/schema/banking/iban
+$schema: https://json-schema.org/draft/2020-12/schema
+description: |
+    <p>
+        The Business Identifier Codes (BIC) formatted number.
+    </p>
+    <p>
+        <p>References:</p>
+        <ul>
+            <li>https://en.wikipedia.org/wiki/ISO_9362</li>
+            <li>https://www.theswiftcodes.com/</li>
+        </ul>
+    </p>
+type: string

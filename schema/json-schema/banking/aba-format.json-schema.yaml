@@ -1,0 +1,16 @@
+$id: https://www.boundedinfinity.com/schema/banking/aba-format
+$schema: https://json-schema.org/draft/2020-12/schema
+description: |
+    <p>
+        The bank American Banking Association (ABA) routing transit number (RTN) format.
+    </p>
+    <p>
+        Referece: https://en.wikipedia.org/wiki/ABA_routing_transit_number
+    </p>
+type: string
+enum:
+    - MICR
+    - Fraction
+enum-description:
+    MICR: Magnetic Ink Character Recognition
+    Fraction: The fraction form looks like a fraction, with a numerator and a denominator.

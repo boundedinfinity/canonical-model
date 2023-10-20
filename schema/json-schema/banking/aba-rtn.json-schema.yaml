@@ -1,0 +1,14 @@
+$id: https://www.boundedinfinity.com/schema/banking/aba-rtn
+$schema: https://json-schema.org/draft/2020-12/schema
+description: |
+    <p>
+        The bank American Banking Association (ABA) routing transit number (ABA RTN)
+        in the MICR format.
+    </p>
+    <p>
+        Referece: https://en.wikipedia.org/wiki/ABA_routing_transit_number
+    </p>
+type: string
+minLength: 9
+maxLength: 9
+regex: \d{4}\d{4}\d{1}

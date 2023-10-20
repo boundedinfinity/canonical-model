@@ -1,0 +1,23 @@
+$id: https://www.boundedinfinity.com/schema/film/series
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A television series record
+type: object
+properties:
+    title:
+        type: string
+    sub-title:
+        type: string
+    episodes:
+        type: array
+        items:
+            type: https://www.boundedinfinity.com/schema/film/episode
+    labels:
+        type: array
+        items:
+            type: https://www.boundedinfinity.com/schema/label/kvlabel
+    dates:
+        type: array
+        items:
+            type: https://www.boundedinfinity.com/schema/time/sdate
+required:
+    -   title

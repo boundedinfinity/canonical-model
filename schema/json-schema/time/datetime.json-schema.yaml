@@ -1,0 +1,5 @@
+$id: https://www.boundedinfinity.com/schema/time/datetime
+$schema: https://json-schema.org/draft/2020-12/schema
+description: Timestamp
+type: string
+format: date-time

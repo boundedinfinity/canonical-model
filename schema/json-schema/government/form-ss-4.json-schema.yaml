@@ -1,0 +1,105 @@
+$id: https://www.boundedinfinity.com/schema/government/form-ss-4
+$schema: https://json-schema.org/draft/2020-12/schema
+description: |
+  US Form SS-4
+  Reference: https://www.irs.gov/pub/irs-pdf/fss4.pdf
+type: object
+properties:
+    legal-name:
+        description: |
+          Legal name of entity (or individual) for whom the EIN is being requested
+          This is line 1.
+        type: string
+        maxLength: 200
+    trade-name:
+        description: |
+          Trade name of business (if different from name on line 1)
+          This is line 2.
+        type: string
+        maxLength: 200
+    executor:
+        description: |
+          Executor, administrator, trustee, “care of” name
+          This is line 3.
+        type: string
+        maxLength: 200
+    mailing-address:
+        description: |
+          Mailing address (room, apt., suite no. and street, or P.O. box)
+          This is line 4a.
+        type: string
+        maxLength: 1000
+    mailing-city-state-zip:
+        description: |
+          City, state, and ZIP code (if foreign, see instructions)
+          This is line 4b.
+        type: string
+        maxLength: 1000
+    street-address:
+        description: |
+          Street address (if different) (Don’t enter a P.O. box.)
+          This is line 5a.
+        type: string
+        maxLength: 1000
+    street-city-state-zip:
+        description: |
+          City, state, and ZIP code (if foreign, see instructions)
+          This is line 5b.
+        type: string
+        maxLength: 1000
+    principal-business-location:
+        description: |
+          County and state where principal business is located
+          This is line 6.
+        type: string
+        maxLength: 1000
+    responsible-party:
+        description: |
+          Name of responsible party
+          This is line 7a.
+        type: string
+        maxLength: 1000
+    id:
+        description: |
+          SSN, ITIN, or EIN
+          This is line 7b.
+        type: string
+        maxLength: 1000
+    is-llc:
+        description: |
+          Is this application for a limited liability company (LLC) (or a foreign equivalent)?
+          This is line 8a.
+        type: boolean
+    number-of-members:
+        description: |
+          If 8a is “Yes,” enter the number of LLC members.
+          This is line 8b.
+        type: integer
+        minimum: 1
+    is-us-organized:
+        description: |
+          If 8a is “Yes,” was the LLC organized in the United States?
+          This is line 8c.
+        type: boolean
+    type-of-entity:
+        description: |
+          Type of entity (check only one box). Caution: If 8a is “Yes,” see the instructions for the correct box to check.
+          This is line 8c.
+        type: string
+        enum:
+            -   Sole proprietor
+            -   Partnership
+            -   Corporation
+            -   Personal service corporation
+            -   Church or church-controlled organization
+            -   Other nonprofit organization
+            -   Estate
+            -   Plan administrator
+            -   Trust
+            -   Military/National Guard
+            -   Farmers’ cooperative
+            -   REMIC
+            -   State/local government
+            -   Federal government
+            -   Indian tribal governments/enterprises
+            -   Group Exemption Number

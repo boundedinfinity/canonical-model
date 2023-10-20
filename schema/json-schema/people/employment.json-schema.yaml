@@ -1,0 +1,18 @@
+$id: https://www.boundedinfinity.com/schema/people/employment
+$schema: https://json-schema.org/draft/2020-12/schema
+description: Employment
+type: object
+properties:
+    title:
+        description: Job title
+        type: string
+        maxLength: 200
+    company:
+        $ref: https://www.boundedinfinity.com/schema/corporation/company
+    dates:
+        type: array
+        items:
+            types: https://www.boundedinfinity.com/schema/time/sdate
+required:
+    - title
+    - company

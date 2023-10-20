@@ -1,0 +1,17 @@
+types:
+    -   id: https://www.boundedinfinity.com/schema/auth/security-question
+        description: Account security questions
+        type: object
+        properties:
+            -   name: question
+                description: The security question
+                type: string
+                min: 1
+                max: 200
+                required: true
+            -   name: answer
+                description: The security answer
+                type: string
+                min: 1
+                max: 200
+                required: true

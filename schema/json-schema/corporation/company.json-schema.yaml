@@ -1,0 +1,33 @@
+$id: https://www.boundedinfinity.com/schema/corporation/company
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A company record
+type: object
+properties:
+    name:
+        description: Name of company
+        type: string
+        maxLength: 200
+    image:
+        description: Link to image of company
+        type: string
+        maxLength: 1000
+    addresses:
+        description: List of addresses
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/address/mailing
+    telephone-numbers:
+        description: Telephone numbers
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/telephone/nanp
+    dates:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/time/sdate
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/label
+required:
+    -   name

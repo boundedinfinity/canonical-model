@@ -1,0 +1,7 @@
+$id: https://www.boundedinfinity.com/schema/banking/account-type
+$schema: https://json-schema.org/draft/2020-12/schema
+description: Banking Account Type
+type: string
+enum:
+    - Checking
+    - Savings

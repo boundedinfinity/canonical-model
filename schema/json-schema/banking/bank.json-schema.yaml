@@ -1,0 +1,19 @@
+$id: https://www.boundedinfinity.com/schema/banking/bank
+$schema: https://json-schema.org/draft/2020-12/schema
+description: Bank
+type: object
+properties:
+    id:
+        $ref: https://www.boundedinfinity.com/schema/banking/bank-id
+    name:
+        description: The name of the bank
+        type: string
+    description:
+        description: The description of the bank
+        type: string
+    routing-number:
+        $ref: https://www.boundedinfinity.com/schema/banking/aba-rtn
+required:
+    - id
+    - name
+    - routing-number

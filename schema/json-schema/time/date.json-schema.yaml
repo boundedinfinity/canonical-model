@@ -1,0 +1,5 @@
+$id: https://www.boundedinfinity.com/schema/time/date
+$schema: https://json-schema.org/draft/2020-12/schema
+description: Date
+type: string
+format: date

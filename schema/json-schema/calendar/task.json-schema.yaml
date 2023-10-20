@@ -1,0 +1,38 @@
+$id: https://www.boundedinfinity.com/schema/calendar/task
+$schema: https://json-schema.org/draft/2020-12/schema
+description: Calendar Task
+type: object
+properties:
+    title:
+        description: The event title
+        type: string
+    description:
+        description: The description of the event
+        type: string
+    by:
+        $ref: https://www.boundedinfinity.com/schema/time/timestamp
+    required:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/people/contact
+    optional:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/people/contact
+    notifications:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/calendar/notification
+    visibility:
+        type: string
+        enum:
+            - default
+            - public
+            - private
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/label
+required:
+    - title
+    - by

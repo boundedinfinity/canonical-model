@@ -1,0 +1,22 @@
+$id: https://www.boundedinfinity.com/schema/people/person
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A person record
+type: object
+properties:
+    names:
+        $ref: https://www.boundedinfinity.com/schema/people/name
+    image:
+        description: Link to image of person
+        type: string
+        maxLength: 1000
+        format: uri-reference
+    dates:
+        type: array
+        items:
+            types: https://www.boundedinfinity.com/schema/time/sdate
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/label
+required:
+    -   names

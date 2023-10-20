@@ -1,0 +1,25 @@
+$id: https://www.boundedinfinity.com/schema/bookkeeping/transaction
+$schema: https://json-schema.org/draft/2020-12/schema
+description: Double Entry Bookkeeping Transaction
+type: object
+properties:
+    description:
+        description: The description of the transaction
+        type: string
+    debits:
+        type: array
+        minItems: 1
+        items:
+            $ref: https://www.boundedinfinity.com/schema/bookkeeping/transaction-action
+    credits:
+        type: array
+        minItems: 1
+        items:
+            $ref: https://www.boundedinfinity.com/schema/bookkeeping/transaction-action
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/label
+required:
+    - debits
+    - credits

@@ -1,0 +1,21 @@
+$id: https://www.boundedinfinity.com/schema/physical-inventory/item
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A physical item
+type: object
+properties:
+    title:
+        type: string
+        description: The item title
+        maxLength: 200
+    description: 
+        type: string
+        description: The item description
+        maxLength: 2000
+    bookmarks:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/util/bookmark
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/label

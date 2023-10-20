@@ -1,0 +1,34 @@
+types:
+    -   id: https://www.boundedinfinity.com/schema/util/abbreviation
+        name: abbreviation
+        type: object
+        properties:
+            -   type: ref
+                ref: https://www.boundedinfinity.com/schema/util/uri-id
+            -   name: title
+                min: 1
+                max: 150
+                required: true
+                description: >
+                    <p>The text to which the abbreviation refers.</p>
+                    <p>
+                        Any character surrounded with parentheses is used to 
+                        mark or hightlight how the text is tied to the 
+                        abbreviation.  The rendering engine can decide to 
+                        use this formation (or not) as needed for the display.
+                    </p>
+            -   name: abbr
+                type: array
+                description: >
+                    <p>The list of abbreviations for the given text.</p>
+                    <p>
+                        Certain text may have more than one common abbreviation.
+                    </p>
+                items:
+                    type: string
+                    min: 1
+                    max: 10
+                min: 1
+                required: true
+            -   type: ref
+                ref: https://www.boundedinfinity.com/schema/util/description

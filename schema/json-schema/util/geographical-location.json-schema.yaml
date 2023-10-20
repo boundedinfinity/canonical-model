@@ -1,0 +1,18 @@
+$id: https://www.boundedinfinity.com/schema/util/geographical-location
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A Geographical location
+type: object
+properties:
+    latitude:
+        type: number
+        description: The Geographical latitude
+        minimum: -90
+        maximum: 90
+    longitude:
+        type: number
+        description: The Geographical longitude
+        minimum: -90
+        maximum: 90
+required:
+    -   latitude
+    -   longitude

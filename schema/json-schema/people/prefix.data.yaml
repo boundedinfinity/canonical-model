@@ -1,0 +1,49 @@
+# https://en.wikipedia.org/wiki/English_honorifics
+
+-   id: https://www.boundedinfinity.com/schema/people/prefix/mister
+    title: Mister
+    abbreviation: Mr
+    description: |
+        A title used before a surname or full name to address or refer to a man
+        without a higher, honorific or professional title.
+-   id: https://www.boundedinfinity.com/schema/people/prefix/miss
+    title: Mistress
+    abbreviation: Miss
+    description: |
+        A title used before a surname or full name to address or refer to a 
+        unmarried or young woman without a higher, honorific or professional 
+        title.
+-   id:  https://www.boundedinfinity.com/schema/people/prefix/mrs
+    title: Missus
+    abbreviation: Mrs
+    description: |
+        A title used before a surname or full name to address or refer to a 
+        married or widowed woman without a higher, honorific or professional 
+        title.
+-   id:  https://www.boundedinfinity.com/schema/people/prefix/ms
+    title: Miss or Mrs
+    abbreviation: Ms.
+    description: |
+        A title used before a surname or full name to address or refer to a 
+        woman of unknown marital status without a higher, honorific or 
+        professional title.
+-   id:  https://www.boundedinfinity.com/schema/people/prefix/master
+    title: Master
+    description: |
+        A title used before a surname or full name to address or refer to a boy
+        or young man without a higher, honorific or professional title.
+-   id:  https://www.boundedinfinity.com/schema/people/prefix/sir
+    title: Sir
+    description: |
+        A title used before a surname or full name to address or refer to a man
+        if they have a British knighthood or if they are a baronet.
+-   id:  https://www.boundedinfinity.com/schema/people/prefix/madam
+    title: Madam
+    description: |
+        A title used before a surname or full name to address or refer to a 
+        woman if they hold an hereditary rank.
+-   id:  https://www.boundedinfinity.com/schema/people/prefix/dame
+    title: Dame
+    description: |
+        A title used before a surname or full name to address or refer to a 
+        woman if they have a British knighthood or if they are a baronet.

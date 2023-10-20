@@ -1,0 +1,14 @@
+$id: https://www.boundedinfinity.com/schema/telephone/fomatter
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A telephone formatter
+type: object
+properties:
+    title:
+        description: Title of the telephone number
+        type: string
+        maxLength: 200
+    format:
+        description: The starting date of this email address
+        type: string
+required:
+    -   format

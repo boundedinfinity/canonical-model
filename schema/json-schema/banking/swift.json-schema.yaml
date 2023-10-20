@@ -1,0 +1,7 @@
+$id: https://www.boundedinfinity.com/schema/banking/swift
+$schema: https://json-schema.org/draft/2020-12/schema
+description: |
+    <p>
+        The Society for Worldwide Interbank Financial Telecommunication (SWIFT) number.
+    </p>
+$ref: https://www.boundedinfinity.com/schema/banking/bic

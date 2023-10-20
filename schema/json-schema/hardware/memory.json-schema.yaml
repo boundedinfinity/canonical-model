@@ -1,0 +1,21 @@
+---
+
+$id: https://www.boundedinfinity.com/schema/hardware/memory
+$schema: https://json-schema.org/draft/2020-12/schema
+description: The memory specification
+type: object
+properties:
+    id:
+        description: The memory ID
+        type: string
+        format: uuid
+        persist:
+            primary: true
+            generated: increment
+    name:
+        description: The memory name
+        type: string
+        maxLength: 200
+        minLength: 2 
+required:
+    - name

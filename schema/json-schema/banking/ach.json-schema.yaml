@@ -1,0 +1,20 @@
+$id: https://www.boundedinfinity.com/schema/banking/automatic-clearning-house
+$schema: https://json-schema.org/draft/2020-12/schema
+description: |
+    The bank Automatic Clearning House (ACH) routing number
+type: object
+properties:
+    name:
+        description: The ACH name
+        type: string
+    description:
+        description: The ACH name
+        type: string
+    account-number:
+        description: The bank account number
+        type: string
+    bank:
+        $ref: https://www.boundedinfinity.com/schema/banking/bank
+required:
+    - name
+    - routing-number

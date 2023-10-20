@@ -1,0 +1,14 @@
+$id: https://www.boundedinfinity.com/schema/util/bookmark
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A Bookmark
+type: object
+properties:
+    title:
+        type: string
+        description: The book mark title
+        maxLength: 200
+    url:
+        type: string
+        description: The URL
+        format: url
+        maxLength: 2000

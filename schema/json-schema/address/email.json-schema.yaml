@@ -1,0 +1,23 @@
+$id: https://www.boundedinfinity.com/schema/address/email
+$schema: https://json-schema.org/draft/2020-12/schema
+description: An e-mail address
+type: object
+properties:
+    title:
+        description: Title of the email address
+        type: string
+        maxLength: 200
+    address:
+        description: Email follwoing the RFC 5321, section 4.1.2 specification.
+        type: string
+        format: email
+    dates:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/time/sdate
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/label
+required:
+    -   address

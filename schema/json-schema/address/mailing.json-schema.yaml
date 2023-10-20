@@ -1,0 +1,39 @@
+$id: https://www.boundedinfinity.com/schema/address/mailing
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A US mailing address
+type: object
+properties:
+    title:
+        description: Title of the email address
+        type: string
+        maxLength: 200
+    dates:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/time/sdate
+    addresses:
+        description: List of address lines
+        type: array
+        minItems: 1
+        items:
+            type: string
+            maxLength: 200
+    city:
+        description: They city or town name
+        type: string
+        maxLength: 200
+    state:
+        description: The US state or territory
+        type: string
+        maxLength: 200
+    zip-code:
+        $ref: https://www.boundedinfinity.com/schema/address/zip-code
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/label
+required:
+    -   address
+    -   city
+    -   state
+    -   zip-code

@@ -1,0 +1,29 @@
+types:
+    -   id: https://www.boundedinfinity.com/schema/people/name
+        name: name
+        type: object
+        properties:
+            -   name: prefixes
+                type: array
+                items:
+                    $ref: https://www.boundedinfinity.com/schema/people/prefix
+            -   name: given-names
+                type: array
+                required: true
+                min: 1
+                items:
+                    type: string
+                    max: 25
+                    min: 1
+            -   name: family-names
+                type: array
+                required: true
+                min: 1
+                items:
+                    type: string
+                    max: 25
+                    min: 1
+            -   name: suffixes
+                type: array
+                items:
+                    $ref: https://www.boundedinfinity.com/schema/people/suffix

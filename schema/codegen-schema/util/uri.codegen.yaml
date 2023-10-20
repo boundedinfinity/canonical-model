@@ -1,0 +1,13 @@
+types:
+    -   id: https://www.boundedinfinity.com/schema/util/url
+        name: URL
+        type: string
+        min: 1
+        max: 100
+        regex: ^(https?://)?([^\s/?\.#-]+\.?)+(\/[^\s]*)?$
+    -   id: https://www.boundedinfinity.com/schema/util/uri
+        name: URI
+        type: string
+        min: 1
+        max: 100
+        regex: ^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$

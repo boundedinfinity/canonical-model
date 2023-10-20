@@ -1,0 +1,17 @@
+types:
+    -   id: https://www.boundedinfinity.com/schema/auth/ssh-key-pair
+        description: SSH Key pair
+        type: object
+        properties:
+            -   name: public-key
+                description: The public key
+                type: string
+                required: true
+            -   name: private-key
+                description: The private key
+                type: string
+                required: true
+            -   name: algorithm
+                description: The algorithm used to generate the key
+                type: string
+                required: true

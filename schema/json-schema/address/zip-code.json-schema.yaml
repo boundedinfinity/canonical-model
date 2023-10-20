@@ -1,0 +1,5 @@
+$id: https://www.boundedinfinity.com/schema/address/zip-code
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A US ZIP Code
+type: string
+pattern: ^[0-9]{5}(?:-[0-9]{4})?$

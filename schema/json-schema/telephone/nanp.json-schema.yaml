@@ -1,0 +1,37 @@
+$id: https://www.boundedinfinity.com/schema/telephone/nanp
+$schema: https://json-schema.org/draft/2020-12/schema
+description: A NANP telephone number plan
+type: object
+properties:
+    title:
+        description: Title of this email address
+        type: string
+        maxLength: 200
+    dates:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/time/sdate
+    area-code:
+        description: Numbering plan area code
+        type: string
+        pattern: ^[2-9]{1}[0-9]{2}$
+    exchange-code:
+        description: Central office exchange code
+        type: string
+        pattern: ^[2-9]{1}[0-9]{2}$
+    line-number:
+        description: Line number
+        type: string
+        pattern: ^[0-9]{4}$
+    extention:
+        description: Extention number
+        type: string
+        pattern: ^[0-9;,*#]{1,30}$
+    labels:
+        type: array
+        items:
+            $ref: https://www.boundedinfinity.com/schema/label/label
+required:
+    -   area-code
+    -   exchange-code
+    -   line-number

@@ -1,0 +1,59 @@
+types:
+    -   id: https://www.boundedinfinity.com/schema/cms/mime-type
+        name: mime-type
+        type: object
+        properties:
+            -   name: type
+                description: |
+                    The MIME type ID.  This should usually be the official Internet
+                    Assigned Numbers Authority (IANA) registered ID for this type.  If there
+                    isn't an official ID registered yet, use a pending ID if available or
+                    use the common "well-known" ID if available.
+                type: string
+                max: 200
+                required: true
+            -   name: alternatives
+                type: array
+                description: |
+                    A list of alternative MIME type IDs.  This may be any other ID associated
+                    with the type, or pre-IANA registered ID (e.g.: the IDs usually starting 
+                    with "x-").
+                items:
+                    type: string
+                    max: 200
+                    required: true
+                min: 1
+            -   name: description
+                description: A description of the MIME type.
+                type: string
+                max: 200
+                required: false
+data:
+    -   ref: https://www.boundedinfinity.com/schema/cms/mime-type
+        description: Andrew Toolkit
+        type: application/andrew-inset
+        alternatives: []
+    -   ref: https://www.boundedinfinity.com/schema/cms/mime-type
+        description: Atom Syndication Format
+        type: application/atom+xml
+        alternatives: []
+    -   ref: https://www.boundedinfinity.com/schema/cms/mime-type
+        description: Atom Publishing Protocol
+        type: application/atomcat+xml
+        alternatives: []
+    -   ref: https://www.boundedinfinity.com/schema/cms/mime-type
+        description: Atom Publishing Protocol Service Document
+        type: application/atomsvc+xml
+        alternatives: []
+    -   ref: https://www.boundedinfinity.com/schema/cms/mime-type
+        description: Voice Browser Call Control
+        type: application/ccxml+xml
+        alternatives: []
+    -   ref: https://www.boundedinfinity.com/schema/cms/mime-type
+        description: Cloud Data Management Interface (CDMI) - Capability
+        type: application/cdmi-capability
+        alternatives: []
+    -   ref: https://www.boundedinfinity.com/schema/cms/mime-type
+        description: Cloud Data Management Interface (CDMI) - Contaimer
+        type: application/cdmi-container
+        alternatives: []

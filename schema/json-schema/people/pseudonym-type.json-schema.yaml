@@ -1,0 +1,26 @@
+$id: https://www.boundedinfinity.com/schema/people/pseudonym-type
+$schema: https://json-schema.org/draft/2020-12/schema
+title: A person's pseudonym type
+type: object
+properties:
+    id:
+        type: string
+        description: The suffix ID
+        format: uri
+    text:
+        type: string
+        description: The suffix text
+        maxLength: 20
+        minLength: 1
+    abbreviation:
+        type: string
+        description: The suffix abbreviation
+        maxLength: 5
+        minLength: 1
+    description:
+        $ref: https://www.boundedinfinity.com/schema/util/description
+        description: The suffix description
+    status:
+        $ref: https://www.boundedinfinity.com/schema/util/record-status
+required:
+    -   text

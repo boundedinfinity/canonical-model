@@ -1,0 +1,21 @@
+types:
+    -   id: https://www.boundedinfinity.com/schema/util/error
+        type: object
+        properties:
+            -   name: user-message
+                type: string
+                min: 1
+                max: 200
+            -   name: error-message
+                type: string
+                min: 1
+                max: 200
+                required: true
+            -   name: error-code
+                type: integer
+    -   id: https://www.boundedinfinity.com/schema/util/error-list
+        description: Errors
+        type: array
+        items: 
+            type: ref
+            ref: https://www.boundedinfinity.com/schema/util/error

@@ -1,0 +1,17 @@
+$id: https://www.boundedinfinity.com/schema/film/actor
+$schema: https://json-schema.org/draft/2020-12/schema
+description: An actor record
+type: object
+properties:
+    role:
+        type: array
+        items:
+            types: string
+    person:
+        type: array
+        items:
+            types: https://www.boundedinfinity.com/schema/people/person
+    dates:
+        type: array
+        items:
+            types: https://www.boundedinfinity.com/schema/time/sdate

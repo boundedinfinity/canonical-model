@@ -1,0 +1,16 @@
+$id: https://www.boundedinfinity.com/schema/calendar/notification
+$schema: https://json-schema.org/draft/2020-12/schema
+description: Calendar Notification
+type: object
+properties:
+    before:
+        $ref: https://www.boundedinfinity.com/schema/time/duration
+    method:
+        type: string
+        enum:
+            - default
+            - email
+            - text
+            - all
+required:
+    - before

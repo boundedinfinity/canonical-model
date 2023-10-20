@@ -1,0 +1,4 @@
+$id: https://www.boundedinfinity.com/test-data/string-11
+$schema: https://json-schema.org/draft/2020-12/schema
+title: A description
+type: string

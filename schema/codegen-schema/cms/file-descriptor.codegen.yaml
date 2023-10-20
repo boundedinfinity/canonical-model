@@ -1,0 +1,19 @@
+types:
+    -   id: https://www.boundedinfinity.com/schema/cms/file-descriptor
+        name: file-descriptor
+        properties:
+            -   name: name
+                description: |
+                    The name of the file.  This should not be a path or contain
+                    the extention.
+                type: string
+                max: 100
+                required: false
+            -   name: description
+                description: A description file or file contents.
+                type: string
+                max: 200
+                required: false
+            -   ref: https://www.boundedinfinity.com/schema/cms/mime-type
+                required: true
+            -   ref: https://www.boundedinfinity.com/schema/cms/file-extention
