@@ -25,8 +25,8 @@ type Business struct {
 	EmailAddresses   []email_address.EmailAddress     `json:"email-addresses,omitempty"`
 	PhoneNumbers     []phone.NanpNumber               `json:"phone-numbers,omitempty"`
 	Units            int                              `json:"units,omitempty"`
-	StartDate        rfc3339date.Rfc3339Date          `json:"start-date,omitempty"`
-	EndDate          rfc3339date.Rfc3339Date          `json:"end-date,omitempty"`
+	FormationDate    rfc3339date.Rfc3339Date          `json:"formation-date,omitempty"`
+	DissolutionDate  rfc3339date.Rfc3339Date          `json:"dissolution-date,omitempty"`
 	Audit            audit.Audit                      `json:"audit,omitempty"`
 }
 

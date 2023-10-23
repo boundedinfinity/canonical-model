@@ -2,15 +2,17 @@ package people
 
 import (
 	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
-	"github.com/google/uuid"
+	"github.com/boundedinfinity/schema/idiomatic/audit"
+	"github.com/boundedinfinity/schema/idiomatic/id"
 )
 
 type Suffix struct {
-	Id           uuid.UUID    `json:"id,omitempty"`
+	Id           id.Id        `json:"id,omitempty"`
+	Description  string       `json:"description,omitempty"`
 	Text         string       `json:"text,omitempty"`
 	Abbreviation []string     `json:"abbreviation,omitempty"`
-	Description  string       `json:"description,omitempty"`
 	Format       SuffixFormat `json:"format,omitempty"`
+	Audit        audit.Audit  `json:"audit,omitempty"`
 }
 
 func (t Suffix) Validate(groups ...string) error {

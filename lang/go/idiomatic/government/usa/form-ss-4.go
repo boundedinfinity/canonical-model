@@ -3,6 +3,7 @@ package usa
 import (
 	"errors"
 
+	"github.com/boundedinfinity/schema/idiomatic/audit"
 	"github.com/boundedinfinity/schema/idiomatic/business"
 	"github.com/boundedinfinity/schema/idiomatic/id"
 	"github.com/boundedinfinity/schema/idiomatic/location"
@@ -46,6 +47,7 @@ type FormSs4RevDecember2019 struct {
 	IsLlc                 bool                           `json:"is-llc,omitempty"`
 	LlcMemberCount        int                            `json:"llc-member-count,omitempty"`
 	LlcOrganizedInUs      bool                           `json:"llc-organized-in-us,omitempty"`
+	Audit                 audit.Audit                    `json:"audit,omitempty"`
 }
 
 func (t FormSs4RevDecember2019) F1() string {

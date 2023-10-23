@@ -2,7 +2,8 @@ package people
 
 import (
 	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
-	"github.com/boundedinfinity/schema/idiomatic/internal"
+	"github.com/boundedinfinity/schema/idiomatic/audit"
+	"github.com/boundedinfinity/schema/idiomatic/id"
 )
 
 // ///////////////////////////////////////////////////
@@ -10,9 +11,12 @@ import (
 // ///////////////////////////////////////////////////
 
 type Prefix struct {
-	internal.WithIdDescFormat[PrefixFormat]
-	Text         string   `json:"text,omitempty"`
-	Abbreviation []string `json:"abbreviation,omitempty"`
+	Id           id.Id        `json:"id,omitempty"`
+	Description  string       `json:"description,omitempty"`
+	Text         string       `json:"text,omitempty"`
+	Abbreviation []string     `json:"abbreviation,omitempty"`
+	Format       PrefixFormat `json:"format,omitempty"`
+	Audit        audit.Audit  `json:"audit,omitempty"`
 }
 
 func (t Prefix) String() string {

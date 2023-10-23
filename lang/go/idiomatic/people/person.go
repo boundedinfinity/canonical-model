@@ -2,6 +2,7 @@ package people
 
 import (
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
+	"github.com/boundedinfinity/rfc3339date"
 	"github.com/google/uuid"
 )
 
@@ -10,9 +11,11 @@ import (
 // ///////////////////////////////////////////////////
 
 type Person struct {
-	Id         uuid.UUID `json:"id,omitempty"`
-	Name       Name      `json:"name,omitempty"`
-	Pseudonyms []Name    `json:"pseudonyms,omitempty"`
+	Id         uuid.UUID               `json:"id,omitempty"`
+	Name       Name                    `json:"name,omitempty"`
+	Pseudonyms []Name                  `json:"pseudonyms,omitempty"`
+	BirthDate  rfc3339date.Rfc3339Date `json:"birth-date,omitempty"`
+	DeathDate  rfc3339date.Rfc3339Date `json:"death-date,omitempty"`
 }
 
 func (t Person) String() string {

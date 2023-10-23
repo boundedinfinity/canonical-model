@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/boundedinfinity/schema/idiomatic/internal"
 	"github.com/boundedinfinity/schema/idiomatic/people"
 
 	"github.com/google/uuid"
@@ -16,29 +15,12 @@ var (
 	person1 = people.Person{
 		Id: uuid.MustParse("792ce7f5-0586-42a4-ac2f-7f3fd276c3c5"),
 		Name: people.Name{
-			Id: uuid.MustParse("d34a65f3-9761-43cf-ae31-1711c307a355"),
-			Prefixes: []people.Prefix{
-				{
-					WithIdDescFormat: internal.WithIdDescFormat[people.PrefixFormat]{
-						WithIdDesc: internal.WithIdDesc{
-							Id: uuid.MustParse("b5a5b96c-5955-44c4-8d53-2c7fd1090a02"),
-						},
-					},
-
-					Text:         "Mister",
-					Abbreviation: []string{"Mr."},
-				},
-			},
+			Id:          uuid.MustParse("d34a65f3-9761-43cf-ae31-1711c307a355"),
+			Prefixes:    []people.Prefix{people.Prefixes.MustFind("Mr.")},
 			GivenNames:  []string{"James"},
 			FamilyNames: []string{"Bond"},
-			Suffixes: []people.Suffix{
-				{
-					Id:           uuid.MustParse("d4033138-e658-4b34-a2fa-55aefeff1250"),
-					Text:         "Junior",
-					Abbreviation: []string{"Jr."},
-				},
-			},
-			Format: people.NameFormats.GivenNameFamilyName,
+			Suffixes:    []people.Suffix{people.Suffixes.MustFind("Jr.")},
+			Format:      people.NameFormats.GivenNameFamilyName,
 		},
 	}
 )
