@@ -2,6 +2,7 @@ package business
 
 import (
 	"github.com/boundedinfinity/rfc3339date"
+	"github.com/boundedinfinity/schema/idiomatic/audit"
 	"github.com/boundedinfinity/schema/idiomatic/email_address"
 	"github.com/boundedinfinity/schema/idiomatic/id"
 	"github.com/boundedinfinity/schema/idiomatic/location"
@@ -23,9 +24,10 @@ type Business struct {
 	ForiengEntities  []ForeignEntity                  `json:"forieng-entities,omitempty"`
 	EmailAddresses   []email_address.EmailAddress     `json:"email-addresses,omitempty"`
 	PhoneNumbers     []phone.NanpNumber               `json:"phone-numbers,omitempty"`
+	Units            int                              `json:"units,omitempty"`
 	StartDate        rfc3339date.Rfc3339Date          `json:"start-date,omitempty"`
 	EndDate          rfc3339date.Rfc3339Date          `json:"end-date,omitempty"`
-	Units            int                              `json:"units,omitempty"`
+	Audit            audit.Audit                      `json:"audit,omitempty"`
 }
 
 type Executor interface {

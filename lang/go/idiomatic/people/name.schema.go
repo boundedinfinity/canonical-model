@@ -7,6 +7,7 @@ import (
 
 	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
+	"github.com/boundedinfinity/schema/idiomatic/audit"
 )
 
 // ///////////////////////////////////////////////////
@@ -14,12 +15,13 @@ import (
 // ///////////////////////////////////////////////////
 
 type Name struct {
-	Id          uuid.UUID  `json:"id,omitempty"`
-	Prefixes    []Prefix   `json:"prefixes,omitempty"`
-	GivenNames  []string   `json:"givenNames,omitempty"`
-	FamilyNames []string   `json:"familyNames,omitempty"`
-	Suffixes    []Suffix   `json:"suffixes,omitempty"`
-	Format      NameFormat `json:"ordering,omitempty"`
+	Id          uuid.UUID   `json:"id,omitempty"`
+	Prefixes    []Prefix    `json:"prefixes,omitempty"`
+	GivenNames  []string    `json:"givenNames,omitempty"`
+	FamilyNames []string    `json:"familyNames,omitempty"`
+	Suffixes    []Suffix    `json:"suffixes,omitempty"`
+	Format      NameFormat  `json:"ordering,omitempty"`
+	Audit       audit.Audit `json:"audit,omitempty"`
 }
 
 func (t Name) Validate(groups ...string) error {
