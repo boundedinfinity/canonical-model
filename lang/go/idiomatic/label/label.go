@@ -3,22 +3,79 @@ package label
 import (
 	"github.com/boundedinfinity/rfc3339date"
 	"github.com/boundedinfinity/schema/idiomatic/id"
-	"golang.org/x/exp/constraints"
 )
 
-type Label struct {
+type ValueLabel interface {
+	Type() string
+}
+
+type NameOnlyLabel struct {
 	Id   id.Id     `json:"id,omitempty"`
 	Name LabelName `json:"name,omitempty"`
 }
 
-type StringLabel[T ~string] valueLabel[T]
-type IntegerLabel[T constraints.Integer] valueLabel[T]
-type FloatLabel[T constraints.Float] valueLabel[T]
-type DateLabel valueLabel[rfc3339date.Rfc3339Date]
-type DateTimeLabel valueLabel[rfc3339date.Rfc3339DateTime]
+func (t NameOnlyLabel) Type() string {
+	return "name-only"
+}
 
-type valueLabel[V constraints.Ordered | rfc3339date.Rfc3339Date | rfc3339date.Rfc3339DateTime] struct {
+var _ ValueLabel = &NameOnlyLabel{}
+
+type StringLabel struct {
 	Id    id.Id     `json:"id,omitempty"`
 	Name  LabelName `json:"name,omitempty"`
-	Value V         `json:"value,omitempty"`
+	Value string    `json:"value,omitempty"`
 }
+
+func (t StringLabel) Type() string {
+	return "string"
+}
+
+var _ ValueLabel = &StringLabel{}
+
+type IntegerLabel struct {
+	Id    id.Id     `json:"id,omitempty"`
+	Name  LabelName `json:"name,omitempty"`
+	Value int       `json:"value,omitempty"`
+}
+
+func (t IntegerLabel) Type() string {
+	return "int"
+}
+
+var _ ValueLabel = &IntegerLabel{}
+
+type FloatLabel struct {
+	Id    id.Id     `json:"id,omitempty"`
+	Name  LabelName `json:"name,omitempty"`
+	Value float64   `json:"value,omitempty"`
+}
+
+func (t FloatLabel) Type() string {
+	return "float"
+}
+
+var _ ValueLabel = &FloatLabel{}
+
+type DateLabel struct {
+	Id    id.Id                   `json:"id,omitempty"`
+	Name  LabelName               `json:"name,omitempty"`
+	Value rfc3339date.Rfc3339Date `json:"value,omitempty"`
+}
+
+func (t DateLabel) Type() string {
+	return "date"
+}
+
+var _ ValueLabel = &DateLabel{}
+
+type DateTimeLabel struct {
+	Id    id.Id                       `json:"id,omitempty"`
+	Name  LabelName                   `json:"name,omitempty"`
+	Value rfc3339date.Rfc3339DateTime `json:"value,omitempty"`
+}
+
+func (t DateTimeLabel) Type() string {
+	return "datetime"
+}
+
+var _ ValueLabel = &DateTimeLabel{}

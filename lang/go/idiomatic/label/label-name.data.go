@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"reflect"
 
+	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 	"github.com/boundedinfinity/schema/idiomatic/id"
 )
@@ -12,6 +13,23 @@ type labelNames []LabelName
 
 func (t labelNames) IsZero(item LabelName) bool {
 	return reflect.DeepEqual(item, zeroLabelName)
+}
+
+func (t labelNames) Find(s string) (LabelName, bool) {
+	fn := func(name LabelName) bool {
+		return stringer.EqualIgnoreCase(name.Name, s) ||
+			stringer.EqualIgnoreCase(s, name.Abbreviation)
+	}
+
+	return slicer.FindFn(fn, t...)
+}
+
+func (t labelNames) MustFind(s string) LabelName {
+	if found, ok := t.Find(s); !ok {
+		panic(fmt.Errorf("can't find label name %v", s))
+	} else {
+		return found
+	}
 }
 
 var (
@@ -35,6 +53,10 @@ var (
 		{
 			Id:   id.MustParse("B64458ED-7B79-483E-9087-613BABB7A165"),
 			Name: "Business Formation Date",
+		},
+		{
+			Id:   id.MustParse("FA64EF80-C3BC-4197-9A87-1FE1728A1100"),
+			Name: "Business Dissolution Date",
 		},
 	}
 
