@@ -2,8 +2,8 @@ github.com/boundedinfinity/enumer v1.0.10 h1:D3aoVu8mDk2mK+c/d5SEXL+eFXHbQhpuwOx
 github.com/boundedinfinity/enumer v1.0.10/go.mod h1:uyjpNfwDNkv4N5shaRUJ9WsC7hI3P4/pPhEz+NSSKdk=
 github.com/boundedinfinity/go-mimetyper v1.0.17 h1:puJVZJuWFmKGL+129yg+37StknCwVKXlZsNE6ggh+s4=
 github.com/boundedinfinity/go-mimetyper v1.0.17/go.mod h1:tx/mqBQyCcmxCIkSeDuZbCyn2Uklk4U1LzU8i7GozK8=
-github.com/boundedinfinity/rfc3339date v1.0.4 h1:5qgLDmxZ0L/+xw+qnD8DjyVl/f0wN2fjLfAbdtQKR5Y=
-github.com/boundedinfinity/rfc3339date v1.0.4/go.mod h1:kAazYSadaCJGeME4vx1F84637nbjIPy9pguMLFF2/lo=
+github.com/boundedinfinity/rfc3339date v1.0.6 h1:+/QMK8gyWmjyEteaLQCQylyvrhoWlqQlleTpDOpZGDE=
+github.com/boundedinfinity/rfc3339date v1.0.6/go.mod h1:kAazYSadaCJGeME4vx1F84637nbjIPy9pguMLFF2/lo=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/google/uuid v1.3.1 h1:KjJaJ9iWZ3jOFZIf1Lqf4laDRCasjl0BCmnEGxkdLb4=

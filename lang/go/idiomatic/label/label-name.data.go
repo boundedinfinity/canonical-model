@@ -52,11 +52,24 @@ var (
 		},
 		{
 			Id:   id.MustParse("B64458ED-7B79-483E-9087-613BABB7A165"),
-			Name: "Business Formation Date",
+			Name: "Formation Date",
 		},
 		{
 			Id:   id.MustParse("FA64EF80-C3BC-4197-9A87-1FE1728A1100"),
-			Name: "Business Dissolution Date",
+			Name: "Dissolution Date",
+		},
+		{
+			Id:           id.MustParse("51ED6E00-D565-471F-87FD-479773C1382B"),
+			Name:         "End of Life",
+			Abbreviation: "eol",
+		},
+		{
+			Id:   id.MustParse("51ED6E00-D565-471F-87FD-479773C1382B"),
+			Name: "Warranty Begin",
+		},
+		{
+			Id:   id.MustParse("B6CB6E80-6179-42AA-B582-755FE640EA02"),
+			Name: "Warranty End",
 		},
 	}
 
