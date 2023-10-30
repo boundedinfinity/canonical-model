@@ -1,0 +1,8 @@
+-   name: Move to beginning of line
+    shortcut: bl
+-   name: Move to end of line
+    shortcut: el
+-   name: Copy currently selected text
+    shortcut: y
+-   name: Cut currently selected text
+    shortcut: d
