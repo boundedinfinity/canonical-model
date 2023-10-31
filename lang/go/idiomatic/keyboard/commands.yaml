@@ -1,8 +1,60 @@
+# https://vim.rtorr.com/
+
+-   name: Save the current buffer to disk
+    keys: bs
+
+-   name: Move to the left 1 character
+    keys: j
+-   name: Move to the right 1 character
+    keys: l
+-   name: Move up 1 line
+    keys: i
+-   name: Move down 1 line
+    keys: k
+
+-   name: Move to beginning of the document
+    keys: mdb
+-   name: Move to end of the document
+    keys: mde
+
+-   name: Move to beginning of word
+    keys: mwb
+-   name: Move to end of word
+    keys: mwe
+
 -   name: Move to beginning of line
-    shortcut: bl
+    keys: mlb
+-   name: Move to beginning of line
+    keys: mlb
 -   name: Move to end of line
-    shortcut: el
+    keys: mle
+
+-   name: Move to beginning of the current block
+    keys: mbb
+-   name: Move to end of the current block
+    keys: mbe
+
+-   name: Yank (copy and delete) currently selected text
+    keys: yw
+-   name: Yank (copy and delete) from the cursor position to the end of the line
+    keys: yle
+-   name: Yank (copy and delete) from the cursor position to the beginning of the line
+    keys: ylb
+
 -   name: Copy currently selected text
-    shortcut: y
--   name: Cut currently selected text
-    shortcut: d
+    keys: cw
+-   name: Delete (without copy) currently selected work
+    keys: dw
+
+-   name: Insert at the beginning of the line
+    keys: ilb
+-   name: Insert at the end of the line
+    keys: ile
+-   name: Insert before the current word
+    keys: iwb
+-   name: Insert after the current word
+    keys: iwa
+-   name: Insert at the current location
+    keys: ih
+-   name: Insert after the current location
+    keys: ia
