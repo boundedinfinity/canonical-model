@@ -3,7 +3,7 @@ package people
 import (
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 	"github.com/boundedinfinity/rfc3339date"
-	"github.com/google/uuid"
+	"github.com/boundedinfinity/schema/idiomatic/id"
 )
 
 // ///////////////////////////////////////////////////
@@ -11,7 +11,7 @@ import (
 // ///////////////////////////////////////////////////
 
 type Person struct {
-	Id         uuid.UUID               `json:"id,omitempty"`
+	Id         id.Id                   `json:"id,omitempty"`
 	Name       Name                    `json:"name,omitempty"`
 	Pseudonyms []Name                  `json:"pseudonyms,omitempty"`
 	BirthDate  rfc3339date.Rfc3339Date `json:"birth-date,omitempty"`
@@ -72,7 +72,7 @@ func (t Person) Pseudonym() string {
 
 // func (t *personBuilder) Id(v string) *personBuilder {
 // 	t.fns = append(t.fns, func(p *Person) error {
-// 		id, err := uuid.Parse(v)
+// 		id, err := id.Parse(v)
 
 // 		if err != nil {
 // 			return err

@@ -76,7 +76,7 @@ func (t Prefix) Validate(groups ...string) error {
 
 // func (t *prefixBuilder) Id(v string) *prefixBuilder {
 // 	t.fns = append(t.fns, func(p *Prefix) error {
-// 		id, err := uuid.Parse(v)
+// 		id, err := id.Parse(v)
 
 // 		if err != nil {
 // 			return err

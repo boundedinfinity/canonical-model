@@ -5,14 +5,14 @@ import (
 
 	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
-	"github.com/google/uuid"
+	"github.com/boundedinfinity/schema/idiomatic/id"
 )
 
 // https://en.wikipedia.org/wiki/North_American_Numbering_Plan
 // https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers
 
 type NanpNumber struct {
-	Id              uuid.UUID                `json:"id,omitempty"`
+	Id              id.Id                    `json:"id,omitempty"`
 	Title           string                   `json:"title,omitempty"`
 	CountryCode     []Digit                  `json:"country-code,omitempty"`
 	Npa             []Digit                  `json:"npa,omitempty"`

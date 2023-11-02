@@ -2,21 +2,19 @@ package mailing_address
 
 import (
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
-	"github.com/boundedinfinity/rfc3339date"
 	"github.com/boundedinfinity/schema/idiomatic/audit"
 	"github.com/boundedinfinity/schema/idiomatic/id"
 	"github.com/boundedinfinity/schema/idiomatic/location"
 )
 
 type MailingAddress struct {
-	Id        id.Id                   `json:"id,omitempty"`
-	Lines     []string                `json:"lines,omitempty"`
-	City      location.City           `json:"city,omitempty"`
-	State     location.State          `json:"state,omitempty"`
-	Zip       Zip                     `json:"zip,omitempty"`
-	StartDate rfc3339date.Rfc3339Date `json:"start-date,omitempty"`
-	EndDate   rfc3339date.Rfc3339Date `json:"end-date,omitempty"`
-	Audit     audit.Audit             `json:"audit,omitempty"`
+	Id    id.Id          `json:"id,omitempty"`
+	Lines []string       `json:"lines,omitempty"`
+	City  location.City  `json:"city,omitempty"`
+	State location.State `json:"state,omitempty"`
+	Zip   Zip            `json:"zip,omitempty"`
+	Audit audit.Audit    `json:"audit,omitempty"`
+	audit.StartStop
 }
 
 func (t MailingAddress) String() string {

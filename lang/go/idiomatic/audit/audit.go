@@ -8,7 +8,7 @@ func New() Audit {
 	a := Audit{
 		CreatedAt: rfc3339date.DateTimeNow(),
 	}
-	a.Updated()
+	a.MarkUpdate()
 	return a
 }
 
@@ -17,6 +17,6 @@ type Audit struct {
 	ModifedOn []rfc3339date.Rfc3339DateTime `json:"modified-on,omitempty"`
 }
 
-func (t *Audit) Updated() {
+func (t *Audit) MarkUpdate() {
 	t.ModifedOn = append(t.ModifedOn, rfc3339date.DateTimeNow())
 }

@@ -72,7 +72,7 @@ func (t Suffix) String() string {
 
 // func (t *suffixBuilder) Id(v string) *suffixBuilder {
 // 	t.fns = append(t.fns, func(p *Suffix) error {
-// 		id, err := uuid.Parse(v)
+// 		id, err := id.Parse(v)
 
 // 		if err != nil {
 // 			return err

@@ -5,17 +5,17 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/boundedinfinity/schema/idiomatic/id"
 	"github.com/boundedinfinity/schema/idiomatic/people"
 
-	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 )
 
 var (
 	person1 = people.Person{
-		Id: uuid.MustParse("792ce7f5-0586-42a4-ac2f-7f3fd276c3c5"),
+		Id: id.MustParse("792ce7f5-0586-42a4-ac2f-7f3fd276c3c5"),
 		Name: people.Name{
-			Id:          uuid.MustParse("d34a65f3-9761-43cf-ae31-1711c307a355"),
+			Id:          id.MustParse("d34a65f3-9761-43cf-ae31-1711c307a355"),
 			Prefixes:    []people.Prefix{people.Prefixes.MustFind("Mr.")},
 			GivenNames:  []string{"James"},
 			FamilyNames: []string{"Bond"},
