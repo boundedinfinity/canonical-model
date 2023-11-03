@@ -14,7 +14,7 @@ type MailingAddress struct {
 	State location.State `json:"state,omitempty"`
 	Zip   Zip            `json:"zip,omitempty"`
 	Audit audit.Audit    `json:"audit,omitempty"`
-	audit.StartStop
+	audit.LimitedLifetime
 }
 
 func (t MailingAddress) String() string {
