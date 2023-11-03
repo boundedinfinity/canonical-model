@@ -7,9 +7,15 @@ import (
 )
 
 type CalendarEvent struct {
-	Id         id.Id                       `json:"id,omitempty"`
-	Organizer  contact.Contact             `json:"organizer"`
-	EventStart rfc3339date.Rfc3339DateTime `json:"event-start"`
-	EventEnd   rfc3339date.Rfc3339DateTime `json:"event-end"`
-	Summary    string                      `json:"summary"`
+	Id            id.Id                       `json:"id,omitempty"`
+	Organizer     contact.Contact             `json:"organizer"`
+	DelegatedFrom []contact.Contact           `json:"delegated-from"`
+	EventStart    rfc3339date.Rfc3339DateTime `json:"event-start"`
+	EventEnd      rfc3339date.Rfc3339DateTime `json:"event-end"`
+	Summary       string                      `json:"summary"`
+}
+
+type CalendarAttendee struct {
+	Id       id.Id           `json:"id,omitempty"`
+	Attendee contact.Contact `json:"attendee"`
 }
