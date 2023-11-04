@@ -20,62 +20,65 @@ func (t NameOnlyLabel) Type() string {
 
 var _ ValueLabel = &NameOnlyLabel{}
 
-type StringLabel struct {
+// valueLabel
+
+type valueLabel[T any] struct {
 	Id    id.Id     `json:"id,omitempty"`
 	Name  LabelName `json:"name,omitempty"`
-	Value string    `json:"value,omitempty"`
+	Value T         `json:"value,omitempty"`
+	typ   string
 }
 
-func (t StringLabel) Type() string {
-	return "string"
+func (t valueLabel[T]) Type() string {
+	return t.typ
 }
 
-var _ ValueLabel = &StringLabel{}
+// StringLabel
 
-type IntegerLabel struct {
-	Id    id.Id     `json:"id,omitempty"`
-	Name  LabelName `json:"name,omitempty"`
-	Value int       `json:"value,omitempty"`
+type StringLabel = valueLabel[string]
+
+func NewString() *StringLabel {
+	return &StringLabel{typ: "string"}
 }
 
-func (t IntegerLabel) Type() string {
-	return "int"
+var _ ValueLabel = NewString()
+
+// IntegerLabel
+
+type IntegerLabel = valueLabel[int]
+
+func NewInteger() *IntegerLabel {
+	return &IntegerLabel{typ: "int"}
 }
 
-var _ ValueLabel = &IntegerLabel{}
+var _ ValueLabel = NewInteger()
 
-type FloatLabel struct {
-	Id    id.Id     `json:"id,omitempty"`
-	Name  LabelName `json:"name,omitempty"`
-	Value float64   `json:"value,omitempty"`
+// FloatLabel
+
+type FloatLabel = valueLabel[float64]
+
+func NewFloat() *FloatLabel {
+	return &FloatLabel{typ: "float"}
 }
 
-func (t FloatLabel) Type() string {
-	return "float"
+var _ ValueLabel = NewFloat()
+
+// DateLabel
+
+type DateLabel = valueLabel[rfc3339date.Rfc3339Date]
+
+func NewDate() *DateLabel {
+	return &DateLabel{typ: "date"}
 }
 
-var _ ValueLabel = &FloatLabel{}
+var _ ValueLabel = NewDate()
 
-type DateLabel struct {
-	Id    id.Id                   `json:"id,omitempty"`
-	Name  LabelName               `json:"name,omitempty"`
-	Value rfc3339date.Rfc3339Date `json:"value,omitempty"`
+// DateTimeLabel
+
+type DateTimeLabel = valueLabel[rfc3339date.Rfc3339Date]
+
+func NewDateTime() *DateTimeLabel {
+	return &DateTimeLabel{typ: "date-time"}
 }
 
-func (t DateLabel) Type() string {
-	return "date"
-}
-
-var _ ValueLabel = &DateLabel{}
-
-type DateTimeLabel struct {
-	Id    id.Id                       `json:"id,omitempty"`
-	Name  LabelName                   `json:"name,omitempty"`
-	Value rfc3339date.Rfc3339DateTime `json:"value,omitempty"`
-}
-
-func (t DateTimeLabel) Type() string {
-	return "datetime"
-}
-
-var _ ValueLabel = &DateTimeLabel{}
+var _ ValueLabel = NewDateTime()

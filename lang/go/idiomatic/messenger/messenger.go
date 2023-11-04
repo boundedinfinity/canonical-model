@@ -9,7 +9,8 @@ import (
 )
 
 func New() *Messenger {
-	marshaler := marshaler.New()
+	marshaler := marshaler.NewWrapped()
+
 	marshaler.Register(
 		contact.Contact{},
 		people.Person{},
@@ -22,7 +23,7 @@ func New() *Messenger {
 }
 
 type Messenger struct {
-	marshaler *marshaler.Marshaler
+	marshaler *marshaler.WrappedMarshaler
 }
 
 func (t *Messenger) Marshal(item any) ([]byte, error) {
