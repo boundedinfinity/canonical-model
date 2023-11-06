@@ -14,6 +14,7 @@ type Person struct {
 	Id         id.Id                   `json:"id,omitempty"`
 	Name       Name                    `json:"name,omitempty"`
 	Pseudonyms []Name                  `json:"pseudonyms,omitempty"`
+	Physical   Physical                `json:"physical,omitempty"`
 	BirthDate  rfc3339date.Rfc3339Date `json:"birth-date,omitempty"`
 	DeathDate  rfc3339date.Rfc3339Date `json:"death-date,omitempty"`
 }
