@@ -1,6 +1,6 @@
 package banking
 
-//go:generate enumer -path=./account-number-format.enum.go
+//go:generate enumer -path=./account-format.enum.go
 
 type AccountNumberFormat string
 

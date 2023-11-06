@@ -1,6 +1,6 @@
 package physical_card
 
-//go:generate enumer -path=./sex-type.enum.go
+//go:generate enumer -path=./donor-status.enum.go
 
 type DonorStatus string
 
