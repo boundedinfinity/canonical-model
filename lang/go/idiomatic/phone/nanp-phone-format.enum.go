@@ -15,48 +15,50 @@ import (
 	"github.com/boundedinfinity/enumer"
 )
 
+type NanpPhoneFormat string
+
 // /////////////////////////////////////////////////////////////////
-//  AtCommand Stringer implemenation
+//  NanpPhoneFormat Stringer implemenation
 // /////////////////////////////////////////////////////////////////
 
-func (t AtCommand) String() string {
+func (t NanpPhoneFormat) String() string {
 	return string(t)
 }
 
 // /////////////////////////////////////////////////////////////////
-//  AtCommand JSON marshal/unmarshal implemenation
+//  NanpPhoneFormat JSON marshal/unmarshal implemenation
 // /////////////////////////////////////////////////////////////////
 
-func (t AtCommand) MarshalJSON() ([]byte, error) {
+func (t NanpPhoneFormat) MarshalJSON() ([]byte, error) {
 	return enumer.MarshalJSON(t)
 }
 
-func (t *AtCommand) UnmarshalJSON(data []byte) error {
-	return enumer.UnmarshalJSON(data, t, AtCommands.Parse)
+func (t *NanpPhoneFormat) UnmarshalJSON(data []byte) error {
+	return enumer.UnmarshalJSON(data, t, NanpPhoneFormats.Parse)
 }
 
 // /////////////////////////////////////////////////////////////////
-//  AtCommand YAML marshal/unmarshal implemenation
+//  NanpPhoneFormat YAML marshal/unmarshal implemenation
 // /////////////////////////////////////////////////////////////////
 
-func (t AtCommand) MarshalYAML() (interface{}, error) {
+func (t NanpPhoneFormat) MarshalYAML() (interface{}, error) {
 	return enumer.MarshalYAML(t)
 }
 
-func (t *AtCommand) UnmarshalYAML(unmarshal func(interface{}) error) error {
-	return enumer.UnmarshalYAML(unmarshal, t, AtCommands.Parse)
+func (t *NanpPhoneFormat) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	return enumer.UnmarshalYAML(unmarshal, t, NanpPhoneFormats.Parse)
 }
 
 // /////////////////////////////////////////////////////////////////
-//  AtCommand SQL Database marshal/unmarshal implemenation
+//  NanpPhoneFormat SQL Database marshal/unmarshal implemenation
 // /////////////////////////////////////////////////////////////////
 
-func (t AtCommand) Value() (driver.Value, error) {
+func (t NanpPhoneFormat) Value() (driver.Value, error) {
 	return enumer.Value(t)
 }
 
-func (t *AtCommand) Scan(value interface{}) error {
-	return enumer.Scan(value, t, AtCommands.Parse)
+func (t *NanpPhoneFormat) Scan(value interface{}) error {
+	return enumer.Scan(value, t, NanpPhoneFormats.Parse)
 }
 
 // /////////////////////////////////////////////////////////////////
@@ -65,40 +67,41 @@ func (t *AtCommand) Scan(value interface{}) error {
 //
 // /////////////////////////////////////////////////////////////////
 
-var AtCommands = struct {
-	atCommands
+type nanpPhoneFormats struct {
+	Full   NanpPhoneFormat
+	Common NanpPhoneFormat
+	Values []NanpPhoneFormat
 	Err    error
-	Values []AtCommand
-}{
-	atCommands: atCommands{
-		Pause2Seconds:   AtCommand(","),
-		PauseIndefinite: AtCommand(";"),
-	},
-	Err: fmt.Errorf("invalid AtCommand"),
+}
+
+var NanpPhoneFormats = nanpPhoneFormats{
+	Full:   NanpPhoneFormat("full"),
+	Common: NanpPhoneFormat("common"),
+	Err:    fmt.Errorf("invalid NanpPhoneFormat"),
 }
 
 func init() {
-	AtCommands.Values = []AtCommand{
-		AtCommands.Pause2Seconds,
-		AtCommands.PauseIndefinite,
+	NanpPhoneFormats.Values = []NanpPhoneFormat{
+		NanpPhoneFormats.Full,
+		NanpPhoneFormats.Common,
 	}
 }
 
-func (t atCommands) newErr(a any, values ...AtCommand) error {
+func (t nanpPhoneFormats) newErr(a any, values ...NanpPhoneFormat) error {
 	return fmt.Errorf(
 		"invalid %w value '%v'. Must be one of %v",
-		AtCommands.Err,
+		NanpPhoneFormats.Err,
 		a,
 		enumer.Join(values, ", "),
 	)
 }
 
-func (t atCommands) ParseFrom(v string, values ...AtCommand) (AtCommand, error) {
-	var found AtCommand
+func (t nanpPhoneFormats) ParseFrom(v string, values ...NanpPhoneFormat) (NanpPhoneFormat, error) {
+	var found NanpPhoneFormat
 	var ok bool
 
 	for _, value := range values {
-		if enumer.IsEq[string, AtCommand](v)(value) {
+		if enumer.IsEq[string, NanpPhoneFormat](v)(value) {
 			found = value
 			ok = true
 			break
@@ -112,19 +115,19 @@ func (t atCommands) ParseFrom(v string, values ...AtCommand) (AtCommand, error) 
 	return found, nil
 }
 
-func (t atCommands) Parse(v string) (AtCommand, error) {
-	return t.ParseFrom(v, AtCommands.Values...)
+func (t nanpPhoneFormats) Parse(v string) (NanpPhoneFormat, error) {
+	return t.ParseFrom(v, NanpPhoneFormats.Values...)
 }
 
-func (t atCommands) IsFrom(v string, values ...AtCommand) bool {
+func (t nanpPhoneFormats) IsFrom(v string, values ...NanpPhoneFormat) bool {
 	for _, value := range values {
-		if enumer.IsEq[string, AtCommand](v)(value) {
+		if enumer.IsEq[string, NanpPhoneFormat](v)(value) {
 			return true
 		}
 	}
 	return false
 }
 
-func (t atCommands) Is(v string) bool {
-	return t.IsFrom(v, AtCommands.Values...)
+func (t nanpPhoneFormats) Is(v string) bool {
+	return t.IsFrom(v, NanpPhoneFormats.Values...)
 }

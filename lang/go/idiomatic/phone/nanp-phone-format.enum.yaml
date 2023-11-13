@@ -1,0 +1,5 @@
+
+serialize: pascal-to-kebab-lower
+values:
+    -   name: Full
+    -   name: Common

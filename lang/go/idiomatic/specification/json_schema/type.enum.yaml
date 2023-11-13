@@ -1,0 +1,9 @@
+serialize: pascal-to-kebab-lower
+values:
+    -   name: Array
+    -   name: String
+    -   name: Number
+    -   name: Integer
+    -   name: Object
+    -   name: Ref
+    -   name: Boolean

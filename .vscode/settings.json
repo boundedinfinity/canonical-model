@@ -4,5 +4,16 @@
     ],
     "go-template.languages": [
         "go"
+    ],
+    "yaml.schemas": {
+        "./.vscode/enum.schema.json": [
+            "**/*.enum.yaml"
+        ]
+    },
+    "json.schemas": [
+        {
+            "fileMatch": ["**/*.enum.yaml"],
+            "url": "./enum.schema.json"
+        }
     ]
 }

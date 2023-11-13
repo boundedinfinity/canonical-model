@@ -39,7 +39,7 @@ func Test_NanpNumber_Format_Default(t *testing.T) {
 
 func Test_NanpNumber_Format_Dashes(t *testing.T) {
 	actual := phone.NanpNumber{
-		SeparatorFormat: phone.NapaPhoneSeparatorFormats.DashSeparated,
+		SeparatorFormat: phone.NanpPhoneSeparatorFormats.DashSeparated,
 		Npa: []phone.Digit{
 			{Number: 5},
 			{Number: 5},
@@ -63,7 +63,7 @@ func Test_NanpNumber_Format_Dashes(t *testing.T) {
 
 func Test_NanpNumber_Format_Dots(t *testing.T) {
 	actual := phone.NanpNumber{
-		SeparatorFormat: phone.NapaPhoneSeparatorFormats.DotSeparated,
+		SeparatorFormat: phone.NanpPhoneSeparatorFormats.DotSeparated,
 		Npa: []phone.Digit{
 			phone.NewDigitMust(5),
 			phone.NewDigitMust(5),
@@ -87,7 +87,7 @@ func Test_NanpNumber_Format_Dots(t *testing.T) {
 
 func Test_NanpNumber_Format_None(t *testing.T) {
 	actual := phone.NanpNumber{
-		SeparatorFormat: phone.NapaPhoneSeparatorFormats.None,
+		SeparatorFormat: phone.NanpPhoneSeparatorFormats.None,
 		Npa: []phone.Digit{
 			{Number: 5},
 			{Number: 5},

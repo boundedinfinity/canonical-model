@@ -19,18 +19,18 @@ type NanpNumber struct {
 	Nxx             []Digit                  `json:"nxx,omitempty"`
 	LineNumber      []Digit                  `json:"line-number,omitempty"`
 	Extention       Extention                `json:"extention,omitempty"`
-	SeparatorFormat NapaPhoneSeparatorFormat `json:"separator-format,omitempty"`
-	Format          NapaPhoneFormat          `json:"format,omitempty"`
+	SeparatorFormat NanpPhoneSeparatorFormat `json:"separator-format,omitempty"`
+	Format          NanpPhoneFormat          `json:"format,omitempty"`
 }
 
 func (t NanpNumber) String() string {
 	var sb stringer.Builder[string]
-	format, _ := slicer.FirstNotZero(t.Format, NapaPhoneFormats.Common)
-	separatorFormat, _ := slicer.FirstNotZero(t.SeparatorFormat, NapaPhoneSeparatorFormats.ParenthesesAndDashes)
+	format, _ := slicer.FirstNotZero(t.Format, NanpPhoneFormats.Common)
+	separatorFormat, _ := slicer.FirstNotZero(t.SeparatorFormat, NanpPhoneSeparatorFormats.ParenthesesAndDashes)
 
 	switch format {
 	default:
-	case NapaPhoneFormats.Full:
+	case NanpPhoneFormats.Full:
 		if len(t.CountryCode) > 0 {
 			sb.WriteRune('+')
 
@@ -39,18 +39,18 @@ func (t NanpNumber) String() string {
 			}
 
 			switch separatorFormat {
-			case NapaPhoneSeparatorFormats.DashSeparated:
+			case NanpPhoneSeparatorFormats.DashSeparated:
 				sb.WriteByte('-')
-			case NapaPhoneSeparatorFormats.DotSeparated:
+			case NanpPhoneSeparatorFormats.DotSeparated:
 				sb.WriteByte('.')
-			case NapaPhoneSeparatorFormats.None:
+			case NanpPhoneSeparatorFormats.None:
 			default:
 				sb.WriteByte(' ')
 			}
 		}
 	}
 
-	if separatorFormat == NapaPhoneSeparatorFormats.ParenthesesAndDashes {
+	if separatorFormat == NanpPhoneSeparatorFormats.ParenthesesAndDashes {
 		sb.WriteRune('(')
 	}
 
@@ -59,11 +59,11 @@ func (t NanpNumber) String() string {
 	}
 
 	switch separatorFormat {
-	case NapaPhoneSeparatorFormats.DashSeparated:
+	case NanpPhoneSeparatorFormats.DashSeparated:
 		sb.WriteByte('-')
-	case NapaPhoneSeparatorFormats.DotSeparated:
+	case NanpPhoneSeparatorFormats.DotSeparated:
 		sb.WriteByte('.')
-	case NapaPhoneSeparatorFormats.None:
+	case NanpPhoneSeparatorFormats.None:
 	default:
 		sb.WriteString(") ")
 	}
@@ -73,9 +73,9 @@ func (t NanpNumber) String() string {
 	}
 
 	switch separatorFormat {
-	case NapaPhoneSeparatorFormats.DotSeparated:
+	case NanpPhoneSeparatorFormats.DotSeparated:
 		sb.WriteByte('.')
-	case NapaPhoneSeparatorFormats.None:
+	case NanpPhoneSeparatorFormats.None:
 	default:
 		sb.WriteRune('-')
 	}

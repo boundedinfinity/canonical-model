@@ -1,0 +1,4 @@
+serialize: pascal-to-kebab-lower
+values:
+    -   name: GivenNameFamilyName
+    -   name: FamilyNameGivenName
