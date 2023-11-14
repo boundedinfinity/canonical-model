@@ -1,7 +1,10 @@
 package location
 
-type State string
+type State struct {
+	Name StateName `json:"name,omitempty"`
+	Code StateAnsi `json:"code,omitempty"`
+}
 
 func (t State) String() string {
-	return string(t)
+	return t.Name.String()
 }

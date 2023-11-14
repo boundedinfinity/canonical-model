@@ -1,0 +1,121 @@
+# https://en.wikipedia.org/wiki/List_of_U.S._state_and_territory_abbreviations#Coast_Guard_vessel_prefixes
+
+values:
+    -   name: Alabama
+        serialized: AL
+    -   name: Alaska
+        serialized: AK
+    -   name: American Samoa
+        serialized: AS
+    -   name: Arizona
+        serialized: AZ
+    -   name: Arkansas
+        serialized: AR
+    -   name: California
+        serialized: CA
+    -   name: Colorado
+        serialized: CO
+    -   name: Connecticut
+        serialized: CT
+    -   name: Delaware
+        serialized: DE
+    -   name: District Of Columbia
+        serialized: DC
+    -   name: Federated States Of Micronesia
+        serialized: FM
+    -   name: Florida
+        serialized: FL
+    -   name: Georgia
+        serialized: GA
+    -   name: Guam
+        serialized: GU
+    -   name: Hawaii
+        serialized: HI
+    -   name: Idaho
+        serialized: ID
+    -   name: Illinois
+        serialized: IL
+    -   name: Indiana
+        serialized: IN
+    -   name: Iowa
+        serialized: IA
+    -   name: Kansas
+        serialized: KS
+    -   name: Kentucky
+        serialized: KY
+    -   name: Louisiana
+        serialized: LA
+    -   name: Maine
+        serialized: ME
+    -   name: Marshall Islands
+        serialized: MH
+    -   name: Maryland
+        serialized: MD
+    -   name: Massachusetts
+        serialized: MA
+    -   name: Michigan
+        serialized: MI
+    -   name: Minnesota
+        serialized: MN
+    -   name: Mississippi
+        serialized: MS
+    -   name: Missouri
+        serialized: MO
+    -   name: Montana
+        serialized: MT
+    -   name: Nebraska
+        serialized: NE
+    -   name: Nevada
+        serialized: NV
+    -   name: New Hampshire
+        serialized: NH
+    -   name: New Jersey
+        serialized: NJ
+    -   name: New Mexico
+        serialized: NM
+    -   name: New York
+        serialized: NY
+    -   name: North Carolina
+        serialized: NC
+    -   name: North Dakota
+        serialized: ND
+    -   name: Northern Mariana Islands
+        serialized: MP
+    -   name: Ohio
+        serialized: OH
+    -   name: Oklahoma
+        serialized: OK
+    -   name: Oregon
+        serialized: OR
+    -   name: Palau
+        serialized: PW
+    -   name: Pennsylvania
+        serialized: PA
+    -   name: Puerto Rico
+        serialized: PR
+    -   name: Rhode Island
+        serialized: RI
+    -   name: South Carolina
+        serialized: SC
+    -   name: South Dakota
+        serialized: SD
+    -   name: Tennessee
+        serialized: TN
+    -   name: Texas
+        serialized: TX
+    -   name: Utah
+        serialized: UT
+    -   name: Vermont
+        serialized: VT
+    -   name: Virgin Islands
+        serialized: VI
+    -   name: Virginia
+        serialized: VA
+    -   name: Washington
+        serialized: WA
+    -   name: West Virginia
+        serialized: WV
+    -   name: Wisconsin
+        serialized: WI
+    -   name: Wyoming
+        serialized: WY

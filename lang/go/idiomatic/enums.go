@@ -12,3 +12,7 @@ package idiomatic
 //go:generate enumer -config=./physical_card/donor-status.enum.yaml
 //go:generate enumer -config=./specification/json_schema/type.enum.yaml
 //go:generate enumer -config=./vehicle/wmi-region.enum.yaml
+//go:generate enumer -config=./location/state-name.enum.yaml
+//go:generate enumer -config=./location/state-ansi.enum.yaml
+//go:generate enumer -config=./location/state-iso.enum.yaml
+//go:generate enumer -config=./banking/federal-reserve-district.enum.yaml

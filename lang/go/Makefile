@@ -2,6 +2,17 @@ makefile_dir		:= $(abspath $(shell pwd))
 
 .PHONY: list purge build install generate test commit tag publish
 
+purge:
+	find . -name '*.enum.go' -type f -delete
+
+generate:
+	go generate ./...
+
+build:
+	@make purge
+	@make generate
+	go build .
+
 list:
 	@grep '^[^#[:space:]].*:' Makefile | grep -v ':=' | grep -v '^\.' | sed 's/:.*//g' | sed 's/://g' | sort
 

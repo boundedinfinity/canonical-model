@@ -1,0 +1,28 @@
+# https://en.wikipedia.org/wiki/Federal_Reserve_Bank
+
+# serialize: phrase-to-kebab-lower
+values:
+    -   name: Boston
+        value: Federal Reserve Bank of Boston
+    -   name: New York
+        value: Federal Reserve Bank of New York
+    -   name: Philadelphia
+        value: Federal Reserve Bank of Philadelphia
+    -   name: Cleveland
+        value: Federal Reserve Bank of Cleveland
+    -   name: Richmond
+        value: Federal Reserve Bank of Richmond
+    -   name: Atlanta
+        value: Federal Reserve Bank of Atlanta
+    -   name: Chicago
+        value: Federal Reserve Bank of Chicago
+    -   name: St. Louis
+        value: Federal Reserve Bank of St. Louis
+    -   name: Minneapolis
+        value: Federal Reserve Bank of Minneapolis
+    -   name: Kansas City
+        value: Federal Reserve Bank of Kansas City
+    -   name: Dallas
+        value: Federal Reserve Bank of Dallas
+    -   name: San Francisco
+        value: Federal Reserve Bank of San Francisco
