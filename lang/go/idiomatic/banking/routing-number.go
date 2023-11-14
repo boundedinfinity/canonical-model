@@ -28,5 +28,6 @@ type MagneticInkCharacterRecognitionNumber struct {
 	CheckDigit CheckDigit                  `json:"check-digit,omitempty"`
 }
 
+// https://en.wikipedia.org/wiki/ABA_routing_transit_number
 // 102001017
 // XXXXYYYYC
