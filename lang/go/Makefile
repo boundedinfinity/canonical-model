@@ -8,6 +8,9 @@ purge:
 generate:
 	go generate ./...
 
+test:
+	go test ./...
+
 build:
 	@make purge
 	@make generate
