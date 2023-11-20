@@ -1,4 +1,4 @@
-package model
+package modeller
 
 type Contraint[T any] func(t T) error
 

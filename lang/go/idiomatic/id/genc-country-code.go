@@ -1,8 +1,15 @@
 package id
 
-import "github.com/boundedinfinity/go-commoner/idiomatic/stringer"
+import (
+	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
+)
 
-// Geopolitical Entities, Names, and CODES
+// https://evs.nci.nih.gov/ftp1/GENC/
+// https://www.dni.gov/index.php/who-we-are/organizations/ic-cio/ic-cio-related-menus/ic-cio-related-links/ic-technical-specifications/geopolitical-entities-names-and-codes
+
+// type GenCodeUpdateMessage messenger.Message[GenCode]
+
+// GenCode Geopolitical Entities, Names, and CODES
 type GenCode struct {
 	Name string `json:"name,omitempty"`
 	Code string `json:"code,omitempty"`
