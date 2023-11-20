@@ -1,6 +1,6 @@
 package modeller
 
-type Contraint[T any] func(t T) error
+type Contraint func() error
 
 type Validator interface {
 	Validate(groups ...string) error
