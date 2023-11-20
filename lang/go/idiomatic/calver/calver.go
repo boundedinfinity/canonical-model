@@ -9,6 +9,8 @@ import (
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 
+// https://calver.org/
+
 type CalVer struct {
 	Year  int
 	Month int
