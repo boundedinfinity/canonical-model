@@ -12,8 +12,8 @@
     },
     "json.schemas": [
         {
-            "fileMatch": ["**/*.enum.yaml"],
-            "url": "./enum.schema.json"
+            "fileMatch": ["**/*.enum.json"],
+            "url": "./.vscode/enum.schema.json"
         }
     ]
 }

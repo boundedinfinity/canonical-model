@@ -76,9 +76,9 @@ type accountNumberFormats struct {
 }
 
 var AccountNumberFormats = accountNumberFormats{
-	NoSpace:     AccountNumberFormat("no-space"),
-	SpaceAfter3: AccountNumberFormat("space-after-3"),
-	SpaceAfter4: AccountNumberFormat("space-after-4"),
+	NoSpace:     AccountNumberFormat("NoSpace"),
+	SpaceAfter3: AccountNumberFormat("SpaceAfter3"),
+	SpaceAfter4: AccountNumberFormat("SpaceAfter4"),
 	Err:         fmt.Errorf("invalid AccountNumberFormat"),
 }
 

@@ -75,8 +75,8 @@ type prefixFormats struct {
 }
 
 var PrefixFormats = prefixFormats{
-	Full:         PrefixFormat("full"),
-	Abbreviation: PrefixFormat("abbreviation"),
+	Full:         PrefixFormat("Full"),
+	Abbreviation: PrefixFormat("Abbreviation"),
 	Err:          fmt.Errorf("invalid PrefixFormat"),
 }
 

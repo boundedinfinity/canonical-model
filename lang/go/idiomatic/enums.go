@@ -16,8 +16,9 @@ package idiomatic
 //go:generate enumer -config=./location/state-ansi.enum.yaml
 //go:generate enumer -config=./location/state-iso.enum.yaml
 //go:generate enumer -config=./banking/federal-reserve-district.enum.yaml
-//go:generate enumer -config=./id/iso-639-lang.enum.yaml
-//go:generate enumer -config=./id/iso-639-1.enum.yaml
-//go:generate enumer -config=./id/iso-639-2-b.enum.yaml
-//go:generate enumer -config=./id/iso-639-2-t.enum.yaml
-//go:generate enumer -config=./id/iso-639-3.enum.yaml
+//-go:generate enumer -config=./id/iso-639-lang.enum.yaml
+//-go:generate enumer -config=./id/iso-639-1.enum.yaml
+//-go:generate enumer -config=./id/iso-639-2-b.enum.yaml
+//-go:generate enumer -config=./id/iso-639-2-t.enum.yaml
+//-go:generate enumer -config=./id/iso-639-3.enum.yaml
+//go:generate enumer -config=./hardware/connector-type.enum.yaml

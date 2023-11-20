@@ -15,7 +15,7 @@ type BankingCheck struct {
 	EndorsedBy       contact.Contact                `json:"endorsed-by,omitempty"`
 	SingedBy         contact.Contact                `json:"signed-by,omitempty"`
 	Amount           currency.CurrencyAmount        `json:"amount,omitempty"`
-	Account          BankingAccount                 `json:"account,omitempty"`
+	Account          BankAccount                    `json:"account,omitempty"`
 	Number           string                         `json:"number,omitempty"`
 	Memo             string                         `json:"memo,omitempty"`
 	Address          mailing_address.MailingAddress `json:"mailing-address,omitempty"`

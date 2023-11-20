@@ -8,6 +8,9 @@ list:
 test:
 	cd $(makefile_dir)/lang/go && make test
 
+generate:
+	cd $(makefile_dir)/lang/go && make generate
+
 commit:
 	git add . || true
 	git commit -m "$(m)" || true

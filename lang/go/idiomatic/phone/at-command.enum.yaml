@@ -1,7 +1,8 @@
 # https://en.wikipedia.org/wiki/Hayes_AT_command_set#The_basic_Hayes_command_set
 # D - Dial mode
 
-serialize: pascal-to-kebab-lower
+serialize: 
+    values: pascal-to-kebab-lower
 values:
     -   name: Pause2Seconds
     -   name: PauseIndefinite

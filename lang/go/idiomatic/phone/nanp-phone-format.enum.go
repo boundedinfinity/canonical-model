@@ -75,8 +75,8 @@ type nanpPhoneFormats struct {
 }
 
 var NanpPhoneFormats = nanpPhoneFormats{
-	Full:   NanpPhoneFormat("full"),
-	Common: NanpPhoneFormat("common"),
+	Full:   NanpPhoneFormat("Full"),
+	Common: NanpPhoneFormat("Common"),
 	Err:    fmt.Errorf("invalid NanpPhoneFormat"),
 }
 

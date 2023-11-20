@@ -76,9 +76,9 @@ type statuses struct {
 }
 
 var Statuses = statuses{
-	Active:       Status("active"),
-	Inactive:     Status("inactive"),
-	Discontinued: Status("discontinued"),
+	Active:       Status("Active"),
+	Inactive:     Status("Inactive"),
+	Discontinued: Status("Discontinued"),
 	Err:          fmt.Errorf("invalid Status"),
 }
 
