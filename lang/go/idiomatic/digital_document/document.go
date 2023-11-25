@@ -7,8 +7,9 @@ import (
 )
 
 type Document struct {
-	Id    id.Id              `json:"id,omitempty"`
-	Path  string             `json:"path,omitempty"`
-	Type  mime_type.MimeType `json:"type,omitempty"`
-	Audit audit.Audit        `json:"audit,omitempty"`
+	Id       id.Id              `json:"id,omitempty"`
+	Location string             `json:"location,omitempty"`
+	Name     string             `json:"name,omitempty"`
+	Type     mime_type.MimeType `json:"type,omitempty"`
+	Audit    audit.Audit        `json:"audit,omitempty"`
 }

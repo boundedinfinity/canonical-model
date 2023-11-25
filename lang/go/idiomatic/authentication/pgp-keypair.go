@@ -2,7 +2,7 @@ package authentication
 
 import "github.com/boundedinfinity/schema/idiomatic/id"
 
-// https://json-schema.org/
+// https://en.wikipedia.org/wiki/Pretty_Good_Privacy
 
 type PgpKeypair struct {
 	Id          id.Id  `json:"id,omitempty"`

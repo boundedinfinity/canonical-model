@@ -14,6 +14,7 @@ import (
 type Account struct {
 	Id          id.Id                `json:"id,omitempty"`
 	Name        string               `json:"name,omitempty"`
+	Code        int                  `json:"code,omitempty"`
 	Description string               `json:"description,omitempty"`
 	Parent      *Account             `json:"parent,omitempty"`
 	Children    []*Account           `json:"children,omitempty"`
