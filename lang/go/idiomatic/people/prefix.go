@@ -1,7 +1,6 @@
 package people
 
 import (
-	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
 	"github.com/boundedinfinity/schema/idiomatic/audit"
 	"github.com/boundedinfinity/schema/idiomatic/id"
 )
@@ -20,16 +19,7 @@ type Prefix struct {
 }
 
 func (t Prefix) String() string {
-	var s string
-	format, _ := slicer.FirstNotZero(t.Format, PrefixFormats.Abbreviation)
-
-	if (format == PrefixFormats.Abbreviation) && len(t.Abbreviation) > 0 {
-		s = t.Abbreviation[0]
-	} else {
-		s = t.Text
-	}
-
-	return s
+	return NewPrefixFormatter(PrefixFormats.Abbreviation).Format(t)
 }
 
 func (t Prefix) Validate(groups ...string) error {

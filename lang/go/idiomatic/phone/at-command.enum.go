@@ -75,8 +75,8 @@ type atCommands struct {
 }
 
 var AtCommands = atCommands{
-	Pause2Seconds:   AtCommand("Pause2Seconds"),
-	PauseIndefinite: AtCommand("PauseIndefinite"),
+	Pause2Seconds:   AtCommand("pause-2-seconds"),
+	PauseIndefinite: AtCommand("pause-indefinite"),
 	Err:             fmt.Errorf("invalid AtCommand"),
 }
 

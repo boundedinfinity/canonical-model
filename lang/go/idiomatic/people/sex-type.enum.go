@@ -76,9 +76,9 @@ type sexTypes struct {
 }
 
 var SexTypes = sexTypes{
-	Male:   SexType("Male"),
-	Female: SexType("Female"),
-	Other:  SexType("Other"),
+	Male:   SexType("male"),
+	Female: SexType("female"),
+	Other:  SexType("other"),
 	Err:    fmt.Errorf("invalid SexType"),
 }
 

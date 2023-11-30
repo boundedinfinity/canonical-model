@@ -1,6 +1,6 @@
 
 serialize: 
-    values: pascal-to-kebab-lower
+    value: pascal-to-kebab-lower
 values:
     -   name: DotSeparated
     -   name: DashSeparated

@@ -77,10 +77,10 @@ type nanpPhoneSeparatorFormats struct {
 }
 
 var NanpPhoneSeparatorFormats = nanpPhoneSeparatorFormats{
-	DotSeparated:         NanpPhoneSeparatorFormat("DotSeparated"),
-	DashSeparated:        NanpPhoneSeparatorFormat("DashSeparated"),
-	ParenthesesAndDashes: NanpPhoneSeparatorFormat("ParenthesesAndDashes"),
-	None:                 NanpPhoneSeparatorFormat("None"),
+	DotSeparated:         NanpPhoneSeparatorFormat("dot-separated"),
+	DashSeparated:        NanpPhoneSeparatorFormat("dash-separated"),
+	ParenthesesAndDashes: NanpPhoneSeparatorFormat("parentheses-and-dashes"),
+	None:                 NanpPhoneSeparatorFormat("none"),
 	Err:                  fmt.Errorf("invalid NanpPhoneSeparatorFormat"),
 }
 

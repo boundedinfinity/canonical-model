@@ -75,8 +75,8 @@ type donorStatuses struct {
 }
 
 var DonorStatuses = donorStatuses{
-	IsDonor:  DonorStatus("IsDonor"),
-	NotDonor: DonorStatus("NotDonor"),
+	IsDonor:  DonorStatus("is-donor"),
+	NotDonor: DonorStatus("not-donor"),
 	Err:      fmt.Errorf("invalid DonorStatus"),
 }
 

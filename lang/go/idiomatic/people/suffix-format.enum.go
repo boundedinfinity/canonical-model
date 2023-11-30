@@ -75,8 +75,8 @@ type suffixFormats struct {
 }
 
 var SuffixFormats = suffixFormats{
-	Full:         SuffixFormat("Full"),
-	Abbreviation: SuffixFormat("Abbreviation"),
+	Full:         SuffixFormat("full"),
+	Abbreviation: SuffixFormat("abbreviation"),
 	Err:          fmt.Errorf("invalid SuffixFormat"),
 }
 

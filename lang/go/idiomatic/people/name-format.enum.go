@@ -75,8 +75,8 @@ type nameFormats struct {
 }
 
 var NameFormats = nameFormats{
-	GivenNameFamilyName: NameFormat("GivenNameFamilyName"),
-	FamilyNameGivenName: NameFormat("FamilyNameGivenName"),
+	GivenNameFamilyName: NameFormat("given-name-family-name"),
+	FamilyNameGivenName: NameFormat("family-name-given-name"),
 	Err:                 fmt.Errorf("invalid NameFormat"),
 }
 

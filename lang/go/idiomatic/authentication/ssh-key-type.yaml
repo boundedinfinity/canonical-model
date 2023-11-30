@@ -3,7 +3,7 @@
 # https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm
 
 serialize: 
-    values: pascal-to-kebab-lower
+    value: pascal-to-kebab-lower
 values:
     -   name: Rsa
     -   name: Dsa

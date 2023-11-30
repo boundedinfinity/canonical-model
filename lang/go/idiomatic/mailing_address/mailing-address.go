@@ -23,7 +23,7 @@ type MailingAddress struct {
 }
 
 func (t MailingAddress) IsZero() bool {
-	return reflect.IsZero(t)
+	return reflect.Instances.IsZero(t)
 }
 
 func (t MailingAddress) String() string {

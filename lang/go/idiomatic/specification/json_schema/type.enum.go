@@ -80,13 +80,13 @@ type types struct {
 }
 
 var Types = types{
-	Array:   Type("Array"),
-	String:  Type("String"),
-	Number:  Type("Number"),
-	Integer: Type("Integer"),
-	Object:  Type("Object"),
-	Ref:     Type("Ref"),
-	Boolean: Type("Boolean"),
+	Array:   Type("array"),
+	String:  Type("string"),
+	Number:  Type("number"),
+	Integer: Type("integer"),
+	Object:  Type("object"),
+	Ref:     Type("ref"),
+	Boolean: Type("boolean"),
 	Err:     fmt.Errorf("invalid Type"),
 }
 

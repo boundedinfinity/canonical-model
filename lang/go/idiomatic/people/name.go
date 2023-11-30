@@ -1,13 +1,20 @@
 package people
 
 import (
-	"strings"
-
 	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 	"github.com/boundedinfinity/schema/idiomatic/audit"
 	"github.com/boundedinfinity/schema/idiomatic/id"
 )
+
+type NameMessage struct {
+	Type string `json:"type,omitempty"`
+	Name
+}
+
+func NewNameMessage(name Name) NameMessage {
+	return NameMessage{Type: "people.Name", Name: name}
+}
 
 // ///////////////////////////////////////////////////
 // Model
@@ -16,15 +23,14 @@ import (
 type Name struct {
 	Id          id.Id       `json:"id,omitempty"`
 	Prefixes    []Prefix    `json:"prefixes,omitempty"`
-	GivenNames  []string    `json:"givenNames,omitempty"`
-	FamilyNames []string    `json:"familyNames,omitempty"`
+	GivenNames  []string    `json:"given-names,omitempty"`
+	FamilyNames []string    `json:"family-names,omitempty"`
 	Suffixes    []Suffix    `json:"suffixes,omitempty"`
 	Format      NameFormat  `json:"ordering,omitempty"`
 	Audit       audit.Audit `json:"audit,omitempty"`
 }
 
 func (t Name) Validate(groups ...string) error {
-
 	// for i, prefix := range t.Prefixes.Get() {
 	// 	if err := prefix.Validate(); err != nil {
 	// 		return fmt.Errorf("prefixes[%v] %w", i, err)
@@ -79,30 +85,10 @@ func (t Name) Suffix() string {
 }
 
 func (t Name) String() string {
-	var names []string
-	var ordering NameFormat
-
-	names = append(names, t.Prefix())
-
-	if t.Format != "" {
-		ordering = t.Format
-	} else {
-		ordering = NameFormats.GivenNameFamilyName
-	}
-
-	switch ordering {
-	case NameFormats.FamilyNameGivenName:
-		names = append(names, t.FamilyName())
-		names = append(names, t.GivenName())
-	default:
-		names = append(names, t.GivenName())
-		names = append(names, t.FamilyName())
-	}
-
-	names = append(names, t.Suffix())
-
-	s := strings.Join(names, " ")
-	s = strings.Join(strings.Fields(s), " ")
-
-	return s
+	return NewNameFormatter(
+		PrefixFormats.Abbreviation,
+		NameFormats.GivenNameFamilyName,
+		SuffixFormats.Abbreviation,
+		false,
+	).Format(t)
 }

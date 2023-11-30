@@ -2,7 +2,7 @@
 # D - Dial mode
 
 serialize: 
-    values: pascal-to-kebab-lower
+    value: pascal-to-kebab-lower
 values:
     -   name: Pause2Seconds
     -   name: PauseIndefinite

@@ -1,7 +1,6 @@
 package people
 
 import (
-	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
 	"github.com/boundedinfinity/schema/idiomatic/audit"
 	"github.com/boundedinfinity/schema/idiomatic/id"
 )
@@ -20,16 +19,7 @@ func (t Suffix) Validate(groups ...string) error {
 }
 
 func (t Suffix) String() string {
-	var s string
-	format, _ := slicer.FirstNotZero(t.Format, SuffixFormats.Abbreviation)
-
-	if (format == SuffixFormats.Abbreviation) && len(t.Abbreviation) > 0 {
-		s = t.Abbreviation[0]
-	} else {
-		s = t.Text
-	}
-
-	return s
+	return NewSuffixFormatter(SuffixFormats.Abbreviation).Format(t)
 }
 
 // ///////////////////////////////////////////////////
