@@ -1,6 +1,7 @@
 package messenger
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/boundedinfinity/go-commoner/idiomatic/marshaler"
@@ -17,13 +18,31 @@ func New() *Messenger {
 		people.Name{},
 	)
 
+	repository, err := NewFileMessageRepository("", "")
+
+	if err != nil {
+		panic(err)
+	}
+
 	return &Messenger{
-		marshaler: marshaler,
+		marshaler:  marshaler,
+		repository: repository,
 	}
 }
 
 type Messenger struct {
-	marshaler *marshaler.WrappedMarshaler
+	marshaler  *marshaler.WrappedMarshaler
+	repository MessageRepository
+}
+
+func (t *Messenger) Close() error {
+	var errs []error
+
+	if err := t.repository.Close(); err != nil {
+		errs = append(errs, err)
+	}
+
+	return errors.Join(errs...)
 }
 
 func (t *Messenger) Marshal(item any) ([]byte, error) {

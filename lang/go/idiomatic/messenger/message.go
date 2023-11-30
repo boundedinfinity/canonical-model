@@ -1,8 +1,23 @@
 package messenger
 
-import "github.com/boundedinfinity/rfc3339date"
+import (
+	"encoding/json"
 
-type Message[T any] struct {
+	"github.com/boundedinfinity/rfc3339date"
+)
+
+type RawMessage struct {
+	Timestamp rfc3339date.Rfc3339DateTime
+	Type      string
+	Value     json.RawMessage
+}
+
+type StoredMessage struct {
+	IngestedTimestamp rfc3339date.Rfc3339DateTime
+	RawMessage
+}
+
+type TypedMessage[T any] struct {
 	Timestamp rfc3339date.Rfc3339DateTime
 	Type      string
 	Value     T
