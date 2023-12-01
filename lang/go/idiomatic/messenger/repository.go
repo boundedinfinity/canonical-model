@@ -5,7 +5,7 @@ import (
 )
 
 type MessageRepository interface {
-	Store(...RawMessage) error
-	Load(rfc3339date.Rfc3339DateTime) (chan StoredMessage, error)
+	Store(...Message) error
+	Load(rfc3339date.Rfc3339DateTime) (chan Message, error)
 	Close() error
 }

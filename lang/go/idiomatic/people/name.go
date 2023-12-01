@@ -3,7 +3,6 @@ package people
 import (
 	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
-	"github.com/boundedinfinity/schema/idiomatic/audit"
 	"github.com/boundedinfinity/schema/idiomatic/id"
 )
 
@@ -21,13 +20,12 @@ func NewNameMessage(name Name) NameMessage {
 // ///////////////////////////////////////////////////
 
 type Name struct {
-	Id          id.Id       `json:"id,omitempty"`
-	Prefixes    []Prefix    `json:"prefixes,omitempty"`
-	GivenNames  []string    `json:"given-names,omitempty"`
-	FamilyNames []string    `json:"family-names,omitempty"`
-	Suffixes    []Suffix    `json:"suffixes,omitempty"`
-	Format      NameFormat  `json:"ordering,omitempty"`
-	Audit       audit.Audit `json:"audit,omitempty"`
+	Id          id.Id      `json:"id,omitempty"`
+	Prefixes    []Prefix   `json:"prefixes,omitempty"`
+	GivenNames  []string   `json:"given-names,omitempty"`
+	FamilyNames []string   `json:"family-names,omitempty"`
+	Suffixes    []Suffix   `json:"suffixes,omitempty"`
+	Format      NameFormat `json:"ordering,omitempty"`
 }
 
 func (t Name) Validate(groups ...string) error {

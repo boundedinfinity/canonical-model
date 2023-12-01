@@ -2,7 +2,6 @@ package physical_card
 
 import (
 	"github.com/boundedinfinity/rfc3339date"
-	"github.com/boundedinfinity/schema/idiomatic/audit"
 	"github.com/boundedinfinity/schema/idiomatic/banking"
 	"github.com/boundedinfinity/schema/idiomatic/finanical"
 	"github.com/boundedinfinity/schema/idiomatic/id"
@@ -31,5 +30,4 @@ type CreditCard struct {
 	Phone          phone.NanpNumber        `json:"phone,omitempty"`
 	Issuer         banking.Bank            `json:"issuer,omitempty"`
 	Site           website.PortalWebSite   `json:"site,omitempty"`
-	Audit          audit.Audit             `json:"audit,omitempty"`
 }

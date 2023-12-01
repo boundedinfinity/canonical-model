@@ -1,4 +1,4 @@
-package audit
+package persistence
 
 import (
 	"github.com/boundedinfinity/rfc3339date"
@@ -6,7 +6,7 @@ import (
 
 func New() Audit {
 	a := Audit{
-		CreatedAt: rfc3339date.DateTimeNow(),
+		CreatedAt: rfc3339date.DateTimes.Now(),
 	}
 	a.MarkUpdate()
 	return a
@@ -18,5 +18,5 @@ type Audit struct {
 }
 
 func (t *Audit) MarkUpdate() {
-	t.ModifedOn = append(t.ModifedOn, rfc3339date.DateTimeNow())
+	t.ModifedOn = append(t.ModifedOn, rfc3339date.DateTimes.Now())
 }

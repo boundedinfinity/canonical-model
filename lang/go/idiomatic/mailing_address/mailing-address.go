@@ -1,15 +1,10 @@
 package mailing_address
 
 import (
-	"github.com/boundedinfinity/go-commoner/idiomatic/reflect"
+	"github.com/boundedinfinity/go-commoner/idiomatic/reflecter"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
-	"github.com/boundedinfinity/schema/idiomatic/audit"
 	"github.com/boundedinfinity/schema/idiomatic/id"
 	"github.com/boundedinfinity/schema/idiomatic/location"
-)
-
-var (
-	addressZero = MailingAddress{}
 )
 
 type MailingAddress struct {
@@ -18,12 +13,10 @@ type MailingAddress struct {
 	City  location.City  `json:"city,omitempty"`
 	State location.State `json:"state,omitempty"`
 	Zip   Zip            `json:"zip,omitempty"`
-	Audit audit.Audit    `json:"audit,omitempty"`
-	audit.LimitedLifetime
 }
 
 func (t MailingAddress) IsZero() bool {
-	return reflect.Instances.IsZero(t)
+	return reflecter.Instances.IsZero(t)
 }
 
 func (t MailingAddress) String() string {

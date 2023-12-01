@@ -6,7 +6,7 @@ require (
 	github.com/boundedinfinity/enumer v1.0.17
 	github.com/boundedinfinity/go-commoner v1.0.28
 	github.com/boundedinfinity/go-mimetyper v1.0.17
-	github.com/boundedinfinity/rfc3339date v1.0.6
+	github.com/boundedinfinity/rfc3339date v1.0.7
 	github.com/google/uuid v1.3.1
 	github.com/stretchr/testify v1.8.4
 )

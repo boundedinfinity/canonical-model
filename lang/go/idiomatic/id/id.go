@@ -1,6 +1,11 @@
 package id
 
-import "github.com/google/uuid"
+import (
+	"encoding/json"
+
+	"github.com/boundedinfinity/go-commoner/idiomatic/reflecter"
+	"github.com/google/uuid"
+)
 
 type Id struct {
 	uuid.UUID
@@ -8,6 +13,18 @@ type Id struct {
 
 func (t Id) String() string {
 	return t.UUID.String()
+}
+
+func (t Id) IsZero() bool {
+	return reflecter.Instances.IsZero(t)
+}
+
+func (t Id) MarshalJSON() ([]byte, error) {
+	if t.IsZero() {
+		return json.Marshal(nil)
+	}
+
+	return json.Marshal(t.String())
 }
 
 var (

@@ -2,7 +2,6 @@ package banking
 
 import (
 	"github.com/boundedinfinity/rfc3339date"
-	"github.com/boundedinfinity/schema/idiomatic/audit"
 	"github.com/boundedinfinity/schema/idiomatic/id"
 )
 
@@ -18,5 +17,4 @@ type BankAccount struct {
 	OpeningDate rfc3339date.Rfc3339Date `json:"opening-date,omitempty"`
 	ClosingDate rfc3339date.Rfc3339Date `json:"closing-date,omitempty"`
 	Bank        Bank                    `json:"bank,omitempty"`
-	Audit       audit.Audit             `json:"audit,omitempty"`
 }

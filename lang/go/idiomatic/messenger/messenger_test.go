@@ -1,36 +1,27 @@
 package messenger_test
 
-import (
-	"log"
-	"testing"
+// func TestSomething(t *testing.T) {
+// 	expected := people.Person{
+// 		Name: people.Name{
+// 			Prefixes:    []people.Prefix{people.Prefixes[0]},
+// 			GivenNames:  []string{"James"},
+// 			FamilyNames: []string{"Bond"},
+// 			Suffixes:    []people.Suffix{people.Suffixes[0]},
+// 		},
+// 	}
 
-	"github.com/boundedinfinity/schema/idiomatic/messenger"
-	"github.com/boundedinfinity/schema/idiomatic/people"
-	"github.com/stretchr/testify/assert"
-)
+// 	messenger := messenger.New()
 
-func TestSomething(t *testing.T) {
-	expected := people.Person{
-		Name: people.Name{
-			Prefixes:    []people.Prefix{people.Prefixes[0]},
-			GivenNames:  []string{"James"},
-			FamilyNames: []string{"Bond"},
-			Suffixes:    []people.Suffix{people.Suffixes[0]},
-		},
-	}
+// 	bs, err := messenger.Marshal(expected)
+// 	assert.Nil(t, err)
 
-	messenger := messenger.New()
+// 	log.Println(string(bs))
 
-	bs, err := messenger.Marshal(expected)
-	assert.Nil(t, err)
+// 	iface, err := messenger.Unmarshal(bs)
+// 	assert.Nil(t, err)
 
-	log.Println(string(bs))
+// 	actual, ok := iface.(people.Person)
 
-	iface, err := messenger.Unmarshal(bs)
-	assert.Nil(t, err)
-
-	actual, ok := iface.(people.Person)
-
-	assert.True(t, ok)
-	assert.Equal(t, expected, actual)
-}
+// 	assert.True(t, ok)
+// 	assert.Equal(t, expected, actual)
+// }

@@ -63,9 +63,9 @@ type fileMessageRepository struct {
 
 var _ MessageRepository = &fileMessageRepository{}
 
-func (t *fileMessageRepository) Store(messages ...RawMessage) error {
+func (t *fileMessageRepository) Store(messages ...Message) error {
 	for _, message := range messages {
-		if _, err := t.store(message); err != nil {
+		if err := t.store(message); err != nil {
 			return err
 		}
 	}
@@ -90,29 +90,24 @@ func (t *fileMessageRepository) Close() error {
 	return errors.Join(errs...)
 }
 
-func (t *fileMessageRepository) store(message RawMessage) (StoredMessage, error) {
-	var stored StoredMessage
-
-	stored.IngestedTimestamp = rfc3339date.DateTimeNow()
-	stored.RawMessage = message
-
-	bs, err := json.Marshal(stored)
+func (t *fileMessageRepository) store(message Message) error {
+	bs, err := json.Marshal(message)
 
 	if err != nil {
-		return stored, err
+		return err
 	}
 
 	_, err = t.logFile.Write(bs)
 
 	if err != nil {
-		return stored, err
+		return err
 	}
 
-	return stored, nil
+	return nil
 }
 
-func (t *fileMessageRepository) Load(after rfc3339date.Rfc3339DateTime) (chan StoredMessage, error) {
-	ch := make(chan StoredMessage)
+func (t *fileMessageRepository) Load(after rfc3339date.Rfc3339DateTime) (chan Message, error) {
+	ch := make(chan Message)
 
 	go func() {
 		defer close(ch)
@@ -120,7 +115,7 @@ func (t *fileMessageRepository) Load(after rfc3339date.Rfc3339DateTime) (chan St
 		scanner := bufio.NewScanner(t.logFile)
 
 		for scanner.Scan() {
-			var stored StoredMessage
+			var stored Message
 
 			if err := json.Unmarshal(scanner.Bytes(), &stored); err != nil {
 				t.errFile.WriteString(err.Error())

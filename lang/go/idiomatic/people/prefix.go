@@ -1,7 +1,6 @@
 package people
 
 import (
-	"github.com/boundedinfinity/schema/idiomatic/audit"
 	"github.com/boundedinfinity/schema/idiomatic/id"
 )
 
@@ -15,7 +14,6 @@ type Prefix struct {
 	Text         string       `json:"text,omitempty"`
 	Abbreviation []string     `json:"abbreviation,omitempty"`
 	Format       PrefixFormat `json:"format,omitempty"`
-	Audit        audit.Audit  `json:"audit,omitempty"`
 }
 
 func (t Prefix) String() string {

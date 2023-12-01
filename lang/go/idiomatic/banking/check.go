@@ -2,7 +2,6 @@ package banking
 
 import (
 	"github.com/boundedinfinity/rfc3339date"
-	"github.com/boundedinfinity/schema/idiomatic/audit"
 	"github.com/boundedinfinity/schema/idiomatic/contact"
 	"github.com/boundedinfinity/schema/idiomatic/currency"
 	"github.com/boundedinfinity/schema/idiomatic/id"
@@ -22,5 +21,4 @@ type BankingCheck struct {
 	IssuedOnDate     rfc3339date.Rfc3339Date        `json:"issued-on-date,omitempty"`
 	CashedOnDate     rfc3339date.Rfc3339Date        `json:"cashed-on-date,omitempty"`
 	ValidThroughDate rfc3339date.Rfc3339Date        `json:"valid-through-date,omitempty"`
-	Audit            audit.Audit                    `json:"audit,omitempty"`
 }

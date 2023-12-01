@@ -1,4 +1,4 @@
-package audit
+package persistence
 
 import "github.com/boundedinfinity/rfc3339date"
 
@@ -8,9 +8,9 @@ type LimitedLifetime struct {
 }
 
 func (t *LimitedLifetime) MarkStart() {
-	t.StartDate = rfc3339date.DateNow()
+	t.StartDate = rfc3339date.Dates.Now()
 }
 
 func (t *LimitedLifetime) MarkEnd() {
-	t.EndDate = rfc3339date.DateNow()
+	t.EndDate = rfc3339date.Dates.Now()
 }

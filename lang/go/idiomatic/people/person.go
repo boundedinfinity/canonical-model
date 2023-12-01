@@ -10,11 +10,11 @@ import (
 // ///////////////////////////////////////////////////
 
 type Person struct {
-	Id         id.Id        `json:"id,omitempty"`
-	Name       Name         `json:"name,omitempty"`
-	Pseudonyms []Name       `json:"pseudonyms,omitempty"`
-	Physical   Measurements `json:"measurements,omitempty"`
-	Dates      Dates        `json:"dates,omitempty"`
+	Id          id.Id        `json:"id,omitempty"`
+	Name        Name         `json:"name,omitempty"`
+	Pseudonyms  []Name       `json:"pseudonyms,omitempty"`
+	Measurement Measurements `json:"measurements,omitempty"`
+	Dates       Dates        `json:"dates,omitempty"`
 }
 
 func (t Person) String() string {

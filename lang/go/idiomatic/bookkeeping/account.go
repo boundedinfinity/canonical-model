@@ -2,7 +2,6 @@ package bookkeeping
 
 import (
 	"github.com/boundedinfinity/rfc3339date"
-	"github.com/boundedinfinity/schema/idiomatic/audit"
 	"github.com/boundedinfinity/schema/idiomatic/authentication"
 	"github.com/boundedinfinity/schema/idiomatic/banking"
 	"github.com/boundedinfinity/schema/idiomatic/business"
@@ -18,7 +17,6 @@ type Account struct {
 	Description string               `json:"description,omitempty"`
 	Parent      *Account             `json:"parent,omitempty"`
 	Children    []*Account           `json:"children,omitempty"`
-	Audit       audit.Audit          `json:"audit,omitempty"`
 	BankAccount *banking.BankAccount `json:"bank-account,omitempty"`
 	Business    *business.Business   `json:"business,omitempty"`
 }
