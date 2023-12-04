@@ -36,6 +36,8 @@ func NewMarshaller() *EventMarshaler {
 
 	km.km.RegisterType(people.PersonEvent{}.Value.TypeName(), people.PersonEvent{})
 	km.km.RegisterType(people.NameEvent{}.Value.TypeName(), people.NameEvent{})
+	km.km.RegisterType(people.PrefixEvent{}.Value.TypeName(), people.PrefixEvent{})
+	km.km.RegisterType(people.SuffixEvent{}.Value.TypeName(), people.SuffixEvent{})
 
 	return &km
 }
