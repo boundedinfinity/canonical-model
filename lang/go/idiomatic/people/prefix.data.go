@@ -34,7 +34,8 @@ func (t prefixes) MustFind(s string) Prefix {
 
 var (
 	zeroPrefix Prefix
-	Prefixes   = prefixes{
+
+	Prefixes = prefixes{
 		{
 			Id:           id.MustParse("b5a5b96c-5955-44c4-8d53-2c7fd1090a02"),
 			Text:         "Mister",

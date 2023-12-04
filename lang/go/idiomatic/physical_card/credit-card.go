@@ -31,3 +31,9 @@ type CreditCard struct {
 	Issuer         banking.Bank            `json:"issuer,omitempty"`
 	Site           website.PortalWebSite   `json:"site,omitempty"`
 }
+
+var _ id.TypeNamer = &CreditCard{}
+
+func (t CreditCard) TypeName() string {
+	return id.TypeNamers.Dotted(CreditCard{})
+}

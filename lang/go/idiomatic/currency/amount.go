@@ -7,3 +7,9 @@ type CurrencyAmount struct {
 	Type    CurrencyType `json:"type,omitempty"`
 	Account float32      `json:"account,omitempty"`
 }
+
+var _ id.TypeNamer = &CurrencyAmount{}
+
+func (t CurrencyAmount) TypeName() string {
+	return id.TypeNamers.Dotted(CurrencyAmount{})
+}

@@ -23,6 +23,12 @@ type NanpNumber struct {
 	Format          NanpPhoneFormat          `json:"format,omitempty"`
 }
 
+var _ id.TypeNamer = &NanpNumber{}
+
+func (t NanpNumber) TypeName() string {
+	return id.TypeNamers.Dotted(NanpNumber{})
+}
+
 func (t NanpNumber) String() string {
 	var sb stringer.Builder[string]
 	format, _ := slicer.FirstNotZero(t.Format, NanpPhoneFormats.Common)

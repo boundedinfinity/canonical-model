@@ -17,3 +17,9 @@ type DriverLicense struct {
 	IssueDate      rfc3339date.Rfc3339Date `json:"issue-date,omitempty"`
 	ExpirationDate rfc3339date.Rfc3339Date `json:"expiration-date,omitempty"`
 }
+
+var _ id.TypeNamer = &DriverLicense{}
+
+func (t DriverLicense) TypeName() string {
+	return id.TypeNamers.Dotted(DriverLicense{})
+}

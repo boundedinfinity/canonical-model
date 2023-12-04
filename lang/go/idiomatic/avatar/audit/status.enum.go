@@ -6,7 +6,7 @@
 //*                                                                                  *
 //************************************************************************************
 
-package persistence
+package audit
 
 import (
 	"database/sql/driver"

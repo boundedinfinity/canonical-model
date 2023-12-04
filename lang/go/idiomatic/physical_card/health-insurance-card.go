@@ -18,3 +18,9 @@ type HealthInsuranceCard struct {
 	IssueDate      rfc3339date.Rfc3339Date    `json:"issue-date,omitempty"`
 	ExpirationDate rfc3339date.Rfc3339Date    `json:"expiration-date,omitempty"`
 }
+
+var _ id.TypeNamer = &HealthInsuranceCard{}
+
+func (t HealthInsuranceCard) TypeName() string {
+	return id.TypeNamers.Dotted(HealthInsuranceCard{})
+}

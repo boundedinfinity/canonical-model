@@ -17,6 +17,12 @@ type Person struct {
 	Dates       Dates        `json:"dates,omitempty"`
 }
 
+var _ id.TypeNamer = &Person{}
+
+func (t Person) TypeName() string {
+	return id.TypeNamers.Dotted(Person{})
+}
+
 func (t Person) String() string {
 	return t.Name.String()
 }

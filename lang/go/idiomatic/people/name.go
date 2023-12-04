@@ -28,6 +28,12 @@ type Name struct {
 	Format      NameFormat `json:"ordering,omitempty"`
 }
 
+var _ id.TypeNamer = &Name{}
+
+func (t Name) TypeName() string {
+	return id.TypeNamers.Dotted(Name{})
+}
+
 func (t Name) Validate(groups ...string) error {
 	// for i, prefix := range t.Prefixes.Get() {
 	// 	if err := prefix.Validate(); err != nil {

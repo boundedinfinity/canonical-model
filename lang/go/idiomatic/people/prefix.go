@@ -16,6 +16,12 @@ type Prefix struct {
 	Format       PrefixFormat `json:"format,omitempty"`
 }
 
+var _ id.TypeNamer = &Prefix{}
+
+func (t Prefix) TypeName() string {
+	return id.TypeNamers.Dotted(Prefix{})
+}
+
 func (t Prefix) String() string {
 	return NewPrefixFormatter(PrefixFormats.Abbreviation).Format(t)
 }
@@ -23,92 +29,3 @@ func (t Prefix) String() string {
 func (t Prefix) Validate(groups ...string) error {
 	return nil
 }
-
-// ///////////////////////////////////////////////////
-// Builder
-// ///////////////////////////////////////////////////
-
-// type prefixFn func(*Prefix) error
-
-// type prefixBuilder struct {
-// 	fns []prefixFn
-// }
-
-// func BuildPrefix() *prefixBuilder {
-// 	return &prefixBuilder{
-// 		fns: make([]prefixFn, 0),
-// 	}
-// }
-
-// func (t *prefixBuilder) Build() (Prefix, error) {
-// 	var v Prefix
-
-// 	for _, fn := range t.fns {
-// 		if err := fn(&v); err != nil {
-// 			return v, err
-// 		}
-// 	}
-
-// 	return v, nil
-// }
-
-// func (t *prefixBuilder) Must() Prefix {
-// 	v, err := t.Build()
-
-// 	if err != nil {
-// 		panic(err)
-// 	}
-
-// 	return v
-// }
-
-// func (t *prefixBuilder) Id(v string) *prefixBuilder {
-// 	t.fns = append(t.fns, func(p *Prefix) error {
-// 		id, err := id.Parse(v)
-
-// 		if err != nil {
-// 			return err
-// 		}
-
-// 		p.Id = id
-// 		return nil
-// 	})
-
-// 	return t
-// }
-
-// func (t *prefixBuilder) Text(v string) *prefixBuilder {
-// 	t.fns = append(t.fns, func(p *Prefix) error {
-// 		p.Text = v
-// 		return nil
-// 	})
-
-// 	return t
-// }
-
-// func (t *prefixBuilder) Abbreviation(v string) error {
-// 	t.fns = append(t.fns, func(p *Prefix) error {
-// 		p.Abbreviation = append(p.Abbreviation, v)
-// 		return nil
-// 	})
-
-// 	return nil
-// }
-
-// func (t *prefixBuilder) Description(v string) *prefixBuilder {
-// 	t.fns = append(t.fns, func(p *Prefix) error {
-// 		p.Description = v
-// 		return nil
-// 	})
-
-// 	return t
-// }
-
-// func (t *prefixBuilder) Format(v PrefixFormat) *prefixBuilder {
-// 	t.fns = append(t.fns, func(p *Prefix) error {
-// 		p.Format = v
-// 		return nil
-// 	})
-
-// 	return t
-// }

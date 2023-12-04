@@ -7,6 +7,12 @@ type Fax struct {
 	Number NanpNumber `json:"number,omitempty"`
 }
 
+var _ id.TypeNamer = &Fax{}
+
+func (t Fax) TypeName() string {
+	return id.TypeNamers.Dotted(Fax{})
+}
+
 func (t Fax) String() string {
 	return t.Number.String()
 }

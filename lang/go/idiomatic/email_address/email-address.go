@@ -11,3 +11,9 @@ type EmailAddress struct {
 	StartDate rfc3339date.Rfc3339Date `json:"start-date,omitempty"`
 	EndDate   rfc3339date.Rfc3339Date `json:"end-date,omitempty"`
 }
+
+var _ id.TypeNamer = &EmailAddress{}
+
+func (t EmailAddress) TypeName() string {
+	return id.TypeNamers.Dotted(EmailAddress{})
+}

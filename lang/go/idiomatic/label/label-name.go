@@ -10,3 +10,9 @@ type LabelName struct {
 	Abbreviation string `json:"abbreviation,omitempty"`
 	Description  string `json:"description,omitempty"`
 }
+
+var _ id.TypeNamer = &LabelName{}
+
+func (t LabelName) TypeName() string {
+	return id.TypeNamers.Dotted(LabelName{})
+}

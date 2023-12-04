@@ -1,4 +1,4 @@
-package persistence
+package audit
 
 import (
 	"github.com/boundedinfinity/rfc3339date"

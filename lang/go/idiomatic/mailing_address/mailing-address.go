@@ -15,6 +15,12 @@ type MailingAddress struct {
 	Zip   Zip            `json:"zip,omitempty"`
 }
 
+var _ id.TypeNamer = &MailingAddress{}
+
+func (t MailingAddress) TypeName() string {
+	return id.TypeNamers.Dotted(MailingAddress{})
+}
+
 func (t MailingAddress) IsZero() bool {
 	return reflecter.Instances.IsZero(t)
 }
