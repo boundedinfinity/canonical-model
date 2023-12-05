@@ -5,7 +5,7 @@ import (
 	"github.com/boundedinfinity/schema/idiomatic/id"
 )
 
-type BankingSavingsStatement struct {
+type SavingsStatement struct {
 	Id              id.Id                   `json:"id,omitempty"`
 	Account         BankAccount             `json:"account,omitempty"`
 	BeginningOnDate rfc3339date.Rfc3339Date `json:"begin-on-date,omitempty"`
