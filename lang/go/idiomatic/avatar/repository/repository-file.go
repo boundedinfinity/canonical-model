@@ -103,7 +103,9 @@ func (t *fileMessageRepository) Load(after rfc3339date.Rfc3339DateTime) error {
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
-		if err := t.mashaler.Unmarshal(scanner.Bytes()); err != nil {
+		_, err := t.mashaler.Unmarshal(scanner.Bytes())
+
+		if err != nil {
 			t.saveErr(err)
 		}
 	}

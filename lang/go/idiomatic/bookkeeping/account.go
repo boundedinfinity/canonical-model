@@ -28,12 +28,12 @@ type Movement struct {
 }
 
 type Transaction struct {
-	Id          id.Id                       `json:"id,omitempty"`
-	Movement    []Movement                  `json:"movement,omitempty"`
-	Amount      float32                     `json:"amount,omitempty"`
-	Description string                      `json:"description,omitempty"`
-	CheckNumber int                         `json:"check-number,omitempty"`
-	Attachments []digital_document.Document `json:"attachements,omitempty"`
+	Id          id.Id                         `json:"id,omitempty"`
+	Movement    []Movement                    `json:"movement,omitempty"`
+	Amount      float32                       `json:"amount,omitempty"`
+	Description string                        `json:"description,omitempty"`
+	CheckNumber int                           `json:"check-number,omitempty"`
+	Attachments []digital_document.DocumentV1 `json:"attachements,omitempty"`
 }
 
 type Vendor struct {

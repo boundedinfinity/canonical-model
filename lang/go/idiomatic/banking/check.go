@@ -23,5 +23,5 @@ type BankingCheck struct {
 	RecievedOnDate   rfc3339date.Rfc3339Date        `json:"recieved-on-date,omitempty"`
 	CashedOnDate     rfc3339date.Rfc3339Date        `json:"cashed-on-date,omitempty"`
 	ValidThroughDate rfc3339date.Rfc3339Date        `json:"valid-through-date,omitempty"`
-	Capture          digital_document.Document      `json:"capture,omitempty"`
+	Capture          digital_document.DocumentV1    `json:"capture,omitempty"`
 }

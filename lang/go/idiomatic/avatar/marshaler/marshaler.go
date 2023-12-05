@@ -9,19 +9,15 @@ import (
 
 type EventMarshaler struct {
 	// tm *TypeMapper
-	km *marshaler.KindMarshaler[string, model.EventTypeDiscriminator]
+	km *marshaler.KindMarshaler[model.EventTypeDiscriminator]
 }
 
 func (t EventMarshaler) Marshal(val any) ([]byte, error) {
 	return t.km.Marshal(val)
 }
 
-func (t EventMarshaler) Unmarshal(bs []byte) error {
+func (t EventMarshaler) Unmarshal(bs []byte) (any, error) {
 	return t.km.Unmarshal(bs)
-}
-
-func (t EventMarshaler) RegisterHandlerFn(handler func(string, any)) {
-	t.km.RegisterHandlerFn(handler)
 }
 
 func (t *EventMarshaler) Formatted(v bool) {
@@ -30,14 +26,12 @@ func (t *EventMarshaler) Formatted(v bool) {
 
 func NewMarshaller() *EventMarshaler {
 	km := EventMarshaler{
-		km: marshaler.NewKind[string, model.EventTypeDiscriminator](),
+		km: marshaler.NewKind(
+			model.EventTypeDiscriminator{},
+			func(d model.EventTypeDiscriminator) string { return d.Header.Type },
+		),
 		// tm: NewAvatarTypes(),
 	}
-
-	km.km.RegisterDescriminator(
-		model.EventTypeDiscriminator{},
-		func(d model.EventTypeDiscriminator) string { return d.Header.Type },
-	)
 
 	// for _, info := range km.tm.Slice() {
 	// 	km.km.RegisterValue(info.typeName, info.typ)

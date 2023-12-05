@@ -19,7 +19,7 @@ func NewAvatarTypes() *TypeMapper {
 	return tm
 }
 
-func registerAvatarTypes(tm *marshaler.KindMarshaler[string, model.EventTypeDiscriminator]) {
+func registerAvatarTypes(tm *marshaler.KindMarshaler[model.EventTypeDiscriminator]) {
 	tm.RegisterValue(people.PersonEvent{}.Value.TypeName(), people.PersonEvent{})
 	tm.RegisterValue(people.NameEvent{}.Value.TypeName(), people.NameEvent{})
 	tm.RegisterValue(people.PrefixEvent{}.Value.TypeName(), people.PrefixEvent{})
