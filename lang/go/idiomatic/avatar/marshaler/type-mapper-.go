@@ -5,6 +5,7 @@ import (
 
 	"github.com/boundedinfinity/go-commoner/idiomatic/mapper"
 	"github.com/boundedinfinity/go-commoner/idiomatic/reflecter"
+	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
 	"github.com/boundedinfinity/schema/idiomatic/id"
 )
 
@@ -14,11 +15,26 @@ type TypeMapperInfo struct {
 	typ      reflect.Type
 }
 
+func NewTypeMapper() *TypeMapper {
+	return &TypeMapper{
+		langToType: make(mapper.Mapper[string, string]),
+		typeToLang: make(mapper.Mapper[string, string]),
+		langToInfo: make(mapper.Mapper[string, *TypeMapperInfo]),
+		typeToInfo: make(mapper.Mapper[string, *TypeMapperInfo]),
+	}
+}
+
 type TypeMapper struct {
 	langToType mapper.Mapper[string, string]
 	typeToLang mapper.Mapper[string, string]
 	langToInfo mapper.Mapper[string, *TypeMapperInfo]
 	typeToInfo mapper.Mapper[string, *TypeMapperInfo]
+}
+
+func (t *TypeMapper) Slice() []TypeMapperInfo {
+	return slicer.Map(func(info *TypeMapperInfo) TypeMapperInfo {
+		return *info
+	}, t.typeToInfo.Values()...)
 }
 
 func (t *TypeMapper) ByValue(val any) (TypeMapperInfo, bool) {
