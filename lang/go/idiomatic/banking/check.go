@@ -19,6 +19,7 @@ type BankingCheck struct {
 	Memo             string                         `json:"memo,omitempty"`
 	Address          mailing_address.MailingAddress `json:"mailing-address,omitempty"`
 	IssuedOnDate     rfc3339date.Rfc3339Date        `json:"issued-on-date,omitempty"`
+	RecievedOnDate   rfc3339date.Rfc3339Date        `json:"recieved-on-date,omitempty"`
 	CashedOnDate     rfc3339date.Rfc3339Date        `json:"cashed-on-date,omitempty"`
 	ValidThroughDate rfc3339date.Rfc3339Date        `json:"valid-through-date,omitempty"`
 }
