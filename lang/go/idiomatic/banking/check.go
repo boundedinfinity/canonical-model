@@ -4,6 +4,7 @@ import (
 	"github.com/boundedinfinity/rfc3339date"
 	"github.com/boundedinfinity/schema/idiomatic/contact"
 	"github.com/boundedinfinity/schema/idiomatic/currency"
+	"github.com/boundedinfinity/schema/idiomatic/digital_document"
 	"github.com/boundedinfinity/schema/idiomatic/id"
 	"github.com/boundedinfinity/schema/idiomatic/mailing_address"
 )
@@ -22,4 +23,5 @@ type BankingCheck struct {
 	RecievedOnDate   rfc3339date.Rfc3339Date        `json:"recieved-on-date,omitempty"`
 	CashedOnDate     rfc3339date.Rfc3339Date        `json:"cashed-on-date,omitempty"`
 	ValidThroughDate rfc3339date.Rfc3339Date        `json:"valid-through-date,omitempty"`
+	Capture          digital_document.Document      `json:"capture,omitempty"`
 }
