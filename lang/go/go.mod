@@ -1,6 +1,6 @@
 module github.com/boundedinfinity/schema
 
-go 1.18
+go 1.21
 
 require (
 	github.com/boundedinfinity/enumer v1.0.17
