@@ -1,5 +1,5 @@
-github.com/boundedinfinity/enumer v1.0.17 h1:XO07YLsuI9VmXyXC7TIWRVIBWCKrVdVO7we9Vav7/Vg=
-github.com/boundedinfinity/enumer v1.0.17/go.mod h1:rsrKX6uY3J92TIpitbDlAPUrk1lTKsTs2Br+eJEETuw=
+github.com/boundedinfinity/enumer v1.0.20 h1:coVM/bB373w+ewS0j1imqD7cyPBPcH/fxPoJZuDBfE8=
+github.com/boundedinfinity/enumer v1.0.20/go.mod h1:cNx3qFL4F5QDu8CJ0QFFQK6kfTqyFLHfGNhQdqTK7tY=
 github.com/boundedinfinity/go-mimetyper v1.0.17 h1:puJVZJuWFmKGL+129yg+37StknCwVKXlZsNE6ggh+s4=
 github.com/boundedinfinity/go-mimetyper v1.0.17/go.mod h1:tx/mqBQyCcmxCIkSeDuZbCyn2Uklk4U1LzU8i7GozK8=
 github.com/boundedinfinity/rfc3339date v1.0.7 h1:LYzOmzEwPX0d2k2uCyDt1c5NwWp3RX2up3h/IEz9IoU=

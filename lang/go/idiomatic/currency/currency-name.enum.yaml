@@ -1,0 +1,8 @@
+
+# https://en.wikipedia.org/wiki/ISO_4217
+
+values:
+    -   name: United States Dollar
+        value: USD
+    -   name: Euro
+        value: EUR

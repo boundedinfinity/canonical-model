@@ -1,7 +1,22 @@
 package currency
 
-import "github.com/boundedinfinity/schema/idiomatic/id"
-
 type CurrencyType struct {
-	Id id.Id `json:"id,omitempty"`
+	Code CurrencyCode `json:"code,omitempty"`
+	Name CurrencyName `json:"name,omitempty"`
+}
+
+var CurrencyTypes = currentTypes{
+	USD: CurrencyType{
+		Code: CurrencyCodes.USD,
+		Name: CurrencyNames.UnitedStatesDollar,
+	},
+	EUR: CurrencyType{
+		Code: CurrencyCodes.EUR,
+		Name: CurrencyNames.Euro,
+	},
+}
+
+type currentTypes struct {
+	USD CurrencyType
+	EUR CurrencyType
 }

@@ -10,6 +10,7 @@ package location
 
 import (
 	"database/sql/driver"
+	"encoding/xml"
 	"fmt"
 
 	"github.com/boundedinfinity/enumer"
@@ -47,6 +48,18 @@ func (t StateName) MarshalYAML() (interface{}, error) {
 
 func (t *StateName) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	return enumer.UnmarshalYAML(unmarshal, t, StateNames.Parse)
+}
+
+// /////////////////////////////////////////////////////////////////
+//  StateName XML marshal/unmarshal implemenation
+// /////////////////////////////////////////////////////////////////
+
+func (t StateName) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return enumer.MarshalXML(t, e, start)
+}
+
+func (t *StateName) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	return enumer.UnmarshalXML(t, StateNames.Parse, d, start)
 }
 
 // /////////////////////////////////////////////////////////////////

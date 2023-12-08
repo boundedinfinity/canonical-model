@@ -1,6 +1,5 @@
 # https://en.wikipedia.org/wiki/Federal_Reserve_Bank
 
-# serialize: phrase-to-kebab-lower
 values:
     -   name: Boston
         value: Federal Reserve Bank of Boston

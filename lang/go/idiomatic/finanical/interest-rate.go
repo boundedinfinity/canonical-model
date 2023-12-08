@@ -3,6 +3,10 @@ package finanical
 type InterestRateTerm string
 
 type InterestRate struct {
-	Term    InterestRateTerm `json:"term,omitempty"`
 	Percent float32          `json:"percent,omitempty"`
+	Type    InterestRateType `json:"type,omitempty"`
+}
+
+type AnnualPercentageRate struct {
+	Percent float32 `json:"percent,omitempty"`
 }

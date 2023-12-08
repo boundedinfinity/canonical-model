@@ -10,6 +10,7 @@ package json_schema
 
 import (
 	"database/sql/driver"
+	"encoding/xml"
 	"fmt"
 
 	"github.com/boundedinfinity/enumer"
@@ -47,6 +48,18 @@ func (t Type) MarshalYAML() (interface{}, error) {
 
 func (t *Type) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	return enumer.UnmarshalYAML(unmarshal, t, Types.Parse)
+}
+
+// /////////////////////////////////////////////////////////////////
+//  Type XML marshal/unmarshal implemenation
+// /////////////////////////////////////////////////////////////////
+
+func (t Type) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return enumer.MarshalXML(t, e, start)
+}
+
+func (t *Type) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	return enumer.UnmarshalXML(t, Types.Parse, d, start)
 }
 
 // /////////////////////////////////////////////////////////////////

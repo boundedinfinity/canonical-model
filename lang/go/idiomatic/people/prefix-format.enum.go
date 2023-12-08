@@ -10,6 +10,7 @@ package people
 
 import (
 	"database/sql/driver"
+	"encoding/xml"
 	"fmt"
 
 	"github.com/boundedinfinity/enumer"
@@ -47,6 +48,18 @@ func (t PrefixFormat) MarshalYAML() (interface{}, error) {
 
 func (t *PrefixFormat) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	return enumer.UnmarshalYAML(unmarshal, t, PrefixFormats.Parse)
+}
+
+// /////////////////////////////////////////////////////////////////
+//  PrefixFormat XML marshal/unmarshal implemenation
+// /////////////////////////////////////////////////////////////////
+
+func (t PrefixFormat) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return enumer.MarshalXML(t, e, start)
+}
+
+func (t *PrefixFormat) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	return enumer.UnmarshalXML(t, PrefixFormats.Parse, d, start)
 }
 
 // /////////////////////////////////////////////////////////////////

@@ -10,6 +10,7 @@ package vehicle
 
 import (
 	"database/sql/driver"
+	"encoding/xml"
 	"fmt"
 
 	"github.com/boundedinfinity/enumer"
@@ -47,6 +48,18 @@ func (t WmiRegion) MarshalYAML() (interface{}, error) {
 
 func (t *WmiRegion) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	return enumer.UnmarshalYAML(unmarshal, t, WmiRegions.Parse)
+}
+
+// /////////////////////////////////////////////////////////////////
+//  WmiRegion XML marshal/unmarshal implemenation
+// /////////////////////////////////////////////////////////////////
+
+func (t WmiRegion) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return enumer.MarshalXML(t, e, start)
+}
+
+func (t *WmiRegion) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	return enumer.UnmarshalXML(t, WmiRegions.Parse, d, start)
 }
 
 // /////////////////////////////////////////////////////////////////

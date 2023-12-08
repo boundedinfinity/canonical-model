@@ -10,6 +10,7 @@ package hardware
 
 import (
 	"database/sql/driver"
+	"encoding/xml"
 	"fmt"
 
 	"github.com/boundedinfinity/enumer"
@@ -47,6 +48,18 @@ func (t ConnectorType) MarshalYAML() (interface{}, error) {
 
 func (t *ConnectorType) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	return enumer.UnmarshalYAML(unmarshal, t, ConnectorTypes.Parse)
+}
+
+// /////////////////////////////////////////////////////////////////
+//  ConnectorType XML marshal/unmarshal implemenation
+// /////////////////////////////////////////////////////////////////
+
+func (t ConnectorType) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return enumer.MarshalXML(t, e, start)
+}
+
+func (t *ConnectorType) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	return enumer.UnmarshalXML(t, ConnectorTypes.Parse, d, start)
 }
 
 // /////////////////////////////////////////////////////////////////

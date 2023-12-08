@@ -10,6 +10,7 @@ package phone
 
 import (
 	"database/sql/driver"
+	"encoding/xml"
 	"fmt"
 
 	"github.com/boundedinfinity/enumer"
@@ -47,6 +48,18 @@ func (t AtCommand) MarshalYAML() (interface{}, error) {
 
 func (t *AtCommand) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	return enumer.UnmarshalYAML(unmarshal, t, AtCommands.Parse)
+}
+
+// /////////////////////////////////////////////////////////////////
+//  AtCommand XML marshal/unmarshal implemenation
+// /////////////////////////////////////////////////////////////////
+
+func (t AtCommand) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return enumer.MarshalXML(t, e, start)
+}
+
+func (t *AtCommand) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	return enumer.UnmarshalXML(t, AtCommands.Parse, d, start)
 }
 
 // /////////////////////////////////////////////////////////////////

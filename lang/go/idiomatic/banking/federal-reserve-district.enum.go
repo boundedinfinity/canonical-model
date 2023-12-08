@@ -10,6 +10,7 @@ package banking
 
 import (
 	"database/sql/driver"
+	"encoding/xml"
 	"fmt"
 
 	"github.com/boundedinfinity/enumer"
@@ -47,6 +48,18 @@ func (t FederalReserveDistrict) MarshalYAML() (interface{}, error) {
 
 func (t *FederalReserveDistrict) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	return enumer.UnmarshalYAML(unmarshal, t, FederalReserveDistricts.Parse)
+}
+
+// /////////////////////////////////////////////////////////////////
+//  FederalReserveDistrict XML marshal/unmarshal implemenation
+// /////////////////////////////////////////////////////////////////
+
+func (t FederalReserveDistrict) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return enumer.MarshalXML(t, e, start)
+}
+
+func (t *FederalReserveDistrict) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	return enumer.UnmarshalXML(t, FederalReserveDistricts.Parse, d, start)
 }
 
 // /////////////////////////////////////////////////////////////////

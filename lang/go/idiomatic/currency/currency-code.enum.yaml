@@ -1,0 +1,8 @@
+
+# https://en.wikipedia.org/wiki/ISO_4217
+
+values:
+    -   name: USD
+    -   name: EUR
+    -   name: AED
+    -   name: AFN

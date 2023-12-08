@@ -3,7 +3,7 @@ module github.com/boundedinfinity/schema
 go 1.21
 
 require (
-	github.com/boundedinfinity/enumer v1.0.17
+	github.com/boundedinfinity/enumer v1.0.20
 	github.com/boundedinfinity/go-commoner v1.0.28
 	github.com/boundedinfinity/go-mimetyper v1.0.17
 	github.com/boundedinfinity/rfc3339date v1.0.7

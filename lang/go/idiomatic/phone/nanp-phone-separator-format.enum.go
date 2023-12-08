@@ -10,6 +10,7 @@ package phone
 
 import (
 	"database/sql/driver"
+	"encoding/xml"
 	"fmt"
 
 	"github.com/boundedinfinity/enumer"
@@ -47,6 +48,18 @@ func (t NanpPhoneSeparatorFormat) MarshalYAML() (interface{}, error) {
 
 func (t *NanpPhoneSeparatorFormat) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	return enumer.UnmarshalYAML(unmarshal, t, NanpPhoneSeparatorFormats.Parse)
+}
+
+// /////////////////////////////////////////////////////////////////
+//  NanpPhoneSeparatorFormat XML marshal/unmarshal implemenation
+// /////////////////////////////////////////////////////////////////
+
+func (t NanpPhoneSeparatorFormat) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return enumer.MarshalXML(t, e, start)
+}
+
+func (t *NanpPhoneSeparatorFormat) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	return enumer.UnmarshalXML(t, NanpPhoneSeparatorFormats.Parse, d, start)
 }
 
 // /////////////////////////////////////////////////////////////////

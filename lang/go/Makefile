@@ -6,6 +6,7 @@ purge:
 	find . -name '*.enum.go' -type f -delete
 
 generate:
+	@make purge
 	go generate ./...
 
 test:

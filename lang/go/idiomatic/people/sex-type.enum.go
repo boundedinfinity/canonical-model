@@ -10,6 +10,7 @@ package people
 
 import (
 	"database/sql/driver"
+	"encoding/xml"
 	"fmt"
 
 	"github.com/boundedinfinity/enumer"
@@ -47,6 +48,18 @@ func (t SexType) MarshalYAML() (interface{}, error) {
 
 func (t *SexType) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	return enumer.UnmarshalYAML(unmarshal, t, SexTypes.Parse)
+}
+
+// /////////////////////////////////////////////////////////////////
+//  SexType XML marshal/unmarshal implemenation
+// /////////////////////////////////////////////////////////////////
+
+func (t SexType) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return enumer.MarshalXML(t, e, start)
+}
+
+func (t *SexType) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	return enumer.UnmarshalXML(t, SexTypes.Parse, d, start)
 }
 
 // /////////////////////////////////////////////////////////////////
