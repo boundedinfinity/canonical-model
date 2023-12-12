@@ -1,0 +1,510 @@
+type: ""
+struct: ""
+package: ""
+input-path: ""
+output-path: ""
+desc: ""
+header: ""
+header-from: ""
+header-lines: []
+skip-format: false
+debug: false
+overwrite: false
+serialize:
+    type: ""
+    value: ""
+values:
+    - name: AFG
+      serialized: AFG
+    - name: ALA
+      serialized: ALA
+    - name: DZA
+      serialized: DZA
+    - name: ASM
+      serialized: ASM
+    - name: AND
+      serialized: AND
+    - name: AGO
+      serialized: AGO
+    - name: AIA
+      serialized: AIA
+    - name: ATA
+      serialized: ATA
+    - name: ATG
+      serialized: ATG
+    - name: ARG
+      serialized: ARG
+    - name: ARM
+      serialized: ARM
+    - name: ABW
+      serialized: ABW
+    - name: AUS
+      serialized: AUS
+    - name: AUT
+      serialized: AUT
+    - name: AZE
+      serialized: AZE
+    - name: BHS
+      serialized: BHS
+    - name: BGD
+      serialized: BGD
+    - name: BRB
+      serialized: BRB
+    - name: BLR
+      serialized: BLR
+    - name: BEL
+      serialized: BEL
+    - name: BLZ
+      serialized: BLZ
+    - name: BEN
+      serialized: BEN
+    - name: BMU
+      serialized: BMU
+    - name: BTN
+      serialized: BTN
+    - name: BOL
+      serialized: BOL
+    - name: BES
+      serialized: BES
+    - name: BIH
+      serialized: BIH
+    - name: BWA
+      serialized: BWA
+    - name: BVT
+      serialized: BVT
+    - name: BRA
+      serialized: BRA
+    - name: IOT
+      serialized: IOT
+    - name: BRN
+      serialized: BRN
+    - name: BGR
+      serialized: BGR
+    - name: BFA
+      serialized: BFA
+    - name: BDI
+      serialized: BDI
+    - name: CPV
+      serialized: CPV
+    - name: KHM
+      serialized: KHM
+    - name: CMR
+      serialized: CMR
+    - name: CAN
+      serialized: CAN
+    - name: CYM
+      serialized: CYM
+    - name: CAF
+      serialized: CAF
+    - name: TCD
+      serialized: TCD
+    - name: CHL
+      serialized: CHL
+    - name: CHN
+      serialized: CHN
+    - name: CXR
+      serialized: CXR
+    - name: CCK
+      serialized: CCK
+    - name: COL
+      serialized: COL
+    - name: COM
+      serialized: COM
+    - name: COG
+      serialized: COG
+    - name: COD
+      serialized: COD
+    - name: COK
+      serialized: COK
+    - name: CRI
+      serialized: CRI
+    - name: CIV
+      serialized: CIV
+    - name: HRV
+      serialized: HRV
+    - name: CUB
+      serialized: CUB
+    - name: CUW
+      serialized: CUW
+    - name: CYP
+      serialized: CYP
+    - name: CZE
+      serialized: CZE
+    - name: DNK
+      serialized: DNK
+    - name: DJI
+      serialized: DJI
+    - name: DMA
+      serialized: DMA
+    - name: DOM
+      serialized: DOM
+    - name: ECU
+      serialized: ECU
+    - name: EGY
+      serialized: EGY
+    - name: SLV
+      serialized: SLV
+    - name: GNQ
+      serialized: GNQ
+    - name: ERI
+      serialized: ERI
+    - name: EST
+      serialized: EST
+    - name: SWZ
+      serialized: SWZ
+    - name: ETH
+      serialized: ETH
+    - name: FLK
+      serialized: FLK
+    - name: FRO
+      serialized: FRO
+    - name: FJI
+      serialized: FJI
+    - name: FIN
+      serialized: FIN
+    - name: FRA
+      serialized: FRA
+    - name: GUF
+      serialized: GUF
+    - name: PYF
+      serialized: PYF
+    - name: ATF
+      serialized: ATF
+    - name: GAB
+      serialized: GAB
+    - name: GMB
+      serialized: GMB
+    - name: GEO
+      serialized: GEO
+    - name: DEU
+      serialized: DEU
+    - name: GHA
+      serialized: GHA
+    - name: GIB
+      serialized: GIB
+    - name: GRC
+      serialized: GRC
+    - name: GRL
+      serialized: GRL
+    - name: GRD
+      serialized: GRD
+    - name: GLP
+      serialized: GLP
+    - name: GUM
+      serialized: GUM
+    - name: GTM
+      serialized: GTM
+    - name: GGY
+      serialized: GGY
+    - name: GIN
+      serialized: GIN
+    - name: GNB
+      serialized: GNB
+    - name: GUY
+      serialized: GUY
+    - name: HTI
+      serialized: HTI
+    - name: HMD
+      serialized: HMD
+    - name: VAT
+      serialized: VAT
+    - name: HND
+      serialized: HND
+    - name: HKG
+      serialized: HKG
+    - name: HUN
+      serialized: HUN
+    - name: ISL
+      serialized: ISL
+    - name: IND
+      serialized: IND
+    - name: IDN
+      serialized: IDN
+    - name: IRN
+      serialized: IRN
+    - name: IRQ
+      serialized: IRQ
+    - name: IRL
+      serialized: IRL
+    - name: IMN
+      serialized: IMN
+    - name: ISR
+      serialized: ISR
+    - name: ITA
+      serialized: ITA
+    - name: JAM
+      serialized: JAM
+    - name: JPN
+      serialized: JPN
+    - name: JEY
+      serialized: JEY
+    - name: JOR
+      serialized: JOR
+    - name: KAZ
+      serialized: KAZ
+    - name: KEN
+      serialized: KEN
+    - name: KIR
+      serialized: KIR
+    - name: PRK
+      serialized: PRK
+    - name: KOR
+      serialized: KOR
+    - name: KWT
+      serialized: KWT
+    - name: KGZ
+      serialized: KGZ
+    - name: LAO
+      serialized: LAO
+    - name: LVA
+      serialized: LVA
+    - name: LBN
+      serialized: LBN
+    - name: LSO
+      serialized: LSO
+    - name: LBR
+      serialized: LBR
+    - name: LBY
+      serialized: LBY
+    - name: LIE
+      serialized: LIE
+    - name: LTU
+      serialized: LTU
+    - name: LUX
+      serialized: LUX
+    - name: MAC
+      serialized: MAC
+    - name: MDG
+      serialized: MDG
+    - name: MWI
+      serialized: MWI
+    - name: MYS
+      serialized: MYS
+    - name: MDV
+      serialized: MDV
+    - name: MLI
+      serialized: MLI
+    - name: MLT
+      serialized: MLT
+    - name: MHL
+      serialized: MHL
+    - name: MTQ
+      serialized: MTQ
+    - name: MRT
+      serialized: MRT
+    - name: MUS
+      serialized: MUS
+    - name: MYT
+      serialized: MYT
+    - name: MEX
+      serialized: MEX
+    - name: FSM
+      serialized: FSM
+    - name: MDA
+      serialized: MDA
+    - name: MCO
+      serialized: MCO
+    - name: MNG
+      serialized: MNG
+    - name: MNE
+      serialized: MNE
+    - name: MSR
+      serialized: MSR
+    - name: MAR
+      serialized: MAR
+    - name: MOZ
+      serialized: MOZ
+    - name: MMR
+      serialized: MMR
+    - name: NAM
+      serialized: NAM
+    - name: NRU
+      serialized: NRU
+    - name: NPL
+      serialized: NPL
+    - name: NLD
+      serialized: NLD
+    - name: NCL
+      serialized: NCL
+    - name: NZL
+      serialized: NZL
+    - name: NIC
+      serialized: NIC
+    - name: NER
+      serialized: NER
+    - name: NGA
+      serialized: NGA
+    - name: NIU
+      serialized: NIU
+    - name: NFK
+      serialized: NFK
+    - name: MKD
+      serialized: MKD
+    - name: MNP
+      serialized: MNP
+    - name: NOR
+      serialized: NOR
+    - name: OMN
+      serialized: OMN
+    - name: PAK
+      serialized: PAK
+    - name: PLW
+      serialized: PLW
+    - name: PSE
+      serialized: PSE
+    - name: PAN
+      serialized: PAN
+    - name: PNG
+      serialized: PNG
+    - name: PRY
+      serialized: PRY
+    - name: PER
+      serialized: PER
+    - name: PHL
+      serialized: PHL
+    - name: PCN
+      serialized: PCN
+    - name: POL
+      serialized: POL
+    - name: PRT
+      serialized: PRT
+    - name: PRI
+      serialized: PRI
+    - name: QAT
+      serialized: QAT
+    - name: REU
+      serialized: REU
+    - name: ROU
+      serialized: ROU
+    - name: RUS
+      serialized: RUS
+    - name: RWA
+      serialized: RWA
+    - name: BLM
+      serialized: BLM
+    - name: SHN
+      serialized: SHN
+    - name: KNA
+      serialized: KNA
+    - name: LCA
+      serialized: LCA
+    - name: MAF
+      serialized: MAF
+    - name: SPM
+      serialized: SPM
+    - name: VCT
+      serialized: VCT
+    - name: WSM
+      serialized: WSM
+    - name: SMR
+      serialized: SMR
+    - name: STP
+      serialized: STP
+    - name: SAU
+      serialized: SAU
+    - name: SEN
+      serialized: SEN
+    - name: SRB
+      serialized: SRB
+    - name: SYC
+      serialized: SYC
+    - name: SLE
+      serialized: SLE
+    - name: SGP
+      serialized: SGP
+    - name: SXM
+      serialized: SXM
+    - name: SVK
+      serialized: SVK
+    - name: SVN
+      serialized: SVN
+    - name: SLB
+      serialized: SLB
+    - name: SOM
+      serialized: SOM
+    - name: ZAF
+      serialized: ZAF
+    - name: SGS
+      serialized: SGS
+    - name: SSD
+      serialized: SSD
+    - name: ESP
+      serialized: ESP
+    - name: LKA
+      serialized: LKA
+    - name: SDN
+      serialized: SDN
+    - name: SUR
+      serialized: SUR
+    - name: SJM
+      serialized: SJM
+    - name: SWE
+      serialized: SWE
+    - name: CHE
+      serialized: CHE
+    - name: SYR
+      serialized: SYR
+    - name: TWN
+      serialized: TWN
+    - name: TJK
+      serialized: TJK
+    - name: TZA
+      serialized: TZA
+    - name: THA
+      serialized: THA
+    - name: TLS
+      serialized: TLS
+    - name: TGO
+      serialized: TGO
+    - name: TKL
+      serialized: TKL
+    - name: TON
+      serialized: TON
+    - name: TTO
+      serialized: TTO
+    - name: TUN
+      serialized: TUN
+    - name: TUR
+      serialized: TUR
+    - name: TKM
+      serialized: TKM
+    - name: TCA
+      serialized: TCA
+    - name: TUV
+      serialized: TUV
+    - name: UGA
+      serialized: UGA
+    - name: UKR
+      serialized: UKR
+    - name: ARE
+      serialized: ARE
+    - name: GBR
+      serialized: GBR
+    - name: UMI
+      serialized: UMI
+    - name: USA
+      serialized: USA
+    - name: URY
+      serialized: URY
+    - name: UZB
+      serialized: UZB
+    - name: VUT
+      serialized: VUT
+    - name: VEN
+      serialized: VEN
+    - name: VNM
+      serialized: VNM
+    - name: VGB
+      serialized: VGB
+    - name: VIR
+      serialized: VIR
+    - name: WLF
+      serialized: WLF
+    - name: ESH
+      serialized: ESH
+    - name: YEM
+      serialized: YEM
+    - name: ZMB
+      serialized: ZMB
+    - name: ZWE
+      serialized: ZWE

@@ -1,0 +1,510 @@
+type: ""
+struct: ""
+package: ""
+input-path: ""
+output-path: ""
+desc: ""
+header: ""
+header-from: ""
+header-lines: []
+skip-format: false
+debug: false
+overwrite: false
+serialize:
+    type: ""
+    value: ""
+values:
+    - name: AF
+      serialized: AF
+    - name: AX
+      serialized: AX
+    - name: DZ
+      serialized: DZ
+    - name: AS
+      serialized: AS
+    - name: AD
+      serialized: AD
+    - name: AO
+      serialized: AO
+    - name: AI
+      serialized: AI
+    - name: AQ
+      serialized: AQ
+    - name: AG
+      serialized: AG
+    - name: AR
+      serialized: AR
+    - name: AM
+      serialized: AM
+    - name: AW
+      serialized: AW
+    - name: AU
+      serialized: AU
+    - name: AT
+      serialized: AT
+    - name: AZ
+      serialized: AZ
+    - name: BS
+      serialized: BS
+    - name: BD
+      serialized: BD
+    - name: BB
+      serialized: BB
+    - name: BY
+      serialized: BY
+    - name: BE
+      serialized: BE
+    - name: BZ
+      serialized: BZ
+    - name: BJ
+      serialized: BJ
+    - name: BM
+      serialized: BM
+    - name: BT
+      serialized: BT
+    - name: BO
+      serialized: BO
+    - name: BQ
+      serialized: BQ
+    - name: BA
+      serialized: BA
+    - name: BW
+      serialized: BW
+    - name: BV
+      serialized: BV
+    - name: BR
+      serialized: BR
+    - name: IO
+      serialized: IO
+    - name: BN
+      serialized: BN
+    - name: BG
+      serialized: BG
+    - name: BF
+      serialized: BF
+    - name: BI
+      serialized: BI
+    - name: CV
+      serialized: CV
+    - name: KH
+      serialized: KH
+    - name: CM
+      serialized: CM
+    - name: CA
+      serialized: CA
+    - name: KY
+      serialized: KY
+    - name: CF
+      serialized: CF
+    - name: TD
+      serialized: TD
+    - name: CL
+      serialized: CL
+    - name: CN
+      serialized: CN
+    - name: CX
+      serialized: CX
+    - name: CC
+      serialized: CC
+    - name: CO
+      serialized: CO
+    - name: KM
+      serialized: KM
+    - name: CG
+      serialized: CG
+    - name: CD
+      serialized: CD
+    - name: CK
+      serialized: CK
+    - name: CR
+      serialized: CR
+    - name: CI
+      serialized: CI
+    - name: HR
+      serialized: HR
+    - name: CU
+      serialized: CU
+    - name: CW
+      serialized: CW
+    - name: CY
+      serialized: CY
+    - name: CZ
+      serialized: CZ
+    - name: DK
+      serialized: DK
+    - name: DJ
+      serialized: DJ
+    - name: DM
+      serialized: DM
+    - name: DO
+      serialized: DO
+    - name: EC
+      serialized: EC
+    - name: EG
+      serialized: EG
+    - name: SV
+      serialized: SV
+    - name: GQ
+      serialized: GQ
+    - name: ER
+      serialized: ER
+    - name: EE
+      serialized: EE
+    - name: SZ
+      serialized: SZ
+    - name: ET
+      serialized: ET
+    - name: FK
+      serialized: FK
+    - name: FO
+      serialized: FO
+    - name: FJ
+      serialized: FJ
+    - name: FI
+      serialized: FI
+    - name: FR
+      serialized: FR
+    - name: GF
+      serialized: GF
+    - name: PF
+      serialized: PF
+    - name: TF
+      serialized: TF
+    - name: GA
+      serialized: GA
+    - name: GM
+      serialized: GM
+    - name: GE
+      serialized: GE
+    - name: DE
+      serialized: DE
+    - name: GH
+      serialized: GH
+    - name: GI
+      serialized: GI
+    - name: GR
+      serialized: GR
+    - name: GL
+      serialized: GL
+    - name: GD
+      serialized: GD
+    - name: GP
+      serialized: GP
+    - name: GU
+      serialized: GU
+    - name: GT
+      serialized: GT
+    - name: GG
+      serialized: GG
+    - name: GN
+      serialized: GN
+    - name: GW
+      serialized: GW
+    - name: GY
+      serialized: GY
+    - name: HT
+      serialized: HT
+    - name: HM
+      serialized: HM
+    - name: VA
+      serialized: VA
+    - name: HN
+      serialized: HN
+    - name: HK
+      serialized: HK
+    - name: HU
+      serialized: HU
+    - name: IS
+      serialized: IS
+    - name: IN
+      serialized: IN
+    - name: ID
+      serialized: ID
+    - name: IR
+      serialized: IR
+    - name: IQ
+      serialized: IQ
+    - name: IE
+      serialized: IE
+    - name: IM
+      serialized: IM
+    - name: IL
+      serialized: IL
+    - name: IT
+      serialized: IT
+    - name: JM
+      serialized: JM
+    - name: JP
+      serialized: JP
+    - name: JE
+      serialized: JE
+    - name: JO
+      serialized: JO
+    - name: KZ
+      serialized: KZ
+    - name: KE
+      serialized: KE
+    - name: KI
+      serialized: KI
+    - name: KP
+      serialized: KP
+    - name: KR
+      serialized: KR
+    - name: KW
+      serialized: KW
+    - name: KG
+      serialized: KG
+    - name: LA
+      serialized: LA
+    - name: LV
+      serialized: LV
+    - name: LB
+      serialized: LB
+    - name: LS
+      serialized: LS
+    - name: LR
+      serialized: LR
+    - name: LY
+      serialized: LY
+    - name: LI
+      serialized: LI
+    - name: LT
+      serialized: LT
+    - name: LU
+      serialized: LU
+    - name: MO
+      serialized: MO
+    - name: MG
+      serialized: MG
+    - name: MW
+      serialized: MW
+    - name: MY
+      serialized: MY
+    - name: MV
+      serialized: MV
+    - name: ML
+      serialized: ML
+    - name: MT
+      serialized: MT
+    - name: MH
+      serialized: MH
+    - name: MQ
+      serialized: MQ
+    - name: MR
+      serialized: MR
+    - name: MU
+      serialized: MU
+    - name: YT
+      serialized: YT
+    - name: MX
+      serialized: MX
+    - name: FM
+      serialized: FM
+    - name: MD
+      serialized: MD
+    - name: MC
+      serialized: MC
+    - name: MN
+      serialized: MN
+    - name: ME
+      serialized: ME
+    - name: MS
+      serialized: MS
+    - name: MA
+      serialized: MA
+    - name: MZ
+      serialized: MZ
+    - name: MM
+      serialized: MM
+    - name: NA
+      serialized: NA
+    - name: NR
+      serialized: NR
+    - name: NP
+      serialized: NP
+    - name: NL
+      serialized: NL
+    - name: NC
+      serialized: NC
+    - name: NZ
+      serialized: NZ
+    - name: NI
+      serialized: NI
+    - name: NE
+      serialized: NE
+    - name: NG
+      serialized: NG
+    - name: NU
+      serialized: NU
+    - name: NF
+      serialized: NF
+    - name: MK
+      serialized: MK
+    - name: MP
+      serialized: MP
+    - name: "NO"
+      serialized: "NO"
+    - name: OM
+      serialized: OM
+    - name: PK
+      serialized: PK
+    - name: PW
+      serialized: PW
+    - name: PS
+      serialized: PS
+    - name: PA
+      serialized: PA
+    - name: PG
+      serialized: PG
+    - name: PY
+      serialized: PY
+    - name: PE
+      serialized: PE
+    - name: PH
+      serialized: PH
+    - name: PN
+      serialized: PN
+    - name: PL
+      serialized: PL
+    - name: PT
+      serialized: PT
+    - name: PR
+      serialized: PR
+    - name: QA
+      serialized: QA
+    - name: RE
+      serialized: RE
+    - name: RO
+      serialized: RO
+    - name: RU
+      serialized: RU
+    - name: RW
+      serialized: RW
+    - name: BL
+      serialized: BL
+    - name: SH
+      serialized: SH
+    - name: KN
+      serialized: KN
+    - name: LC
+      serialized: LC
+    - name: MF
+      serialized: MF
+    - name: PM
+      serialized: PM
+    - name: VC
+      serialized: VC
+    - name: WS
+      serialized: WS
+    - name: SM
+      serialized: SM
+    - name: ST
+      serialized: ST
+    - name: SA
+      serialized: SA
+    - name: SN
+      serialized: SN
+    - name: RS
+      serialized: RS
+    - name: SC
+      serialized: SC
+    - name: SL
+      serialized: SL
+    - name: SG
+      serialized: SG
+    - name: SX
+      serialized: SX
+    - name: SK
+      serialized: SK
+    - name: SI
+      serialized: SI
+    - name: SB
+      serialized: SB
+    - name: SO
+      serialized: SO
+    - name: ZA
+      serialized: ZA
+    - name: GS
+      serialized: GS
+    - name: SS
+      serialized: SS
+    - name: ES
+      serialized: ES
+    - name: LK
+      serialized: LK
+    - name: SD
+      serialized: SD
+    - name: SR
+      serialized: SR
+    - name: SJ
+      serialized: SJ
+    - name: SE
+      serialized: SE
+    - name: CH
+      serialized: CH
+    - name: SY
+      serialized: SY
+    - name: TW
+      serialized: TW
+    - name: TJ
+      serialized: TJ
+    - name: TZ
+      serialized: TZ
+    - name: TH
+      serialized: TH
+    - name: TL
+      serialized: TL
+    - name: TG
+      serialized: TG
+    - name: TK
+      serialized: TK
+    - name: TO
+      serialized: TO
+    - name: TT
+      serialized: TT
+    - name: TN
+      serialized: TN
+    - name: TR
+      serialized: TR
+    - name: TM
+      serialized: TM
+    - name: TC
+      serialized: TC
+    - name: TV
+      serialized: TV
+    - name: UG
+      serialized: UG
+    - name: UA
+      serialized: UA
+    - name: AE
+      serialized: AE
+    - name: GB
+      serialized: GB
+    - name: UM
+      serialized: UM
+    - name: US
+      serialized: US
+    - name: UY
+      serialized: UY
+    - name: UZ
+      serialized: UZ
+    - name: VU
+      serialized: VU
+    - name: VE
+      serialized: VE
+    - name: VN
+      serialized: VN
+    - name: VG
+      serialized: VG
+    - name: VI
+      serialized: VI
+    - name: WF
+      serialized: WF
+    - name: EH
+      serialized: EH
+    - name: YE
+      serialized: YE
+    - name: ZM
+      serialized: ZM
+    - name: ZW
+      serialized: ZW

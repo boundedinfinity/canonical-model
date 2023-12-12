@@ -66,7 +66,7 @@ func (t *fileMessageRepository) saveLog() error {
 			return err
 		}
 
-		if err := pather.Files.Appendln(t.logPath, bs, 0755); err != nil {
+		if err := pather.Files.Appendln(t.logPath, bs, 0644); err != nil {
 			panic(err)
 		}
 	}
@@ -75,7 +75,7 @@ func (t *fileMessageRepository) saveLog() error {
 }
 
 func (t *fileMessageRepository) saveErr(err error) {
-	if err := pather.Files.AppendlnString(t.errPath, err.Error(), 0755); err != nil {
+	if err := pather.Files.AppendlnString(t.errPath, err.Error(), 0644); err != nil {
 		panic(err)
 	}
 }
