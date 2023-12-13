@@ -13,4 +13,10 @@ type SavingsStatement struct {
 	EndOnDate     rfc3339date.Rfc3339Date     `json:"end-on-date,omitempty"`
 	StatementDate rfc3339date.Rfc3339Date     `json:"statement-date,omitempty"`
 	Capture       digital_document.DocumentV1 `json:"capture,omitempty"`
+	Summary       SavingsStatementSummary     `json:"summary,omitempty"`
+	Incoming      []StatementTransaction      `json:"incoming,omitempty"`
+	OutGoing      []StatementTransaction      `json:"outgoing,omitempty"`
+}
+
+type SavingsStatementSummary struct {
 }

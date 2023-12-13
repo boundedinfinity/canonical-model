@@ -12,15 +12,9 @@ type CreditCardStatement struct {
 	Id          id.Id                      `json:"id,omitempty"`
 	Account     BankAccount                `json:"account,omitempty"`
 	Summary     CreditCardStatementSummary `json:"summary,omitempty"`
-	Payments    []CreditCardTransaction    `json:"payments,omitempty"`
-	Purchases   []CreditCardTransaction    `json:"purchases,omitempty"`
-	Redemptions []CreditCardTransaction    `json:"redemptions,omitempty"`
-}
-
-type CreditCardTransaction struct {
-	Amount currency.Amount         `json:"amount,omitempty"`
-	Date   rfc3339date.Rfc3339Date `json:"date,omitempty"`
-	Memo   string                  `json:"memo,omitempty"`
+	Payments    []StatementTransaction     `json:"payments,omitempty"`
+	Purchases   []StatementTransaction     `json:"purchases,omitempty"`
+	Redemptions []StatementTransaction     `json:"redemptions,omitempty"`
 }
 
 type CreditCardStatementSummary struct {
