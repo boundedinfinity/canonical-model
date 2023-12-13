@@ -14,10 +14,14 @@ serialize:
     type: ""
     value: ""
 values:
+    - name: XK
+      serialized: XK
     - name: AF
       serialized: AF
     - name: AX
       serialized: AX
+    - name: AL
+      serialized: AL
     - name: DZ
       serialized: DZ
     - name: AS
@@ -28,8 +32,6 @@ values:
       serialized: AO
     - name: AI
       serialized: AI
-    - name: AQ
-      serialized: AQ
     - name: AG
       serialized: AG
     - name: AR
@@ -46,6 +48,8 @@ values:
       serialized: AZ
     - name: BS
       serialized: BS
+    - name: BH
+      serialized: BH
     - name: BD
       serialized: BD
     - name: BB
@@ -58,8 +62,6 @@ values:
       serialized: BZ
     - name: BJ
       serialized: BJ
-    - name: BM
-      serialized: BM
     - name: BT
       serialized: BT
     - name: BO

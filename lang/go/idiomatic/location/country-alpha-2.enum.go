@@ -81,14 +81,15 @@ func (t *CountryAlpha2) Scan(value interface{}) error {
 // /////////////////////////////////////////////////////////////////
 
 type countryAlpha2s struct {
+	XK     CountryAlpha2
 	AF     CountryAlpha2
 	AX     CountryAlpha2
+	AL     CountryAlpha2
 	DZ     CountryAlpha2
 	AS     CountryAlpha2
 	AD     CountryAlpha2
 	AO     CountryAlpha2
 	AI     CountryAlpha2
-	AQ     CountryAlpha2
 	AG     CountryAlpha2
 	AR     CountryAlpha2
 	AM     CountryAlpha2
@@ -97,13 +98,13 @@ type countryAlpha2s struct {
 	AT     CountryAlpha2
 	AZ     CountryAlpha2
 	BS     CountryAlpha2
+	BH     CountryAlpha2
 	BD     CountryAlpha2
 	BB     CountryAlpha2
 	BY     CountryAlpha2
 	BE     CountryAlpha2
 	BZ     CountryAlpha2
 	BJ     CountryAlpha2
-	BM     CountryAlpha2
 	BT     CountryAlpha2
 	BO     CountryAlpha2
 	BQ     CountryAlpha2
@@ -333,14 +334,15 @@ type countryAlpha2s struct {
 }
 
 var CountryAlpha2s = countryAlpha2s{
+	XK:  CountryAlpha2("XK"),
 	AF:  CountryAlpha2("AF"),
 	AX:  CountryAlpha2("AX"),
+	AL:  CountryAlpha2("AL"),
 	DZ:  CountryAlpha2("DZ"),
 	AS:  CountryAlpha2("AS"),
 	AD:  CountryAlpha2("AD"),
 	AO:  CountryAlpha2("AO"),
 	AI:  CountryAlpha2("AI"),
-	AQ:  CountryAlpha2("AQ"),
 	AG:  CountryAlpha2("AG"),
 	AR:  CountryAlpha2("AR"),
 	AM:  CountryAlpha2("AM"),
@@ -349,13 +351,13 @@ var CountryAlpha2s = countryAlpha2s{
 	AT:  CountryAlpha2("AT"),
 	AZ:  CountryAlpha2("AZ"),
 	BS:  CountryAlpha2("BS"),
+	BH:  CountryAlpha2("BH"),
 	BD:  CountryAlpha2("BD"),
 	BB:  CountryAlpha2("BB"),
 	BY:  CountryAlpha2("BY"),
 	BE:  CountryAlpha2("BE"),
 	BZ:  CountryAlpha2("BZ"),
 	BJ:  CountryAlpha2("BJ"),
-	BM:  CountryAlpha2("BM"),
 	BT:  CountryAlpha2("BT"),
 	BO:  CountryAlpha2("BO"),
 	BQ:  CountryAlpha2("BQ"),
@@ -585,14 +587,15 @@ var CountryAlpha2s = countryAlpha2s{
 
 func init() {
 	CountryAlpha2s.Values = []CountryAlpha2{
+		CountryAlpha2s.XK,
 		CountryAlpha2s.AF,
 		CountryAlpha2s.AX,
+		CountryAlpha2s.AL,
 		CountryAlpha2s.DZ,
 		CountryAlpha2s.AS,
 		CountryAlpha2s.AD,
 		CountryAlpha2s.AO,
 		CountryAlpha2s.AI,
-		CountryAlpha2s.AQ,
 		CountryAlpha2s.AG,
 		CountryAlpha2s.AR,
 		CountryAlpha2s.AM,
@@ -601,13 +604,13 @@ func init() {
 		CountryAlpha2s.AT,
 		CountryAlpha2s.AZ,
 		CountryAlpha2s.BS,
+		CountryAlpha2s.BH,
 		CountryAlpha2s.BD,
 		CountryAlpha2s.BB,
 		CountryAlpha2s.BY,
 		CountryAlpha2s.BE,
 		CountryAlpha2s.BZ,
 		CountryAlpha2s.BJ,
-		CountryAlpha2s.BM,
 		CountryAlpha2s.BT,
 		CountryAlpha2s.BO,
 		CountryAlpha2s.BQ,

@@ -18,7 +18,7 @@ type CreditCardStatement struct {
 }
 
 type CreditCardTransaction struct {
-	Amount currency.CurrencyAmount `json:"amount,omitempty"`
+	Amount currency.Amount         `json:"amount,omitempty"`
 	Date   rfc3339date.Rfc3339Date `json:"date,omitempty"`
 	Memo   string                  `json:"memo,omitempty"`
 }
@@ -31,17 +31,17 @@ type CreditCardStatementSummary struct {
 	EndOnDate                   rfc3339date.Rfc3339Date     `json:"end-on-date,omitempty"`
 	StatementDate               rfc3339date.Rfc3339Date     `json:"statement-date,omitempty"`
 	PaymentDate                 rfc3339date.Rfc3339Date     `json:"payment-date,omitempty"`
-	MinimumPaymentDue           currency.CurrencyAmount     `json:"minimum-payment-due,omitempty"`
+	MinimumPaymentDue           currency.Amount             `json:"minimum-payment-due,omitempty"`
 	Capture                     digital_document.DocumentV1 `json:"capture,omitempty"`
-	OpeningBalance              currency.CurrencyAmount     `json:"opening-balance,omitempty"`
-	ClosingBalance              currency.CurrencyAmount     `json:"closing-balance,omitempty"`
-	Purchases                   currency.CurrencyAmount     `json:"purchases,omitempty"`
-	CashAdvances                currency.CurrencyAmount     `json:"cash-advances,omitempty"`
-	BanlanceTransfers           currency.CurrencyAmount     `json:"balance-transfers,omitempty"`
-	FeesCharged                 currency.CurrencyAmount     `json:"fees-charged,omitempty"`
-	InterestCharged             currency.CurrencyAmount     `json:"interest-charged,omitempty"`
-	AvailableCredit             currency.CurrencyAmount     `json:"available-credit,omitempty"`
-	CashAccessLine              currency.CurrencyAmount     `json:"cash-access-line,omitempty"`
-	AvailableForCash            currency.CurrencyAmount     `json:"available-for-cash,omitempty"`
-	PastDueAmount               currency.CurrencyAmount     `json:"past-due-amount,omitempty"`
+	OpeningBalance              currency.Amount             `json:"opening-balance,omitempty"`
+	ClosingBalance              currency.Amount             `json:"closing-balance,omitempty"`
+	Purchases                   currency.Amount             `json:"purchases,omitempty"`
+	CashAdvances                currency.Amount             `json:"cash-advances,omitempty"`
+	BanlanceTransfers           currency.Amount             `json:"balance-transfers,omitempty"`
+	FeesCharged                 currency.Amount             `json:"fees-charged,omitempty"`
+	InterestCharged             currency.Amount             `json:"interest-charged,omitempty"`
+	AvailableCredit             currency.Amount             `json:"available-credit,omitempty"`
+	CashAccessLine              currency.Amount             `json:"cash-access-line,omitempty"`
+	AvailableForCash            currency.Amount             `json:"available-for-cash,omitempty"`
+	PastDueAmount               currency.Amount             `json:"past-due-amount,omitempty"`
 }

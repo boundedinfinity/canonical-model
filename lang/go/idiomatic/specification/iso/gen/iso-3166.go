@@ -2,14 +2,12 @@ package main
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/boundedinfinity/enumer"
-	"github.com/boundedinfinity/go-commoner/idiomatic/pather"
+	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 	"github.com/dave/jennifer/jen"
 	"github.com/gertd/go-pluralize"
-	"gopkg.in/yaml.v3"
 )
 
 // https://en.wikipedia.org/wiki/ISO_3166-1#Codes
@@ -24,25 +22,24 @@ type iso3166Record struct {
 }
 
 func processIso3166() error {
-	rootDir, err := getRootDir()
-
-	if err != nil {
-		return err
-	}
-
-	inputPath := pather.Dirs.Join(rootDir, "idiomatic/specification/iso/gen/iso-3166.yaml")
-	bs, err := os.ReadFile(inputPath)
 	pc := pluralize.NewClient()
-
-	if err != nil {
-		return err
-	}
-
 	var records []iso3166Record
 
-	if err := yaml.Unmarshal(bs, &records); err != nil {
+	if err := loadYaml("idiomatic/specification/iso/gen/iso-3166.yaml", &records); err != nil {
 		return err
 	}
+
+	records = slicer.DedupFn(func(r iso3166Record) int {
+		return r.Number
+	}, records...)
+
+	records = slicer.DedupFn(func(r iso3166Record) string {
+		return r.Alpha2
+	}, records...)
+
+	records = slicer.DedupFn(func(r iso3166Record) string {
+		return r.Alpha3
+	}, records...)
 
 	// records = records[:3]
 
@@ -100,7 +97,9 @@ func processIso3166() error {
 
 		init.Id(varId).Dot("alpha3ToInfo").Op("=").Map(jen.Id(alpha3Id)).Id(infoId).Values(jen.DictFunc(func(d jen.Dict) {
 			for _, record := range records {
-				d[jen.Id(pc.Plural(alpha3Id)).Dot(record.Alpha3)] = jen.Id(varId).Dot(record.Alpha2)
+				if record.Alpha3 != "" {
+					d[jen.Id(pc.Plural(alpha3Id)).Dot(record.Alpha3)] = jen.Id(varId).Dot(record.Alpha2)
+				}
 			}
 		})).Line()
 
@@ -112,16 +111,16 @@ func processIso3166() error {
 
 		init.Id(varId).Dot("numberToInfo").Op("=").Map(jen.Int()).Id(infoId).Values(jen.DictFunc(func(d jen.Dict) {
 			for _, record := range records {
-				d[jen.Lit(record.Number)] = jen.Id(varId).Dot(record.Alpha2)
+				if record.Number > 0 {
+					d[jen.Lit(record.Number)] = jen.Id(varId).Dot(record.Alpha2)
+				}
 			}
 		})).Line()
 	})
 
 	content := fmt.Sprintf("%#v", file)
 
-	err = writeFile("idiomatic/location/country.gen.go", []byte(content))
-
-	if err != nil {
+	if err := writeFile("idiomatic/location/country.gen.go", []byte(content)); err != nil {
 		return err
 	}
 
@@ -139,10 +138,12 @@ func processIso3166() error {
 			Serialized: record.Alpha2,
 		})
 
-		alpha3Enum.Values = append(alpha3Enum.Values, enumer.EnumValue{
-			Name:       record.Alpha3,
-			Serialized: record.Alpha3,
-		})
+		if record.Alpha3 != "" {
+			alpha3Enum.Values = append(alpha3Enum.Values, enumer.EnumValue{
+				Name:       record.Alpha3,
+				Serialized: record.Alpha3,
+			})
+		}
 	}
 
 	if err := writeYaml("idiomatic/location/country-alpha-2.enum.yaml", alpha2Enum); err != nil {

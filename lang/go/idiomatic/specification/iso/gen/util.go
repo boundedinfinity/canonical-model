@@ -35,6 +35,30 @@ func writeFile(path string, data []byte) error {
 	return nil
 }
 
+func loadYaml(path string, val any) error {
+	rootDir, err := getRootDir()
+
+	if err != nil {
+		return err
+	}
+
+	yamlPath := pather.Dirs.Join(rootDir, path)
+
+	bs, err := os.ReadFile(yamlPath)
+
+	if err != nil {
+		return err
+	}
+
+	err = yaml.Unmarshal(bs, val)
+
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func writeYaml(path string, val any) error {
 	bs, err := yaml.Marshal(val)
 

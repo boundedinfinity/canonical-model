@@ -17,7 +17,7 @@ package idiomatic
 //go:generate enumer -config=./idiomatic/location/state-iso.enum.yaml
 //go:generate enumer -config=./idiomatic/banking/federal-reserve-district.enum.yaml
 //go:generate enumer -config=./idiomatic/currency/currency-code.enum.yaml
-//go:generate enumer -config=./idiomatic/currency/currency-name.enum.yaml
+//----go:generate enumer -config=./idiomatic/currency/currency-name.enum.yaml
 //----go:generate enumer -config=./idiomatic/id/iso-639-lang.enum.yaml
 //----go:generate enumer -config=./idiomatic/id/iso-639-1.enum.yaml
 //----go:generate enumer -config=./idiomatic/id/iso-639-2-b.enum.yaml

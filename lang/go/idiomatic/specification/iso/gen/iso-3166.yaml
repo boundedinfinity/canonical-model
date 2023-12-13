@@ -1,6 +1,8 @@
 # https://en.wikipedia.org/wiki/ISO_3166-1#Codes
 # ISO 3166-1 Name, Alpha-2 code, Alpha-3 code, Numeric code, Link to ISO 3166-2, Independent
 
+- name: Kosovo
+  alpha-2: XK
 - name: Afghanistan
   alpha-2: AF
   alpha-3: AFG
@@ -11,12 +13,12 @@
   alpha-3: ALA
   number: 248
   independent: false
-# - alpha-2: AL
-#   alpha-3: ALB
-#   independent: true
-#   link: ISO 3166-2:AL
-#   name: Albania
-#   number: 008
+- alpha-2: AL
+  alpha-3: ALB
+  independent: true
+  link: ISO 3166-2:AL
+  name: Albania
+  number: 008
 - alpha-2: DZ
   alpha-3: DZA
   independent: true
@@ -101,12 +103,12 @@
   link: ISO 3166-2:BS
   name: Bahamas
   number: 044
-# - alpha-2: BH
-#   alpha-3: BHR
-#   independent: true
-#   link: ISO 3166-2:BH
-#   name: Bahrain
-#   number: 048
+- alpha-2: BH
+  alpha-3: BHR
+  independent: true
+  link: ISO 3166-2:BH
+  name: Bahrain
+  number: 048
 - alpha-2: BD
   alpha-3: BGD
   independent: true

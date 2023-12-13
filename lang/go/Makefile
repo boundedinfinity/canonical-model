@@ -4,6 +4,7 @@ makefile_dir		:= $(abspath $(shell pwd))
 
 purge:
 	find . -name '*.enum.go' -type f -delete
+	find . -name '*.gen.go' -type f -delete
 
 generate:
 	@make purge

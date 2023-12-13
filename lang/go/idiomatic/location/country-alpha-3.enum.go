@@ -83,12 +83,12 @@ func (t *CountryAlpha3) Scan(value interface{}) error {
 type countryAlpha3s struct {
 	AFG    CountryAlpha3
 	ALA    CountryAlpha3
+	ALB    CountryAlpha3
 	DZA    CountryAlpha3
 	ASM    CountryAlpha3
 	AND    CountryAlpha3
 	AGO    CountryAlpha3
 	AIA    CountryAlpha3
-	ATA    CountryAlpha3
 	ATG    CountryAlpha3
 	ARG    CountryAlpha3
 	ARM    CountryAlpha3
@@ -97,13 +97,13 @@ type countryAlpha3s struct {
 	AUT    CountryAlpha3
 	AZE    CountryAlpha3
 	BHS    CountryAlpha3
+	BHR    CountryAlpha3
 	BGD    CountryAlpha3
 	BRB    CountryAlpha3
 	BLR    CountryAlpha3
 	BEL    CountryAlpha3
 	BLZ    CountryAlpha3
 	BEN    CountryAlpha3
-	BMU    CountryAlpha3
 	BTN    CountryAlpha3
 	BOL    CountryAlpha3
 	BES    CountryAlpha3
@@ -335,12 +335,12 @@ type countryAlpha3s struct {
 var CountryAlpha3s = countryAlpha3s{
 	AFG: CountryAlpha3("AFG"),
 	ALA: CountryAlpha3("ALA"),
+	ALB: CountryAlpha3("ALB"),
 	DZA: CountryAlpha3("DZA"),
 	ASM: CountryAlpha3("ASM"),
 	AND: CountryAlpha3("AND"),
 	AGO: CountryAlpha3("AGO"),
 	AIA: CountryAlpha3("AIA"),
-	ATA: CountryAlpha3("ATA"),
 	ATG: CountryAlpha3("ATG"),
 	ARG: CountryAlpha3("ARG"),
 	ARM: CountryAlpha3("ARM"),
@@ -349,13 +349,13 @@ var CountryAlpha3s = countryAlpha3s{
 	AUT: CountryAlpha3("AUT"),
 	AZE: CountryAlpha3("AZE"),
 	BHS: CountryAlpha3("BHS"),
+	BHR: CountryAlpha3("BHR"),
 	BGD: CountryAlpha3("BGD"),
 	BRB: CountryAlpha3("BRB"),
 	BLR: CountryAlpha3("BLR"),
 	BEL: CountryAlpha3("BEL"),
 	BLZ: CountryAlpha3("BLZ"),
 	BEN: CountryAlpha3("BEN"),
-	BMU: CountryAlpha3("BMU"),
 	BTN: CountryAlpha3("BTN"),
 	BOL: CountryAlpha3("BOL"),
 	BES: CountryAlpha3("BES"),
@@ -587,12 +587,12 @@ func init() {
 	CountryAlpha3s.Values = []CountryAlpha3{
 		CountryAlpha3s.AFG,
 		CountryAlpha3s.ALA,
+		CountryAlpha3s.ALB,
 		CountryAlpha3s.DZA,
 		CountryAlpha3s.ASM,
 		CountryAlpha3s.AND,
 		CountryAlpha3s.AGO,
 		CountryAlpha3s.AIA,
-		CountryAlpha3s.ATA,
 		CountryAlpha3s.ATG,
 		CountryAlpha3s.ARG,
 		CountryAlpha3s.ARM,
@@ -601,13 +601,13 @@ func init() {
 		CountryAlpha3s.AUT,
 		CountryAlpha3s.AZE,
 		CountryAlpha3s.BHS,
+		CountryAlpha3s.BHR,
 		CountryAlpha3s.BGD,
 		CountryAlpha3s.BRB,
 		CountryAlpha3s.BLR,
 		CountryAlpha3s.BEL,
 		CountryAlpha3s.BLZ,
 		CountryAlpha3s.BEN,
-		CountryAlpha3s.BMU,
 		CountryAlpha3s.BTN,
 		CountryAlpha3s.BOL,
 		CountryAlpha3s.BES,

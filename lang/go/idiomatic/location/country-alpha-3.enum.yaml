@@ -18,6 +18,8 @@ values:
       serialized: AFG
     - name: ALA
       serialized: ALA
+    - name: ALB
+      serialized: ALB
     - name: DZA
       serialized: DZA
     - name: ASM
@@ -28,8 +30,6 @@ values:
       serialized: AGO
     - name: AIA
       serialized: AIA
-    - name: ATA
-      serialized: ATA
     - name: ATG
       serialized: ATG
     - name: ARG
@@ -46,6 +46,8 @@ values:
       serialized: AZE
     - name: BHS
       serialized: BHS
+    - name: BHR
+      serialized: BHR
     - name: BGD
       serialized: BGD
     - name: BRB
@@ -58,8 +60,6 @@ values:
       serialized: BLZ
     - name: BEN
       serialized: BEN
-    - name: BMU
-      serialized: BMU
     - name: BTN
       serialized: BTN
     - name: BOL
