@@ -9,16 +9,6 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-func getRootDir() (string, error) {
-	cwd, err := os.Getwd()
-
-	if err != nil {
-		return "", err
-	}
-
-	return cwd, nil
-}
-
 func writeFile(path string, data []byte) error {
 	rootDir, err := getRootDir()
 
@@ -67,6 +57,16 @@ func writeYaml(path string, val any) error {
 	}
 
 	return writeFile(path, bs)
+}
+
+func getRootDir() (string, error) {
+	cwd, err := os.Getwd()
+
+	if err != nil {
+		return "", err
+	}
+
+	return cwd, nil
 }
 
 func getWorkingDir() (string, error) {
