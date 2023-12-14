@@ -14,3 +14,7 @@ type Contact struct {
 	Relationships []RelationShip     `json:"relationships,omitempty"`
 	Telephones    []phone.NanpNumber `json:"telephones,omitempty"`
 }
+
+func (t Contact) Name() string {
+	return t.Person.String()
+}

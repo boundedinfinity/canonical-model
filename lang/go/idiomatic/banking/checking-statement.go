@@ -12,7 +12,7 @@ type CheckingStatement struct {
 	BeginOnDate   rfc3339date.Rfc3339Date     `json:"begin-on-date,omitempty"`
 	EndOnDate     rfc3339date.Rfc3339Date     `json:"end-on-date,omitempty"`
 	StatementDate rfc3339date.Rfc3339Date     `json:"statement-date,omitempty"`
-	Capture       digital_document.DocumentV1 `json:"capture,omitempty"`
+	Document      digital_document.DocumentV1 `json:"document,omitempty"`
 	Summary       CheckingStatementSummary    `json:"summary,omitempty"`
 	Incoming      []StatementTransaction      `json:"incoming,omitempty"`
 	OutGoing      []StatementTransaction      `json:"outgoing,omitempty"`
