@@ -1,5 +1,6 @@
 # https://en.wikipedia.org/wiki/List_of_U.S._state_and_territory_abbreviations#Coast_Guard_vessel_prefixes
-
+serialize:
+    type: phrase-to-pascal
 values:
     -   name: Alabama
         serialized: AL
