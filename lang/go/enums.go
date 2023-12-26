@@ -25,6 +25,15 @@ package idiomatic
 //----go:generate enumer -config=./idiomatic/id/iso-639-3.enum.yaml
 //go:generate enumer -config=./idiomatic/hardware/connector-type.enum.yaml
 //go:generate enumer -config=./idiomatic/finanical/interest-rate-type.enum.yaml
+//go:generate enumer -config=./idiomatic/vehicle/body-style.enum.yaml
+//go:generate enumer -config=./idiomatic/vehicle/body-size.enum.yaml
+//go:generate enumer -config=./idiomatic/vehicle/make.enum.yaml
+//go:generate enumer -config=./idiomatic/vehicle/feul-type.enum.yaml
+//go:generate enumer -config=./idiomatic/vehicle/feature.enum.yaml
+//go:generate enumer -config=./idiomatic/vehicle/drive-train.enum.yaml
+//go:generate enumer -config=./idiomatic/vehicle/transmission-type.enum.yaml
+//go:generate enumer -config=./idiomatic/vehicle/engine-type.enum.yaml
+//go:generate enumer -config=./idiomatic/color/color.enum.yaml
 
 //go:generate go run ./idiomatic/specification/iso/gen
 //go:generate enumer -config=./idiomatic/location/country-alpha-2.enum.yaml

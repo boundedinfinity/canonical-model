@@ -1,0 +1,13 @@
+values:
+    -   serialized: black
+    -   serialized: blue
+    -   serialized: brown
+    -   serialized: gold
+    -   serialized: gray
+    -   serialized: green
+    -   serialized: orange
+    -   serialized: red
+    -   serialized: silver
+    -   serialized: white
+    -   serialized: other
+    -   serialized: beige

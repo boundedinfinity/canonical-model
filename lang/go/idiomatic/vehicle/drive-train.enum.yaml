@@ -1,0 +1,5 @@
+values:
+    -   serialized: 4-wheel-drive
+    -   serialized: all-wheel-drive
+    -   serialized: front-wheel-drive
+    -   serialized: rear-wheel-drive

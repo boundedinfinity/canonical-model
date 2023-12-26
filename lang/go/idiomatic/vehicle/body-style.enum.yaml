@@ -1,0 +1,9 @@
+values:
+    -   serialized: sport-utility-vehicle
+    -   serialized: sedan
+    -   serialized: truck
+    -   serialized: coupe
+    -   serialized: minivan
+    -   serialized: convertible
+    -   serialized: hatchback
+    -   serialized: wagon
