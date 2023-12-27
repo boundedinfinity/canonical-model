@@ -10,3 +10,7 @@ type InsuranceCompany struct {
 	Number   string            `json:"number,omitempty"`
 	Business business.Business `json:"business,omitempty"`
 }
+
+type AutomotiveInserance struct {
+	Id id.Id `json:"id,omitempty"`
+}
