@@ -12,7 +12,7 @@ type Vehicle struct {
 	Make           string                      `json:"make,omitempty"`
 	Model          string                      `json:"model,omitempty"`
 	BodyStyle      BodyStyle                   `json:"body-style,omitempty"`
-	BodySize       BodyStyle                   `json:"body-size,omitempty"`
+	BodySize       BodySize                    `json:"body-size,omitempty"`
 	FuelEfficiency FuelEfficiency              `json:"fuel-efficiency,omitempty"`
 	DriveTrain     DriveTrain                  `json:"drive-train,omitempty"`
 	FeulType       FeulType                    `json:"fuel-type,omitempty"`
