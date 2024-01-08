@@ -22,19 +22,6 @@ func (t IndividualTaxpayerIdenficationNumber) Type() string {
 
 var _ TaxIdentificationNumber = &IndividualTaxpayerIdenficationNumber{}
 
-// SSN
-
-type SocialSecurityNumber struct {
-	Id     id.Id  `json:"id,omitempty"`
-	Number string `json:"number,omitempty"`
-}
-
-func (t SocialSecurityNumber) Type() string {
-	return "social-security-number"
-}
-
-var _ TaxIdentificationNumber = &SocialSecurityNumber{}
-
 // EIN
 
 type EmployerIdentificationNumber struct {

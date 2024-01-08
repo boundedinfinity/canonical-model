@@ -9,14 +9,14 @@ import (
 )
 
 type HealthInsuranceCard struct {
-	Id             id.Id                      `json:"id,omitempty"`
-	State          location.State             `json:"state,omitempty"`
-	Insured        []contact.Contact          `json:"insured,omitempty"`
-	InsuranceId    string                     `json:"insurance-id,omitempty"`
-	GroupNumber    string                     `json:"group-number,omitempty"`
-	Issuer         insurance.InsuranceCompany `json:"issuer,omitempty"`
-	IssueDate      rfc3339date.Rfc3339Date    `json:"issue-date,omitempty"`
-	ExpirationDate rfc3339date.Rfc3339Date    `json:"expiration-date,omitempty"`
+	Id             id.Id                     `json:"id,omitempty"`
+	State          location.State            `json:"state,omitempty"`
+	Insured        []contact.Contact         `json:"insured,omitempty"`
+	InsuranceId    string                    `json:"insurance-id,omitempty"`
+	GroupNumber    string                    `json:"group-number,omitempty"`
+	Issuer         insurance.InsurancePolicy `json:"issuer,omitempty"`
+	IssueDate      rfc3339date.Rfc3339Date   `json:"issue-date,omitempty"`
+	ExpirationDate rfc3339date.Rfc3339Date   `json:"expiration-date,omitempty"`
 }
 
 var _ id.TypeNamer = &HealthInsuranceCard{}

@@ -18,8 +18,8 @@ var (
 	ErrLegalNameInvalid = errors.New("invalid legal name")
 )
 
-func NewFormSs4RevDecember2019(business business.Business) (FormSs4RevDecember2019, error) {
-	var form FormSs4RevDecember2019
+func NewFormSs4RevDecember2019(business business.Business) (FormSs4RevDecember_2019, error) {
+	var form FormSs4RevDecember_2019
 
 	if business.LegalName == "" {
 		return form, ErrLegalNameInvalid
@@ -34,7 +34,7 @@ func NewFormSs4RevDecember2019(business business.Business) (FormSs4RevDecember20
 	return form, nil
 }
 
-type FormSs4RevDecember2019 struct {
+type FormSs4RevDecember_2019 struct {
 	Id                  id.Id                          `json:"id,omitempty"`
 	LegalName           string                         `json:"legal-name,omitempty"`
 	TradeName           string                         `json:"trade-name,omitempty"`
@@ -49,23 +49,23 @@ type FormSs4RevDecember2019 struct {
 	LlcOrganizedInUs    bool                           `json:"llc-organized-in-us,omitempty"`
 }
 
-func (t FormSs4RevDecember2019) F1() string {
+func (t FormSs4RevDecember_2019) F1() string {
 	return t.LegalName
 }
 
-func (t FormSs4RevDecember2019) F2() string {
+func (t FormSs4RevDecember_2019) F2() string {
 	return t.TradeName
 }
 
-func (t FormSs4RevDecember2019) F3() string {
+func (t FormSs4RevDecember_2019) F3() string {
 	return t.Executor.Name.String()
 }
 
-func (t FormSs4RevDecember2019) F4a() string {
+func (t FormSs4RevDecember_2019) F4a() string {
 	return stringer.Join(", ", t.MailingAddress.Lines...)
 }
 
-func (t FormSs4RevDecember2019) F4b() string {
+func (t FormSs4RevDecember_2019) F4b() string {
 	return stringer.Join(
 		", ",
 		t.MailingAddress.City.String(),
@@ -74,6 +74,6 @@ func (t FormSs4RevDecember2019) F4b() string {
 	)
 }
 
-func (t FormSs4RevDecember2019) F7() string {
+func (t FormSs4RevDecember_2019) F7() string {
 	return t.County.String()
 }

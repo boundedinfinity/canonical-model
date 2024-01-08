@@ -9,3 +9,11 @@ import (
 type Form1040 struct {
 	Id id.Id `json:"id,omitempty"`
 }
+
+type Form1040_2023 struct {
+	Id id.Id `json:"id,omitempty"`
+}
+
+type Form1040_2024 struct {
+	Id id.Id `json:"id,omitempty"`
+}
