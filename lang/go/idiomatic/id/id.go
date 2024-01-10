@@ -2,9 +2,14 @@ package id
 
 import (
 	"encoding/json"
+	"errors"
 
 	"github.com/boundedinfinity/go-commoner/idiomatic/reflecter"
 	"github.com/google/uuid"
+)
+
+var (
+	ErrIdInvalid = errors.New("invalid id")
 )
 
 type Id struct {
@@ -13,6 +18,10 @@ type Id struct {
 
 func (t Id) String() string {
 	return t.UUID.String()
+}
+
+func (t Id) Validate(groups ...string) error {
+	return nil
 }
 
 func (t Id) IsZero() bool {

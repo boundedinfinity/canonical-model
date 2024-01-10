@@ -190,8 +190,17 @@
                     "name": {
                         "type": "string"
                     },
+                    "desc": {
+                        "type": "string"
+                    },
                     "serialized": {
                         "type": "string"
+                    },
+                    "parse-from": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     }
                 },
                 "type": "object"

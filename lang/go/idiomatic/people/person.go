@@ -1,7 +1,6 @@
 package people
 
 import (
-	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 	"github.com/boundedinfinity/schema/idiomatic/id"
 )
 
@@ -24,17 +23,19 @@ func (t Person) TypeName() string {
 }
 
 func (t Person) String() string {
-	return t.Name.String()
+	// return t.Name.String()
+	return ""
 }
 
 func (t Person) Pseudonym() string {
-	var items []string
+	// var items []string
 
-	for _, item := range t.Pseudonyms {
-		items = append(items, item.String())
-	}
+	// for _, item := range t.Pseudonyms {
+	// 	items = append(items, item.String())
+	// }
 
-	return stringer.Join(", ", items...)
+	// return stringer.Join(", ", items...)
+	return ""
 }
 
 // ///////////////////////////////////////////////////

@@ -1,178 +1,182 @@
 package people
 
-import (
-	"strings"
-
-	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
-)
-
 // ///////////////////////////////////////////////////
 // Name Formatter
 // ///////////////////////////////////////////////////
 
-func NewNameFormatter(prefix PrefixFormat, name NameFormat, suffix SuffixFormat, override bool) NameFormatter {
-	return NameFormatter{
-		name:     name,
-		override: override,
-		suffix:   NewSuffixFormatterWithIndex(suffix, 0, override),
-		prefix:   NewPrefixFormatterWithIndex(prefix, 0, override),
+type nameFormatter struct {
+	prefixSocial       bool
+	prefixFormal       bool
+	prefixAcademic     bool
+	prefixProfessional bool
+	prefixReligious    bool
+	firstNameAll       bool
+	middleInitial      bool
+	lastNameAll        bool
+	suffixSocial       bool
+	suffixProfessional bool
+}
+
+func NameFormatter() *nameFormatter {
+	return &nameFormatter{
+		suffixSocial: true,
 	}
 }
 
-type NameFormatter struct {
-	prefix   PrefixFormatter
-	name     NameFormat
-	suffix   SuffixFormatter
-	override bool
-}
-
-func (t *NameFormatter) Prefix(prefix PrefixFormatter) *NameFormatter {
-	t.prefix = prefix
+func (t *nameFormatter) PrefixAll() *nameFormatter {
+	t.prefixSocial = true
 	return t
 }
 
-func (t *NameFormatter) Suffix(suffix SuffixFormatter) *NameFormatter {
-	t.suffix = suffix
+func (t *nameFormatter) PrefixSocial() *nameFormatter {
+	t.prefixSocial = true
 	return t
 }
 
-func (t *NameFormatter) Override() *NameFormatter {
-	t.override = true
+func (t *nameFormatter) PrefixFormal() *nameFormatter {
+	t.prefixSocial = false
+	t.prefixFormal = true
 	return t
 }
 
-func (t NameFormatter) Format(name Name) string {
-	var items []string
+// func (t NameFormatter) Format(name Name) string {
+// 	var items []string
 
-	for _, prefix := range name.Prefixes {
-		items = append(items, t.prefix.Format(prefix))
-	}
+// 	nameFormat, _ := slicer.FirstNotZero(name.Format, t.name)
 
-	nameFormat, _ := slicer.FirstNotZero(name.Format, t.name)
+// 	if t.override {
+// 		nameFormat = t.name
+// 	}
 
-	if t.override {
-		nameFormat = t.name
-	}
+// 	switch nameFormat {
+// 	case NameFormats.First, NameFormats.Given:
+// 		if item, ok := slicer.Head(name.Firsts...); ok {
+// 			items = append(items, item)
+// 		}
+// 	case NameFormats.FirstAll, NameFormats.GivenAll:
+// 		items = append(items, name.Firsts...)
+// 	case NameFormats.Last, NameFormats.Surname:
+// 		if item, ok := slicer.Last(name.Lasts...); ok {
+// 			items = append(items, item)
+// 		}
+// 	case NameFormats.LastAll, NameFormats.SurnameAll:
+// 		items = append(items, name.Lasts...)
+// 	default:
+// 		items = append(items, name.GivenName(), name.FamilyName())
+// 	}
 
-	switch nameFormat {
-	case NameFormats.GivenNameFamilyName:
-		items = append(items, name.FamilyName(), name.GivenName())
-	default:
-		items = append(items, name.GivenName(), name.FamilyName())
-	}
+// 	for _, suffix := range name.Suffixes {
+// 		items = append(items, t.suffix.Format(suffix))
+// 	}
 
-	for _, suffix := range name.Suffixes {
-		items = append(items, t.suffix.Format(suffix))
-	}
+// 	s := strings.Join(items, " ")
+// 	s = strings.Join(strings.Fields(s), " ")
 
-	s := strings.Join(items, " ")
-	s = strings.Join(strings.Fields(s), " ")
+// 	return s
+// }
 
-	return s
-}
+// // ///////////////////////////////////////////////////
+// // Prefix Formatter
+// // ///////////////////////////////////////////////////
 
-// ///////////////////////////////////////////////////
-// Prefix Formatter
-// ///////////////////////////////////////////////////
+// func NewPrefixFormatter(formatter PrefixFormat) PrefixFormatter {
+// 	return PrefixFormatter{formatter: formatter}
+// }
 
-func NewPrefixFormatter(formatter PrefixFormat) PrefixFormatter {
-	return PrefixFormatter{formatter: formatter}
-}
+// func NewPrefixFormatterWithIndex(formatter PrefixFormat, index int, override bool) PrefixFormatter {
+// 	return PrefixFormatter{formatter: formatter, index: index, override: override}
+// }
 
-func NewPrefixFormatterWithIndex(formatter PrefixFormat, index int, override bool) PrefixFormatter {
-	return PrefixFormatter{formatter: formatter, index: index, override: override}
-}
+// type PrefixFormatter struct {
+// 	formatter PrefixFormat
+// 	index     int
+// 	override  bool
+// }
 
-type PrefixFormatter struct {
-	formatter PrefixFormat
-	index     int
-	override  bool
-}
+// func (t *PrefixFormatter) Override() *PrefixFormatter {
+// 	t.override = true
+// 	return t
+// }
 
-func (t *PrefixFormatter) Override() *PrefixFormatter {
-	t.override = true
-	return t
-}
+// func (t *PrefixFormatter) Index(index int) *PrefixFormatter {
+// 	t.index = index
+// 	return t
+// }
 
-func (t *PrefixFormatter) Index(index int) *PrefixFormatter {
-	t.index = index
-	return t
-}
+// func (t PrefixFormatter) Format(prefix Prefix) string {
+// 	var s string
 
-func (t PrefixFormatter) Format(prefix Prefix) string {
-	var s string
+// 	formatter, _ := slicer.FirstNotZero(prefix.Format, t.formatter)
 
-	formatter, _ := slicer.FirstNotZero(prefix.Format, t.formatter)
+// 	if t.override {
+// 		formatter = t.formatter
+// 	}
 
-	if t.override {
-		formatter = t.formatter
-	}
+// 	switch formatter {
+// 	case PrefixFormats.Full:
+// 		s = prefix.Text
+// 	default:
+// 		if len(prefix.Abbreviation)-1 >= t.index {
+// 			s = prefix.Abbreviation[0]
+// 		} else if len(prefix.Abbreviation) > 0 {
+// 			s = prefix.Abbreviation[0]
+// 		} else {
+// 			s = prefix.Text
+// 		}
+// 	}
 
-	switch formatter {
-	case PrefixFormats.Full:
-		s = prefix.Text
-	default:
-		if len(prefix.Abbreviation)-1 >= t.index {
-			s = prefix.Abbreviation[0]
-		} else if len(prefix.Abbreviation) > 0 {
-			s = prefix.Abbreviation[0]
-		} else {
-			s = prefix.Text
-		}
-	}
+// 	return s
+// }
 
-	return s
-}
+// // ///////////////////////////////////////////////////
+// // Suffix Formatter
+// // ///////////////////////////////////////////////////
 
-// ///////////////////////////////////////////////////
-// Suffix Formatter
-// ///////////////////////////////////////////////////
+// func NewSuffixFormatter(formatter SuffixFormat) SuffixFormatter {
+// 	return SuffixFormatter{formatter: formatter}
+// }
 
-func NewSuffixFormatter(formatter SuffixFormat) SuffixFormatter {
-	return SuffixFormatter{formatter: formatter}
-}
+// func NewSuffixFormatterWithIndex(formatter SuffixFormat, index int, override bool) SuffixFormatter {
+// 	return SuffixFormatter{formatter: formatter, index: index, override: override}
+// }
 
-func NewSuffixFormatterWithIndex(formatter SuffixFormat, index int, override bool) SuffixFormatter {
-	return SuffixFormatter{formatter: formatter, index: index, override: override}
-}
+// type SuffixFormatter struct {
+// 	formatter SuffixFormat
+// 	index     int
+// 	override  bool
+// }
 
-type SuffixFormatter struct {
-	formatter SuffixFormat
-	index     int
-	override  bool
-}
+// func (t *SuffixFormatter) Override() *SuffixFormatter {
+// 	t.override = true
+// 	return t
+// }
 
-func (t *SuffixFormatter) Override() *SuffixFormatter {
-	t.override = true
-	return t
-}
+// func (t *SuffixFormatter) Index(index int) *SuffixFormatter {
+// 	t.index = index
+// 	return t
+// }
 
-func (t *SuffixFormatter) Index(index int) *SuffixFormatter {
-	t.index = index
-	return t
-}
+// func (t SuffixFormatter) Format(suffix Suffix) string {
+// 	var s string
 
-func (t SuffixFormatter) Format(suffix Suffix) string {
-	var s string
+// 	formatter, _ := slicer.FirstNotZero(suffix.Format, t.formatter)
 
-	formatter, _ := slicer.FirstNotZero(suffix.Format, t.formatter)
+// 	if t.override {
+// 		formatter = t.formatter
+// 	}
 
-	if t.override {
-		formatter = t.formatter
-	}
+// 	switch formatter {
+// 	case SuffixFormats.Full:
+// 		s = suffix.Text
+// 	default:
+// 		if len(suffix.Abbreviation)-1 >= t.index {
+// 			s = suffix.Abbreviation[0]
+// 		} else if len(suffix.Abbreviation) > 0 {
+// 			s = suffix.Abbreviation[0]
+// 		} else {
+// 			s = suffix.Text
+// 		}
+// 	}
 
-	switch formatter {
-	case SuffixFormats.Full:
-		s = suffix.Text
-	default:
-		if len(suffix.Abbreviation)-1 >= t.index {
-			s = suffix.Abbreviation[0]
-		} else if len(suffix.Abbreviation) > 0 {
-			s = suffix.Abbreviation[0]
-		} else {
-			s = suffix.Text
-		}
-	}
-
-	return s
-}
+// 	return s
+// }

@@ -1,45 +1,43 @@
 package people
 
 import (
-	"fmt"
-	"reflect"
+	_ "embed"
 
-	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
-	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
-	"github.com/boundedinfinity/schema/idiomatic/id"
+	"gopkg.in/yaml.v3"
 )
 
-type prefixes []Prefix
+//go:embed prefix.data.yaml
+var prefixYaml string
 
-func (t prefixes) IsZero(item Prefix) bool {
-	return reflect.DeepEqual(item, zeroPrefix)
-}
+// func (t prefixes) Find(s string) (Prefix, bool) {
+// 	fn := func(prefix Prefix) bool {
+// 		return stringer.EqualIgnoreCase(prefix.Text, s) ||
+// 			stringer.ContainsAnyIgnoreCase(s, prefix.Abbreviation...)
+// 	}
 
-func (t prefixes) Find(s string) (Prefix, bool) {
-	fn := func(prefix Prefix) bool {
-		return stringer.EqualIgnoreCase(prefix.Text, s) ||
-			stringer.ContainsAnyIgnoreCase(s, prefix.Abbreviation...)
-	}
+// 	return slicer.FindFn(fn, t...)
+// }
 
-	return slicer.FindFn(fn, t...)
-}
-
-func (t prefixes) MustFind(s string) Prefix {
-	if found, ok := t.Find(s); !ok {
-		panic(fmt.Errorf("can't find prefix %v", s))
-	} else {
-		return found
-	}
-}
+// func (t prefixes) MustFind(s string) Prefix {
+// 	if found, ok := t.Find(s); !ok {
+// 		panic(fmt.Errorf("can't find prefix %v", s))
+// 	} else {
+// 		return found
+// 	}
+// }
 
 var (
-	zeroPrefix Prefix
-
-	Prefixes = prefixes{
-		{
-			Id:           id.MustParse("b5a5b96c-5955-44c4-8d53-2c7fd1090a02"),
-			Text:         "Mister",
-			Abbreviation: []string{"Mr."},
-		},
-	}
+	Prefixes          = []Prefix{}
+	PrefixDescriptors = []PrefixDescriptor{}
 )
+
+func init() {
+	if err := yaml.Unmarshal([]byte(prefixYaml), &PrefixDescriptors); err != nil {
+		panic(err)
+	}
+
+	for _, prefix := range Prefixes {
+		PrefixDescriptors = append(PrefixDescriptors, prefix.Descriptor)
+		Prefixes = append(Prefixes, prefix)
+	}
+}

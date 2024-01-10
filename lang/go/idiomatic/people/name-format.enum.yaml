@@ -1,5 +1,53 @@
+# https://www.family-historian.co.uk/help/fh7/nameformats.html
 serialize: 
     value: pascal-to-kebab-lower
 values:
-    -   name: GivenNameFamilyName
-    -   name: FamilyNameGivenName
+    -   name: Prefixed
+        desc: Given name and surname, preceded by name prefix, if any
+    -   name: PrefixedFull
+        desc: Full name preceded by name prefix, if any
+    -   name: Surname           
+        desc: Surname A hereditary name common to all members of a family
+    -   name: SurnameAll
+    -   name: Family
+    -   name: FamilyAll
+    -   name: Last
+    -   name: LastAll
+    -   name: First
+    -   name: Given
+        desc: >
+            The given name is the always first name, unless 
+            a 'name used' value has been provided, in which
+            case that is the given name, or unless the 
+            first name is the surname, in which case the 
+            given name is the first non-surname word in the 
+            name.
+    -   name: GivenAll
+        desc: All given names - ie. everything except the surname.
+    -   name: FirstAll
+        desc: Same as GivenAll
+    -   name: Middle
+        desc: > 
+            All middle names - i.e. everything except the first 
+            name(s) and the surname(s).
+    -   name: MiddleAll
+    -   name: MiddleInitial
+    -   name: MiddleInitialAll
+    -   name: Full
+        desc: >
+            All prefixes, followed by first names, then middle
+            names, then last names, then suffixes
+    -   name: FullInitial
+    -   name: SurnameFirst
+    -   name: Adorned
+        desc: >
+            Given name and surname, preceded by name prefix, if 
+            any, and followed by name suffix, if any.
+    -   name: AdornedFull
+        desc:
+            Full name preceded by name prefix, if any, and 
+            followed by name suffix, if any.    
+    -   name: Suffixed
+        desc: Given name and surname, followed by name suffix, if any.
+    -   name: SuffixedFull
+        desc: Full name preceded by name suffix, if any.

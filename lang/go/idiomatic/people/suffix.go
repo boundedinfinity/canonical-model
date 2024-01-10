@@ -23,5 +23,6 @@ func (t Suffix) Validate(groups ...string) error {
 }
 
 func (t Suffix) String() string {
-	return NewSuffixFormatter(SuffixFormats.Abbreviation).Format(t)
+	// return NewSuffixFormatter(SuffixFormats.Abbreviation).Format(t)
+	return ""
 }
