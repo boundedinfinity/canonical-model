@@ -1,0 +1,39 @@
+serialize: 
+    value: pascal-to-kebab-lower
+values:
+    -   name: Unknown
+        desc: The type isn't known
+
+    -   name: Debit
+        desc: > 
+            A debit indicates money moving into an account
+
+            Common accounts that carry a debit balance are:
+                - Assset
+                - Expense
+          
+            References:
+                - [Debit: Definition and Relationship to Credit]
+                - [What Credit (CR) and Debit (DR) Mean on a Balance Sheet]
+                - [T-Account: Definition, Example, Recording, and Benefits]
+          
+            [Debit: Definition and Relationship to Credit]https://www.investopedia.com/terms/d/debit.asp
+            [T-Account: Definition, Example, Recording, and Benefits]https://www.investopedia.com/terms/t/t-account.asp
+
+    -   name: Credit
+        desc: >
+            A credit indicates money moeny moving out of an account
+
+            Common accounts taht carry a credit balance are:
+                - Liability
+                - Revenue
+                - Equity
+            
+            References:
+                - [Credit: What It Is and How It Works]
+                - [What Credit (CR) and Debit (DR) Mean on a Balance Sheet]
+                - [T-Account: Definition, Example, Recording, and Benefits]
+            
+            [Credit: What It Is and How It Works]https://www.investopedia.com/terms/c/credit.asp
+            [What Credit (CR) and Debit (DR) Mean on a Balance Sheet]https://www.investopedia.com/ask/answers/04/072304.asp
+            [T-Account: Definition, Example, Recording, and Benefits]https://www.investopedia.com/terms/t/t-account.asp

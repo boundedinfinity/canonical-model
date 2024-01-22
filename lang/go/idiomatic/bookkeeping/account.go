@@ -10,8 +10,10 @@ import (
 
 type Account struct {
 	Id          id.Id                `json:"id,omitempty"`
+	Type        BookkeepingType      `json:"type,omitempty"`
 	Name        string               `json:"name,omitempty"`
-	Code        int                  `json:"code,omitempty"`
+	Reference   string               `json:"reference,omitempty"`
+	GaapCode    int                  `json:"gaap-code,omitempty"`
 	Description string               `json:"description,omitempty"`
 	Parent      *Account             `json:"parent,omitempty"`
 	Children    []*Account           `json:"children,omitempty"`

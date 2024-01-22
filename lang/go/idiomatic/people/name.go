@@ -9,6 +9,8 @@ package people
 // https://en.wikipedia.org/wiki/Suffix_(name)
 // https://en.wikipedia.org/wiki/List_of_professional_designations_in_the_United_States
 // https://www.nari.org/Certification-Accreditation/Individual-Certification
+// https://en.wikipedia.org/wiki/Post-nominal_letters
+// https://en.wikipedia.org/wiki/Surname
 
 import (
 	"errors"

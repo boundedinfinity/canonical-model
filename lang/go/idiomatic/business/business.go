@@ -31,6 +31,7 @@ type Business struct {
 	FormationDate      rfc3339date.Rfc3339Date          `json:"formation-date,omitempty"`
 	DissolutionDate    rfc3339date.Rfc3339Date          `json:"dissolution-date,omitempty"`
 	OperatingAgreement OperatingAgreement               `json:"operating-agreement,omitempty"`
+	EntityType         EntityType                       `json:"entity-type,omitempty"`
 }
 
 type Member struct {
@@ -40,12 +41,12 @@ type Member struct {
 }
 
 func (t Member) Name() string {
-	if !reflecter.Instances.IsZero(t.Individual) {
-		return t.Individual.Name()
-	}
-
 	if !reflecter.Instances.IsZero(t.Business) {
 		return t.Business.LegalName
+	}
+
+	if !reflecter.Instances.IsZero(t.Individual) {
+		return t.Individual.Name()
 	}
 
 	return "X"

@@ -40,3 +40,7 @@ package idiomatic
 //go:generate go run ./idiomatic/specification/iso/gen
 //go:generate enumer -config=./idiomatic/location/country-alpha-2.enum.yaml
 //go:generate enumer -config=./idiomatic/location/country-alpha-3.enum.yaml
+
+//go:generate enumer -config=./idiomatic/business/entity-type.enum.yaml
+
+//go:generate enumer -config=./idiomatic/bookkeeping/bookkeeping-type.enum.yaml
