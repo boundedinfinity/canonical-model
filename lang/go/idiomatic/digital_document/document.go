@@ -12,7 +12,7 @@ import (
 
 type DocumentV1 struct {
 	Id             id.Id                   `json:"id,omitempty"`
-	Location       string                  `json:"location,omitempty"`
+	Location       Location                `json:"location,omitempty"`
 	Name           string                  `json:"name,omitempty"`
 	Type           mime_type.MimeType      `json:"type,omitempty"`
 	CreatedOnDate  rfc3339date.Rfc3339Date `json:"created-on-date,omitempty"`
@@ -36,7 +36,7 @@ func (t DocumentV1) Upgrade() DocumentV2 {
 
 type DocumentV2 struct {
 	Id         id.Id                   `json:"id,omitempty"`
-	Location   string                  `json:"location,omitempty"`
+	Location   Location                `json:"location,omitempty"`
 	Name       string                  `json:"name,omitempty"`
 	Type       mime_type.MimeType      `json:"type,omitempty"`
 	CreatedOn  rfc3339date.Rfc3339Date `json:"created-on,omitempty"`
