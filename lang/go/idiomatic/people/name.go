@@ -11,6 +11,7 @@ package people
 // https://www.nari.org/Certification-Accreditation/Individual-Certification
 // https://en.wikipedia.org/wiki/Post-nominal_letters
 // https://en.wikipedia.org/wiki/Surname
+// https://en.wikipedia.org/wiki/Service_number_(United_States_Armed_Forces)#Prefix_and_suffix_codes
 
 import (
 	"errors"
