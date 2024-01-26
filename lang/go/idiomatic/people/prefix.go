@@ -20,10 +20,10 @@ var (
 )
 
 type Prefix struct {
-	Id           id.Id            `json:"id,omitempty"`
-	Text         string           `json:"text,omitempty"`
-	Abbreviation string           `json:"abbreviation,omitempty"`
-	Descriptor   PrefixDescriptor `json:"descriptor,omitempty"`
+	Id         id.Id            `json:"id,omitempty"`
+	Text       string           `json:"text,omitempty"`
+	Abbr       string           `json:"abbr,omitempty"`
+	Descriptor PrefixDescriptor `json:"descriptor,omitempty"`
 }
 
 var _ id.TypeNamer = &Prefix{}
@@ -33,8 +33,8 @@ func (t Prefix) TypeName() string {
 }
 
 func (t Prefix) String() string {
-	if len(t.Abbreviation) > 0 {
-		return fmt.Sprintf("%s (%s)", t.Text, t.Abbreviation)
+	if len(t.Abbr) > 0 {
+		return fmt.Sprintf("%s (%s)", t.Text, t.Abbr)
 	}
 
 	return t.Text

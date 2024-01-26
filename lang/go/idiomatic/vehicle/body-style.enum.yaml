@@ -1,9 +1,12 @@
+serialize:
+    value: phrase-to-snake-lower
 values:
-    -   serialized: sport-utility-vehicle
-    -   serialized: sedan
-    -   serialized: truck
-    -   serialized: coupe
-    -   serialized: minivan
-    -   serialized: convertible
-    -   serialized: hatchback
-    -   serialized: wagon
+    -   name: Sport Utility Vehicle
+    -   name: Sedan
+    -   name: Truck
+    -   name: Coupe
+    -   name: Minivan
+    -   name: Convertible
+    -   name: Hatchback
+    -   name: Wagon
+    -   name: Sport Wagon
