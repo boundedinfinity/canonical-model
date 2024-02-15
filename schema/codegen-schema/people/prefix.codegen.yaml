@@ -5,7 +5,7 @@ types:
         ref: https://www.boundedinfinity.com/schema/util/url-id
     -   id: https://www.boundedinfinity.com/schema/people/prefix
         description: |
-            The prefix of a person's name.
+            The prefix of a personal name.
 
             This may includes things like a title, certification, rank, 
             honorific, etc...
