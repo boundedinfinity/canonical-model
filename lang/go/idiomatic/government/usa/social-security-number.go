@@ -7,7 +7,7 @@ import (
 	"github.com/boundedinfinity/schema/idiomatic/people"
 )
 
-// SSN
+// SSN,
 // https://www.ssa.gov/number-card
 // https://www.ssa.gov/policy/docs/ssb/v45n11/v45n11p29.pdf
 type SocialSecurityNumber struct {
