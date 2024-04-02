@@ -4,11 +4,11 @@
 
 <h4>type-id</h4>
 
-<div>
+<p>
     This <code>type-id</code> for this entity.
-</div>
+</p>
 
-<div>
-   
-</div>
+<p>
+   This property cannot be set if the <code>inherit</code> property is set.
+</p>
 
