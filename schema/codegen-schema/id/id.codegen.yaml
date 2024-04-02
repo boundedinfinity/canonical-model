@@ -1,5 +1,5 @@
 types:
-    -   id: https://www.boundedinfinity.com/schema/util/simple-id
+    -   type-id: https://www.boundedinfinity.com/schema/util/simple-id
         name: id
         type: string
         min: 1

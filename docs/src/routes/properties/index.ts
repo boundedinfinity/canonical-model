@@ -1,4 +1,5 @@
 import TypeId from "./property-type-id.svelte";
+import Type from "./property-type.svelte";
 import Min from "./property-min.svelte";
 import Max from "./property-max.svelte";
 import MultipleOf from "./property-multiple-of.svelte";
@@ -17,6 +18,7 @@ export {
     Inherit,
     Link,
     TypeId,
+    Type,
     Min,
     Max,
     MultipleOf,

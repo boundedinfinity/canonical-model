@@ -7,6 +7,7 @@
         Inherit,
         Link,
         TypeId,
+        Type,
     } from "../properties";
 
     export let name: string
@@ -18,7 +19,8 @@
     </header>
 
     <ul>
-        <li><TypeId {name}/></li>
+        <li><Type {name}/></li>
+        <li><TypeId /></li>
         <li><Name /></li>
         <li><Description /></li>
         <li><Required /></li>
