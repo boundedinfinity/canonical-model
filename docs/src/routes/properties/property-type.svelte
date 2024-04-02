@@ -15,6 +15,10 @@
         <li><code>float</code></li>
         <li><code>string</code></li>
         <li><code>bool</code></li>
+        <li><code>date</code></li>
+        <li><code>date-time</code></li>
+        <li><code>time</code></li>
+        <li><code>duration</code></li>
     </ul>
 </div>
 
