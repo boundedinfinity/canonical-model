@@ -1,6 +1,6 @@
 <script lang="ts">
     import "../app.css";
-    import { Int, Float, Bool, String, Date, DateTime, Duration, Time } from "./types";
+    import { Int, Float, Bool, String, Date, DateTime, Duration, Time, Object, Array, Enum } from "./types";
 </script>
 
 <h1>Canonical Model Specification 2024-04-01</h1>
@@ -8,14 +8,17 @@
 <h2>Types</h2>
 
 <ul>
-    <li><String /></li>
-    <li><Int /></li>
-    <li><Float /></li>
+    <li><Array /></li>
     <li><Bool /></li>
     <li><Date /></li>
     <li><DateTime /></li>
-    <li><Time /></li>
     <li><Duration /></li>
+    <li><Enum /></li>
+    <li><Float /></li>
+    <li><Int /></li>
+    <li><Object /></li>
+    <li><String /></li>
+    <li><Time /></li>
 </ul>
 
 

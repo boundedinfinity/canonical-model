@@ -5,12 +5,7 @@ types:
     ############################################################################################
     ############################################################################################
 
-    -   id: https://www.boundedinfinity.com/schema/util/label-simple-id
-        description: A simple label ID
-        type: ref
-        ref: https://www.boundedinfinity.com/schema/util/url-id
-
-    -   id: https://www.boundedinfinity.com/schema/util/label-simple
+    -   type-id: label-simple
         type: object
         description: A simple label
         properties:
