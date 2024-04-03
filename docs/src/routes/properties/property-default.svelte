@@ -1,6 +1,10 @@
-<h4>default</h4>
+<script lang="ts">
+    import Item from "./property-item.svelte";
+</script>
 
-<p>
-    The default value of the integer is the integer isn't defined. If the the
-    default is defined it must conform to the contraints.
-</p>
+<Item name="default" common>
+    <p>
+        The default value of the integer is the integer isn't defined. If the
+        the default is defined it must conform to the contraints.
+    </p>
+</Item>

@@ -1,5 +1,7 @@
-<h4>max</h4>
+<script lang="ts">
+    import Item from "./property-item.svelte";
+</script>
 
-<p>
-    The inclusive maximum constraint value of the integer.
-</p>
+<Item name="max">
+    <p>The inclusive maximum constraint value of the integer.</p>
+</Item>

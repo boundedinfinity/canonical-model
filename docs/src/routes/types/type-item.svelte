@@ -11,11 +11,13 @@
     } from "../properties";
 
     export let name: string
+    export let builtIn: boolean = false
 </script>
 
 <section>
     <header>
         <h3>{name}</h3>
+        {#if builtIn}<small>built-in</small>{/if}
     </header>
 
     <ul>
@@ -31,3 +33,11 @@
         <slot name="props" />
     </ul>
 </section>
+
+<style>
+    header {
+        display: flex;
+        align-items: baseline;
+        gap: 1ch;
+    }
+</style>

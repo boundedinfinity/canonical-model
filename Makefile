@@ -28,4 +28,4 @@ publish:
 	make tag tag=$(m)
 
 docs:
-	cd $(makefile_dir)/docs && npm run dev
+	cd $(makefile_dir)/docs && npm install && npm run dev

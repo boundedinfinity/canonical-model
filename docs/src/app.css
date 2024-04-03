@@ -1,7 +1,9 @@
+@import "open-props/style";
+
 :root {
     line-height: 1.1;
     font-family: monospace;
-    color: darkgrey;
+    color: var(--red-11);
 }
 
 code {

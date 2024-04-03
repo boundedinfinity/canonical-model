@@ -1,5 +1,7 @@
-<h4>min</h4>
+<script lang="ts">
+    import Item from "./property-item.svelte";
+</script>
 
-<p>
-    The inclusive minimum constraint value of the integer.
-</p>
+<Item name="min">
+    <p>The inclusive minimum constraint value of the integer.</p>
+</Item>

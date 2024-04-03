@@ -1,13 +1,6 @@
 types:
-    -   id: https://www.boundedinfinity.com/schema/util/description
+    -   type-id: https://www.boundedinfinity.com/schema/util/description
         name: description
         type: string
-        min: 1
+        min: 5
         max: 200
-    -   id: https://www.boundedinfinity.com/schema/util/description-t
-        type: object
-        properties:
-            -   type: ref
-                ref: https://www.boundedinfinity.com/schema/util/uri-id
-            -   type: ref
-                ref: https://www.boundedinfinity.com/schema/util/description
