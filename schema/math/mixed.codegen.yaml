@@ -1,0 +1,10 @@
+types:
+    -   id: https://www.boundedinfinity.com/schema/math/mixed
+        name: rational
+        type: object
+        description: Mixed Number
+        properties:
+            -   type: integer
+                name: whole
+            -   type: https://www.boundedinfinity.com/schema/math/rational
+                name: fraction
