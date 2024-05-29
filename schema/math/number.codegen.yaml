@@ -1,0 +1,33 @@
+types:
+    -   id: https://www.boundedinfinity.com/schema/math/number/fraction
+        name: fraction
+        type: object
+        description: Fractional Number
+        properties:
+            -   type: integer
+                name: numerator
+                min: 0
+            -   type: integer
+                name: denominator
+                invalid: [0]
+                min: 0
+
+    -   id: https://www.boundedinfinity.com/schema/math/number/rational
+        name: rational
+        type: object
+        description: Rational Number
+        properties:
+            -   type: integer
+                name: numerator
+            -   type: integer
+                name: denominator
+                invalid: [0]
+
+    -   id: https://www.boundedinfinity.com/schema/math/number/mixed
+        name: rational
+        type: object
+        description: Mixed Number
+        properties:
+            -   type: integer
+                name: whole
+            -   type: https://www.boundedinfinity.com/schema/math/number/rational

@@ -20,6 +20,7 @@ types:
             -   name: name
                 type: string
                 required: true
+
     -   stype: https://www.boundedinfinity.com/schema/hardware/screw-material
         name: screw-length
         type: object
@@ -27,6 +28,7 @@ types:
             -   name: name
                 type: string
                 required: true
+
     -   stype: https://www.boundedinfinity.com/schema/hardware/screw-length
         name: screw-length
         type: object
@@ -34,6 +36,7 @@ types:
             -   name: name
                 type: string
                 required: true
+
     -   stype: https://www.boundedinfinity.com/schema/hardware/screw-thread-size
         name: thread-size
         type: object
@@ -51,6 +54,7 @@ types:
                     type: string
             -   name: description
                 type: string
+
     -   stype: https://www.boundedinfinity.com/schema/hardware/screw-head-style
         name: head-style
         type: object
@@ -68,6 +72,7 @@ types:
                     type: string
             -   name: description
                 type: string
+
     -   stype: https://www.boundedinfinity.com/schema/hardware/screw-drive-style
         name: drive-style
         type: object
@@ -85,6 +90,7 @@ types:
                     type: string
             -   name: description
                 type: string
+
 data:
     -   stype: https://www.boundedinfinity.com/schema/hardware/screw-finish
         name: Black Oxide
