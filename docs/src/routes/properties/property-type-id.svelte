@@ -1,13 +1,10 @@
 <script lang="ts">
     import Item from "./property-item.svelte";
+    export let typeId: string;
 </script>
 
-<Item name="type-id" common>
+<Item name="type-id">
     <p>
-        This <code>type-id</code> for this entity.
-    </p>
-
-    <p>
-        This property cannot be set if the <code>inherit</code> property is set.
+        The <code>type-id</code> for this entity is <code>{typeId}</code>.
     </p>
 </Item>

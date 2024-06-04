@@ -15,6 +15,8 @@
         Array,
         Enum,
     } from "./types";
+
+    import {Ea} from './utils'
 </script>
 
 <h1>Canonical Model Specification 2024-04-01</h1>
@@ -41,8 +43,21 @@
 
 <h2>References</h2>
 <ul>
-    <li>https://json-schema.org/</li>
-    <li>https://pkl-lang.org/</li>
-    <li>https://graphql.org/</li>
-    <li>https://avro.apache.org/</li>
+    <li><Ea url="https://json-schema.org" /></li>
+    <li><Ea url="https://pkl-lang.org" /></li>
+    <li><Ea url="https://graphql.org" /></li>
+    <li><Ea url="https://avro.apache.org" /></li>
+    <li><Ea url="https://datatracker.ietf.org/doc/html/rfc3339" /></li>
 </ul>
+
+<style>
+    li {
+        list-style: none;
+        margin-block: 1rem;
+        border-style: solid;
+        border-width: 1px;
+        border-color: lightblue;
+        background-color: aliceblue;
+        padding: .25rem;
+    }
+</style>

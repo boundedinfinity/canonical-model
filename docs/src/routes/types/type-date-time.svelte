@@ -1,5 +1,5 @@
 <script lang="ts">
-    import TypeItem from "./type-item.svelte";
+    import TypeCommon from "./type-common.svelte";
 </script>
 
-<TypeItem name="date-time" />
+<TypeCommon typeId="date-time" builtIn />

@@ -1,5 +1,14 @@
 <script lang="ts">
-    import TypeItem from "./type-item.svelte";
+    import TypeCommon from "./type-common.svelte";
 </script>
 
-<TypeItem name="date" />
+
+
+<TypeCommon typeId="date" builtIn>
+    <div slot="desc">
+        https://datatracker.ietf.org/doc/html/rfc3339
+    </div>
+</TypeCommon>
+
+
+
