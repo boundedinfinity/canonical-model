@@ -27,5 +27,5 @@ publish:
 	make commit m=$(m)
 	make tag tag=$(m)
 
-docs:
-	cd $(makefile_dir)/docs && npm install && npm run dev
+docs-dev:
+	cd $(makefile_dir)/docs && make dev

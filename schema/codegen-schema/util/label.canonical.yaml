@@ -1,6 +1,6 @@
 types:
     -   type-id: https://www.boundedinfinity.com/schema/util/label-simple
-        type: object
+        codegen-id: object
         description: A simple label
         properties:
             -   name: name

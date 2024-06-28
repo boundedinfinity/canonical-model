@@ -1,15 +1,31 @@
 <script lang="ts">
     import TypeCommon from "./type-common.svelte";
-    import { Min, Max } from "../properties";
+    import Item from "./property-item.svelte";
+    
+    export let typeId = "string"
 </script>
 
-<TypeCommon typeId="string" builtIn>
+<TypeCommon {typeId} builtIn>
     <svelte:fragment slot="props">
         <li>
-            <Min />
+            <Item name="min">
+                <p>The inclusive minimum constraint value of the {typeId}.</p>
+            </Item>
         </li>
         <li>
-            <Max />
+            <Item name="max">
+                <p>The inclusive maximum constraint value of the {typeId}.</p>
+            </Item>
+        </li>
+        <li>
+            <Item name="regex">
+                <p>Regular expression for the {typeId} type.</p>
+            </Item>
+        </li>
+        <li>
+            <Item name="abnf">
+                <p>The ABNF rules contraint for the {typeId} type.</p>
+            </Item>
         </li>
     </svelte:fragment>
 </TypeCommon>

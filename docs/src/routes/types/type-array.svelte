@@ -1,13 +1,14 @@
 <script lang="ts">
     import TypeCommon from "./type-common.svelte";
+    import Item from "./property-item.svelte";
 </script>
 
 <TypeCommon typeId="array" builtIn>
     <svelte:fragment slot="props">
         <li>
-            <h4>items</h4>
-
-            <p>The type information for the items in this arrays.</p>
+            <Item name="items">
+                <p>The type information for the items in this arrays.</p>
+            </Item>
         </li>
     </svelte:fragment>
 </TypeCommon>

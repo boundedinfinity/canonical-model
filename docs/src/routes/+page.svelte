@@ -43,7 +43,12 @@
 
 <h2>References</h2>
 <ul>
-    <li><Ea url="https://json-schema.org" /></li>
+    <li>
+        <Ea url="https://json-schema.org" />
+        <ul>
+            <li><Ea url="https://json-schema.org/understanding-json-schema" /></li>
+        </ul>
+    </li>
     <li><Ea url="https://pkl-lang.org" /></li>
     <li><Ea url="https://graphql.org" /></li>
     <li><Ea url="https://avro.apache.org" /></li>

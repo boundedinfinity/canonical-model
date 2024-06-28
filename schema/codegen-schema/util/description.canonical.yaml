@@ -1,6 +1,6 @@
 types:
     -   type-id: https://www.boundedinfinity.com/schema/util/description
+        codegen-id: string
         name: description
-        type: string
         min: 5
         max: 200

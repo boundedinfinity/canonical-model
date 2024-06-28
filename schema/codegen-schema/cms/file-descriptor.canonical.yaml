@@ -17,3 +17,10 @@ types:
             -   ref: https://www.boundedinfinity.com/schema/cms/mime-type
                 required: true
             -   ref: https://www.boundedinfinity.com/schema/cms/file-extention
+            -   name: locations
+                type-id: array
+                items:
+                    type-id: uri
+                
+
+            
