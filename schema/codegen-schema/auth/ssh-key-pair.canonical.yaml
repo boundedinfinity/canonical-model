@@ -11,7 +11,64 @@ types:
                 description: The private key
                 type: string
                 required: true
-            -   name: algorithm
-                description: The algorithm used to generate the key
+            -   ref: https://www.boundedinfinity.com/schema/auth/ssh-key-algorithm
+
+    -   id: https://www.boundedinfinity.com/schema/auth/ssh-key-algorithm
+        description: The algorithm used to generate the key
+        type: object
+        properties:
+            -   name: id
+                description: The algorithm ID
                 type: string
                 required: true
+            -   name: name
+                description: The algorithm name
+                type: string
+                require: true
+            -   name: description
+                description: The algorithm description
+                type: string
+
+data:
+    -   type: https://www.boundedinfinity.com/schema/auth/ssh-key-algorithm
+        id: rsa
+        name: RSA
+        description: >
+            The Rivest-Shamir-Adleman algorithm
+    -   type: https://www.boundedinfinity.com/schema/auth/ssh-key-algorithm
+        id: dsa
+        name: DSA
+        description: >
+            The Digtial Signature Algorithm
+    -   type: https://www.boundedinfinity.com/schema/auth/ssh-key-algorithm
+        id: ed25519
+        name: Edwards-curve Digital Signature Algorithm
+        description: >
+            The Edwards-curve Digital Signature Algorithm signature scheme using SHA-512 and Curve25519.
+    -   type: https://www.boundedinfinity.com/schema/auth/ssh-key-algorithm
+        id: ed25519-sk
+        name: Edwards-curve Digital Signature Algorithm with FIDO/U2F 
+        description: >
+            The Edwards-curve Digital Signature Algorithm signature scheme using SHA-512 and 
+            Curve25519 for use with a Fast Identity Online (FIDO) / Universal Second Factor (U2F) 
+            authentication hardware devices.
+    -   type: https://www.boundedinfinity.com/schema/auth/ssh-key-algorithm
+        id: ecdsa
+        name: Elliptic Curve Digital Signature Algorithm
+        description: >
+            The Elliptic Curve Digital Signature Algorithm (ECDSA) offers a variant of the Digital 
+            Signature Algorithm (DSA) which uses elliptic-curve cryptography.
+    -   type: https://www.boundedinfinity.com/schema/auth/ssh-key-algorithm
+        id: ecdsa-sk
+        name: Elliptic Curve Digital Signature Algorithm with FIO/U2F
+        description: >
+            The Elliptic Curve Digital Signature Algorithm (ECDSA) offers a variant of the Digital 
+            Signature Algorithm (DSA) which uses elliptic-curve cryptography for use with a Fast 
+            Identity Online (FIDO) / Universal Second Factor (U2F) authentication hardware devices.
+
+# References
+#   - https://en.wikipedia.org/wiki/Digital_Signature_Algorithm
+#   - https://en.wikipedia.org/wiki/EdDSA
+#   - https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm
+#   - https://www.openssh.com/txt/release-8.2
+#   - https://www.pingidentity.com/en/resources/identity-fundamentals/authentication/passwordless-authentication/fido.html
