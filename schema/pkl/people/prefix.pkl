@@ -1,6 +1,0 @@
-class Prefix {
-    text: String
-    abbr: List<String>
-    desc: String
-}
-
