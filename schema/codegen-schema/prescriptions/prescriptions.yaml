@@ -1,0 +1,8 @@
+types:
+    -   id: https://www.boundedinfinity.com/schema/prescriptions/prescription
+        name: id
+        type: object
+        description: Drug prescription
+        properties:
+            -   ref: https://www.boundedinfinity.com/schema/prescriptions/drug
+                

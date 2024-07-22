@@ -1,0 +1,53 @@
+types:
+    -   id: https://www.boundedinfinity.com/schema/prescriptions/drug
+        name: id
+        type: object
+        description: Drug descriptor
+        properties:
+            -   name: generic-name
+                type: string
+                description: The drug generic name.
+                max: 50
+            -   name: brand-name
+                description: The drug generic name.
+                type: array
+                items:
+                    -   type: string
+                        max: 50
+            -   ref: https://www.boundedinfinity.com/schema/prescriptions/drug-class
+
+    -   id: https://www.boundedinfinity.com/schema/prescriptions/drug-class
+        name: id
+        type: object
+        description: Drug descriptor
+        properties:
+            -   name: name
+                type: string
+                description: The name of the drug class
+                max: 50
+            -   name: description
+                description: The description of the drug class.
+                type: string
+                max: 200
+            -   name: usage
+                type: array
+                min: 1
+                items:
+                    -   type: string
+            -   name: side-effects
+                type: array
+                min: 1
+                items:
+                    -   type: object
+                        properties:
+                            -   ref: https://www.boundedinfinity.com/schema/prescriptions/drug-side-effect-type
+                            -   name: description
+                                type: string
+
+    -   id: https://www.boundedinfinity.com/schema/prescriptions/drug-side-effect-type
+        name: id
+        type: enum
+        description: Drug side effect
+        elements:
+            -   name: name
+                type: string
