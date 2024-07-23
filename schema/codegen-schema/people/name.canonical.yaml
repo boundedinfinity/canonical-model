@@ -7,7 +7,7 @@ types:
                 type: array
                 items:
                     $ref: https://www.boundedinfinity.com/schema/people/prefix
-            -   name: given-names
+            -   name: first-names
                 type: array
                 required: true
                 min: 1
@@ -23,7 +23,7 @@ types:
                     type: string
                     max: 25
                     min: 1
-            -   name: family-names
+            -   name: last-names
                 type: array
                 required: true
                 min: 1

@@ -1,4 +1,35 @@
-## Common specifications
+# Canonical specification
+
+-   `types[]`:
+
+    List of types.
+
+-   `data[]`:
+
+    List of data to pre-population for a given set of types.  The data
+    specification is:
+    -   `type`: Reference to a type
+    -   An instance of the type.
+
+-   `operations[]`:
+
+    List of operations.  Operations have the following format:
+    -   `id`: 
+    
+        The ID of the operation
+    -   `name`:
+
+        The name of the operation.
+    -   `inputs[]`:
+
+        List of type references for the inputs to the operation.
+    -   `outputs[]`:
+
+        List of type references for the outputs of the operation.
+
+# Type specification
+
+## Common type specifications
 
 -   `id`:
 
@@ -77,7 +108,7 @@
     required: **false**
 
 
-## Integer speficiation
+## Integer type speficiation
 
 -   `ranges[]` 
     
@@ -119,11 +150,11 @@
 
     NOTE: These values are combined with values for from other contraints.
 
-## Bool specification
+## Bool type specification
 
 There are no additional items for this type
 
-## Float speficiation
+## Float type speficiation
 
 The `float` constraints are the same as for the `integer` type with the
 following additions:
@@ -137,7 +168,7 @@ following additions:
     Comparse a number down to a certain number of places below
     the period.
 
-## String specification
+## String type specification
 -   `min`: 
 
     The inclusive minimum length of the string
@@ -157,7 +188,7 @@ following additions:
 
     List of sub-string items which must not appear in the string
 
-## Enum specification
+## Enum type specification
 -   `items`:
 
     List if sub-items in these enumeration
