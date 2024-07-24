@@ -1,6 +1,5 @@
 types:
     -   id: https://www.boundedinfinity.com/schema/people/name
-        name: name
         type: object
         properties:
             -   name: prefixes
@@ -35,3 +34,42 @@ types:
                 type: array
                 items:
                     $ref: https://www.boundedinfinity.com/schema/people/suffix
+
+    -   id: https://www.boundedinfinity.com/schema/people/name-format
+        type: object
+        properties:
+            -   name: id
+                type: uuid
+            -   name: name
+                type: string
+                max: 25
+            -   name: description
+                type: string
+                max: 200
+
+data:
+    -   type: https://www.boundedinfinity.com/schema/people/name-format
+        name: First, Middle, Last
+        id: 57B684F0-D255-4B49-AF55-B8A89F11108E
+        description: >
+            A.K.A.: Western Name Order
+    -   type: https://www.boundedinfinity.com/schema/people/name-format
+        id: 94D4E730-679E-4D6C-AA7C-BE5FB12E98A2
+        name: Last, First, Middle
+        description: >
+            A.K.A.: Eastern Name Order
+    -   type: https://www.boundedinfinity.com/schema/people/name-format
+        id: BB2E0580-6879-43AF-93CB-D6045C65BF18
+        name: Last, Comma, First, Middle
+        description: >
+            Common naming ordering for corporate IT systems.
+    -   type: https://www.boundedinfinity.com/schema/people/name-format
+        id: FA06BF79-9B1D-48AF-90C0-E533E43997DA
+        name: Prefix, First, Middle, Last, Suffix
+        description: >
+            A.K.A.: Western Name Order with prefixes and suffixes
+    -   type: https://www.boundedinfinity.com/schema/people/name-format
+        id: 489D3081-3CE5-4EAB-9E28-DEEACE1D5E2A
+        name: Prefix, Last, First, Middle, Suffix
+        description: >
+            A.K.A.: Eastern Name Order with prefixes and suffixes
