@@ -9,8 +9,8 @@ types:
                 required: true
             -   name: private-key
                 description: The private key
-                type: string
                 required: true
+                type: string
             -   ref: https://www.boundedinfinity.com/schema/auth/ssh-key-algorithm
 
     -   id: https://www.boundedinfinity.com/schema/auth/ssh-key-algorithm
