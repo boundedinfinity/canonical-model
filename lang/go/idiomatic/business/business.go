@@ -41,11 +41,11 @@ type Member struct {
 }
 
 func (t Member) Name() string {
-	if !reflecter.Instances.IsZero(t.Business) {
+	if !reflecter.IsZero[Member](t.Business) {
 		return t.Business.LegalName
 	}
 
-	if !reflecter.Instances.IsZero(t.Individual) {
+	if !reflecter.IsZero[Member](t.Individual) {
 		return t.Individual.Name()
 	}
 
@@ -59,11 +59,11 @@ type Manager struct {
 }
 
 func (t Manager) Name() string {
-	if !reflecter.Instances.IsZero(t.Individual) {
+	if !reflecter.IsZero[Member](t.Individual) {
 		return t.Individual.Name()
 	}
 
-	if !reflecter.Instances.IsZero(t.Business) {
+	if !reflecter.IsZero[Member](t.Business) {
 		return t.Business.LegalName
 	}
 

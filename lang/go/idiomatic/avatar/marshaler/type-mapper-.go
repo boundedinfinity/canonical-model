@@ -32,13 +32,13 @@ type TypeMapper struct {
 }
 
 func (t *TypeMapper) Slice() []TypeMapperInfo {
-	return slicer.Map(func(info *TypeMapperInfo) TypeMapperInfo {
+	return slicer.Map(func(_ int, info *TypeMapperInfo) TypeMapperInfo {
 		return *info
 	}, t.typeToInfo.Values()...)
 }
 
 func (t *TypeMapper) ByValue(val any) (TypeMapperInfo, bool) {
-	info, ok := t.langToInfo[reflecter.Instances.QualifiedName(val)]
+	info, ok := t.langToInfo[reflecter.InstanceQualifiedName(val)]
 	return *info, ok
 }
 
@@ -58,7 +58,7 @@ func (t *TypeMapper) ByName(name string) (TypeMapperInfo, bool) {
 func (t *TypeMapper) RegisterValue(typeName string, val any) error {
 	info := TypeMapperInfo{
 		typeName: typeName,
-		langName: reflecter.Instances.QualifiedName(val),
+		langName: reflecter.InstanceQualifiedName(val),
 		typ:      reflect.TypeOf(val),
 	}
 

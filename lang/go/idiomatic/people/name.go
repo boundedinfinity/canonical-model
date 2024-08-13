@@ -64,8 +64,8 @@ func (t Name) String() string {
 	return t.Full()
 }
 
-func (t Name) Validate(groups ...string) error {
-	if err := t.Id.Validate(groups...); err != nil {
+func (t Name) ValidateGroup(groups ...string) error {
+	if err := t.Id.ValidateGroup(groups...); err != nil {
 		return fmt.Errorf("%w : %w", ErrNameInvalidId, err)
 	}
 

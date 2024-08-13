@@ -37,14 +37,14 @@ func NewFileMessageRepository(rootDir string, mashaler *marshaler.EventMarshaler
 		return repository, nil
 	}
 
-	projectDir := pather.Join(rootDir, _MESSENGER_DIR)
+	projectDir := pather.Paths.Join(rootDir, _MESSENGER_DIR)
 
 	if _, err := pather.Dirs.EnsureErr(projectDir); err != nil {
 		return repository, err
 	}
 
-	repository.logPath = pather.Join(projectDir, "log.json")
-	repository.errPath = pather.Join(projectDir, "err.text")
+	repository.logPath = pather.Paths.Join(projectDir, "log.json")
+	repository.errPath = pather.Paths.Join(projectDir, "err.text")
 
 	return repository, nil
 }
@@ -81,7 +81,7 @@ func (t *fileMessageRepository) saveErr(err error) {
 }
 
 func (t *fileMessageRepository) Store(messages ...model.TypedEvent) error {
-	raws := slicer.Map(func(message model.TypedEvent) model.RawEvent { return message.Raw() })
+	raws := slicer.Map(func(_ int, message model.TypedEvent) model.RawEvent { return message.Raw() })
 	t.log = append(t.log, raws...)
 	return t.saveLog()
 }

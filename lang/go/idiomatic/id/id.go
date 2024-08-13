@@ -5,6 +5,7 @@ import (
 	"errors"
 
 	"github.com/boundedinfinity/go-commoner/idiomatic/reflecter"
+	"github.com/boundedinfinity/schema/idiomatic/modeller"
 	"github.com/google/uuid"
 )
 
@@ -12,28 +13,34 @@ var (
 	ErrIdInvalid = errors.New("invalid id")
 )
 
+var _ modeller.Validator = &Id{}
+
 type Id struct {
 	uuid.UUID
 }
 
-func (t Id) String() string {
-	return t.UUID.String()
+func (this Id) String() string {
+	return this.UUID.String()
 }
 
-func (t Id) Validate(groups ...string) error {
+func (this Id) Validate() error {
 	return nil
 }
 
-func (t Id) IsZero() bool {
-	return reflecter.IsZero[Id](t)
+func (this Id) ValidateGroup(groups ...string) error {
+	return nil
 }
 
-func (t Id) MarshalJSON() ([]byte, error) {
-	if t.IsZero() {
+func (this Id) IsZero() bool {
+	return reflecter.IsZero[Id](this)
+}
+
+func (this Id) MarshalJSON() ([]byte, error) {
+	if this.IsZero() {
 		return json.Marshal(nil)
 	}
 
-	return json.Marshal(t.String())
+	return json.Marshal(this.String())
 }
 
 var Ids = ids{}

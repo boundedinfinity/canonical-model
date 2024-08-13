@@ -40,8 +40,8 @@ func (t Prefix) String() string {
 	return t.Text
 }
 
-func (t Prefix) Validate(groups ...string) error {
-	if err := t.Id.Validate(groups...); err != nil {
+func (t Prefix) ValidateGroup(groups ...string) error {
+	if err := t.Id.ValidateGroup(groups...); err != nil {
 		return fmt.Errorf("%w : %w", ErrPrefixInvalidId, err)
 	}
 
@@ -82,11 +82,11 @@ func (t PrefixAssigned) String() string {
 }
 
 func (t PrefixAssigned) Validate(groups ...string) error {
-	if err := t.Id.Validate(groups...); err != nil {
+	if err := t.Id.ValidateGroup(groups...); err != nil {
 		return errors.Join(ErrPrefixAssignedInvalidId, err)
 	}
 
-	if err := t.Prefix.Validate(groups...); err != nil {
+	if err := t.Prefix.ValidateGroup(groups...); err != nil {
 		return errors.Join(ErrPrefixAssignedInvalidPrefix, err)
 	}
 
