@@ -14,12 +14,12 @@ type stanagCodes struct {
 }
 
 func (t stanagCodes) ByName(s string) ([]StanagCode, bool) {
-	countries, ok := t.nameToCountry[stringer.ToLower(s)]
+	countries, ok := t.nameToCountry[stringer.Lowercase(s)]
 	return countries, ok && len(countries) > 0
 }
 
 func (t stanagCodes) ByCode(s string) ([]StanagCode, bool) {
-	countries, ok := t.codeToCountry[stringer.ToLower(s)]
+	countries, ok := t.codeToCountry[stringer.Lowercase(s)]
 	return countries, ok && len(countries) > 0
 }
 
@@ -47,8 +47,8 @@ func initStanag(fields []string) error {
 	}
 
 	countryLower := StanagCode{
-		Name: stringer.ToLower(country.Name),
-		Code: stringer.ToLower(country.Code),
+		Name: stringer.Lowercase(country.Name),
+		Code: stringer.Lowercase(country.Code),
 	}
 
 	var include bool

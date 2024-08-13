@@ -57,17 +57,17 @@ func processIso4217() error {
 
 func checkIso4217Country(iso4217Inputs []iso4217Record, iso3166Inputs []iso3166Record) []iso4217Record {
 	var outputs []iso4217Record
-	validCountries := slicer.Map(func(record iso3166Record) string {
+	validCountries := slicer.Map(func(_ int, record iso3166Record) string {
 		return record.Alpha2
 	}, iso3166Inputs...)
 
-	validCountries = slicer.Dedup(validCountries...)
+	validCountries = slicer.Deduplicate(validCountries...)
 
 	for _, input := range iso4217Inputs {
 		var codes []string
 
 		for _, code := range input.Countries {
-			if slicer.Contains(code, validCountries...) {
+			if slicer.AnyOf(code, validCountries...) {
 				codes = append(codes, code)
 			}
 		}
@@ -76,11 +76,11 @@ func checkIso4217Country(iso4217Inputs []iso4217Record, iso3166Inputs []iso3166R
 		outputs = append(outputs, input)
 	}
 
-	outputs = slicer.DedupFn(func(r iso4217Record) int {
+	outputs = slicer.DeduplicateFn(func(_ int, r iso4217Record) int {
 		return r.Number
 	}, outputs...)
 
-	outputs = slicer.DedupFn(func(r iso4217Record) string {
+	outputs = slicer.DeduplicateFn(func(_ int, r iso4217Record) string {
 		return r.Code
 	}, outputs...)
 
@@ -154,10 +154,16 @@ func generateIso4217(inputs []iso4217Record) error {
 				for _, input := range inputs {
 					val := fn(input)
 
-					if !reflecter.Instances.IsZero(val) {
-						d[jen.Lit(val)] = jen.Id(varId).Dot(input.Code)
+					switch val.(type) {
+					case int:
+						if !reflecter.IsZero[int](val) {
+							d[jen.Lit(val)] = jen.Id(varId).Dot(input.Code)
+						}
+					case string:
+						if !reflecter.IsZero[string](val) {
+							d[jen.Lit(val)] = jen.Id(varId).Dot(input.Code)
+						}
 					}
-
 				}
 			})).Line()
 		}

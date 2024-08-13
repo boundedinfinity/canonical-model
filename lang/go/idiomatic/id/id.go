@@ -25,7 +25,7 @@ func (t Id) Validate(groups ...string) error {
 }
 
 func (t Id) IsZero() bool {
-	return reflecter.Instances.IsZero(t)
+	return reflecter.IsZero[Id](t)
 }
 
 func (t Id) MarshalJSON() ([]byte, error) {
@@ -36,26 +36,29 @@ func (t Id) MarshalJSON() ([]byte, error) {
 	return json.Marshal(t.String())
 }
 
-var (
-	zero Id
-)
+var Ids = ids{}
 
-func MustParse(s string) Id {
+type ids struct {
+	zero Id
+}
+
+func (this ids) New() Id {
+	return Id{
+		UUID: uuid.New(),
+	}
+}
+
+func (this ids) MustParse(s string) Id {
 	return Id{
 		UUID: uuid.MustParse(s),
 	}
 }
 
-func Parse(s string) (Id, error) {
-	var id Id
-
-	if uuidId, err := uuid.Parse(s); err != nil {
-		return id, err
-	} else {
-		return Id{UUID: uuidId}, nil
-	}
+func (this ids) Parse(s string) (Id, error) {
+	id, err := uuid.Parse(s)
+	return Id{UUID: id}, err
 }
 
-func IsEmpty(id Id) bool {
-	return id == zero
+func (this ids) IsEmpty(id Id) bool {
+	return id == this.zero
 }

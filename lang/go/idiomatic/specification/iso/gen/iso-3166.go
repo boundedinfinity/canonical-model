@@ -29,15 +29,15 @@ func processIso3166() error {
 		return err
 	}
 
-	records = slicer.DedupFn(func(r iso3166Record) int {
+	records = slicer.DeduplicateFn(func(_ int, r iso3166Record) int {
 		return r.Number
 	}, records...)
 
-	records = slicer.DedupFn(func(r iso3166Record) string {
+	records = slicer.DeduplicateFn(func(_ int, r iso3166Record) string {
 		return r.Alpha2
 	}, records...)
 
-	records = slicer.DedupFn(func(r iso3166Record) string {
+	records = slicer.DeduplicateFn(func(_ int, r iso3166Record) string {
 		return r.Alpha3
 	}, records...)
 
@@ -105,7 +105,7 @@ func processIso3166() error {
 
 		init.Id(varId).Dot("nameToInfo").Op("=").Map(jen.String()).Id(infoId).Values(jen.DictFunc(func(d jen.Dict) {
 			for _, record := range records {
-				d[jen.Lit(stringer.ToLower(record.Name))] = jen.Id(varId).Dot(record.Alpha2)
+				d[jen.Lit(stringer.Lowercase(record.Name))] = jen.Id(varId).Dot(record.Alpha2)
 			}
 		})).Line()
 

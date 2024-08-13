@@ -14,7 +14,7 @@ type Iso639Language struct {
 }
 
 func Iso639LanguageLookup(s string) (Iso639Language, bool) {
-	l := stringer.ToLower(s)
+	l := stringer.Lowercase(s)
 	var lang Iso639Language
 	var found bool
 

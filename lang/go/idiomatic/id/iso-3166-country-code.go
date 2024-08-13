@@ -50,17 +50,17 @@ func (t iso3166CountryCodes) Lookup(s string) (Iso3166CountryCode, bool) {
 }
 
 func (t iso3166CountryCodes) ByName(s string) (Iso3166CountryCode, bool) {
-	country, ok := t.nameToCountry[stringer.ToLower(s)]
+	country, ok := t.nameToCountry[stringer.Lowercase(s)]
 	return country, ok
 }
 
 func (t iso3166CountryCodes) ByAlpha2(s string) (Iso3166CountryCode, bool) {
-	country, ok := t.alpha2ToCountry[stringer.ToLower(s)]
+	country, ok := t.alpha2ToCountry[stringer.Lowercase(s)]
 	return country, ok
 }
 
 func (t iso3166CountryCodes) ByAlpha3(s string) (Iso3166CountryCode, bool) {
-	country, ok := t.alpha3ToCountry[stringer.ToLower(s)]
+	country, ok := t.alpha3ToCountry[stringer.Lowercase(s)]
 	return country, ok
 }
 
@@ -85,7 +85,10 @@ func init() {
 			continue
 		}
 
-		fields := slicer.Map(stringer.TrimSpace[string], stringer.Split(line, "|")...)
+		fields := slicer.Map(
+			func(_ int, s string) string { return stringer.TrimSpace(s) },
+			stringer.Split(line, "|")...,
+		)
 
 		initCountryTld(fields)
 		initGenCode(fields)
@@ -105,9 +108,9 @@ func initIso3166(fields []string) error {
 	}
 
 	lower := Iso3166CountryCode{
-		Name:    stringer.ToLower(country.Name),
-		Alpha2:  stringer.ToLower(country.Alpha2),
-		Alpha3:  stringer.ToLower(country.Alpha3),
+		Name:    stringer.Lowercase(country.Name),
+		Alpha2:  stringer.Lowercase(country.Alpha2),
+		Alpha3:  stringer.Lowercase(country.Alpha3),
 		Numeric: numeric,
 	}
 

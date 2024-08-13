@@ -22,7 +22,7 @@ func (t MailingAddress) TypeName() string {
 }
 
 func (t MailingAddress) IsZero() bool {
-	return reflecter.Instances.IsZero(t)
+	return reflecter.IsZero[MailingAddress](t)
 }
 
 func (t MailingAddress) String() string {

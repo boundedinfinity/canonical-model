@@ -16,7 +16,7 @@ func (t suffixes) IsZero(item Suffix) bool {
 }
 
 func (t suffixes) Find(s string) (Suffix, bool) {
-	fn := func(suffix Suffix) bool {
+	fn := func(_ int, suffix Suffix) bool {
 		return stringer.EqualIgnoreCase(suffix.Text, s) ||
 			stringer.ContainsAnyIgnoreCase(s, suffix.Abbreviation...)
 	}
@@ -36,7 +36,7 @@ var (
 	zeroSuffix Suffix
 	Suffixes   = suffixes{
 		{
-			Id:           id.MustParse("d4033138-e658-4b34-a2fa-55aefeff1250"),
+			Id:           id.Ids.MustParse("d4033138-e658-4b34-a2fa-55aefeff1250"),
 			Text:         "Junior",
 			Abbreviation: []string{"Jr."},
 		},

@@ -58,12 +58,12 @@ func (t fifaCountryCodes) Lookup(s string) (FifaCountryCode, bool) {
 }
 
 func (t fifaCountryCodes) ByName(s string) (FifaCountryCode, bool) {
-	country, ok := t.codeToCountry[stringer.ToLower(s)]
+	country, ok := t.codeToCountry[stringer.Lowercase(s)]
 	return country, ok
 }
 
 func (t fifaCountryCodes) ByCode(s string) (FifaCountryCode, bool) {
-	country, ok := t.codeToCountry[stringer.ToLower(s)]
+	country, ok := t.codeToCountry[stringer.Lowercase(s)]
 	return country, ok
 }
 

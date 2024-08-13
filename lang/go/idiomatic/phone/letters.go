@@ -39,7 +39,7 @@ var (
 
 func init() {
 	for k, v := range letter2number {
-		letter2number[stringer.ToLower(k)] = v
+		letter2number[stringer.Lowercase(k)] = v
 
 		if _, ok := number2Letter[v]; !ok {
 			number2Letter[v] = []string{k}

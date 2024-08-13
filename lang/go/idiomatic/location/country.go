@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/boundedinfinity/go-commoner/errorer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
@@ -26,7 +25,7 @@ func (t countries) ByNumber(number int) (CountryInfo, bool) {
 }
 
 func (t countries) ByName(term string) []CountryInfo {
-	found := slicer.Filter(func(country CountryInfo) bool {
+	found := slicer.Filter(func(_ int, country CountryInfo) bool {
 		return stringer.ContainsIgnoreCase(country.Name, term)
 	}, t.All...)
 
@@ -53,16 +52,25 @@ func (t countries) Lookup(term string) (CountryInfo, bool) {
 	return found, ok
 }
 
-var (
-	ErrCountryFlagNotFound  = errors.New("flag not found")
-	ErrCountryFlagNotFoundv = errorer.Wrapv(ErrCountryFlagNotFound)
-)
+var ErrCountryFlagNotFound = errors.New("flag not found")
+
+type errCountryFlagNotFound struct {
+	term string
+}
+
+func (e errCountryFlagNotFound) Error() string {
+	return fmt.Sprintf("%s for term %s", ErrCountryFlagNotFound.Error(), e.term)
+}
+
+func (e errCountryFlagNotFound) Unwrap() error {
+	return ErrCountryFlagNotFound
+}
 
 func (t countries) Flag(term string) ([]byte, error) {
 	info, ok := t.Lookup(term)
 
 	if !ok {
-		return nil, ErrCountryFlagNotFoundv(info)
+		return nil, errCountryFlagNotFound{term}
 	}
 
 	path := fmt.Sprintf("flags/%v.svg", info.Alpha2.String())

@@ -16,7 +16,7 @@ func (t labelNames) IsZero(item LabelName) bool {
 }
 
 func (t labelNames) Find(s string) (LabelName, bool) {
-	fn := func(name LabelName) bool {
+	fn := func(_ int, name LabelName) bool {
 		return stringer.EqualIgnoreCase(name.Name, s) ||
 			stringer.EqualIgnoreCase(s, name.Abbreviation)
 	}
@@ -37,38 +37,38 @@ var (
 
 	LabelNames = labelNames{
 		{
-			Id:           id.MustParse("B12E7628-35B0-4AE5-B2D9-0F34F4828229"),
+			Id:           id.Ids.MustParse("B12E7628-35B0-4AE5-B2D9-0F34F4828229"),
 			Abbreviation: "dob",
 			Name:         "Date of Birth",
 		},
 		{
-			Id:           id.MustParse("453F12F8-90C3-487C-BF96-53E281ABE143"),
+			Id:           id.Ids.MustParse("453F12F8-90C3-487C-BF96-53E281ABE143"),
 			Abbreviation: "dod",
 			Name:         "Date of Death",
 		},
 		{
-			Id:   id.MustParse("9102C190-4093-4C73-BFE5-1FBA1CA41DE7"),
+			Id:   id.Ids.MustParse("9102C190-4093-4C73-BFE5-1FBA1CA41DE7"),
 			Name: "Expiration Date",
 		},
 		{
-			Id:   id.MustParse("B64458ED-7B79-483E-9087-613BABB7A165"),
+			Id:   id.Ids.MustParse("B64458ED-7B79-483E-9087-613BABB7A165"),
 			Name: "Formation Date",
 		},
 		{
-			Id:   id.MustParse("FA64EF80-C3BC-4197-9A87-1FE1728A1100"),
+			Id:   id.Ids.MustParse("FA64EF80-C3BC-4197-9A87-1FE1728A1100"),
 			Name: "Dissolution Date",
 		},
 		{
-			Id:           id.MustParse("51ED6E00-D565-471F-87FD-479773C1382B"),
+			Id:           id.Ids.MustParse("51ED6E00-D565-471F-87FD-479773C1382B"),
 			Name:         "End of Life",
 			Abbreviation: "eol",
 		},
 		{
-			Id:   id.MustParse("51ED6E00-D565-471F-87FD-479773C1382B"),
+			Id:   id.Ids.MustParse("51ED6E00-D565-471F-87FD-479773C1382B"),
 			Name: "Warranty Begin",
 		},
 		{
-			Id:   id.MustParse("B6CB6E80-6179-42AA-B582-755FE640EA02"),
+			Id:   id.Ids.MustParse("B6CB6E80-6179-42AA-B582-755FE640EA02"),
 			Name: "Warranty End",
 		},
 	}
@@ -92,10 +92,10 @@ func init() {
 			panic(fmt.Errorf("already contains %v", name.Name))
 		}
 
-		if _, ok := Lookup[stringer.ToLower(name.Name)]; !ok {
-			Lookup[stringer.ToLower(name.Name)] = name
+		if _, ok := Lookup[stringer.Lowercase(name.Name)]; !ok {
+			Lookup[stringer.Lowercase(name.Name)] = name
 		} else {
-			panic(fmt.Errorf("already contains %v", stringer.ToLower(name.Name)))
+			panic(fmt.Errorf("already contains %v", stringer.Lowercase(name.Name)))
 		}
 	}
 }

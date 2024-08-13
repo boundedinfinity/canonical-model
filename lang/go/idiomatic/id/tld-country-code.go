@@ -15,12 +15,12 @@ type countryTlds struct {
 }
 
 func (t countryTlds) ByName(s string) (CountryTld, bool) {
-	country, ok := t.nameToCountry[stringer.ToLower(s)]
+	country, ok := t.nameToCountry[stringer.Lowercase(s)]
 	return country, ok
 }
 
 func (t countryTlds) ByTld(s string) (CountryTld, bool) {
-	country, ok := t.tldToCountry[stringer.ToLower(s)]
+	country, ok := t.tldToCountry[stringer.Lowercase(s)]
 	return country, ok
 }
 
@@ -38,8 +38,8 @@ func initCountryTld(fields []string) error {
 	}
 
 	countryLower := CountryTld{
-		Name: stringer.ToLower(country.Name),
-		Tld:  stringer.ToLower(country.Tld),
+		Name: stringer.Lowercase(country.Name),
+		Tld:  stringer.Lowercase(country.Tld),
 	}
 
 	if _, ok := CountryTlds.nameToCountry[countryLower.Name]; !ok {

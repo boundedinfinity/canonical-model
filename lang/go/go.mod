@@ -9,8 +9,8 @@ require (
 	github.com/boundedinfinity/rfc3339date v1.0.7
 	github.com/dave/jennifer v1.7.0
 	github.com/gertd/go-pluralize v0.2.1
-	github.com/google/uuid v1.3.1
-	github.com/stretchr/testify v1.8.4
+	github.com/google/uuid v1.6.0
+	github.com/stretchr/testify v1.9.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 

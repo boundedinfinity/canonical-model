@@ -110,7 +110,7 @@ func (t Name) Validate(groups ...string) error {
 
 func (t Name) Prefix() string {
 	strings := slicer.Map(
-		func(item PrefixAssigned) string { return item.Prefix.String() },
+		func(_ int, item PrefixAssigned) string { return item.Prefix.String() },
 		t.Prefixes...,
 	)
 
@@ -135,7 +135,7 @@ func (t Name) FirstLast() string {
 
 func (t Name) Suffix() string {
 	strings := slicer.Map(
-		func(item Suffix) string { return item.String() },
+		func(_ int, item Suffix) string { return item.String() },
 		t.Suffixes...,
 	)
 

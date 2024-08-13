@@ -25,7 +25,7 @@ var PrefixFormatters = prefixFormatters{}
 
 func init() {
 	PrefixFormatters.Abbr = PrefixFormatter{
-		Id:   id.MustParse("25483819-F00D-4E36-AB52-8DE49F74A319"),
+		Id:   id.Ids.MustParse("25483819-F00D-4E36-AB52-8DE49F74A319"),
 		Name: "Abbreviation Formatter",
 		Desc: `If the Prefix contains an abbreviation that will be returned.
         If there isn't an abbreviation, then the full text is used.
@@ -39,7 +39,7 @@ func init() {
 	}
 
 	PrefixFormatters.Text = PrefixFormatter{
-		Id:   id.MustParse("A746758C-3E4E-4E3C-A651-84F710391667"),
+		Id:   id.Ids.MustParse("A746758C-3E4E-4E3C-A651-84F710391667"),
 		Name: "Text Formatter",
 		Desc: `Used the text field of the Prefix.
         `,

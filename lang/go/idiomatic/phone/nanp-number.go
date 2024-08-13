@@ -31,8 +31,8 @@ func (t NanpNumber) TypeName() string {
 
 func (t NanpNumber) String() string {
 	var sb stringer.Builder[string]
-	format, _ := slicer.FirstNotZero(t.Format, NanpPhoneFormats.Common)
-	separatorFormat, _ := slicer.FirstNotZero(t.SeparatorFormat, NanpPhoneSeparatorFormats.ParenthesesAndDashes)
+	format, _ := slicer.NotZero(t.Format, NanpPhoneFormats.Common)
+	separatorFormat, _ := slicer.NotZero(t.SeparatorFormat, NanpPhoneSeparatorFormats.ParenthesesAndDashes)
 
 	switch format {
 	default:

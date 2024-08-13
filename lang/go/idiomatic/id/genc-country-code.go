@@ -22,12 +22,12 @@ type genCodes struct {
 }
 
 func (t genCodes) ByName(s string) (GenCode, bool) {
-	country, ok := t.nameToCountry[stringer.ToLower(s)]
+	country, ok := t.nameToCountry[stringer.Lowercase(s)]
 	return country, ok
 }
 
 func (t genCodes) ByCode(s string) (GenCode, bool) {
-	country, ok := t.codeToCountry[stringer.ToLower(s)]
+	country, ok := t.codeToCountry[stringer.Lowercase(s)]
 	return country, ok
 }
 
@@ -48,8 +48,8 @@ func initGenCode(fields []string) error {
 	}
 
 	countryLower := GenCode{
-		Name: stringer.ToLower(country.Name),
-		Code: stringer.ToLower(country.Code),
+		Name: stringer.Lowercase(country.Name),
+		Code: stringer.Lowercase(country.Code),
 	}
 
 	var include bool

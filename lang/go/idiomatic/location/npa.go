@@ -13,7 +13,7 @@ type NpaCode struct {
 }
 
 func NpaCodeLookup(s string) (NpaCode, bool) {
-	lower := stringer.ToLower(s)
+	lower := stringer.Lowercase(s)
 
 	if code, ok := npa_alpha22Code[lower]; ok {
 		return code, ok
@@ -36,7 +36,7 @@ func init() {
 			continue
 		}
 
-		fields := slicer.Map(func(s string) string {
+		fields := slicer.Map(func(_ int, s string) string {
 			return stringer.Trim(s, `"`)
 		}, stringer.Split(line, ",")...)
 
@@ -47,7 +47,7 @@ func init() {
 
 		NpaCodes = append(NpaCodes, code)
 		npa_numeric2Code[code.Numeric] = code
-		npa_alpha22Code[stringer.ToLower(code.Alpha2)] = code
+		npa_alpha22Code[stringer.Lowercase(code.Alpha2)] = code
 	}
 }
 
