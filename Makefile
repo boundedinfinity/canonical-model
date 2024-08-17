@@ -16,7 +16,10 @@ commit:
 	git add . || true
 	git commit -m "$(m)" || true
 
-push: commit
+push:
+	git add . || true
+	git commit -m "$(m)" || true
+	git pull origin master
 	git push origin master
 
 tag:
