@@ -1,6 +1,4 @@
-package modeller
-
-type Contraint func() error
+package model
 
 type Validator interface {
 	Validate() error

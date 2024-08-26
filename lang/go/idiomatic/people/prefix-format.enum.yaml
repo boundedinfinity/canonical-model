@@ -1,7 +1,0 @@
-serialize: 
-    value: pascal-to-kebab-lower
-values:
-    -   name: Full
-    -   name: FullWithDescription
-    -   name: Abbreviation
-    -   name: AbbreviationWithDescription

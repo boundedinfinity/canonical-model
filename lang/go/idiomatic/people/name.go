@@ -22,15 +22,6 @@ import (
 	"github.com/boundedinfinity/schema/idiomatic/id"
 )
 
-type NameMessage struct {
-	Type string `json:"type,omitempty"`
-	Name
-}
-
-func NewNameMessage(name Name) NameMessage {
-	return NameMessage{Type: "people.Name", Name: name}
-}
-
 // ///////////////////////////////////////////////////
 // Model
 // ///////////////////////////////////////////////////

@@ -5,7 +5,7 @@ import (
 	"errors"
 
 	"github.com/boundedinfinity/go-commoner/idiomatic/reflecter"
-	"github.com/boundedinfinity/schema/idiomatic/modeller"
+	"github.com/boundedinfinity/schema/idiomatic/model"
 	"github.com/google/uuid"
 )
 
@@ -13,7 +13,7 @@ var (
 	ErrIdInvalid = errors.New("invalid id")
 )
 
-var _ modeller.Validator = &Id{}
+var _ model.Validator = &Id{}
 
 type Id struct {
 	uuid.UUID
