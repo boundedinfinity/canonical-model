@@ -1,19 +1,19 @@
 data:
     -   id: b5a5b96c-5955-44c4-8d53-2c7fd1090a02
         text: Mister
-        abbreviation: Mr.
-        descriptor:
-            description: |
-                A title used before a surname or full name to address or refer to a man
-                without a higher, honorific or professional title.
-            parsable:
-                - Mr
-                - mr
-                - mr.
-            default-format: abbreviation
+        abbrs: 
+            -   Mr.
+        description: |
+            A title used before a surname or full name to address or refer to a man
+            without a higher, honorific or professional title.
+        parsable:
+            - Mr
+            - mr
+            - mr.
+        default-format: abbrs
     -   id: 685CE8DD-7700-4A2A-97EE-93BB19668639
         text: Mistress
-        abbreviation: 
+        abbrs: 
             - Miss
         description: |
             A title used before a surname or full name to address or refer to a 
@@ -21,7 +21,7 @@ data:
             title.
     -   id: 6A84CDFB-3D23-4F02-A78D-D5455FE90A8C
         text: Missus
-        abbreviation: 
+        abbrs: 
             - Mrs
         description: |
             A title used before a surname or full name to address or refer to a 
@@ -29,7 +29,7 @@ data:
             title.
     -   id: 49012343-F2B6-4C88-A15A-08C9AE19FA1A
         text: Miss or Mrs
-        abbreviation: 
+        abbrs: 
             - Ms
             - Ms.
         description: |

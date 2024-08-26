@@ -4,5 +4,4 @@ type Contraint func() error
 
 type Validator interface {
 	Validate() error
-	ValidateGroup(groups ...string) error
 }

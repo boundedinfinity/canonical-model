@@ -27,10 +27,6 @@ func (this Id) Validate() error {
 	return nil
 }
 
-func (this Id) ValidateGroup(groups ...string) error {
-	return nil
-}
-
 func (this Id) IsZero() bool {
 	return reflecter.IsZero[Id](this)
 }

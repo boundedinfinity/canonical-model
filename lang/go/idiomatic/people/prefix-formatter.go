@@ -31,8 +31,8 @@ func init() {
         If there isn't an abbreviation, then the full text is used.
         `,
 		Format: func(p Prefix) (string, error) {
-			if p.Abbr != "" {
-				return p.Abbr, nil
+			if len(p.Abbrs) > 0 {
+				return p.Abbrs[0], nil
 			}
 			return p.Text, nil
 		},

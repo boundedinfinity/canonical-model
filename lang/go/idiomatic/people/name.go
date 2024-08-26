@@ -45,13 +45,13 @@ var (
 )
 
 type Name struct {
-	Id       id.Id            `json:"id,omitempty"`
-	Prefixes []PrefixAssigned `json:"prefixes,omitempty"`
-	Firsts   []string         `json:"firsts,omitempty"`
-	Middles  []string         `json:"middles,omitempty"`
-	Lasts    []string         `json:"lasts,omitempty"`
-	Suffixes []Suffix         `json:"suffixes,omitempty"`
-	Format   NameFormat       `json:"format,omitempty"`
+	Id       id.Id      `json:"id,omitempty"`
+	Prefixes []Prefix   `json:"prefixes,omitempty"`
+	Firsts   []string   `json:"firsts,omitempty"`
+	Middles  []string   `json:"middles,omitempty"`
+	Lasts    []string   `json:"lasts,omitempty"`
+	Suffixes []Suffix   `json:"suffixes,omitempty"`
+	Format   NameFormat `json:"format,omitempty"`
 }
 
 var _ id.TypeNamer = &Name{}
@@ -64,8 +64,8 @@ func (t Name) String() string {
 	return t.Full()
 }
 
-func (t Name) ValidateGroup(groups ...string) error {
-	if err := t.Id.ValidateGroup(groups...); err != nil {
+func (t Name) Validate() error {
+	if err := t.Id.Validate(); err != nil {
 		return fmt.Errorf("%w : %w", ErrNameInvalidId, err)
 	}
 
@@ -110,7 +110,7 @@ func (t Name) ValidateGroup(groups ...string) error {
 
 func (t Name) Prefix() string {
 	strings := slicer.Map(
-		func(_ int, item PrefixAssigned) string { return item.Prefix.String() },
+		func(_ int, item Prefix) string { return item.String() },
 		t.Prefixes...,
 	)
 
@@ -121,16 +121,12 @@ func (t Name) First() string {
 	return stringer.Join(" ", t.Firsts...)
 }
 
+func (t Name) Middle() string {
+	return stringer.Join(" ", t.Middles...)
+}
+
 func (t Name) Last() string {
 	return stringer.Join(" ", t.Lasts...)
-}
-
-func (t Name) FirstMiddle() string {
-	return stringer.Join(" ", slicer.Flatten(t.Firsts, t.Middles)...)
-}
-
-func (t Name) FirstLast() string {
-	return stringer.Join(" ", slicer.Flatten(t.Firsts, t.Lasts)...)
 }
 
 func (t Name) Suffix() string {
@@ -147,6 +143,7 @@ func (t Name) Full() string {
 		" ",
 		t.Prefix(),
 		t.First(),
+		t.Middle(),
 		t.Last(),
 		t.Suffix(),
 	)
