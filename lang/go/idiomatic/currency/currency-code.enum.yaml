@@ -1,4 +1,17 @@
+type: ""
+struct: ""
+package: ""
+input-path: ""
+output-path: ""
+desc: ""
+header: ""
+header-from: ""
+header-lines: []
+skip-format: false
+debug: false
+overwrite: false
 serialize:
+    type: ""
     value: ""
 values:
     - name: ALL

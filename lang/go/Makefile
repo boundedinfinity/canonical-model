@@ -1,4 +1,5 @@
-makefile_dir		:= $(abspath $(shell pwd))
+makefile_dir	:= $(abspath $(shell pwd))
+m				?= "updates"
 
 .PHONY: list purge build install generate test commit tag publish
 
