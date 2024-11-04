@@ -1,31 +1,6 @@
 
 types:
-    -   id: https://www.boundedinfinity.com/schema/label/data-model
-        type: object
-        description: The canonical persistence model for a Label
-        properties:
-            -   parent: https://www.boundedinfinity.com/schema/id 
-            -   ref: https://www.boundedinfinity.com/schema/id
-            -   name: name
-                type: string
-                min: 2
-                max: 50
-                required: true
-            -   codegen-ref: https://www.boundedinfinity.com/schema/util/description
-            -   name: acronyms
-                type: array
-                unique: true
-                items:
-                    type: string
-                    min: 1
-                    max: 10
-            -   name: aliases
-                type: array
-                unique: true
-                items:
-                    type: string
-                    min: 2
-                    max: 50
+
     -   id: https://www.boundedinfinity.com/schema/label/view-model
         type: object
         description: The canonical view model for a Label
@@ -37,7 +12,7 @@ types:
                 min: 2
                 max: 50
                 required: true
-            -   codegen-ref: https://www.boundedinfinity.com/schema/util/description
+            -   ref: https://www.boundedinfinity.com/schema/util/description
             -   name: acronyms
                 type: array
                 unique: true
@@ -60,6 +35,11 @@ operations:
             -   https://www.boundedinfinity.com/schema/label/data-model
         outputs:
             -   https://www.boundedinfinity.com/schema/label/view-model
+    -   id: https://www.boundedinfinity.com/schema/label/view-model-to-data-model
+        inputs:
+            -   https://www.boundedinfinity.com/schema/label/view-model
+        outputs:
+            -   https://www.boundedinfinity.com/schema/label/data-model
 
 data:
     -   id: https://www.boundedinfinity.com/schema/label/label-data-model
