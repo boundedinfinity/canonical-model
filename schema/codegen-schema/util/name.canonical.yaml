@@ -1,12 +1,18 @@
 types:
-    -   type-id: https://www.boundedinfinity.com/schema/util/name-5
-        codegen-id: string
+    -   id: https://www.boundedinfinity.com/schema/util/name-5
+        type: string
         name: name
         min: 1
         max: 5
 
-    -   type-id: https://www.boundedinfinity.com/schema/util/name-50
-        codegen-id: string
+    -   id: https://www.boundedinfinity.com/schema/util/name-10
+        type: string
+        name: name
+        min: 1
+        max: 10
+
+    -   id: https://www.boundedinfinity.com/schema/util/name-50
+        type: string
         name: name
         min: 1
         max: 50

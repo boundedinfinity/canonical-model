@@ -1,22 +1,8 @@
 types:
-    -   type-id: https://www.boundedinfinity.com/schema/util/simple-id
-        name: id
+    -   id: https://www.boundedinfinity.com/schema/id
+        name: ID
         type: string
-        min: 1
-        max: 20
-    -   id: https://www.boundedinfinity.com/schema/util/uri-id
-        name: id
-        type: ref
-        ref: https://www.boundedinfinity.com/schema/util/url
-    -   id: https://www.boundedinfinity.com/schema/util/uri-id
-        name: id
-        type: ref
-        ref: https://www.boundedinfinity.com/schema/util/uri
-    -   id: https://www.boundedinfinity.com/schema/util/uuid-id
-        name: id
-        type: ref
-        ref: https://www.boundedinfinity.com/schema/util/uuid
-    -   id: https://www.boundedinfinity.com/schema/util/numeric-id
-        name: id
-        type: number
-        min: 0
+        description: The standard ID format for the canonical model.
+        min: 36
+        max: 36
+        regex: '[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}'

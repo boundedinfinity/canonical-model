@@ -18,9 +18,9 @@ types:
                 required: true
             -   ref: https://www.boundedinfinity.com/schema/cms/file-extention
             -   name: locations
-                type-id: array
+                id: array
                 items:
-                    type-id: uri
+                    id: uri
                 
 
             
