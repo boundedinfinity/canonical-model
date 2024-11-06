@@ -15,6 +15,7 @@
     -   `object`
     -   `enum`
     -   `uuid`
+    -   `union`
 
     or the full URL of another type's `id` field.
 
@@ -93,6 +94,10 @@
     `regex` field.
 
     This will be an error on any other type.
+
+-   `query`:
+
+    Marks this field as queryable.
 
 ### Operations
 
