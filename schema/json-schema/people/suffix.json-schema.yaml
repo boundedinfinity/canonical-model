@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/people/suffix
+$id: https://www.boundedinfinity.com/canonical/people/suffix
 $schema: https://json-schema.org/draft/2020-12/schema
 title: A person's name suffix
 description: | 
@@ -21,9 +21,9 @@ properties:
         maxLength: 5
         minLength: 1
     description:
-        $ref: https://www.boundedinfinity.com/schema/util/description
+        $ref: https://www.boundedinfinity.com/canonical/util/description
         description: The suffix description
     status:
-        $ref: https://www.boundedinfinity.com/schema/util/record-status
+        $ref: https://www.boundedinfinity.com/canonical/util/record-status
 required:
     -   text

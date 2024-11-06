@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/film/episode
+$id: https://www.boundedinfinity.com/canonical/film/episode
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A television series episode record
 type: object
@@ -10,18 +10,18 @@ properties:
     actors:
         type: array
         items:
-            type: https://www.boundedinfinity.com/schema/film/actor
+            type: https://www.boundedinfinity.com/canonical/film/actor
     people:
         type: array
         items:
-            type: https://www.boundedinfinity.com/schema/film/person
+            type: https://www.boundedinfinity.com/canonical/film/person
     labels:
         type: array
         items:
-            type: https://www.boundedinfinity.com/schema/label/kvlabel
+            type: https://www.boundedinfinity.com/canonical/label/kvlabel
     dates:
         type: array
         items:
-            type: https://www.boundedinfinity.com/schema/time/sdate
+            type: https://www.boundedinfinity.com/canonical/time/sdate
 required:
     -   title

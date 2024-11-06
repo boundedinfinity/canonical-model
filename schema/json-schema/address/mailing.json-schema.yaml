@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/address/mailing
+$id: https://www.boundedinfinity.com/canonical/address/mailing
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A US mailing address
 type: object
@@ -10,7 +10,7 @@ properties:
     dates:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/time/sdate
+            $ref: https://www.boundedinfinity.com/canonical/time/sdate
     addresses:
         description: List of address lines
         type: array
@@ -27,11 +27,11 @@ properties:
         type: string
         maxLength: 200
     zip-code:
-        $ref: https://www.boundedinfinity.com/schema/address/zip-code
+        $ref: https://www.boundedinfinity.com/canonical/address/zip-code
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/label
+            $ref: https://www.boundedinfinity.com/canonical/label/label
 required:
     -   address
     -   city

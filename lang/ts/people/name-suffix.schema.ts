@@ -29,7 +29,7 @@ export class NameSuffix {
 
 export const List: NameSuffix[] = [
     new NameSuffix(
-        "https://www.boundedinfinity.com/schema/people/suffix/ba",
+        "https://www.boundedinfinity.com/canonical/people/suffix/ba",
         "Bachelor of Arts",
         new Description(
             `A degree from a university or other higher learning instituion awarded for an undergraduate program in the arts or other disciplines.`,
@@ -38,7 +38,7 @@ export const List: NameSuffix[] = [
         ["BA", "AB"]
     ),
     new NameSuffix(
-        "https://www.boundedinfinity.com/schema/people/suffix/bs",
+        "https://www.boundedinfinity.com/canonical/people/suffix/bs",
         "Bachelor of Sciences",
         new Description(
             `A degree from a university or other higher learning instituion awarded for an undergraduate program in the sciences.`,

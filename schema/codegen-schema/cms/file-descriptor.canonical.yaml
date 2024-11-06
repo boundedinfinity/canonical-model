@@ -1,5 +1,5 @@
 types:
-    -   id: https://www.boundedinfinity.com/schema/cms/file-descriptor
+    -   id: https://www.boundedinfinity.com/canonical/cms/file-descriptor
         name: file-descriptor
         properties:
             -   name: name
@@ -14,9 +14,9 @@ types:
                 type: string
                 max: 200
                 required: false
-            -   ref: https://www.boundedinfinity.com/schema/cms/mime-type
+            -   ref: https://www.boundedinfinity.com/canonical/cms/mime-type
                 required: true
-            -   ref: https://www.boundedinfinity.com/schema/cms/file-extention
+            -   ref: https://www.boundedinfinity.com/canonical/cms/file-extention
             -   name: locations
                 id: array
                 items:

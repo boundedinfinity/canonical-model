@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/util/bookmark
+$id: https://www.boundedinfinity.com/canonical/util/bookmark
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A Bookmark
 type: object

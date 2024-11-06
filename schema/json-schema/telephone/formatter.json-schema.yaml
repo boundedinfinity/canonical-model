@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/telephone/fomatter
+$id: https://www.boundedinfinity.com/canonical/telephone/fomatter
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A telephone formatter
 type: object

@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/corporation/company
+$id: https://www.boundedinfinity.com/canonical/corporation/company
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A company record
 type: object
@@ -15,19 +15,19 @@ properties:
         description: List of addresses
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/address/mailing
+            $ref: https://www.boundedinfinity.com/canonical/address/mailing
     telephone-numbers:
         description: Telephone numbers
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/telephone/nanp
+            $ref: https://www.boundedinfinity.com/canonical/telephone/nanp
     dates:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/time/sdate
+            $ref: https://www.boundedinfinity.com/canonical/time/sdate
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/label
+            $ref: https://www.boundedinfinity.com/canonical/label/label
 required:
     -   name

@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/telephone/nanp
+$id: https://www.boundedinfinity.com/canonical/telephone/nanp
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A NANP telephone number plan
 type: object
@@ -10,7 +10,7 @@ properties:
     dates:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/time/sdate
+            $ref: https://www.boundedinfinity.com/canonical/time/sdate
     area-code:
         description: Numbering plan area code
         type: string
@@ -30,7 +30,7 @@ properties:
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/label
+            $ref: https://www.boundedinfinity.com/canonical/label/label
 required:
     -   area-code
     -   exchange-code

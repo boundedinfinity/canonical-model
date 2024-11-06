@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/bookkeeping/account
+$id: https://www.boundedinfinity.com/canonical/bookkeeping/account
 $schema: https://json-schema.org/draft/2020-12/schema
 description: Double Entry Bookkeeping Account
 type: object
@@ -13,14 +13,14 @@ properties:
         description: The description of the account
         type: string
     type:
-        $ref: https://www.boundedinfinity.com/schema/bookkeeping/account-type
+        $ref: https://www.boundedinfinity.com/canonical/bookkeeping/account-type
     parent:
         description: URL representing the parent ID
         type: uri
     dates:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/labled-datetime
+            $ref: https://www.boundedinfinity.com/canonical/label/labled-datetime
 required:
     - id
     - name

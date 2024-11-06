@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/people/employment
+$id: https://www.boundedinfinity.com/canonical/people/employment
 $schema: https://json-schema.org/draft/2020-12/schema
 description: Employment
 type: object
@@ -8,11 +8,11 @@ properties:
         type: string
         maxLength: 200
     company:
-        $ref: https://www.boundedinfinity.com/schema/corporation/company
+        $ref: https://www.boundedinfinity.com/canonical/corporation/company
     dates:
         type: array
         items:
-            types: https://www.boundedinfinity.com/schema/time/sdate
+            types: https://www.boundedinfinity.com/canonical/time/sdate
 required:
     - title
     - company

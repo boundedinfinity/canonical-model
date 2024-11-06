@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/util/geographical-location
+$id: https://www.boundedinfinity.com/canonical/util/geographical-location
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A Geographical location
 type: object

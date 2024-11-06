@@ -1,5 +1,5 @@
 types:
-    -   id: https://www.boundedinfinity.com/schema/util/error
+    -   id: https://www.boundedinfinity.com/canonical/util/error
         type: object
         properties:
             -   name: user-message
@@ -13,9 +13,9 @@ types:
                 required: true
             -   name: error-code
                 type: integer
-    -   id: https://www.boundedinfinity.com/schema/util/error-list
+    -   id: https://www.boundedinfinity.com/canonical/util/error-list
         description: Errors
         type: array
         items: 
             type: ref
-            ref: https://www.boundedinfinity.com/schema/util/error
+            ref: https://www.boundedinfinity.com/canonical/util/error

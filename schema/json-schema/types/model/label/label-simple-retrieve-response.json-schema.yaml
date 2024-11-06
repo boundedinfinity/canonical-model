@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/label/label-simple-retrieve-response
+$id: https://www.boundedinfinity.com/canonical/label/label-simple-retrieve-response
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A simple label retrieve response
 type: object
@@ -8,7 +8,7 @@ properties:
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/label-simple
+            $ref: https://www.boundedinfinity.com/canonical/label/label-simple
     errors:
         type: array
         items:

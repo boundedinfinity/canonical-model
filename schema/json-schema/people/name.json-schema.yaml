@@ -1,6 +1,6 @@
 # https://en.wikipedia.org/wiki/Personal_name
 
-$id: https://www.boundedinfinity.com/schema/people/name
+$id: https://www.boundedinfinity.com/canonical/people/name
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A person's name
 type: object
@@ -8,7 +8,7 @@ properties:
     prefixes:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/people/prefix
+            $ref: https://www.boundedinfinity.com/canonical/people/prefix
     given-names:
         description: List of given names
         type: array
@@ -28,6 +28,6 @@ properties:
     suffixes:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/people/suffix
+            $ref: https://www.boundedinfinity.com/canonical/people/suffix
 required:
     -   names

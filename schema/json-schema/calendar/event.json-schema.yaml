@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/calendar/event
+$id: https://www.boundedinfinity.com/canonical/calendar/event
 $schema: https://json-schema.org/draft/2020-12/schema
 description: Calendar Event
 type: object
@@ -10,21 +10,21 @@ properties:
         description: The description of the event
         type: string
     start:
-        $ref: https://www.boundedinfinity.com/schema/time/timestamp
+        $ref: https://www.boundedinfinity.com/canonical/time/timestamp
     end:
-        $ref: https://www.boundedinfinity.com/schema/time/timestamp
+        $ref: https://www.boundedinfinity.com/canonical/time/timestamp
     required:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/people/contact
+            $ref: https://www.boundedinfinity.com/canonical/people/contact
     optional:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/people/contact
+            $ref: https://www.boundedinfinity.com/canonical/people/contact
     notifications:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/calendar/notification
+            $ref: https://www.boundedinfinity.com/canonical/calendar/notification
     visibility:
         type: string
         enum:
@@ -39,7 +39,7 @@ properties:
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/label
+            $ref: https://www.boundedinfinity.com/canonical/label/label
 required:
     - title
     - start

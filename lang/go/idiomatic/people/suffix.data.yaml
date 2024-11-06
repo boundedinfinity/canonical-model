@@ -4,7 +4,7 @@ data:
         abbreviation:
             -   Jr.
     -   id: 2A0B00CD-6D52-4390-9C5F-C0C3742084C6
-        # id:  https://www.boundedinfinity.com/schema/people/suffix/ba
+        # id:  https://www.boundedinfinity.com/canonical/people/suffix/ba
         title: Bachelor of Arts
         abbreviation: 
             -   BA
@@ -13,7 +13,7 @@ data:
             A degree from a university or other higher learning instituion awarded 
             for an undergraduate program in the arts or other disciplines.
     -   id: 762AA3E5-A6CC-4CE0-BF08-DA1CDB2DBBFE
-        # id:  https://www.boundedinfinity.com/schema/people/suffix/bs
+        # id:  https://www.boundedinfinity.com/canonical/people/suffix/bs
         title: Bachelor of Science
         abbreviation:
             -   BS
@@ -24,13 +24,13 @@ data:
             A degree from a university or other higher learning instituion awarded
             for an undergraduate program in the sciences.
     -   id: EF9877BA-D385-4BA6-B828-E62C77E24B6A
-        # id:  https://www.boundedinfinity.com/schema/people/suffix/mba
+        # id:  https://www.boundedinfinity.com/canonical/people/suffix/mba
         title: Master of Business Administration
         abbreviation:
             -   MBA
         reference: https://en.wikipedia.org/wiki/Master_of_Business_Administration
     -   id: 17138BB7-8417-44FD-9833-33D64B55EE06
-        # id: https://www.boundedinfinity.com/schema/people/suffix/mec
+        # id: https://www.boundedinfinity.com/canonical/people/suffix/mec
         title: Master of Economics
         abbreviation:
             -   MS

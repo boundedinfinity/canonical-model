@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/government/us-social-security-number-area
+$id: https://www.boundedinfinity.com/canonical/government/us-social-security-number-area
 $schema: https://json-schema.org/draft/2020-12/schema
 description: Social Security Number
 type: object

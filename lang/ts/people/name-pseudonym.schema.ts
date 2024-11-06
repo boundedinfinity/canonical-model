@@ -29,7 +29,7 @@ export class NamePseudonymType {
 
 export const List: NamePseudonymType[] = [
     new NamePseudonymType(
-        "https://www.boundedinfinity.com/schema/people/pseudonym-type/nickname",
+        "https://www.boundedinfinity.com/canonical/people/pseudonym-type/nickname",
         "Nickname",
         new Description(
             `A type of pseudonym which is used as a substitue for the proper name of a familiar person.`,

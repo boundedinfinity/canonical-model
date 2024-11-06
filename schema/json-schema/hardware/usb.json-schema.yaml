@@ -1,6 +1,6 @@
 ---
 
-$id: https://www.boundedinfinity.com/schema/hardware/usb
+$id: https://www.boundedinfinity.com/canonical/hardware/usb
 $schema: https://json-schema.org/draft/2020-12/schema
 description: The univeral serial bus (USB) specification
 type: object

@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/address/internet
+$id: https://www.boundedinfinity.com/canonical/address/internet
 $schema: https://json-schema.org/draft/2020-12/schema
 description: An internet address
 type: object
@@ -19,6 +19,6 @@ properties:
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/label
+            $ref: https://www.boundedinfinity.com/canonical/label/label
 required:
     -   address

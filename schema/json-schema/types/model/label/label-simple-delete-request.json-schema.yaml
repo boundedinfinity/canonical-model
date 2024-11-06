@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/label/label-simple-delete-request
+$id: https://www.boundedinfinity.com/canonical/label/label-simple-delete-request
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A simple label delete request
 type: object
@@ -10,7 +10,7 @@ properties:
     ids:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/label-id
+            $ref: https://www.boundedinfinity.com/canonical/label/label-id
 required:
     - trackingId
     - id

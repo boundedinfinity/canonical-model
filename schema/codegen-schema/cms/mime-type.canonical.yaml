@@ -1,5 +1,5 @@
 types:
-    -   id: https://www.boundedinfinity.com/schema/cms/mime-type
+    -   id: https://www.boundedinfinity.com/canonical/cms/mime-type
         name: mime-type
         type: object
         properties:
@@ -29,31 +29,31 @@ types:
                 max: 200
                 required: false
 data:
-    -   ref: https://www.boundedinfinity.com/schema/cms/mime-type
+    -   ref: https://www.boundedinfinity.com/canonical/cms/mime-type
         description: Andrew Toolkit
         type: application/andrew-inset
         alternatives: []
-    -   ref: https://www.boundedinfinity.com/schema/cms/mime-type
+    -   ref: https://www.boundedinfinity.com/canonical/cms/mime-type
         description: Atom Syndication Format
         type: application/atom+xml
         alternatives: []
-    -   ref: https://www.boundedinfinity.com/schema/cms/mime-type
+    -   ref: https://www.boundedinfinity.com/canonical/cms/mime-type
         description: Atom Publishing Protocol
         type: application/atomcat+xml
         alternatives: []
-    -   ref: https://www.boundedinfinity.com/schema/cms/mime-type
+    -   ref: https://www.boundedinfinity.com/canonical/cms/mime-type
         description: Atom Publishing Protocol Service Document
         type: application/atomsvc+xml
         alternatives: []
-    -   ref: https://www.boundedinfinity.com/schema/cms/mime-type
+    -   ref: https://www.boundedinfinity.com/canonical/cms/mime-type
         description: Voice Browser Call Control
         type: application/ccxml+xml
         alternatives: []
-    -   ref: https://www.boundedinfinity.com/schema/cms/mime-type
+    -   ref: https://www.boundedinfinity.com/canonical/cms/mime-type
         description: Cloud Data Management Interface (CDMI) - Capability
         type: application/cdmi-capability
         alternatives: []
-    -   ref: https://www.boundedinfinity.com/schema/cms/mime-type
+    -   ref: https://www.boundedinfinity.com/canonical/cms/mime-type
         description: Cloud Data Management Interface (CDMI) - Contaimer
         type: application/cdmi-container
         alternatives: []

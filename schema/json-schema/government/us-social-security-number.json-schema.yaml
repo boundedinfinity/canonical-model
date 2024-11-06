@@ -1,10 +1,10 @@
-$id: https://www.boundedinfinity.com/schema/government/us-social-security-number
+$id: https://www.boundedinfinity.com/canonical/government/us-social-security-number
 $schema: https://json-schema.org/draft/2020-12/schema
 description: Social Security Number
 type: object
 properties:
     name:
-        $ref: https://www.boundedinfinity.com/schema/people/name
+        $ref: https://www.boundedinfinity.com/canonical/people/name
     area-number:
         type: string
         minLength: 3

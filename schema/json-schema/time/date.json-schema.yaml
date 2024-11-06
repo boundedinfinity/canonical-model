@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/time/date
+$id: https://www.boundedinfinity.com/canonical/time/date
 $schema: https://json-schema.org/draft/2020-12/schema
 description: Date
 type: string

@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/corporation/llc
+$id: https://www.boundedinfinity.com/canonical/corporation/llc
 $schema: https://json-schema.org/draft/2020-12/schema
 description: Limited Liability Company
 type: object
@@ -12,15 +12,15 @@ properties:
         type: string
         format: date
     formation-state:
-        $ref: https://www.boundedinfinity.com/schema/address/us-state
+        $ref: https://www.boundedinfinity.com/canonical/address/us-state
     members:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/people/contact
+            $ref: https://www.boundedinfinity.com/canonical/people/contact
     managers:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/people/contact
+            $ref: https://www.boundedinfinity.com/canonical/people/contact
     tax-status:
         type: string
         enum:

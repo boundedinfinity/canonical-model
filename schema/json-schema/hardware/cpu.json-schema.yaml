@@ -1,6 +1,6 @@
 ---
 
-$id: https://www.boundedinfinity.com/schema/hardware/cpu
+$id: https://www.boundedinfinity.com/canonical/hardware/cpu
 $schema: https://json-schema.org/draft/2020-12/schema
 description: The central processing unit (CPU) specification
 type: object

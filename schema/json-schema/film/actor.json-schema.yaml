@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/film/actor
+$id: https://www.boundedinfinity.com/canonical/film/actor
 $schema: https://json-schema.org/draft/2020-12/schema
 description: An actor record
 type: object
@@ -10,8 +10,8 @@ properties:
     person:
         type: array
         items:
-            types: https://www.boundedinfinity.com/schema/people/person
+            types: https://www.boundedinfinity.com/canonical/people/person
     dates:
         type: array
         items:
-            types: https://www.boundedinfinity.com/schema/time/sdate
+            types: https://www.boundedinfinity.com/canonical/time/sdate

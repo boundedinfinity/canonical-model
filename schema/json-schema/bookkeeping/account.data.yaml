@@ -1,31 +1,31 @@
 -   name: Owns
     description: Increased by Debits
-    id: https://www.boundedinfinity.com/schema/bookkeeping/account/owns
+    id: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns
 -   name: Owes
     description: Increased by Credits
-    id: https://www.boundedinfinity.com/schema/bookkeeping/account/owns
+    id: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns
 -   name: Assets
-    id: https://www.boundedinfinity.com/schema/bookkeeping/account/assets
+    id: https://www.boundedinfinity.com/canonical/bookkeeping/account/assets
     description: |
       Anything that has current or future economic value to a business.
-    parent: https://www.boundedinfinity.com/schema/bookkeeping/account/owns
+    parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns
 -   name: Liabilities
-    id: https://www.boundedinfinity.com/schema/bookkeeping/account/liabilities
+    id: https://www.boundedinfinity.com/canonical/bookkeeping/account/liabilities
     description: |
       A liability is a present or future obligation of an entity to transfer 
       an economic benefit.
-    parent: https://www.boundedinfinity.com/schema/bookkeeping/account/owes
+    parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owes
 -   name: Owner's Equity
-    id: https://www.boundedinfinity.com/schema/bookkeeping/account/owners-equity
+    id: https://www.boundedinfinity.com/canonical/bookkeeping/account/owners-equity
     description: |
       The value attributable to the owners of a business.
-    parent: https://www.boundedinfinity.com/schema/bookkeeping/account/owes
+    parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owes
 -   name: Expenses
-    id: https://www.boundedinfinity.com/schema/bookkeeping/account/expenses
-    parent: https://www.boundedinfinity.com/schema/bookkeeping/account/owns
+    id: https://www.boundedinfinity.com/canonical/bookkeeping/account/expenses
+    parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns
 -   name: Revenues
-    id: https://www.boundedinfinity.com/schema/bookkeeping/account/revenues
-    parent: https://www.boundedinfinity.com/schema/bookkeeping/account/owes
+    id: https://www.boundedinfinity.com/canonical/bookkeeping/account/revenues
+    parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owes
 -   name: Dividends
-    id: https://www.boundedinfinity.com/schema/bookkeeping/account/dividends
-    parent: https://www.boundedinfinity.com/schema/bookkeeping/account/owns
+    id: https://www.boundedinfinity.com/canonical/bookkeeping/account/dividends
+    parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns

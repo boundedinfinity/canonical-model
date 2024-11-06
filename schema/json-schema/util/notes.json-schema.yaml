@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/util/notes
+$id: https://www.boundedinfinity.com/canonical/util/notes
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A list of notes
 type: array

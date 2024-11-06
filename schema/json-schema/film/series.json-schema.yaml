@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/film/series
+$id: https://www.boundedinfinity.com/canonical/film/series
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A television series record
 type: object
@@ -10,14 +10,14 @@ properties:
     episodes:
         type: array
         items:
-            type: https://www.boundedinfinity.com/schema/film/episode
+            type: https://www.boundedinfinity.com/canonical/film/episode
     labels:
         type: array
         items:
-            type: https://www.boundedinfinity.com/schema/label/kvlabel
+            type: https://www.boundedinfinity.com/canonical/label/kvlabel
     dates:
         type: array
         items:
-            type: https://www.boundedinfinity.com/schema/time/sdate
+            type: https://www.boundedinfinity.com/canonical/time/sdate
 required:
     -   title

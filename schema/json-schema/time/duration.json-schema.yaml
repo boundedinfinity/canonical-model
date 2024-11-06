@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/time/duration
+$id: https://www.boundedinfinity.com/canonical/time/duration
 $schema: https://json-schema.org/draft/2020-12/schema
 description: Duration
 type: string

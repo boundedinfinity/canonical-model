@@ -1,10 +1,10 @@
-$id: https://www.boundedinfinity.com/schema/people/person
+$id: https://www.boundedinfinity.com/canonical/people/person
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A person record
 type: object
 properties:
     names:
-        $ref: https://www.boundedinfinity.com/schema/people/name
+        $ref: https://www.boundedinfinity.com/canonical/people/name
     image:
         description: Link to image of person
         type: string
@@ -13,10 +13,10 @@ properties:
     dates:
         type: array
         items:
-            types: https://www.boundedinfinity.com/schema/time/sdate
+            types: https://www.boundedinfinity.com/canonical/time/sdate
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/label
+            $ref: https://www.boundedinfinity.com/canonical/label/label
 required:
     -   names

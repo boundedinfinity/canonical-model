@@ -1,6 +1,6 @@
-$id: https://www.boundedinfinity.com/schema/people/prefix-data
+$id: https://www.boundedinfinity.com/canonical/people/prefix-data
 $schema: https://json-schema.org/draft/2020-12/schema
 title: List of name prefix data
 type: array
 items:
-    $ref: https://www.boundedinfinity.com/schema/people/prefix
+    $ref: https://www.boundedinfinity.com/canonical/people/prefix

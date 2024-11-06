@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/data/acro
+$id: https://www.boundedinfinity.com/canonical/data/acro
 $schema: https://json-schema.org/draft/2020-12/schema
 description: An acroymn definition
 type: object
@@ -13,10 +13,10 @@ properties:
     dates:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/time/labeled-datetime
+            $ref: https://www.boundedinfinity.com/canonical/time/labeled-datetime
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/label
+            $ref: https://www.boundedinfinity.com/canonical/label/label
 required:
     - title

@@ -1,9 +1,9 @@
 types:
-    -   id: https://www.boundedinfinity.com/schema/people/prefix-id
+    -   id: https://www.boundedinfinity.com/canonical/people/prefix-id
         name: prefix-id
         type: ref
-        ref: https://www.boundedinfinity.com/schema/util/url-id
-    -   id: https://www.boundedinfinity.com/schema/people/prefix
+        ref: https://www.boundedinfinity.com/canonical/util/url-id
+    -   id: https://www.boundedinfinity.com/canonical/people/prefix
         description: |
             The prefix of a personal name.
 
@@ -13,7 +13,7 @@ types:
         properties:
             -   name: id
                 type: ref
-                ref: https://www.boundedinfinity.com/schema/people/prefix-id
+                ref: https://www.boundedinfinity.com/canonical/people/prefix-id
             -   name: name
                 type: string
                 min: 1
@@ -26,33 +26,33 @@ types:
                     min: 1
                     max: 10
             -   type: ref
-                ref: https://www.boundedinfinity.com/schema/util/description
-    -   id: https://www.boundedinfinity.com/schema/people/prefix-update
+                ref: https://www.boundedinfinity.com/canonical/util/description
+    -   id: https://www.boundedinfinity.com/canonical/people/prefix-update
         type: object
         properties:
             -   name: prefix
                 type: ref
-                ref: https://www.boundedinfinity.com/schema/people/prefix
+                ref: https://www.boundedinfinity.com/canonical/people/prefix
             -   name: error
 
 operations:
-    -   id: https://www.boundedinfinity.com/schema/people/prefix-create
+    -   id: https://www.boundedinfinity.com/canonical/people/prefix-create
         name: create
         input:
-            -   ref: https://www.boundedinfinity.com/schema/people/prefix
+            -   ref: https://www.boundedinfinity.com/canonical/people/prefix
         output:  
-            -   ref: https://www.boundedinfinity.com/schema/people/prefix
+            -   ref: https://www.boundedinfinity.com/canonical/people/prefix
 data:
-    -   type: https://www.boundedinfinity.com/schema/people/prefix 
-        id: https://www.boundedinfinity.com/schema/people/prefix/mister
+    -   type: https://www.boundedinfinity.com/canonical/people/prefix 
+        id: https://www.boundedinfinity.com/canonical/people/prefix/mister
         name: Mister
         abbreviations: 
             -   Mr
         description: |
             A title used before a surname or full name to address or refer 
             to a man without a higher, honorific or professional title.
-    -   type: https://www.boundedinfinity.com/schema/people/prefix 
-        id: https://www.boundedinfinity.com/schema/people/prefix/miss
+    -   type: https://www.boundedinfinity.com/canonical/people/prefix 
+        id: https://www.boundedinfinity.com/canonical/people/prefix/miss
         name: Mistress
         abbreviations: 
             -   Miss
@@ -60,8 +60,8 @@ data:
             A title used before a surname or full name to address or refer 
             to a unmarried or young woman without a higher, honorific or 
             professional title.
-    -   type: https://www.boundedinfinity.com/schema/people/prefix 
-        id: https://www.boundedinfinity.com/schema/people/prefix/mrs
+    -   type: https://www.boundedinfinity.com/canonical/people/prefix 
+        id: https://www.boundedinfinity.com/canonical/people/prefix/mrs
         name: Missus
         abbreviations: 
             -   Mrs

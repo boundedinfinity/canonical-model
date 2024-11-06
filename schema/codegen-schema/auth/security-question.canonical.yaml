@@ -1,5 +1,5 @@
 types:
-    -   id: https://www.boundedinfinity.com/schema/auth/security-question
+    -   id: https://www.boundedinfinity.com/canonical/auth/security-question
         description: Account security questions
         type: object
         properties:

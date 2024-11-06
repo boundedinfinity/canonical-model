@@ -1,10 +1,10 @@
-$id: https://www.boundedinfinity.com/schema/banking/card
+$id: https://www.boundedinfinity.com/canonical/banking/card
 $schema: https://json-schema.org/draft/2020-12/schema
 description: Bank
 type: object
 properties:
     name:
-        $ref: https://www.boundedinfinity.com/schema/people/name
+        $ref: https://www.boundedinfinity.com/canonical/people/name
     description:
         description: The description of the account
         type: string
@@ -17,13 +17,13 @@ properties:
         minLength: 4
         maxLength: 10
     type:
-        $ref: https://www.boundedinfinity.com/schema/banking/card-type
+        $ref: https://www.boundedinfinity.com/canonical/banking/card-type
     account:
-        $ref: https://www.boundedinfinity.com/schema/banking/account
+        $ref: https://www.boundedinfinity.com/canonical/banking/account
     dates:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/labeled-date
+            $ref: https://www.boundedinfinity.com/canonical/label/labeled-date
 required:
     - name
     - routing-number

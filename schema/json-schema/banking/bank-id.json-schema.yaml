@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/banking/bank-id
+$id: https://www.boundedinfinity.com/canonical/banking/bank-id
 $schema: https://json-schema.org/draft/2020-12/schema
 description: |
     <p>An system unique bank ID</p>

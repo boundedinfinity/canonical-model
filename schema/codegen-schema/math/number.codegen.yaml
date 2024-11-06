@@ -1,5 +1,5 @@
 types:
-    -   id: https://www.boundedinfinity.com/schema/math/number/fraction
+    -   id: https://www.boundedinfinity.com/canonical/math/number/fraction
         name: fraction
         type: object
         description: Fractional Number
@@ -12,7 +12,7 @@ types:
                 invalid: [0]
                 min: 0
 
-    -   id: https://www.boundedinfinity.com/schema/math/number/rational
+    -   id: https://www.boundedinfinity.com/canonical/math/number/rational
         name: rational
         type: object
         description: Rational Number
@@ -23,11 +23,11 @@ types:
                 name: denominator
                 invalid: [0]
 
-    -   id: https://www.boundedinfinity.com/schema/math/number/mixed
+    -   id: https://www.boundedinfinity.com/canonical/math/number/mixed
         name: rational
         type: object
         description: Mixed Number
         properties:
             -   type: integer
                 name: whole
-            -   type: https://www.boundedinfinity.com/schema/math/number/rational
+            -   type: https://www.boundedinfinity.com/canonical/math/number/rational

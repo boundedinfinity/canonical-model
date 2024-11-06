@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/bookkeeping/account-type
+$id: https://www.boundedinfinity.com/canonical/bookkeeping/account-type
 $schema: https://json-schema.org/draft/2020-12/schema
 description: Double Entry Book Keeping Account Types
 type: string

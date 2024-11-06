@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/aa/ssh-key-pair
+$id: https://www.boundedinfinity.com/canonical/aa/ssh-key-pair
 $schema: https://json-schema.org/draft/2020-12/schema
 description: SSH Key pair
 type: object

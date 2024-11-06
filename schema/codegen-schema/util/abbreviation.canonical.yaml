@@ -1,10 +1,10 @@
 types:
-    -   id: https://www.boundedinfinity.com/schema/util/abbreviation
+    -   id: https://www.boundedinfinity.com/canonical/util/abbreviation
         name: abbreviation
         type: object
         properties:
             -   type: ref
-                ref: https://www.boundedinfinity.com/schema/util/uri-id
+                ref: https://www.boundedinfinity.com/canonical/util/uri-id
             -   name: title
                 min: 1
                 max: 150
@@ -31,4 +31,4 @@ types:
                 min: 1
                 required: true
             -   type: ref
-                ref: https://www.boundedinfinity.com/schema/util/description
+                ref: https://www.boundedinfinity.com/canonical/util/description

@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/people/prefix
+$id: https://www.boundedinfinity.com/canonical/people/prefix
 $schema: https://json-schema.org/draft/2020-12/schema
 title: The prefix for a person's name
 description: | 
@@ -17,9 +17,9 @@ properties:
         maxLength: 5
         minLength: 1
     description:
-        $ref: https://www.boundedinfinity.com/schema/util/description
+        $ref: https://www.boundedinfinity.com/canonical/util/description
         description: The prefix description
     status:
-        $ref: https://www.boundedinfinity.com/schema/util/record-status
+        $ref: https://www.boundedinfinity.com/canonical/util/record-status
 required:
     -   text

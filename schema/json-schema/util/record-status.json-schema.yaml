@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/util/record-status
+$id: https://www.boundedinfinity.com/canonical/util/record-status
 $schema: https://json-schema.org/draft/2020-12/schema
 description: The record status
 type: string

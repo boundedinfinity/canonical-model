@@ -1,5 +1,5 @@
 types:
-    -   id: https://www.boundedinfinity.com/schema/prescriptions/drug
+    -   id: https://www.boundedinfinity.com/canonical/prescriptions/drug
         name: id
         type: object
         description: Drug descriptor
@@ -14,9 +14,9 @@ types:
                 items:
                     -   type: string
                         max: 50
-            -   ref: https://www.boundedinfinity.com/schema/prescriptions/drug-class
+            -   ref: https://www.boundedinfinity.com/canonical/prescriptions/drug-class
 
-    -   id: https://www.boundedinfinity.com/schema/prescriptions/drug-class
+    -   id: https://www.boundedinfinity.com/canonical/prescriptions/drug-class
         name: id
         type: object
         description: Drug descriptor
@@ -40,11 +40,11 @@ types:
                 items:
                     -   type: object
                         properties:
-                            -   ref: https://www.boundedinfinity.com/schema/prescriptions/drug-side-effect-type
+                            -   ref: https://www.boundedinfinity.com/canonical/prescriptions/drug-side-effect-type
                             -   name: description
                                 type: string
 
-    -   id: https://www.boundedinfinity.com/schema/prescriptions/drug-side-effect-type
+    -   id: https://www.boundedinfinity.com/canonical/prescriptions/drug-side-effect-type
         name: id
         type: enum
         description: Drug side effect

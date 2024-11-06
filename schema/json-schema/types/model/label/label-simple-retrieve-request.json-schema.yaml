@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/label/label-simple-retrieve-request
+$id: https://www.boundedinfinity.com/canonical/label/label-simple-retrieve-request
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A simple label retrieve request
 type: object

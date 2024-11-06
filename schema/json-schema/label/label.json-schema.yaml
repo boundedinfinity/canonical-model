@@ -1,10 +1,10 @@
-$id: https://www.boundedinfinity.com/schema/label
+$id: https://www.boundedinfinity.com/canonical/label
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A general purpose label
 type: object
 properties:
     id:
-        $ref: https://www.boundedinfinity.com/schema/id
+        $ref: https://www.boundedinfinity.com/canonical/id
 
     name:
         type: string
@@ -13,13 +13,13 @@ properties:
         description: The label name
 
     description:
-        $ref: https://www.boundedinfinity.com/schema/util/description
+        $ref: https://www.boundedinfinity.com/canonical/util/description
         description: |
             A description of the label.
             This should be a globally unique label name within the topic or category.
 
     parent:
-        $ref: https://www.boundedinfinity.com/schema/id
+        $ref: https://www.boundedinfinity.com/canonical/id
         description: |
             This is a reference to a parent label. The intent here is to allow
             lable to be utilized as a taxonomy/hierarchy.

@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/physical-inventory/item
+$id: https://www.boundedinfinity.com/canonical/physical-inventory/item
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A vendor
 type: object
@@ -14,8 +14,8 @@ properties:
     bookmarks:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/util/bookmark
+            $ref: https://www.boundedinfinity.com/canonical/util/bookmark
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/label
+            $ref: https://www.boundedinfinity.com/canonical/label/label

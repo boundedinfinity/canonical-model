@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/util/codegen
+$id: https://www.boundedinfinity.com/canonical/util/codegen
 $schema: https://json-schema.org/draft/2020-12/schema
 description: A company record
 type: object

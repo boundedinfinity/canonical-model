@@ -1,6 +1,6 @@
 ---
 
-$id: https://www.boundedinfinity.com/schema/hardware/motherboard
+$id: https://www.boundedinfinity.com/canonical/hardware/motherboard
 $schema: https://json-schema.org/draft/2020-12/schema
 description: The mother board specification
 type: object
@@ -21,25 +21,25 @@ properties:
         description: The motherboard central processing unit (CPU) sockets
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/hardware/cpu-socket
+            $ref: https://www.boundedinfinity.com/canonical/hardware/cpu-socket
         minItems: 1
     cpus:
         description: The motherboard central processing units (CPU)
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/hardware/cpu
+            $ref: https://www.boundedinfinity.com/canonical/hardware/cpu
     usb-ports:
         description: The list of universal serial bus (USB) ports
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/hardware/usb
+            $ref: https://www.boundedinfinity.com/canonical/hardware/usb
 required:
     - name
     - cpu-sockets
 
 ---
 
-$id: https://www.boundedinfinity.com/schema/hardware/chipset
+$id: https://www.boundedinfinity.com/canonical/hardware/chipset
 $schema: https://json-schema.org/draft/2020-12/schema
 description: The motherboard chipset specification
 type: object
@@ -62,7 +62,7 @@ required:
 
 ---
 
-$id: https://www.boundedinfinity.com/schema/hardware/cpu-socket
+$id: https://www.boundedinfinity.com/canonical/hardware/cpu-socket
 $schema: https://json-schema.org/draft/2020-12/schema
 description: The central processing unit (CPU) socket specification
 type: object

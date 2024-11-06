@@ -1,18 +1,23 @@
 
 types:
 
-    -   id: https://www.boundedinfinity.com/schema/label/view-model
+    -   id: https://www.boundedinfinity.com/canonical/label/label-model
         type: object
         description: The canonical view model for a Label
         properties:
-            -   parent: https://www.boundedinfinity.com/schema/label/label-view-model 
-            -   ref: https://www.boundedinfinity.com/schema/id
+            -   type: https://www.boundedinfinity.com/canonical/id
+            -   name: parent
+                type: https://www.boundedinfinity.com/canonical/label/label-model
+            -   name: children
+                type: array
+                items:
+                    type: https://www.boundedinfinity.com/canonical/label/label-model
             -   name: name
                 type: string
                 min: 2
                 max: 50
                 required: true
-            -   ref: https://www.boundedinfinity.com/schema/util/description
+            -   type: https://www.boundedinfinity.com/canonical/util/description
             -   name: acronyms
                 type: array
                 unique: true
@@ -28,21 +33,8 @@ types:
                     min: 2
                     max: 50
 
-
-operations:
-    -   id: https://www.boundedinfinity.com/schema/label/data-model-to-view-model
-        inputs:
-            -   https://www.boundedinfinity.com/schema/label/data-model
-        outputs:
-            -   https://www.boundedinfinity.com/schema/label/view-model
-    -   id: https://www.boundedinfinity.com/schema/label/view-model-to-data-model
-        inputs:
-            -   https://www.boundedinfinity.com/schema/label/view-model
-        outputs:
-            -   https://www.boundedinfinity.com/schema/label/data-model
-
 data:
-    -   id: https://www.boundedinfinity.com/schema/label/label-data-model
+    -   id: https://www.boundedinfinity.com/canonical/label/label-data-model
         items:
             -   id: 380F7F39-6D8C-4AD5-83E9-15180A3867D2
                 name: Friends

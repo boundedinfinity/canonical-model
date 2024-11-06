@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/address/email
+$id: https://www.boundedinfinity.com/canonical/address/email
 $schema: https://json-schema.org/draft/2020-12/schema
 description: An e-mail address
 type: object
@@ -14,10 +14,10 @@ properties:
     dates:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/time/sdate
+            $ref: https://www.boundedinfinity.com/canonical/time/sdate
     labels:
         type: array
         items:
-            $ref: https://www.boundedinfinity.com/schema/label/label
+            $ref: https://www.boundedinfinity.com/canonical/label/label
 required:
     -   address

@@ -1,4 +1,4 @@
-$id: https://www.boundedinfinity.com/schema/bookkeeping/book
+$id: https://www.boundedinfinity.com/canonical/bookkeeping/book
 $schema: https://json-schema.org/draft/2020-12/schema
 description: Double Entry Bookkeeping Book
 type: object

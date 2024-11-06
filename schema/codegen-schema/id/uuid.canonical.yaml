@@ -1,5 +1,5 @@
 types:
-    -   id: https://www.boundedinfinity.com/schema/util/uuidv4
+    -   id: https://www.boundedinfinity.com/canonical/util/uuidv4
         name: UUID v4
         type: string
         min: 36
