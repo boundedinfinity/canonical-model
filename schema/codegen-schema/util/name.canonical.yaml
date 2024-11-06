@@ -11,6 +11,12 @@ types:
         min: 1
         max: 10
 
+    -   id: https://www.boundedinfinity.com/canonical/util/name-20
+        type: string
+        name: name
+        min: 1
+        max: 20
+
     -   id: https://www.boundedinfinity.com/canonical/util/name-50
         type: string
         name: name

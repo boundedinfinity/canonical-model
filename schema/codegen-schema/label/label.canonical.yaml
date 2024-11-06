@@ -34,7 +34,7 @@ types:
                     max: 50
 
 data:
-    -   id: https://www.boundedinfinity.com/canonical/label/label-data-model
+    -   type: https://www.boundedinfinity.com/canonical/label/label-data-model
         items:
             -   id: 380F7F39-6D8C-4AD5-83E9-15180A3867D2
                 name: Friends
