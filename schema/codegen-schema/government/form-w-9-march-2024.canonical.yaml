@@ -1,0 +1,48 @@
+types:
+    -   id: https://www.boundedinfinity.com/canonical/government/form-w-9-march-2024
+        description: >
+            From W-9 Rev. March 2024.  Reference: https://www.irs.gov/pub/irs-pdf/fw9.pdf
+        type: object
+        properties:
+            -   name: Name of entity / indivdidual
+                alias: Line 1
+                description: >
+                    Name of entity/individual. An entry is required. (For a sole proprietor or disregarded entity, 
+                    enter the owner’s name on line 1, and enter the business/disregarded entity’s name on line 2.)
+                type: string
+
+            -   name: Business name / disregarded entity name
+                alias: Line 2
+                description: >
+                    Business name/disregarded entity name, if different from above.
+                type: string
+            -   name: Federal Tax Classification
+                alias: Line 3a
+                description: >
+                    Check the appropriate box for federal tax classification of the entity/individual whose name is 
+                    entered on line 1. Check only one of the following seven boxes.
+                type: enum
+                options:
+                    -   name: Individual / sole proprietor
+                    -   name: C corporation
+                    -   name: S corporation
+                    -   name: Partnership
+                    -   name: Trust / estate
+                    -   name: LLC
+                    -   name: Other
+            -   name: Federal Tax Classification Other
+                type: string
+                alias: Line 3a Other
+            -   name: Line 3b
+                type: boolean
+            -   name: Exemptions Exempt payee code
+                alias: Line 4 Exempt Payee Code
+                type: string
+            -   name: Exemption from Foreign Account Tax Compliance Act Reporting Code
+                alias: Line 4 FATCA Act Reporting Code
+            -   type: ref
+                ref: https://www.boundedinfinity.com/canonical/address/mailing
+                alias: Line 5 and 6
+            -   
+            
+            
