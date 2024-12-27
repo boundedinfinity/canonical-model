@@ -1,0 +1,16 @@
+Payment systems:
+    -   Credit Card
+    -   Check
+    -   Cash
+    -   Bank Transfer
+    -   Bitcoin
+    -   Digital Wallet
+        -   Shop Pay
+            - Site: https://shop.app/
+        -   Google Pay / G Pay
+            - Site: https://pay.google.com/
+            - Backed by Credit Card or Banking Account
+        -   Apple Pay
+            - Site: https://www.apple.com/apple-pay/
+        -   Paypal
+            - Site: https://www.paypal.com/

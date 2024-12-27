@@ -1,6 +1,5 @@
 
 types:
-
     -   id: https://www.boundedinfinity.com/canonical/label/label-model
         type: object
         description: The canonical view model for a Label
@@ -34,7 +33,7 @@ types:
                     max: 50
 
 data:
-    -   type: https://www.boundedinfinity.com/canonical/label/label-data-model
+    -   type: https://www.boundedinfinity.com/canonical/label/label-model
         items:
             -   id: 380F7F39-6D8C-4AD5-83E9-15180A3867D2
                 name: Friends
