@@ -1,6 +1,0 @@
-$id: https://www.boundedinfinity.com/canonical/id
-$schema: https://json-schema.org/draft/2020-12/schema
-type: uuid
-description: |
-    The standard ID used for the model.
-    Using the UUID v4 format.

@@ -1,4 +1,0 @@
-$id: https://www.boundedinfinity.com/canonical/edge
-$schema: https://json-schema.org/draft/2020-12/schema
-title: An edge (graph-theory) to another type.
-$ref: https://www.boundedinfinity.com/canonical/id

@@ -1,8 +1,4 @@
 types:
-    -   id: https://www.boundedinfinity.com/canonical/people/prefix-id
-        name: prefix-id
-        type: ref
-        ref: https://www.boundedinfinity.com/canonical/util/url-id
     -   id: https://www.boundedinfinity.com/canonical/people/prefix
         description: |
             The prefix of a personal name.
@@ -11,40 +7,51 @@ types:
             honorific, etc...
         type: object
         properties:
-            -   name: id
-                type: ref
-                ref: https://www.boundedinfinity.com/canonical/people/prefix-id
+            -   type: ref
+                ref: https://www.boundedinfinity.com/canonical/id
             -   name: name
                 type: string
                 min: 1
-                max: 10
+                max: 50
                 required: true
+                indexed: true
             -   name: abbreviations
                 type: array
                 items:
                     type: string
                     min: 1
                     max: 10
+                indexed: true
             -   type: ref
                 ref: https://www.boundedinfinity.com/canonical/util/description
-    -   id: https://www.boundedinfinity.com/canonical/people/prefix-update
+
+    -   id: https://www.boundedinfinity.com/canonical/people/prefix-format
+        description: The prefix format of a personal name.            
         type: object
         properties:
-            -   name: prefix
+            -   name: id
                 type: ref
-                ref: https://www.boundedinfinity.com/canonical/people/prefix
-            -   name: error
+                ref: https://www.boundedinfinity.com/canonical/id
+            -   name: name
+                type: string
+                min: 1
+                max: 50
+                required: true
+                indexed: true
+            -   type: ref
+                ref: https://www.boundedinfinity.com/canonical/util/description
 
 operations:
-    -   id: https://www.boundedinfinity.com/canonical/people/prefix-create
+    -   id: https://www.boundedinfinity.com/canonical/people/prefix/create
         name: create
         input:
             -   ref: https://www.boundedinfinity.com/canonical/people/prefix
         output:  
             -   ref: https://www.boundedinfinity.com/canonical/people/prefix
 data:
+    # https://en.wikipedia.org/wiki/English_honorifics
     -   type: https://www.boundedinfinity.com/canonical/people/prefix 
-        id: https://www.boundedinfinity.com/canonical/people/prefix/mister
+        id: 61047545-2B82-4C51-B3BC-363D0B720C48
         name: Mister
         abbreviations: 
             -   Mr
@@ -52,7 +59,7 @@ data:
             A title used before a surname or full name to address or refer 
             to a man without a higher, honorific or professional title.
     -   type: https://www.boundedinfinity.com/canonical/people/prefix 
-        id: https://www.boundedinfinity.com/canonical/people/prefix/miss
+        id: E5C5AB6A-690E-4CF3-BEFD-E56C0FE9D11B
         name: Mistress
         abbreviations: 
             -   Miss
@@ -61,7 +68,7 @@ data:
             to a unmarried or young woman without a higher, honorific or 
             professional title.
     -   type: https://www.boundedinfinity.com/canonical/people/prefix 
-        id: https://www.boundedinfinity.com/canonical/people/prefix/mrs
+        id: F15ECC83-F0F9-48BF-A36B-A89D7EFA4E13
         name: Missus
         abbreviations: 
             -   Mrs
@@ -69,3 +76,45 @@ data:
             A title used before a surname or full name to address or refer 
             to a married or widowed woman without a higher, honorific or 
             professional title.
+    -   type: https://www.boundedinfinity.com/canonical/people/prefix 
+        id: 62F6FD2F-D9E1-41D5-9938-5DB75F3C7482
+        name: Mistress
+        abbreviations: 
+            -   Miss
+        description: |
+            A title used before a surname or full name to address or refer to a 
+            married or widowed woman without a higher, honorific or professional 
+            title.
+    -   type: https://www.boundedinfinity.com/canonical/people/prefix 
+        id: E70DA014-F7D7-442D-8E9C-450EDB8FF965
+        name: Miss or Mrs
+        abbreviations: 
+            -   Ms.
+        description: |
+            A title used before a surname or full name to address or refer to a 
+            woman of unknown marital status without a higher, honorific or 
+            professional title.
+    -   type: https://www.boundedinfinity.com/canonical/people/prefix 
+        id: E70DA014-F7D7-442D-8E9C-450EDB8FF965
+        name: Master
+        description: |
+            A title used before a surname or full name to address or refer to a boy
+            or young man without a higher, honorific or professional title.
+    -   type: https://www.boundedinfinity.com/canonical/people/prefix
+        id: BAF967F8-91FD-474E-AA6F-333F60E33B73
+        name: Sir
+        description: |
+            A title used before a surname or full name to address or refer to a man
+            if they have a British knighthood or if they are a baronet.
+    -   type: https://www.boundedinfinity.com/canonical/people/prefix
+        id:  6378C91E-341A-4595-BA8F-45359AC66AA2
+        name: Madam
+        description: |
+            A title used before a surname or full name to address or refer to a 
+            woman if they hold an hereditary rank.
+    -   type: https://www.boundedinfinity.com/canonical/people/prefix
+        id:  0E753706-C240-4304-97FA-36D0698E54EF
+        name: Dame
+        description: |
+            A title used before a surname or full name to address or refer to a 
+            woman if they have a British knighthood or if they are a baronet.

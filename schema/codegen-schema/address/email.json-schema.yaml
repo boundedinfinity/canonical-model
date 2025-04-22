@@ -1,0 +1,22 @@
+types:
+    -   id: https://www.boundedinfinity.com/canonical/address/email
+        description: An e-mail address
+        type: object
+        properties:
+            title:
+                description: Title of the email address
+                type: string
+                max: 200
+            address:
+                description: Email follwoing the RFC 5321, section 4.1.2 specification.
+                type: string
+                format: email
+                required: true
+            dates:
+                type: array
+                items:
+                    ref: https://www.boundedinfinity.com/canonical/time/sdate
+            labels:
+                type: array
+                items:
+                    ref: https://www.boundedinfinity.com/canonical/label/label

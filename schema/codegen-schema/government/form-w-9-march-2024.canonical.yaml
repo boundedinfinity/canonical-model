@@ -1,7 +1,10 @@
 types:
     -   id: https://www.boundedinfinity.com/canonical/government/form-w-9-march-2024
         description: >
-            From W-9 Rev. March 2024.  Reference: https://www.irs.gov/pub/irs-pdf/fw9.pdf
+            From W-9 Rev. March 2024.
+            Reference: 
+                -   https://www.irs.gov/pub/irs-pdf/fw9.pdf
+                -   http://www.irs.gov/FormW9
         type: object
         properties:
             -   name: Name of entity / indivdidual

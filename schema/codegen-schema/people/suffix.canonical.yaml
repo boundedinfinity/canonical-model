@@ -1,0 +1,92 @@
+types:
+    -   id: https://www.boundedinfinity.com/canonical/people/suffix
+        description: |
+            The suffix of a personal name.
+
+            A name suffix is a word, words or abbreviation that follows a person's full
+            name and provides additional information about the person.
+        type: object
+        properties:
+            -   name: id
+                type: ref
+                ref: https://www.boundedinfinity.com/canonical/id
+            -   name: name
+                type: string
+                min: 1
+                max: 50
+                required: true
+            -   name: abbreviations
+                type: array
+                items:
+                    type: string
+                    min: 1
+                    max: 10
+            -   type: ref
+                ref: https://www.boundedinfinity.com/canonical/util/description
+
+    -   id: https://www.boundedinfinity.com/canonical/people/suffix-format
+        description: The suffix format of a personal name.            
+        type: object
+        properties:
+            -   name: id
+                type: ref
+                ref: https://www.boundedinfinity.com/canonical/id
+            -   name: name
+                type: string
+                min: 1
+                max: 50
+                required: true
+                indexed: true
+            -   type: ref
+                ref: https://www.boundedinfinity.com/canonical/util/description
+
+operations:
+    -   type: https://www.boundedinfinity.com/canonical/people/suffix
+        id: https://www.boundedinfinity.com/canonical/people/suffix/create
+        name: create
+        input:
+            -   ref: https://www.boundedinfinity.com/canonical/people/suffix
+        output:  
+            -   ref: https://www.boundedinfinity.com/canonical/people/suffix
+data:
+    # https://en.wikipedia.org/wiki/English_honorifics
+    -   type: https://www.boundedinfinity.com/canonical/people/suffix
+        id: 4DB6DE73-B31F-4EA7-A9BB-4930920BD5F0
+        name: Bachelor of Arts
+        abbreviation: BA
+        description: |
+            A degree from a university or other higher learning instituion awarded 
+            for an undergraduate program in the arts or other disciplines.
+    -   type: https://www.boundedinfinity.com/canonical/people/suffix
+        id: D5E4E33C-F2B2-4853-8FD9-A29F903E01D1
+        abbreviation: AB
+        ref: https://www.boundedinfinity.com/canonical/people/suffix/ba
+    -   type: https://www.boundedinfinity.com/canonical/people/suffix
+        id: 97FB22CC-2976-467E-B460-3D766090DCBB
+        name: Bachelor of Science
+        abbreviation: BA
+        description: |
+            A degree from a university or other higher learning instituion awarded
+            for an undergraduate program in the sciences.
+    -   type: https://www.boundedinfinity.com/canonical/people/suffix
+        id: B48FB009-AF28-4934-8E5F-EBC278C72E82
+        abbreviation: B.Sc.
+        ref: https://www.boundedinfinity.com/canonical/people/suffix/bs
+    -   type: https://www.boundedinfinity.com/canonical/people/suffix
+        id:  https://www.boundedinfinity.com/canonical/people/suffix/sb
+        abbreviation: SB
+        ref: https://www.boundedinfinity.com/canonical/people/suffix/sb
+    -   type: https://www.boundedinfinity.com/canonical/people/suffix
+        id: 49062FE9-C330-4446-B6A0-55513F57BABA
+        abbreviation: ScB
+        ref: https://www.boundedinfinity.com/canonical/people/scb
+    -   type: https://www.boundedinfinity.com/canonical/people/suffix
+        id: 57947AFF-6047-4E41-BFB0-37DAFB7598DD
+        name: Master of Business Administration
+        abbreviation: MBA
+        reference: https://en.wikipedia.org/wiki/Master_of_Business_Administration
+    -   type: https://www.boundedinfinity.com/canonical/people/suffix
+        id: 25E2A409-6228-4828-A87F-B4A468C2344A
+        name: Master of Economics
+        abbreviation: MEc
+        reference: https://en.wikipedia.org/wiki/Master_of_Economics
