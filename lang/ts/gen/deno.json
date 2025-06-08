@@ -1,0 +1,14 @@
+{
+  "tasks": {
+    "dev": "deno run --watch main.ts"
+  },
+  "imports": {
+    "@prettier/sync": "npm:@prettier/sync@^0.5.5",
+    "@std/assert": "jsr:@std/assert@1",
+    "@types/lodash": "npm:@types/lodash@^4.17.17",
+    "handlebars": "npm:handlebars@^4.7.8",
+    "lodash": "npm:lodash@^4.17.21",
+    "prettier": "npm:prettier@^3.5.3",
+    "typescript-formatter": "npm:typescript-formatter@^7.2.2"
+  }
+}

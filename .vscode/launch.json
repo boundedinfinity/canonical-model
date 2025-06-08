@@ -4,7 +4,9 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         
+      
         {
             "name": "ISO Generator",
             "type": "go",
@@ -12,6 +14,6 @@
             "mode": "auto",
             "cwd": "${workspaceFolder}/lang/go",
             "program": "${workspaceFolder}/lang/go/idiomatic/specification/iso/gen"
-        }
+        },
     ]
 }
