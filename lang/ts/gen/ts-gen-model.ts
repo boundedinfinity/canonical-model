@@ -476,11 +476,14 @@ export class TsGenerator2 {
             return `${name}${p.optional ? '?' : ''}`
         }
 
-        const compares = args.compares.map(c => `${ps(c.lhs)} ${c.op} ${ps(c.rhs)}`)
+        const c = args.compares
 
-        return `if(${compares.join(', ')}) {
+        const result = `
+        if(${ps(c.lhs)} ${c.op} ${ps(c.rhs)}) {
             ${args.body.join('\n')}
         }`
+
+        return result
     }
 
     class(args: {
