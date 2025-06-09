@@ -1,15 +1,34 @@
 interface NamePrefixData {
+
+}
+
+export class NamePrefix {
     id: string
     name: string
     abbr?: string[]
     description?: string
-}
 
-export class NamePrefix {
-    data: NamePrefixData
+    constructor(data: {
+        id: string
+        name: string
+        abbr?: string[]
+        description?: string
+    }) {
+        this.id = data.id
+        this.name = data.name
+        this.abbr = data.abbr
+        this.description = data.description
+    }
 
-    constructor(data: NamePrefixData) {
-        this.data = data
+    validate() {
+        if (this.id.length < 36)
+            throw new Error(`id is less than 36`)
+
+        if (this.id.length > 36)
+            throw new Error(`id is greater than 36`)
+
+        if (!this.id.includes('-'))
+            throw new Error(`id does not contain '-'`)
     }
 }
 

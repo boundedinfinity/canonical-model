@@ -27,7 +27,31 @@ Deno.test('Generate bounded object', () => {
                     name: 'id',
                     min: 36,
                     max: 36,
-                    includes: '-'
+                    anyOf: ['-']
+                },
+                {
+                    kind: 'string',
+                    name: 'name',
+                    min: 2,
+                    max: 50
+                },
+                {
+                    kind: 'array',
+                    name: 'abbr',
+                    optional: true,
+                    min: 1,
+                    items: {
+                        kind: 'string',
+                        min: 1,
+                        max: 10
+                    }
+                },
+                {
+                    kind: 'string',
+                    name: 'description',
+                    optional: true,
+                    min: 2,
+                    max: 500
                 }
             ]
         }

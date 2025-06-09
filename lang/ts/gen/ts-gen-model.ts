@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 type TsAccessControl = 'public' | 'private' | 'protected' | 'readonly'
 type TsVariableScope = 'var' | 'const' | 'let'
 
@@ -402,6 +404,182 @@ export class TsGenerator {
             ${theEnum.exported ? 'export ' : ''}enum ${theEnum.name} {
                 ${values.join(',\n')}
             }
+        `
+
+        return result
+    }
+}
+
+type Prettify<T> = {
+    [K in keyof T]: T[K];
+} & unknown
+
+type TsProperty2 = {
+    name: string
+    type: string
+    optional?: boolean
+    array?: boolean
+    partial?: boolean
+}
+
+export class TsGenerator2 {
+    private options: {
+        tabTemp: string
+        indent: number
+    } = {
+            tabTemp: '__TAB__',
+            indent: 0
+        }
+
+    constructor(options?: Partial<typeof this.options>) {
+        _.merge(this.options, options)
+    }
+
+    objectLit(args: {
+        array?: boolean,
+        properties?: TsProperty2[]
+    }): string {
+        const properties = args.properties?.map(arg => {
+            const optional = arg.optional ? '?' : ''
+            const type = arg.type ? ` : ${arg.type}` : ''
+            const array = arg.array ? `[]` : ''
+            const result = `${arg.name}${optional}${type}${array}`
+            return result
+        }) ?? []
+
+        const array = args.array ? '[]' : ''
+
+        return `{ ${properties.join(',\n')} }${array}`
+    }
+
+    if(args: {
+        compares: {
+            lhs: {
+                name: string
+                optional?: string
+                array?: boolean
+            }
+            op: 'equal' | 'not equal' | 'greater than' | 'less than'
+            rhs: {
+                name: string
+                optional?: string
+                array?: boolean
+            }
+        }
+        body: string[]
+    }): string {
+        const ps = (p: {
+            name: string
+            optional?: string
+            array?: boolean
+        }) => {
+            return `${name}${p.optional ? '?' : ''}`
+        }
+
+        const compares = args.compares.map(c => `${ps(c.lhs)} ${c.op} ${ps(c.rhs)}`)
+
+        return `if(${compares.join(', ')}) {
+            ${args.body.join('\n')}
+        }`
+    }
+
+    class(args: {
+        name: string,
+        exported?: boolean,
+        properties?: TsProperty2[],
+        methods?: {
+            name: string,
+            accessControl?: TsAccessControl,
+            method?: boolean
+            exported?: boolean
+            args?: TsProperty2[],
+            return?: string,
+            body: string[]
+        }[]
+    }): string {
+        const exported = args.exported ? 'exported ' : ''
+
+        const properties = args.properties?.map(arg => {
+            const optional = arg.optional ? '?' : ''
+            const array = arg.array ? '[]' : ''
+            const type = arg.type ? `: ${arg.type}` : ''
+            const result = `${arg.name}${optional}${type}${array}`
+            return result
+        }) ?? []
+
+        const methods = args.methods?.map(m => this.function({
+            ...m, method: true
+        })) ?? []
+
+        const result = `${exported}class ${args.name}{
+            ${properties.join('\n')}
+
+            ${methods.join('\n')}
+        }`
+
+        return result
+    }
+
+    genericeCall(args: {
+        generic: string,
+        name: string
+    }) {
+        return `${args.generic}<${args.name}>`
+    }
+
+    function(args: {
+        name: string,
+        accessControl?: TsAccessControl,
+        method?: boolean
+        exported?: boolean
+        args?: TsProperty2[],
+        return?: string,
+        body: string[]
+    }): string {
+        const margs = args.args?.map(arg => {
+            const optional = arg.optional ? '?' : ''
+            const array = arg.array ? '[]' : ''
+            let type = ''
+
+            if (arg.type) {
+                type = arg.type
+
+                if (arg.partial)
+                    type = this.genericeCall({
+                        generic: 'Partial',
+                        name: type,
+                    })
+
+                type = ` : ${type}`
+            }
+
+            const result = `${arg.name}${optional}${type}${array}`
+            return result
+        }) ?? []
+
+        const exported = args.exported ? 'exported ' : ''
+        const fn = args.method ? '' : 'function '
+        let ac = ''
+
+        switch (args.accessControl) {
+            case 'public':
+                // nothing todo
+                break
+            case 'private':
+            case 'protected':
+            case 'readonly':
+                ac = `${args.accessControl}`
+                break
+            default:
+            // nothing todo
+        }
+
+        const ret = args.return ? ` : ${args.return}` : ''
+
+        const result = `
+            ${ac}${exported}${fn}${args.name} (${margs.join(', ')})${ret}{
+                ${args.body.join('\n')}
+            }   
         `
 
         return result
