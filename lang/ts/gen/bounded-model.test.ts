@@ -20,6 +20,32 @@ Deno.test('Generate bounded object', () => {
     const actual = new BoundedGenerator().gen(
         {
             kind: 'object',
+            name: 'Label',
+            properties: [
+                {
+                    kind: 'string',
+                    name: 'id',
+                    min: 36,
+                    max: 36,
+                    anyOf: ['-']
+                },
+                {
+                    kind: 'string',
+                    name: 'name',
+                    min: 2,
+                    max: 50
+                },
+                {
+                    kind: 'string',
+                    name: 'description',
+                    optional: true,
+                    min: 2,
+                    max: 500
+                }
+            ]
+        },
+        {
+            kind: 'object',
             name: 'Name Prefix',
             properties: [
                 {
@@ -52,7 +78,17 @@ Deno.test('Generate bounded object', () => {
                     optional: true,
                     min: 2,
                     max: 500
-                }
+                },
+                {
+                    kind: 'array',
+                    name: 'labels',
+                    optional: true,
+                    min: 1,
+                    items: {
+                        kind: 'ref',
+                        ref: 'Label'
+                    }
+                },
             ]
         }
     )

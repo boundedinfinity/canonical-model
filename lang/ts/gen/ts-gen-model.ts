@@ -1,19 +1,8 @@
 import _ from 'lodash'
+import { Prettify, isKey } from './utils.ts'
 
-type TsAccessControl = 'public' | 'private' | 'protected' | 'readonly'
-type TsVariableScope = 'var' | 'const' | 'let'
-
-interface TsVariable {
-    kind: 'variable'
-    scope: TsVariableScope
-    name: string
-    anotation?: TsType
-    value?: TsType
-}
-
-export type TsType =
+export type TsToken = Prettify<
     TsStringType |
-    TsNamedType |
     TsNumberType |
     TsBooleanType |
     TsEnumType |
@@ -32,83 +21,83 @@ export type TsType =
     TsTypeAny |
     TsTypeNull |
     TsMethodCall |
-    TsPropertyType
-
-export type TsGen =
-    TsType |
+    TsPropertyType |
     TsClass |
     TsMethod |
     TsVariable |
-    TsMethodCall
+    TsMethodCall |
+    TsIf
+>
 
-interface TsUnionType {
+
+export type TsAccessControl = 'public' | 'private' | 'protected' | 'readonly'
+export type TsVariableScope = 'var' | 'const' | 'let'
+
+export type TsVariable = {
+    kind: 'variable'
+    scope: TsVariableScope
+    name: string
+    anotation?: TsToken
+    value?: TsToken
+}
+
+export type TsOpType = '=' | '<' | '<=' | '>' | '>=' | '!='
+export type TsSep = ',' | ':' | '\n' | '|'
+
+export type TsUnionType = {
     kind: 'union'
-    values: TsType[]
+    values: TsToken[]
     array?: boolean
 }
 
-interface TsTypeUndefined {
-    kind: 'undefined'
-}
+export type TsTypeUndefined = { kind: 'undefined' }
+export type TsTypeNull = { kind: 'null' }
+export type TsTypeAny = { kind: 'any' }
 
-interface TsTypeNull {
-    kind: 'null'
-}
-
-interface TsTypeAny {
-    kind: 'any'
-}
-
-interface TsStringType {
+export type TsStringType = {
     kind: 'string-type'
     array?: boolean
 }
 
-interface TsNamedType {
-    kind: 'named-type'
-    value: string
-    array?: boolean
-}
-
-interface TsStringLiteral {
+export type TsStringLiteral = {
     kind: 'string-literal'
     value: string
 }
 
-interface TsNumberType {
+export type TsNumberType = {
     kind: 'number-type'
     array?: boolean
 }
 
-interface TsNumberLiteral {
+export type TsNumberLiteral = {
     kind: 'number-literal'
     value: number
 }
 
-interface TsCustomType {
+export type TsCustomType = {
     kind: 'custom-type'
     name: string
     array?: boolean
 }
 
-interface TsBooleanType {
+export type TsBooleanType = {
     kind: 'boolean-type'
     array?: boolean
 }
 
-interface TsBooleanLiteral {
+export type TsBooleanLiteral = {
     kind: 'boolean-literal'
     value: boolean
 }
 
-export interface TsPropertyType {
+export type TsPropertyType = {
     kind: 'property'
     key: string
-    value?: TsType
+    value?: TsToken
     optional?: boolean
 }
 
-interface TsInterfaceType {
+export type TsInterfaceType = {
     kind: 'interface-type'
     name: string
     properties?: TsPropertyType[]
@@ -116,12 +105,12 @@ interface TsInterfaceType {
     exported?: boolean
 }
 
-interface TsObjectLiteral {
+export type TsObjectLiteral = {
     kind: 'object-literal'
     properties?: TsPropertyType[]
 }
 
-export interface TsEnumType {
+export type TsEnumType = {
     kind: 'enum-type'
     name: string
     exported?: boolean
@@ -131,20 +120,20 @@ export interface TsEnumType {
     }[]
 }
 
-interface TsEnumLiteral {
+export type TsEnumLiteral = {
     kind: 'enum-literal'
     enum: string
     value: string
 }
 
-interface TsMethodCall {
+export type TsMethodCall = {
     kind: 'method-call'
     name: string
     method: string
     args?: TsPropertyType[],
 }
 
-interface TsMethod {
+export type TsMethod = {
     kind: 'method'
     name: string
     accessControl?: TsAccessControl
@@ -152,161 +141,130 @@ interface TsMethod {
     body?: string[]
 }
 
-export interface TsClass {
+export type TsClass = Prettify<{
     kind: 'class'
     name: string
     properties?: TsPropertyType[]
     exported?: boolean
     methods?: TsMethod[]
+}>
+
+export type TsIf = {
+    kind: 'if'
+    conditions: string[]
+    body: string[]
 }
 
 export class TsGenerator {
-    private genAccessControl(input?: TsAccessControl): string {
-        let text = ""
+    gen(...tokens: TsToken[]): string {
+        const lines: string[] = []
 
-        if (input) {
-            switch (input) {
-                case "public":
-                    break
-                case "private":
-                case "protected":
-                case 'readonly':
-                    text = `${input} `
-                    break
-                default:
-                    throw new Error(`invalid access control ${input}`)
-            }
-        }
+        for (const token of tokens) {
+            let text = ''
 
-        return text
-    }
-
-    gens(inputs?: TsGen[]): string {
-        const outputs: string[] = []
-
-        if (inputs) {
-            for (const input of inputs) {
-                const output = this.gen(input)
-                outputs.push(output)
-            }
-        }
-
-        return outputs.join('\n')
-    }
-
-    gen(input?: TsGen): string {
-        let text: string = ""
-
-        function markArray(input: TsType, text: string) {
-            if ('array' in input && input.array) {
-                switch (input.kind) {
-                    case 'union':
-                        return `$(${text})[]`
-                    default:
-                        return `${text}[]`
-                }
-            }
-
-            return text
-        }
-
-        if (input) {
-            switch (input.kind) {
+            switch (token.kind) {
                 case 'method-call':
                     {
-                        text = `${input.name}.${input.method}(`
-                        text += this.genProperties(input.args).join(',')
+                        text = `${token.name}.${token.method}(`
+                        text += this.genProperties(token.args).join(',')
                         text += `)`
                     }
                     break
                 case 'any':
-                    text = markArray(input, 'any')
+                    text = 'any' + this.genArray(token)
                     break
                 case 'null':
-                    text = markArray(input, 'null')
+                    text = 'null' + this.genArray(token)
                     break
                 case 'undefined':
-                    text = markArray(input, 'undefined')
+                    text = 'undefined' + this.genArray(token)
                     break
                 case 'variable':
-                    text = `${input.scope} ${input.name}`
-                    if (input.anotation)
-                        text += `: ${this.gen(input.anotation)}`
-                    if (input.value)
-                        text += ` = ${this.gen(input.value)}`
+                    text = `${token.scope} ${token.name}`
+                    if (token.anotation)
+                        text += `: ${this.gen(token.anotation)}`
+                    if (token.value)
+                        text += ` = ${this.gen(token.value)}`
                     break
                 case 'custom-type':
-                    text = markArray(input, input.name)
+                    text = token.name + this.genArray(token)
                     break
                 case 'string-type':
-                    text = markArray(input, 'string')
-                    break
-                case 'named-type':
-                    text = markArray(input, `${input.value}`)
+                    text = 'string' + this.genArray(token)
                     break
                 case 'boolean-type':
-                    text = markArray(input, 'boolean')
+                    text = 'boolean' + this.genArray(token)
                     break
                 case 'number-type':
-                    text = markArray(input, 'number')
+                    text = 'number' + this.genArray(token)
                     break
                 case 'string-literal':
-                    text = `'${input.value}'`
+                    text = `'${token.value}'`
                     break
                 case 'number-literal':
                 case 'boolean-literal':
-                    text = `${input.value}`
+                    text = `${token.value}`
                     break
                 case 'enum-type':
-                    text = this.genEnum(input)
+                    text = this.genEnum(token)
                     break
                 case 'enum-literal':
-                    text = `${input.enum}.${input.value}`
+                    text = `${token.enum}.${token.value}`
                     break
                 case 'interface-type':
-                    text = this.genInterface(input)
+                    text = this.genInterface(token)
                     break
                 case 'object-literal':
-                    text = this.genObjectLiteral(input)
+                    text = this.genObjectLiteral(token)
                     break
                 case 'method':
-                    text = this.genMethod(input)
+                    text = this.genMethod(token)
                     break
                 case 'class':
-                    text = this.genClass(input)
+                    text = this.genClass(token)
                     break
                 case 'property':
-                    text = this.genProperty(input)
+                    text = this.genProperty(token)
                     break
                 case 'union':
-                    {
-                        const unions: string[] = []
-
-                        for (const union of input.values) {
-                            const text = this.gen(union)
-                            unions.push(text)
-                        }
-
-                        text = markArray(input, unions.join(" | "))
-                    }
+                    lines.push(...this.genUnion(token))
+                    break
+                case 'if':
+                    lines.push(...this.genIf(token))
                     break
                 default:
-                    throw new Error(`invalid kind ${JSON.stringify(input)}`)
+                    throw new Error(`invalid kind ${JSON.stringify(token)}`)
             }
         }
 
-        return text
+
+        return lines.join('\n')
+    }
+
+    private genIf(token: TsIf): string[] {
+        const lines: string[] = []
+
+        lines.push(`if( ${token.conditions.join(' & ')}) {`)
+        lines.push(token.body.join('\n'))
+        lines.push(`}`)
+
+        return lines
+    }
+
+    private genUnion(token: TsUnionType): string[] {
+        const unions: string[] = []
+
+        for (const union of token.values) {
+            const text = this.gen(union)
+            unions.push(text)
+        }
+
+        const text = unions.join(" | ") + this.genArray(token)
+        return [text]
     }
 
     private genObjectLiteral(input: TsObjectLiteral): string {
-        const properties: string[] = []
-
-        if (input.properties) {
-            for (const property of input.properties) {
-                const output = this.genProperty(property)
-                properties.push(output)
-            }
-        }
+        const properties = this.genProperties(input.properties)
 
         const text = `{
             ${properties.join(',\n')}
@@ -315,11 +273,11 @@ export class TsGenerator {
         return text
     }
 
-    private genProperties(inputs?: TsPropertyType[]): string[] {
+    private genProperties(tokens?: TsPropertyType[]): string[] {
         const properties: string[] = []
 
-        if (inputs) {
-            for (const property of inputs) {
+        if (tokens) {
+            for (const property of tokens) {
                 const output = this.genProperty(property)
                 properties.push(output)
             }
@@ -328,23 +286,20 @@ export class TsGenerator {
         return properties
     }
 
-    private genProperty(input: TsPropertyType): string {
-        let text: string = `${input.key}`
+    private genProperty(token: TsPropertyType): string {
+        let text: string = `${token.key}` + this.genOptional(token)
 
-        if (input.optional)
-            text += "?"
-
-        if (input.value)
-            text += `: ${this.gen(input.value)}`
+        if (token.value)
+            text += `: ${this.gen(token.value)}`
 
         return text
     }
 
-    private genInterface(input: TsInterfaceType): string {
-        const properties = this.genProperties(input.properties)
+    private genInterface(token: TsInterfaceType): string {
+        const properties = this.genProperties(token.properties)
 
         const text = `
-            ${input.exported ? 'export ' : ''}interface ${input.name} {
+            ${this.genExported(token)}interface ${token.name} {
                 ${properties.join('\n')}
             }
         `
@@ -381,12 +336,12 @@ export class TsGenerator {
         return text
     }
 
-    private genClass(klass: TsClass): string {
-        const properties = this.genProperties(klass.properties)
-        const methods = this.genMethods(klass.methods)
+    private genClass(token: TsClass): string {
+        const properties = this.genProperties(token.properties)
+        const methods = this.genMethods(token.methods)
 
         const result = `
-            ${klass.exported ? 'export ' : ''}class ${klass.name} {
+            ${this.genExported(token)}class ${token.name} {
                 ${properties.join('\n')}
                 ${methods.join('\n')}
             }
@@ -394,197 +349,63 @@ export class TsGenerator {
         return result
     }
 
-    private genEnum(theEnum: TsEnumType): string {
-        const values = theEnum.values?.map(value => {
+    private genEnum(token: TsEnumType): string {
+        const values = token.values?.map(value => {
             const v = value.value ? ` = '${value.value}'` : ''
             return `${value.name}${v}`
         }) ?? []
 
         const result = `
-            ${theEnum.exported ? 'export ' : ''}enum ${theEnum.name} {
+            ${this.genExported(token)}enum ${token.name} {
                 ${values.join(',\n')}
             }
         `
 
         return result
     }
-}
 
-type Prettify<T> = {
-    [K in keyof T]: T[K];
-} & unknown
-
-type TsProperty2 = {
-    name: string
-    type: string
-    optional?: boolean
-    array?: boolean
-    partial?: boolean
-}
-
-export class TsGenerator2 {
-    private options: {
-        tabTemp: string
-        indent: number
-    } = {
-            tabTemp: '__TAB__',
-            indent: 0
-        }
-
-    constructor(options?: Partial<typeof this.options>) {
-        _.merge(this.options, options)
+    private isArray(input: TsToken): boolean {
+        return isKey('array', input)
     }
 
-    objectLit(args: {
-        array?: boolean,
-        properties?: TsProperty2[]
-    }): string {
-        const properties = args.properties?.map(arg => {
-            const optional = arg.optional ? '?' : ''
-            const type = arg.type ? ` : ${arg.type}` : ''
-            const array = arg.array ? `[]` : ''
-            const result = `${arg.name}${optional}${type}${array}`
-            return result
-        }) ?? []
-
-        const array = args.array ? '[]' : ''
-
-        return `{ ${properties.join(',\n')} }${array}`
+    private genArray(input: TsToken): string {
+        return this.isArray(input) ? '[]' : ''
     }
 
-    if(args: {
-        compares: {
-            lhs: {
-                name: string
-                optional?: string
-                array?: boolean
-            }
-            op: 'equal' | 'not equal' | 'greater than' | 'less than'
-            rhs: {
-                name: string
-                optional?: string
-                array?: boolean
+    private isExported(input: TsToken): boolean {
+        return isKey('exported', input)
+    }
+
+    private genExported(token: TsToken): string {
+        return this.isExported(token) ? 'exported ' : ''
+    }
+
+    private isOptional(input: TsToken): boolean {
+        return isKey('optional', input)
+    }
+
+    private genOptional(token: TsToken): string {
+        return this.isOptional(token) ? '? ' : ''
+    }
+
+    private genAccessControl(input?: TsAccessControl): string {
+        let text = ""
+
+        if (input) {
+            switch (input) {
+                case "public":
+                    break
+                case "private":
+                case "protected":
+                case 'readonly':
+                    text = `${input} `
+                    break
+                default:
+                    throw new Error(`invalid access control ${input}`)
             }
         }
-        body: string[]
-    }): string {
-        const ps = (p: {
-            name: string
-            optional?: string
-            array?: boolean
-        }) => {
-            return `${name}${p.optional ? '?' : ''}`
-        }
 
-        const c = args.compares
-
-        const result = `
-        if(${ps(c.lhs)} ${c.op} ${ps(c.rhs)}) {
-            ${args.body.join('\n')}
-        }`
-
-        return result
-    }
-
-    class(args: {
-        name: string,
-        exported?: boolean,
-        properties?: TsProperty2[],
-        methods?: {
-            name: string,
-            accessControl?: TsAccessControl,
-            method?: boolean
-            exported?: boolean
-            args?: TsProperty2[],
-            return?: string,
-            body: string[]
-        }[]
-    }): string {
-        const exported = args.exported ? 'exported ' : ''
-
-        const properties = args.properties?.map(arg => {
-            const optional = arg.optional ? '?' : ''
-            const array = arg.array ? '[]' : ''
-            const type = arg.type ? `: ${arg.type}` : ''
-            const result = `${arg.name}${optional}${type}${array}`
-            return result
-        }) ?? []
-
-        const methods = args.methods?.map(m => this.function({
-            ...m, method: true
-        })) ?? []
-
-        const result = `${exported}class ${args.name}{
-            ${properties.join('\n')}
-
-            ${methods.join('\n')}
-        }`
-
-        return result
-    }
-
-    genericeCall(args: {
-        generic: string,
-        name: string
-    }) {
-        return `${args.generic}<${args.name}>`
-    }
-
-    function(args: {
-        name: string,
-        accessControl?: TsAccessControl,
-        method?: boolean
-        exported?: boolean
-        args?: TsProperty2[],
-        return?: string,
-        body: string[]
-    }): string {
-        const margs = args.args?.map(arg => {
-            const optional = arg.optional ? '?' : ''
-            const array = arg.array ? '[]' : ''
-            let type = ''
-
-            if (arg.type) {
-                type = arg.type
-
-                if (arg.partial)
-                    type = this.genericeCall({
-                        generic: 'Partial',
-                        name: type,
-                    })
-
-                type = ` : ${type}`
-            }
-
-            const result = `${arg.name}${optional}${type}${array}`
-            return result
-        }) ?? []
-
-        const exported = args.exported ? 'exported ' : ''
-        const fn = args.method ? '' : 'function '
-        let ac = ''
-
-        switch (args.accessControl) {
-            case 'public':
-                // nothing todo
-                break
-            case 'private':
-            case 'protected':
-            case 'readonly':
-                ac = `${args.accessControl}`
-                break
-            default:
-            // nothing todo
-        }
-
-        const ret = args.return ? ` : ${args.return}` : ''
-
-        const result = `
-            ${ac}${exported}${fn}${args.name} (${margs.join(', ')})${ret}{
-                ${args.body.join('\n')}
-            }   
-        `
-
-        return result
+        return text
     }
 }
+

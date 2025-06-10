@@ -1,5 +1,6 @@
 import { assertEquals } from "@std/assert";
 import { TsGenerator, TsPropertyType } from './ts-gen-model.ts'
+import { array } from "zod/v4";
 
 function normal(text: string): string {
     return text
@@ -16,6 +17,25 @@ function save(file: string, text: string) {
     const encoder = new TextEncoder();
     Deno.writeFileSync(file, encoder.encode(text))
 }
+
+Deno.test('Generate if statement', () => {
+    const actual = new TsGenerator().gen({
+        kind: 'if',
+        conditions: [`abbr.length == 36`],
+        body: ['throw new Error("something is wrong")']
+    })
+
+    save('./gen-output/generate-interface.gen.ts', actual)
+
+    assertEquals(normal(actual), normal(`
+        export interface NamePrefixInterface {
+            id: string
+            name: string
+            abbr?: string[]
+            desc?: string
+        }
+    `))
+})
 
 Deno.test('Generate Interface', () => {
     const actual = new TsGenerator().gen({
@@ -69,7 +89,7 @@ Deno.test('Generate Class', () => {
     ]
 
 
-    const actual = new TsGenerator().gens([
+    const actual = new TsGenerator().gen(
         {
             kind: 'class',
             name: "NamePrefix",
@@ -120,7 +140,7 @@ Deno.test('Generate Class', () => {
                 }
             ]
         }
-    ])
+    )
 
     save('./gen-output/generate-class.gen.ts', actual)
 

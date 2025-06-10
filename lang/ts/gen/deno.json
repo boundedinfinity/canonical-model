@@ -9,6 +9,7 @@
     "handlebars": "npm:handlebars@^4.7.8",
     "lodash": "npm:lodash@^4.17.21",
     "prettier": "npm:prettier@^3.5.3",
-    "typescript-formatter": "npm:typescript-formatter@^7.2.2"
+    "typescript-formatter": "npm:typescript-formatter@^7.2.2",
+    "zod": "npm:zod@^3.25.56"
   }
 }

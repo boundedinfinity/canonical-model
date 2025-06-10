@@ -1,4 +1,19 @@
-import _, { isSymbol, split } from 'lodash'
+import _ from 'lodash'
+
+export type Prettify<T> = {
+    [K in keyof T]: T[K];
+    // deno-lint-ignore ban-types
+} & {};
+
+
+export function isKey<T extends object>(name: string, token: T): boolean {
+    for (const [key, val] of Object.entries(token)) {
+        if (key == name && typeof val === 'boolean')
+            val
+    }
+
+    return false
+}
 
 function ensureSingleChar(c: string) {
     if (c.length != 1)
