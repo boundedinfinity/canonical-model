@@ -1,3 +1,160 @@
+type LabelJsonOptions = {
+    kind: 'full' | 'id',
+    indent: number
+}
+
+type LabelSelectArgs = {
+    id?: string,
+    columns?: ('id' | 'name' | 'description')[]
+    name?: {
+        equals?: string,
+        contains?: string
+    },
+    description?: {
+        contains?: string
+    },
+    term: {
+        equals?: string
+        contains?: string
+    }
+}
+
+class Label {
+    id: string
+    name: string
+    description?: string
+
+    constructor(args: {
+        id: string,
+        name: string,
+        description?: string
+    }) {
+        this.id = args.id
+        this.name = args.name
+        this.description = args.description
+    }
+
+    toJson(options?: Partial<LabelJsonOptions>): string {
+        const roptions: LabelJsonOptions = {
+            ...{ kind: 'full', indent: 4 },
+            ...options
+        }
+
+        const obj: object = { kind: 'label' }
+
+        switch (roptions.kind) {
+            case 'id':
+                Object.assign(obj, { id: this.id })
+                break
+            case 'full':
+                Object.assign(obj, {
+                    id: this.id,
+                    name: this.name,
+                    description: this.description
+                })
+                break
+        }
+
+        return JSON.stringify(obj, null, roptions.indent)
+    }
+
+    static fromJson(json: string): Label {
+        const obj = JSON.parse(json)
+        return new Label(obj)
+    }
+
+    static canJson(json: string): boolean {
+        const obj: { kind: string } = JSON.parse(json)
+        return obj.kind === 'label'
+    }
+
+    sqlCreate(): string {
+        return `
+        CREATE TABLE label (
+            id: TEXT,
+            name: TEXT NOT NULL,
+            description: TEXT,
+            PRIMARY KEY (id),
+        );`
+    }
+
+    sqlInsert(): string {
+        const columns = ['id', 'name']
+        if (this.description) columns.push('description')
+
+        const values = [this.id, this.name]
+        if (this.description) values.push(this.description)
+
+
+        return `
+            INSERT INTO label (
+                ${columns.join(', ')}
+            ) VALUES (
+                ${values.map(v => `'${v}'`).join(', ')}
+            );
+        `
+    }
+
+    sqlSelect(options?: LabelSelectArgs) {
+        const columns: string[] = []
+        const wheres: string[] = []
+
+        options?.columns?.forEach(c => columns.push(c)) ?? ['*']
+
+        if (options?.id)
+            wheres.push(`id = ${this.id}`)
+
+        let sql = `
+            SELECT ${columns.join(', ')}
+            FROM labels
+            WHERE
+        `
+        return ``
+    }
+
+    validate(): Error[] {
+        const errors: Error[] = []
+
+        if (this.id === undefined || this.id === null) {
+            errors.push(new Error('id is required'))
+        } else {
+            if (this.id.length < 36) {
+                errors.push(new Error('id is less than 36 characters'))
+            }
+
+            if (this.id.length > 36) {
+                errors.push(new Error('id is greater than 36 characters'))
+            }
+        }
+
+        if (this.name === undefined || this.name === null) {
+            errors.push(new Error('name is required'))
+        } else {
+            if (this.name.length < 2) {
+                errors.push(new Error('name is less than 2 characters'))
+            }
+
+            if (this.name.length > 50) {
+                errors.push(new Error('name is greater than 50 characters'))
+            }
+        }
+
+        if (this.description) {
+            if (this.description.length < 2) {
+                errors.push(new Error('description is less than 2 characters'))
+            }
+
+            if (this.description.length > 50) {
+                errors.push(new Error('description is greater than 500 characters'))
+            }
+        }
+
+
+        return errors
+    }
+}
+
+
 interface NamePrefixData {
 
 }

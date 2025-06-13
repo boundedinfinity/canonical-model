@@ -1,29 +1,31 @@
-import * as TS from './ts-gen-model.ts'
-import { TsNamer } from './namer.ts'
+import { TsGenerator2 } from './ts-gen-mode-2.ts'
 
 
 type Prettify<T> = {
     [K in keyof T]: T[K];
 } & {};
 
-type BoundedType = Prettify<BoundedObject | BoundedRef | BoundedArray | BoundedString | BoundedNumber>
+export type BoundedType = Prettify<BoundedObject | BoundedRef | BoundedArray | BoundedString | BoundedNumber | BoundedBoolean>
 
-interface BoundedObject {
+export interface BoundedObject {
     kind: 'object'
+    parent?: BoundedType
     name?: string
     properties: BoundedType[]
     optional?: boolean
 }
 
-interface BoundedRef {
+export interface BoundedRef {
     kind: 'ref'
+    parent?: BoundedType
     name?: string
     optional?: boolean
     ref: string
 }
 
-interface BoundedArray {
+export interface BoundedArray {
     kind: 'array'
+    parent?: BoundedType
     name?: string
     items: BoundedType
     optional?: boolean
@@ -31,8 +33,9 @@ interface BoundedArray {
     max?: number
 }
 
-interface BoundedString {
+export interface BoundedString {
     kind: 'string'
+    parent?: BoundedType
     name?: string
     optional?: boolean
     min?: number
@@ -46,8 +49,9 @@ interface BoundedString {
     matches?: string
 }
 
-interface BoundedNumber {
+export interface BoundedNumber {
     kind: 'number'
+    parent?: BoundedType
     name?: string
     optional?: boolean
     min?: number
@@ -58,103 +62,111 @@ interface BoundedNumber {
     multipleOf?: number
 }
 
-const NAME_NOT_FOUND = '______NAME__NOT__FOUND______'
+export interface BoundedBoolean {
+    kind: 'boolean'
+    parent?: BoundedType
+    name?: string
+    optional?: boolean
+}
+
+type Files = { [path: string]: string }
 
 export class BoundedGenerator {
-    private tsNamer = new TsNamer()
-    private tsGen = new TS.TsGenerator()
+    private tsGen = new TsGenerator2(this)
     private typeMap: { [name: string]: BoundedType } = {}
 
-    gen(...types: BoundedType[]): string {
+    gen(...types: BoundedType[]): Files {
         for (const type of types) {
             if (type.name && !(type.name in this.typeMap)) {
                 this.typeMap[type.name] = type
             }
         }
 
-        const tsGens: TS.TsToken[] = []
-        for (const type of types)
-            tsGens.push(this.genTs(type))
+        for (const type of Object.values(this.typeMap)) {
+            const process = (t: BoundedType, p?: BoundedType) => {
+                t.parent = p
 
-        const result = this.tsGen.gen(...tsGens)
+                switch (t.kind) {
+                    case 'ref':
+                        if (!(t.ref in this.typeMap))
+                            throw new Error(`invalid type ref ${JSON.stringify(type)}`)
+                        break
+                    case 'array':
+                        process(t.items, t)
+                        break
+                    case 'number':
+                    case 'string':
+                        // Nothing to do
+                        break
+                    case 'object':
+                        for (const prop of t.properties)
+                            process(prop, t)
+                        break
+                    default:
+                        throw new Error(`invalid type ${JSON.stringify(type)}`)
+                }
+            }
 
-        return result
+            process(type)
+        }
+
+        let results: Files = {}
+
+        for (const type of types) {
+            results = { ...results, ...this.tsGen.gen(type) }
+        }
+
+        return results
     }
 
-    private genTs(type: BoundedType, parent?: BoundedType): TS.TsToken {
-        let result: TS.TsToken | undefined
-        const array = parent && parent.kind === 'array' || false
+    getType(type: BoundedType): BoundedType {
+        let found: BoundedType
 
         switch (type.kind) {
-            case 'object':
-                result = this.genObject(type)
-                break
-            case 'array':
-                this.genTs(type.items, type)
-                break
-            case 'string':
-                result = { kind: 'string-type', array }
-                break
             case 'ref':
-                result = {
-                    kind: 'custom-type',
-                    name: this.resolveTsClass(type),
-                    array,
-                }
+                found = this.typeMap[type.ref]
                 break
             default:
-                throw new Error(`invalid type ${JSON.stringify(type)}`)
+                found = type
         }
 
-        if (!result)
-            throw new Error(`invalid type ${JSON.stringify(type)}`)
-
-        return result
+        return found
     }
 
-    private genObject(type: BoundedObject): TS.TsClass {
-        const result: TS.TsClass = {
-            kind: 'class',
-            name: this.resolveTsClass(type),
-            properties: type.properties.map(prop => {
-                const token: TS.TsToken = {
-                    kind: 'property',
-                    key: this.resolveTsVar(prop),
-                    optional: prop.optional,
-                    value: this.genTs(prop)
+    resolveIsRef(type: BoundedType): boolean {
+        let found = false
+
+        switch (type.kind) {
+            case 'ref':
+                found = true
+                break
+            case 'array':
+                found = this.resolveIsRef(type.items)
+                break
+        }
+
+        return found
+    }
+
+    resolveIsArray(type: BoundedType): boolean {
+        let found = false
+
+        switch (type.kind) {
+            case 'ref':
+                {
+                    const rtype = this.getType(type)
+                    found = this.resolveIsArray(rtype)
                 }
-                return token
-            }),
-            methods: []
+                break
+            case 'array':
+                found = true
+                break
         }
 
-        const validations: string[] = []
-
-        for (const property of type.properties) {
-            switch (property.kind) {
-                case 'object':
-                    break
-                case 'string':
-                    validations.push(this.genStringValidation(property))
-                    break
-                case 'array':
-
-                    break
-                default:
-                    throw new Error(`invalid type ${JSON.stringify(property)}`)
-            }
-        }
-
-        result.methods?.push({
-            kind: 'method',
-            name: 'validate',
-            body: validations
-        })
-
-        return result
+        return found
     }
 
-    private resolveType(type: BoundedType): string {
+    resolveType(type: BoundedType): string {
         let name: string | undefined
 
         switch (type.kind) {
@@ -165,10 +177,13 @@ export class BoundedGenerator {
                 name = this.resolveType(type.items)
                 break
             case 'ref':
-                if (type.ref in this.typeMap) {
-                    name = this.resolveType(this.typeMap[type.ref])
+                {
+                    const rtype = this.getType(type)
+                    name = this.resolveType(rtype)
                 }
                 break
+            case 'boolean':
+            case 'number':
             case 'string':
                 name = type.kind
                 break
@@ -183,12 +198,12 @@ export class BoundedGenerator {
         return name
     }
 
-    private resolveName(type: BoundedType): string {
-        let name: string
+    resolveName(type: BoundedType): string {
+        let name: string | undefined
 
         switch (type.kind) {
             case 'object':
-                name = type.name ?? NAME_NOT_FOUND
+                name = type.name
                 break
             case 'array':
                 name = type.name ?? this.resolveName(type.items)
@@ -196,95 +211,22 @@ export class BoundedGenerator {
             case 'ref':
                 name = type.name ?? this.resolveType(type)
                 break
+            case 'boolean':
+            case 'number':
             case 'string':
-                name = type.name ?? NAME_NOT_FOUND
+                name = type.name
                 break
             default:
                 throw new Error(`invalid type ${JSON.stringify(type)}`)
         }
 
-        return name
-    }
+        if (!name && type.parent)
+            name = type.parent.name
 
-    private resolveTsClass(type: BoundedType): string {
-        let name = this.resolveName(type)
-
-        if (name == NAME_NOT_FOUND)
-            throw new Error(`invalid type: missing name ${JSON.stringify(type)}`)
-
-        name = this.tsNamer.tsClass(name)
-        return name
-    }
-
-    private resolveTsVar(type: BoundedType): string {
-        let name = this.resolveName(type)
-
-        if (name == NAME_NOT_FOUND)
-            throw new Error(`invalid type: missing name ${JSON.stringify(type)}`)
-
-        name = this.tsNamer.tsVar(name)
-
-        if ('array' in type && type.array)
-            name += '[]'
+        if (!name || name === '')
+            throw new Error(`invalid type ${JSON.stringify(type)}`)
 
         return name
-    }
-
-
-
-    private genStringValidation(type: BoundedString): string {
-        let result = ``
-        // const optional = type.optional ? `${this.tsVar(type)} && ` : ''
-
-        // if (type.max) {
-        //     result += `
-        //         if(${optional}this.${this.tsVar(type)}.length > ${type.max}) {
-        //             throw new Error('${this.tsVar(type)} is greater than ${type.max} characters in length')
-        //         }
-        //     `
-        // }
-
-        // if (type.min) {
-        //     result += `
-        //         if(${optional}this.${this.tsVar(type)}.length < ${type.min}) {
-        //             throw new Error('${this.tsVar(type)} is less than ${type.min} characters in length')
-        //         }
-        //     `
-        // }
-
-        // if (type.includes) {
-        //     result += `
-        //         ${optional}if(!this.${this.tsVar(type)}.includes('${type.includes}')) {
-        //             throw new Error('${this.tsVar(type)} does not include "${type.includes}"')
-        //         }
-        //     `
-        // }
-
-        // if (type.excludes) {
-        //     result += `
-        //         ${optional}if(this.${this.tsVar(type)}.includes(${type.excludes})) {
-        //             throw new Error('${this.tsVar(type)} includes "${type.excludes}"')
-        //         }
-        //     `
-        // }
-
-        // if (type.startsWith) {
-        //     result += `
-        //         ${optional}if(!this.${this.tsVar(type)}.startsWith(${type.startsWith})) {
-        //             throw new Error('${this.tsVar(type)} does not start with "${type.startsWith}"')
-        //         }
-        //     `
-        // }
-
-        // if (type.endsWith) {
-        //     result += `
-        //         ${optional}if(!this.${this.tsVar(type)}.endsWith(${type.endsWith})) {
-        //             throw new Error('${this.tsVar(type)} does not end with "${type.endsWith}"')
-        //         }
-        //     `
-        // }
-
-        return result
     }
 }
 

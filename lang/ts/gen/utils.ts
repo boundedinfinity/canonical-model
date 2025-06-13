@@ -9,7 +9,7 @@ export type Prettify<T> = {
 export function isKey<T extends object>(name: string, token: T): boolean {
     for (const [key, val] of Object.entries(token)) {
         if (key == name && typeof val === 'boolean')
-            val
+            return val
     }
 
     return false
@@ -93,6 +93,18 @@ export const stringUtils = {
         }
 
         return results.join('')
+    },
+    singleQuote: function (s: string): string {
+        let o = s
+        o = o.replaceAll(`'`, `\\'`)
+        o = `'` + o + `'`
+        return o
+    },
+    doubleQuote: function (s: string): string {
+        let o = s
+        o = o.replaceAll(`"`, `\"`)
+        o = `"` + o + `"`
+        return o
     },
     replaceWithFn: function (from: string[], to: string): (s: string) => string {
         return function (s: string): string {

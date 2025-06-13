@@ -1,5 +1,8 @@
 import _ from 'lodash'
-import { Prettify, isKey } from './utils.ts'
+import { Prettify, isKey, stringUtils } from './utils.ts'
+
+
+
 
 export type TsToken = Prettify<
     TsStringType |
@@ -160,71 +163,69 @@ export class TsGenerator {
         const lines: string[] = []
 
         for (const token of tokens) {
-            let text = ''
-
             switch (token.kind) {
                 case 'method-call':
-                    {
-                        text = `${token.name}.${token.method}(`
-                        text += this.genProperties(token.args).join(',')
-                        text += `)`
-                    }
+                    lines.push(`${token.name}.${token.method}(`)
+                    lines.push(this.genProperties(token.args).join(','))
+                    lines.push(`)`)
                     break
                 case 'any':
-                    text = 'any' + this.genArray(token)
+                    lines.push('any' + this.genArray(token))
                     break
                 case 'null':
-                    text = 'null' + this.genArray(token)
+                    lines.push('null' + this.genArray(token))
                     break
                 case 'undefined':
-                    text = 'undefined' + this.genArray(token)
+                    lines.push('undefined' + this.genArray(token))
                     break
-                case 'variable':
-                    text = `${token.scope} ${token.name}`
+                case 'variable': {
+                    let text = `${token.scope} ${token.name}`
                     if (token.anotation)
                         text += `: ${this.gen(token.anotation)}`
                     if (token.value)
                         text += ` = ${this.gen(token.value)}`
+                    lines.push(text)
+                }
                     break
                 case 'custom-type':
-                    text = token.name + this.genArray(token)
+                    lines.push(token.name + this.genArray(token))
                     break
                 case 'string-type':
-                    text = 'string' + this.genArray(token)
+                    lines.push('string' + this.genArray(token))
                     break
                 case 'boolean-type':
-                    text = 'boolean' + this.genArray(token)
+                    lines.push('boolean' + this.genArray(token))
                     break
                 case 'number-type':
-                    text = 'number' + this.genArray(token)
+                    lines.push('number' + this.genArray(token))
                     break
                 case 'string-literal':
-                    text = `'${token.value}'`
+                    lines.push(`'${token.value}'`)
                     break
                 case 'number-literal':
                 case 'boolean-literal':
-                    text = `${token.value}`
+                    lines.push(`${token.value}`)
                     break
                 case 'enum-type':
-                    text = this.genEnum(token)
+                    lines.push(this.genEnum(token))
                     break
                 case 'enum-literal':
-                    text = `${token.enum}.${token.value}`
+                    lines.push(`${token.enum}.${token.value}`)
                     break
                 case 'interface-type':
-                    text = this.genInterface(token)
+                    lines.push(this.genInterface(token))
                     break
                 case 'object-literal':
-                    text = this.genObjectLiteral(token)
+                    lines.push(this.genObjectLiteral(token))
                     break
                 case 'method':
-                    text = this.genMethod(token)
+                    lines.push(this.genMethod(token))
                     break
                 case 'class':
-                    text = this.genClass(token)
+                    lines.push(this.genClass(token))
                     break
                 case 'property':
-                    text = this.genProperty(token)
+                    lines.push(this.genProperty(token))
                     break
                 case 'union':
                     lines.push(...this.genUnion(token))
@@ -246,7 +247,7 @@ export class TsGenerator {
 
         lines.push(`if( ${token.conditions.join(' & ')}) {`)
         lines.push(token.body.join('\n'))
-        lines.push(`}`)
+        lines.push(`}\n`)
 
         return lines
     }
@@ -274,16 +275,7 @@ export class TsGenerator {
     }
 
     private genProperties(tokens?: TsPropertyType[]): string[] {
-        const properties: string[] = []
-
-        if (tokens) {
-            for (const property of tokens) {
-                const output = this.genProperty(property)
-                properties.push(output)
-            }
-        }
-
-        return properties
+        return tokens?.map(t => this.genProperty(t)) || []
     }
 
     private genProperty(token: TsPropertyType): string {
@@ -377,7 +369,7 @@ export class TsGenerator {
     }
 
     private genExported(token: TsToken): string {
-        return this.isExported(token) ? 'exported ' : ''
+        return this.isExported(token) ? 'export ' : ''
     }
 
     private isOptional(input: TsToken): boolean {
@@ -408,4 +400,5 @@ export class TsGenerator {
         return text
     }
 }
+
 

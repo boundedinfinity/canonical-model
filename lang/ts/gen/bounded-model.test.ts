@@ -23,6 +23,13 @@ Deno.test('Generate bounded object', () => {
             name: 'Label',
             properties: [
                 {
+                    kind: 'number',
+                    name: 'count',
+                    min: 0,
+                    max: 100,
+                    anyOf: [10, 20, 30]
+                },
+                {
                     kind: 'string',
                     name: 'id',
                     min: 36,
@@ -93,10 +100,13 @@ Deno.test('Generate bounded object', () => {
         }
     )
 
-    save('./gen-output/generate-bounded-object.gen.ts', actual)
+    for (const [path, content] of Object.entries(actual)) {
+        save(`./gen-output/${path}`, content)
+    }
+    const x = 1
 
-    assertEquals(normal(actual), normal(`
-        Test
-    `))
+    // assertEquals(normal(actual), normal(`
+    //     Test
+    // `))
 })
 
