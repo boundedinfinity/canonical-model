@@ -1,303 +1,203 @@
 
-interface SqlTable {
-    name: string
-    colunms: SqlColumn[]
-    constraints?: SqlTableConstraint[]
-    options?: SqlTableOptions[]
-    ifNotExists?: boolean
-}
+import * as BI from './bounded-model.ts'
+import { TsNamer } from './namer.ts'
 
-interface SqlIndex {
-    name?: string
-    table: string
-    column: string
-    unique?: boolean
-    ifNotExists?: boolean
-}
+export class SqliteGenerator2 {
+    bounded: BI.BoundedGenerator
+    namer = new TsNamer()
 
-export enum SqlColumnType {
-    Text = 'TEXT',
-    Numeric = 'NUMERIC',
-    Integer = 'INTERGER',
-    Real = 'REAL',
-    Blob = 'BLOB',
-}
-
-interface SqlColumn {
-    column: string
-    type: SqlColumnType
-}
-
-type SqlTableConstraint = SqlTableConstraintPrimaryKey | SqlTableConstraintForeignKey | SqlTableConstraintUniqueKey
-
-enum SqlTableConstraintForeignKeyOn {
-    SetNull = 'SET NULL',
-    SetDefault = 'SET DEFAULT',
-    Cascade = 'CASCADE',
-    Restrict = 'RESTRICT',
-    NoAction = 'NO ACTION',
-}
-
-enum SqlTableOptions {
-    WithoutRowId = 'WITHOU ROWID',
-    Strict = 'STRICT',
-}
-
-interface SqlTableIndexedColumn {
-    column: string
-    unique?: boolean
-    ifNotExists?: boolean
-}
-
-interface SqlTableConstraintPrimaryKey {
-    kind: 'primary-key'
-    columns: string[]
-}
-
-interface SqlTableConstraintUniqueKey {
-    kind: 'unique-key'
-    columns: string[]
-}
-
-interface SqlTableConstraintForeignKey {
-    kind: 'foreign-key'
-    column: string
-    reference: SqlRference
-    onDelete?: SqlTableConstraintForeignKeyOn
-    onUpdate?: SqlTableConstraintForeignKeyOn
-}
-
-interface SqlInsert {
-    table: string
-    values: {
-        column: string
-        value: SqlValue
-    }[]
-}
-
-type SqlValue =
-    SqlValueText |
-    SqlValueNumeric |
-    SqlValueInteger |
-    SqlValueReal |
-    SqlValueSqlParameter |
-    SqlValueTsInterpolationNumeric |
-    SqlValueTsInterpolationText |
-    SqlValueBoolean |
-    SqlValueDate
-
-interface SqlValueDate {
-    kind: 'date'
-    value: Date
-    format: 'ISO-8601' | 'RFC-3339' | 'epoch'
-}
-
-interface SqlValueBoolean {
-    kind: 'boolean'
-    value: boolean
-}
-
-interface SqlValueSqlParameter {
-    kind: 'sql-parameter'
-    name?: string
-    index?: number
-}
-
-interface SqlValueTsInterpolationNumeric {
-    kind: 'ts-interpolation-numeric'
-    name: string
-}
-
-interface SqlValueTsInterpolationText {
-    kind: 'ts-interpolation-text'
-    name: string
-}
-
-interface SqlValueText {
-    kind: 'text'
-    value: string
-}
-
-interface SqlValueNumeric {
-    kind: 'numeric'
-    value: number
-}
-
-interface SqlValueInteger {
-    kind: 'integer'
-    value: number
-}
-
-interface SqlValueReal {
-    kind: 'real'
-    value: number
-}
-
-interface SqlUpdate {
-    table: string
-    values: {
-        column: string
-        value: SqlValue
-    }[]
-    where?: SqlExpr
-}
-
-interface SqlDelete {
-    table: string
-    where?: SqlExpr
-}
-
-interface SqlSelect {
-    table: string
-    columns: string[]
-    where?: SqlExpr
-    joins?: SqlJoin[]
-    groupBy?: SqlExpr
-    orderBy?: {
-        column: string
-        term?: SqlOrderingTerm
+    constructor(bounded: BI.BoundedGenerator) {
+        this.bounded = bounded
     }
-    limit?: {
-        expression: SqlExpr
-        offset?: SqlExpr
-    },
-}
 
-export enum SqlOrderingTerm {
-    Asc = 'ASC',
-    Desc = 'DESC'
-}
+    genTable(type: BI.BoundedType): string {
+        switch (type.kind) {
+            case 'object':
+                break
+            default:
+                throw new Error(`invalid type ${JSON.stringify(type)}`)
+        }
+
+        const tname = this.resolveSqlTable(type)
+        let content = `\n`
+        content += `            CREATE TABLE ${tname} (`
+        const lines: string[] = []
+
+        for (const prop of type.properties) {
+            const pname = this.resolveSqlColumn(prop)
+            let ptype: string
+
+            switch (prop.kind) {
+                case 'string':
+                case 'number':
+                    ptype = this.resolveSqlType(prop)
+                    break
+                case 'ref':
+                    continue
+                case 'array':
+                    continue
+                default:
+                    throw new Error(`invalid type ${JSON.stringify(type)}`)
+            }
+
+            let statment = `               ${pname} ${ptype}`
+
+            if (!prop.optional)
+                statment += ` NOT NULL`
+
+            lines.push(statment)
+        }
 
 
-interface SqlRference {
-    table: string
-    column: string
-}
+        for (const prop of type.properties) {
+            const pname = this.resolveSqlColumn(prop)
 
-type SqlJoin = SqlJoinOn | SqlJoinUsing
+            switch (prop.kind) {
+                case 'string':
+                case 'number':
+                    if (prop.primaryKey)
+                        lines.push(`               PRIMARY KEY(${pname})`)
+                    break
+                case 'ref':
+                    continue
+                case 'array':
+                    continue
+                default:
+                    throw new Error(`invalid type ${JSON.stringify(type)}`)
+            }
+        }
 
-interface SqlJoinOn {
-    kind: 'join-on'
-    column: string
-    reference: SqlRference
-    operator?: SqlJoinOperator
-}
+        for (const prop of type.properties) {
+            const pname = this.resolveSqlColumn(prop)
 
-interface SqlJoinUsing {
-    kind: 'join-using'
-    reference: SqlRference
-    operator?: SqlJoinOperator
-}
+            switch (prop.kind) {
+                case 'string':
+                case 'number':
+                    if (prop.unique)
+                        lines.push(`               UNIQUE(${pname})`)
+                    break
+                case 'ref':
+                    continue
+                case 'array':
+                    continue
+                default:
+                    throw new Error(`invalid type ${JSON.stringify(type)}`)
+            }
+        }
 
-enum SqlJoinOperator {
-    Natrual = 'NATURAL',
-    Lelt = 'LEFT',
-    Right = 'RIGHT',
-    Full = 'FULL',
-    Inner = 'INNER',
-    Cross = 'CROSS'
-}
+        content += `\n`
+        content += lines.join(',\n')
+        content += `\n`
 
-type SqlExpr =
-    SqlExprLiteralValue |
-    SqlExprBindParameter |
-    SqlExprEqual |
-    SqlExprNotEqual |
-    SqlExprIs |
-    SqlExprIsNot |
-    SqlExprGreaterThan |
-    SqlExprGreaterThanOrEqual |
-    SqlExprLessThan |
-    SqlExprLessThanOrEqual |
-    SqlExprAnd |
-    SqlExprOr |
-    SqlExprBetween |
-    SqlExprNot |
-    SqlExprIn
 
-interface SqlExprLiteralValue {
-    kind: 'literal-value'
-    value: SqlValue
-}
+        content += `            );\n`
 
-interface SqlExprBindParameter {
-    kind: 'bind-parameter'
-}
+        const indexes: string[] = []
 
-interface SqlExprEqual {
-    kind: 'equal'
-    column: string
-    value: SqlValue
-}
+        for (const prop of type.properties) {
+            const pname = this.resolveSqlColumn(prop)
+            let line = ''
 
-interface SqlExprNotEqual {
-    kind: 'not-equal'
-    column: string
-    value: SqlValue
-}
+            switch (prop.kind) {
+                case 'string':
+                case 'number':
+                    if (prop.indexed || prop.primaryKey) {
+                        line += `           CREATE `
+                        if (prop.unique) line += `UNIQUE `
+                        line += `idx_${tname}_${pname} `
+                        line += `ON ${tname}(${pname});`
+                        indexes.push(line)
+                    }
+                    break
+                case 'ref':
+                    continue
+                case 'array':
+                    content += this.createJoin(type, prop)
+                    break
+                default:
+                    throw new Error(`invalid type ${JSON.stringify(type)}`)
+            }
+        }
 
-interface SqlExprIs {
-    kind: 'is'
-    column: string
-    value: SqlValue
-}
+        content += indexes.join("\n")
+        content += `\n`
 
-interface SqlExprIsNot {
-    kind: 'is-not'
-    column: string
-    value: SqlValue
-}
+        for (const prop of type.properties) {
 
-interface SqlExprGreaterThan {
-    kind: 'greater-than'
-    column: string
-    value: SqlValue
-}
+            switch (prop.kind) {
+                case 'string':
+                case 'number':
+                case 'ref':
+                    continue
+                case 'array':
+                    content += this.createJoin(type, prop)
+                    break
+                default:
+                    throw new Error(`invalid type ${JSON.stringify(type)}`)
+            }
+        }
 
-interface SqlExprGreaterThanOrEqual {
-    kind: 'greater-than-or-equal'
-    column: string
-    value: SqlValue
-}
 
-interface SqlExprLessThan {
-    kind: 'less-than'
-    column: string
-    value: SqlValue
-}
+        return content
+    }
 
-interface SqlExprLessThanOrEqual {
-    kind: 'less-than-or-equal'
-    column: string
-    value: SqlValue
-}
+    createJoin(parent: BI.BoundedType, child: BI.BoundedType) {
+        const pname = this.resolveSqlTable(parent)
+        const cname = this.resolveSqlTable(child)
+        const name = `${pname}__${cname}`
 
-interface SqlExprIn {
-    kind: 'in'
-    column: string
-    values: SqlValue[]
-}
+        switch (child.kind) {
+            case 'string':
+                {
+                    const amodel: BI.BoundedObject = {
+                        kind: 'object',
+                        name,
+                        properties: [
 
-interface SqlExprNot {
-    kind: 'not'
-    expression: SqlExpr
-}
+                        ]
+                    }
+                }
+                break
+        }
+    }
 
-interface SqlExprAnd {
-    kind: 'and'
-    expressions: SqlExpr[]
-}
+    resolveSqlTable(type: BI.BoundedType): string {
+        let name = this.bounded.resolveName(type)
 
-interface SqlExprOr {
-    kind: 'or'
-    expressions: SqlExpr[]
-}
+        if (name === '')
+            throw new Error(`invalid type: missing name ${JSON.stringify(type)}`)
 
-interface SqlExprBetween {
-    kind: 'between'
-    column: string
-    upper: SqlValue
-    lower: SqlValue
+        name = this.namer.sqlTable(name)
+        return name
+    }
+
+    resolveSqlColumn(type: BI.BoundedType): string {
+        let name = this.bounded.resolveName(type)
+
+        if (name === '')
+            throw new Error(`invalid type: missing name ${JSON.stringify(type)}`)
+
+        name = this.namer.sqlColumn(name)
+        return name
+    }
+
+    resolveSqlType(type: BI.BoundedType): string {
+        let name: string
+
+        switch (type.kind) {
+            case 'string':
+                name = 'TEXT'
+                break
+            case 'boolean':
+            case 'number':
+                name = 'INTEGER'
+                break
+            default:
+                throw new Error(`invalid type ${JSON.stringify(type)}`)
+        }
+
+        return name
+    }
 }
 
 export class SqliteGenerator {
@@ -729,3 +629,305 @@ export class SqliteGenerator {
         return text
     }
 }
+
+interface SqlTable {
+    name: string
+    colunms: SqlColumn[]
+    constraints?: SqlTableConstraint[]
+    options?: SqlTableOptions[]
+    ifNotExists?: boolean
+}
+
+interface SqlIndex {
+    name?: string
+    table: string
+    column: string
+    unique?: boolean
+    ifNotExists?: boolean
+}
+
+export enum SqlColumnType {
+    Text = 'TEXT',
+    Numeric = 'NUMERIC',
+    Integer = 'INTERGER',
+    Real = 'REAL',
+    Blob = 'BLOB',
+}
+
+interface SqlColumn {
+    column: string
+    type: SqlColumnType
+}
+
+type SqlTableConstraint = SqlTableConstraintPrimaryKey | SqlTableConstraintForeignKey | SqlTableConstraintUniqueKey
+
+enum SqlTableConstraintForeignKeyOn {
+    SetNull = 'SET NULL',
+    SetDefault = 'SET DEFAULT',
+    Cascade = 'CASCADE',
+    Restrict = 'RESTRICT',
+    NoAction = 'NO ACTION',
+}
+
+enum SqlTableOptions {
+    WithoutRowId = 'WITHOU ROWID',
+    Strict = 'STRICT',
+}
+
+interface SqlTableIndexedColumn {
+    column: string
+    unique?: boolean
+    ifNotExists?: boolean
+}
+
+interface SqlTableConstraintPrimaryKey {
+    kind: 'primary-key'
+    columns: string[]
+}
+
+interface SqlTableConstraintUniqueKey {
+    kind: 'unique-key'
+    columns: string[]
+}
+
+interface SqlTableConstraintForeignKey {
+    kind: 'foreign-key'
+    column: string
+    reference: SqlRference
+    onDelete?: SqlTableConstraintForeignKeyOn
+    onUpdate?: SqlTableConstraintForeignKeyOn
+}
+
+interface SqlInsert {
+    table: string
+    values: {
+        column: string
+        value: SqlValue
+    }[]
+}
+
+type SqlValue =
+    SqlValueText |
+    SqlValueNumeric |
+    SqlValueInteger |
+    SqlValueReal |
+    SqlValueSqlParameter |
+    SqlValueTsInterpolationNumeric |
+    SqlValueTsInterpolationText |
+    SqlValueBoolean |
+    SqlValueDate
+
+interface SqlValueDate {
+    kind: 'date'
+    value: Date
+    format: 'ISO-8601' | 'RFC-3339' | 'epoch'
+}
+
+interface SqlValueBoolean {
+    kind: 'boolean'
+    value: boolean
+}
+
+interface SqlValueSqlParameter {
+    kind: 'sql-parameter'
+    name?: string
+    index?: number
+}
+
+interface SqlValueTsInterpolationNumeric {
+    kind: 'ts-interpolation-numeric'
+    name: string
+}
+
+interface SqlValueTsInterpolationText {
+    kind: 'ts-interpolation-text'
+    name: string
+}
+
+interface SqlValueText {
+    kind: 'text'
+    value: string
+}
+
+interface SqlValueNumeric {
+    kind: 'numeric'
+    value: number
+}
+
+interface SqlValueInteger {
+    kind: 'integer'
+    value: number
+}
+
+interface SqlValueReal {
+    kind: 'real'
+    value: number
+}
+
+interface SqlUpdate {
+    table: string
+    values: {
+        column: string
+        value: SqlValue
+    }[]
+    where?: SqlExpr
+}
+
+interface SqlDelete {
+    table: string
+    where?: SqlExpr
+}
+
+interface SqlSelect {
+    table: string
+    columns: string[]
+    where?: SqlExpr
+    joins?: SqlJoin[]
+    groupBy?: SqlExpr
+    orderBy?: {
+        column: string
+        term?: SqlOrderingTerm
+    }
+    limit?: {
+        expression: SqlExpr
+        offset?: SqlExpr
+    },
+}
+
+export enum SqlOrderingTerm {
+    Asc = 'ASC',
+    Desc = 'DESC'
+}
+
+
+interface SqlRference {
+    table: string
+    column: string
+}
+
+type SqlJoin = SqlJoinOn | SqlJoinUsing
+
+interface SqlJoinOn {
+    kind: 'join-on'
+    column: string
+    reference: SqlRference
+    operator?: SqlJoinOperator
+}
+
+interface SqlJoinUsing {
+    kind: 'join-using'
+    reference: SqlRference
+    operator?: SqlJoinOperator
+}
+
+enum SqlJoinOperator {
+    Natrual = 'NATURAL',
+    Lelt = 'LEFT',
+    Right = 'RIGHT',
+    Full = 'FULL',
+    Inner = 'INNER',
+    Cross = 'CROSS'
+}
+
+type SqlExpr =
+    SqlExprLiteralValue |
+    SqlExprBindParameter |
+    SqlExprEqual |
+    SqlExprNotEqual |
+    SqlExprIs |
+    SqlExprIsNot |
+    SqlExprGreaterThan |
+    SqlExprGreaterThanOrEqual |
+    SqlExprLessThan |
+    SqlExprLessThanOrEqual |
+    SqlExprAnd |
+    SqlExprOr |
+    SqlExprBetween |
+    SqlExprNot |
+    SqlExprIn
+
+interface SqlExprLiteralValue {
+    kind: 'literal-value'
+    value: SqlValue
+}
+
+interface SqlExprBindParameter {
+    kind: 'bind-parameter'
+}
+
+interface SqlExprEqual {
+    kind: 'equal'
+    column: string
+    value: SqlValue
+}
+
+interface SqlExprNotEqual {
+    kind: 'not-equal'
+    column: string
+    value: SqlValue
+}
+
+interface SqlExprIs {
+    kind: 'is'
+    column: string
+    value: SqlValue
+}
+
+interface SqlExprIsNot {
+    kind: 'is-not'
+    column: string
+    value: SqlValue
+}
+
+interface SqlExprGreaterThan {
+    kind: 'greater-than'
+    column: string
+    value: SqlValue
+}
+
+interface SqlExprGreaterThanOrEqual {
+    kind: 'greater-than-or-equal'
+    column: string
+    value: SqlValue
+}
+
+interface SqlExprLessThan {
+    kind: 'less-than'
+    column: string
+    value: SqlValue
+}
+
+interface SqlExprLessThanOrEqual {
+    kind: 'less-than-or-equal'
+    column: string
+    value: SqlValue
+}
+
+interface SqlExprIn {
+    kind: 'in'
+    column: string
+    values: SqlValue[]
+}
+
+interface SqlExprNot {
+    kind: 'not'
+    expression: SqlExpr
+}
+
+interface SqlExprAnd {
+    kind: 'and'
+    expressions: SqlExpr[]
+}
+
+interface SqlExprOr {
+    kind: 'or'
+    expressions: SqlExpr[]
+}
+
+interface SqlExprBetween {
+    kind: 'between'
+    column: string
+    upper: SqlValue
+    lower: SqlValue
+}
+

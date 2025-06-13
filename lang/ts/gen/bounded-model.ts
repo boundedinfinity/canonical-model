@@ -1,4 +1,4 @@
-import { TsGenerator2 } from './ts-gen-mode-2.ts'
+import { TsGenerator } from './ts-gen-model.ts'
 
 
 type Prettify<T> = {
@@ -38,6 +38,9 @@ export interface BoundedString {
     parent?: BoundedType
     name?: string
     optional?: boolean
+    unique?: boolean
+    primaryKey?: boolean
+    indexed?: boolean
     min?: number
     max?: number
     anyOf?: string[]
@@ -54,6 +57,9 @@ export interface BoundedNumber {
     parent?: BoundedType
     name?: string
     optional?: boolean
+    primaryKey?: boolean
+    unique?: boolean
+    indexed?: boolean
     min?: number
     max?: number
     anyOf?: number[]
@@ -72,7 +78,7 @@ export interface BoundedBoolean {
 type Files = { [path: string]: string }
 
 export class BoundedGenerator {
-    private tsGen = new TsGenerator2(this)
+    private tsGen = new TsGenerator(this)
     private typeMap: { [name: string]: BoundedType } = {}
 
     gen(...types: BoundedType[]): Files {

@@ -34,13 +34,16 @@ Deno.test('Generate bounded object', () => {
                     name: 'id',
                     min: 36,
                     max: 36,
-                    anyOf: ['-']
+                    anyOf: ['-'],
+                    primaryKey: true
                 },
                 {
                     kind: 'string',
                     name: 'name',
                     min: 2,
-                    max: 50
+                    max: 50,
+                    unique: true,
+                    indexed: true
                 },
                 {
                     kind: 'string',
@@ -60,13 +63,16 @@ Deno.test('Generate bounded object', () => {
                     name: 'id',
                     min: 36,
                     max: 36,
-                    anyOf: ['-']
+                    anyOf: ['-'],
+                    primaryKey: true
                 },
                 {
                     kind: 'string',
                     name: 'name',
                     min: 2,
-                    max: 50
+                    max: 50,
+                    indexed: true,
+                    unique: true,
                 },
                 {
                     kind: 'array',
@@ -76,7 +82,8 @@ Deno.test('Generate bounded object', () => {
                     items: {
                         kind: 'string',
                         min: 1,
-                        max: 10
+                        max: 10,
+                        indexed: true,
                     }
                 },
                 {

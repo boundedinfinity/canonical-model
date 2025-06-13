@@ -1,400 +1,506 @@
-import _ from 'lodash'
-import { Prettify, isKey, stringUtils } from './utils.ts'
+import * as BI from './bounded-model.ts'
+import { TsNamer } from './namer.ts'
+import { SqliteGenerator2 } from './sqlite-gen-model.ts'
+import { stringUtils } from './utils.ts'
 
-
-
-
-export type TsToken = Prettify<
-    TsStringType |
-    TsNumberType |
-    TsBooleanType |
-    TsEnumType |
-    TsInterfaceType |
-    TsUnionType |
-    TsCustomType |
-    TsTypeUndefined |
-    TsTypeAny |
-    TsTypeNull |
-    TsObjectLiteral |
-    TsStringLiteral |
-    TsNumberLiteral |
-    TsBooleanLiteral |
-    TsEnumLiteral |
-    TsTypeUndefined |
-    TsTypeAny |
-    TsTypeNull |
-    TsMethodCall |
-    TsPropertyType |
-    TsClass |
-    TsMethod |
-    TsVariable |
-    TsMethodCall |
-    TsIf
->
-
-
-export type TsAccessControl = 'public' | 'private' | 'protected' | 'readonly'
-export type TsVariableScope = 'var' | 'const' | 'let'
-
-export type TsVariable = {
-    kind: 'variable'
-    scope: TsVariableScope
-    name: string
-    anotation?: TsToken
-    value?: TsToken
-}
-
-export type TsOpType = '=' | '<' | '<=' | '>' | '>=' | '!='
-export type TsSep = ',' | ':' | '\n' | '|'
-
-export type TsUnionType = {
-    kind: 'union'
-    values: TsToken[]
-    array?: boolean
-}
-
-export type TsTypeUndefined = { kind: 'undefined' }
-export type TsTypeNull = { kind: 'null' }
-export type TsTypeAny = { kind: 'any' }
-
-export type TsStringType = {
-    kind: 'string-type'
-    array?: boolean
-}
-
-export type TsStringLiteral = {
-    kind: 'string-literal'
-    value: string
-}
-
-export type TsNumberType = {
-    kind: 'number-type'
-    array?: boolean
-}
-
-export type TsNumberLiteral = {
-    kind: 'number-literal'
-    value: number
-}
-
-export type TsCustomType = {
-    kind: 'custom-type'
-    name: string
-    array?: boolean
-}
-
-export type TsBooleanType = {
-    kind: 'boolean-type'
-    array?: boolean
-}
-
-export type TsBooleanLiteral = {
-    kind: 'boolean-literal'
-    value: boolean
-}
-
-export type TsPropertyType = {
-    kind: 'property'
-    key: string
-    value?: TsToken
-    optional?: boolean
-}
-
-export type TsInterfaceType = {
-    kind: 'interface-type'
-    name: string
-    properties?: TsPropertyType[]
-    partial?: boolean
-    exported?: boolean
-}
-
-export type TsObjectLiteral = {
-    kind: 'object-literal'
-    properties?: TsPropertyType[]
-}
-
-export type TsEnumType = {
-    kind: 'enum-type'
-    name: string
-    exported?: boolean
-    values?: {
-        name: string
-        value?: string | boolean | number
-    }[]
-}
-
-export type TsEnumLiteral = {
-    kind: 'enum-literal'
-    enum: string
-    value: string
-}
-
-export type TsMethodCall = {
-    kind: 'method-call'
-    name: string
-    method: string
-    args?: TsPropertyType[],
-}
-
-export type TsMethod = {
-    kind: 'method'
-    name: string
-    accessControl?: TsAccessControl
-    args?: TsPropertyType[],
-    body?: string[]
-}
-
-export type TsClass = Prettify<{
-    kind: 'class'
-    name: string
-    properties?: TsPropertyType[]
-    exported?: boolean
-    methods?: TsMethod[]
-}>
-
-export type TsIf = {
-    kind: 'if'
-    conditions: string[]
-    body: string[]
-}
+type Files = { [path: string]: string }
 
 export class TsGenerator {
-    gen(...tokens: TsToken[]): string {
-        const lines: string[] = []
+    bounded: BI.BoundedGenerator
+    namer = new TsNamer()
+    validator: TsValidators
+    sql: SqliteGenerator2
 
-        for (const token of tokens) {
-            switch (token.kind) {
-                case 'method-call':
-                    lines.push(`${token.name}.${token.method}(`)
-                    lines.push(this.genProperties(token.args).join(','))
-                    lines.push(`)`)
-                    break
-                case 'any':
-                    lines.push('any' + this.genArray(token))
-                    break
-                case 'null':
-                    lines.push('null' + this.genArray(token))
-                    break
-                case 'undefined':
-                    lines.push('undefined' + this.genArray(token))
-                    break
-                case 'variable': {
-                    let text = `${token.scope} ${token.name}`
-                    if (token.anotation)
-                        text += `: ${this.gen(token.anotation)}`
-                    if (token.value)
-                        text += ` = ${this.gen(token.value)}`
-                    lines.push(text)
-                }
-                    break
-                case 'custom-type':
-                    lines.push(token.name + this.genArray(token))
-                    break
-                case 'string-type':
-                    lines.push('string' + this.genArray(token))
-                    break
-                case 'boolean-type':
-                    lines.push('boolean' + this.genArray(token))
-                    break
-                case 'number-type':
-                    lines.push('number' + this.genArray(token))
-                    break
-                case 'string-literal':
-                    lines.push(`'${token.value}'`)
-                    break
-                case 'number-literal':
-                case 'boolean-literal':
-                    lines.push(`${token.value}`)
-                    break
-                case 'enum-type':
-                    lines.push(this.genEnum(token))
-                    break
-                case 'enum-literal':
-                    lines.push(`${token.enum}.${token.value}`)
-                    break
-                case 'interface-type':
-                    lines.push(this.genInterface(token))
-                    break
-                case 'object-literal':
-                    lines.push(this.genObjectLiteral(token))
-                    break
-                case 'method':
-                    lines.push(this.genMethod(token))
-                    break
-                case 'class':
-                    lines.push(this.genClass(token))
-                    break
-                case 'property':
-                    lines.push(this.genProperty(token))
-                    break
-                case 'union':
-                    lines.push(...this.genUnion(token))
-                    break
-                case 'if':
-                    lines.push(...this.genIf(token))
-                    break
-                default:
-                    throw new Error(`invalid kind ${JSON.stringify(token)}`)
+    constructor(bounded: BI.BoundedGenerator) {
+        this.bounded = bounded
+        this.validator = new TsValidators(this)
+        this.sql = new SqliteGenerator2(bounded)
+    }
+
+    gen(type: BI.BoundedType): Files {
+        const files: Files = {}
+        let content = ''
+
+        switch (type.kind) {
+            case 'object':
+                content = this.genClientTypeObject(type)
+                files[this.resolveClientPath(type)] = content
+
+                content = this.genServerTypeObject(type)
+                files[this.resolveServerPath(type)] = content
+                break
+            default:
+                throw new Error(`invalid type ${JSON.stringify(type)}`)
+        }
+
+        return files
+    }
+
+    private genClientTypeObject(type: BI.BoundedObject) {
+        const name = this.resolveTsClass(type)
+        let content = ''
+
+        for (const prop of type.properties) {
+            if (this.bounded.resolveIsRef(prop)) {
+                const fname = this.resolveClientPath(prop)
+                const name = this.resolveType(prop, true)
+                content += `import {${name}} from './${fname}'\n`
             }
         }
 
-
-        return lines.join('\n')
-    }
-
-    private genIf(token: TsIf): string[] {
-        const lines: string[] = []
-
-        lines.push(`if( ${token.conditions.join(' & ')}) {`)
-        lines.push(token.body.join('\n'))
-        lines.push(`}\n`)
-
-        return lines
-    }
-
-    private genUnion(token: TsUnionType): string[] {
-        const unions: string[] = []
-
-        for (const union of token.values) {
-            const text = this.gen(union)
-            unions.push(text)
+        if (content !== '') {
+            content += '\n'
         }
 
-        const text = unions.join(" | ") + this.genArray(token)
-        return [text]
-    }
+        content += `export class ${name} {\n`
 
-    private genObjectLiteral(input: TsObjectLiteral): string {
-        const properties = this.genProperties(input.properties)
-
-        const text = `{
-            ${properties.join(',\n')}
+        for (const prop of type.properties) {
+            const pname = this.resolveTsVar(prop)
+            const ptype = this.resolveType(prop)
+            content += `    ${pname}: ${ptype}\n`
         }
-        `
-        return text
+        content += `\n`
+
+        content += `    constructor(args: {\n`
+        for (const prop of type.properties) {
+            const pname = this.resolveTsVar(prop)
+            const ptype = this.resolveType(prop)
+            content += `        ${pname}: ${ptype}\n`
+        }
+
+        content += `    }) {`
+        for (const prop of type.properties) {
+            const pname = this.resolveTsVar(prop)
+            content += `        this.${pname} = args.${pname}\n`
+        }
+        content += `    }\n\n`
+
+
+        content += `    validate(): Error[] {\n`
+        content += `        const errors: Error[] = []\n\n`
+        for (const prop of type.properties) {
+            content += this.validator.validate(prop, { vprefix: "this." })
+            content += `\n`
+        }
+
+        content += `\n`
+        content += `        return errors\n`
+        content += `    }`
+
+        content += `}`
+
+        return content
     }
 
-    private genProperties(tokens?: TsPropertyType[]): string[] {
-        return tokens?.map(t => this.genProperty(t)) || []
-    }
+    private genServerTypeObject(type: BI.BoundedObject) {
+        const name = this.resolveTsClass(type)
+        let content = ''
 
-    private genProperty(token: TsPropertyType): string {
-        let text: string = `${token.key}` + this.genOptional(token)
-
-        if (token.value)
-            text += `: ${this.gen(token.value)}`
-
-        return text
-    }
-
-    private genInterface(token: TsInterfaceType): string {
-        const properties = this.genProperties(token.properties)
-
-        const text = `
-            ${this.genExported(token)}interface ${token.name} {
-                ${properties.join('\n')}
-            }
-        `
-
-        return text
-    }
-
-    private genMethods(methods?: TsMethod[]) {
-        const text: string[] = []
-
-        if (methods) {
-            for (const method of methods) {
-                const output = this.genMethod(method)
-                text.push(output)
+        for (const prop of type.properties) {
+            if (this.bounded.resolveIsRef(prop)) {
+                const fname = this.resolveClientPath(prop)
+                const name = this.resolveType(prop, true)
+                content += `import {${name}} from './${fname}'\n`
             }
         }
 
+        if (content !== '') {
+            content += '\n'
+        }
+
+        content += `export class ${name} {\n`
+
+        for (const prop of type.properties) {
+            const pname = this.resolveTsVar(prop)
+            const ptype = this.resolveType(prop)
+            content += `    ${pname}: ${ptype}\n`
+        }
+        content += `\n`
+
+        content += `    constructor(args: {\n`
+        for (const prop of type.properties) {
+            const pname = this.resolveTsVar(prop)
+            const ptype = this.resolveType(prop)
+            content += `        ${pname}: ${ptype}\n`
+        }
+
+        content += `    }) {`
+        for (const prop of type.properties) {
+            const pname = this.resolveTsVar(prop)
+            content += `        this.${pname} = args.${pname}\n`
+        }
+        content += `    }\n\n`
+
+
+        content += `    validate(): Error[] {\n`
+        content += `        const errors: Error[] = []\n\n`
+        for (const prop of type.properties) {
+            content += this.validator.validate(prop, { vprefix: "this." })
+            content += `\n`
+        }
+
+        content += `\n`
+        content += `        return errors\n`
+        content += `    }\n\n`
+
+        content += `    sqlCreate(): string {\n`
+        content += `        return \``
+        content += this.sql.genTable(type)
+        content += `        \``
+        content += `\n}\n`
+
+        content += `}`
+
+        return content
+    }
+
+
+    resolveClientPath(type: BI.BoundedType): string {
+        let name = this.resolveType(type)
+        name = this.namer.tsClass(name)
+        name = `client/${name}.gen.ts`
+        return name
+    }
+
+    resolveServerPath(type: BI.BoundedType): string {
+        let name = this.resolveType(type)
+        name = this.namer.tsClass(name)
+        name = `server/${name}.gen.ts`
+        return name
+    }
+
+    resolveTsClass(type: BI.BoundedType): string {
+        let name = this.bounded.resolveName(type)
+
+        if (name === '')
+            throw new Error(`invalid type: missing name ${JSON.stringify(type)}`)
+
+        name = this.namer.tsClass(name)
+        return name
+    }
+
+    resolveTsVar(type: BI.BoundedType): string {
+        let name = this.bounded.resolveName(type)
+
+        if (name === '')
+            throw new Error(`invalid type: missing name ${JSON.stringify(type)}`)
+
+        name = this.namer.tsVar(name)
+
+        return name
+    }
+
+    resolveType(type: BI.BoundedType, typeOnly?: boolean): string {
+        let name: string | undefined
+        const rtype = this.bounded.resolveType(type)
+
+        switch (rtype) {
+            case 'string':
+                name = `string`
+                break
+            case 'number':
+                name = `number`
+                break
+            case 'boolean':
+                name = `boolean`
+                break
+            default:
+                name = rtype
+        }
+
+        if (!name) {
+            throw new Error(`cannot resolve type for ${JSON.stringify(type)}`)
+        }
+
+        if (this.bounded.resolveIsArray(type) && !typeOnly)
+            name += '[]'
+
+        return name
+    }
+}
+
+type ValidatorOptions = {
+    vprefix?: string
+    vname?: string
+    dprefix?: string
+    dname?: string
+}
+
+export class TsValidators {
+    bounded: TsGenerator
+    private sv: TsStringValidators
+    private ov: TsObjectValidators
+    private av: TsArrayValidators
+    private rv: TsRefValidators
+    private nv: TsNumberValidators
+
+    constructor(bounded: TsGenerator) {
+        this.bounded = bounded
+        this.sv = new TsStringValidators(this, bounded)
+        this.ov = new TsObjectValidators(this, bounded)
+        this.av = new TsArrayValidators(this, bounded)
+        this.rv = new TsRefValidators(this, bounded)
+        this.nv = new TsNumberValidators(this, bounded)
+    }
+
+    validate(type: BI.BoundedType, o?: ValidatorOptions): string {
+        let results = ''
+
+        switch (type.kind) {
+            case 'object':
+                this.optional(type, o)
+                this.ov.sub(type, o)
+                break
+            case 'string':
+                results += this.optional(type, o)
+                results += this.sv.max(type, o)
+                results += this.sv.min(type, o)
+                results += this.sv.anyOf(type, o)
+                break
+            case 'array':
+                results += this.optional(type, o)
+                results += this.av.min(type, o)
+                results += this.av.max(type, o)
+                results += this.av.items(type, o)
+                break
+            case 'ref':
+                results += this.optional(type, o)
+                results += this.rv.validate(type, o)
+                break
+            case 'number':
+                results += this.optional(type, o)
+                results += this.nv.min(type, o)
+                results += this.nv.max(type, o)
+                results += this.nv.anyOf(type, o)
+                break
+            default:
+                throw new Error(`invalid type ${JSON.stringify(type)}`)
+        }
+
+        return results
+    }
+
+    optional(type: BI.BoundedType, o?: ValidatorOptions): string {
+        const vname = this.vname(type, o)
+        const dname = this.dname(type, o)
+        let text = ''
+
+
+        if (!type.optional) {
+            text += `if(${vname} === undefined || ${vname} === null) {\n`
+            text += `    errors.push(new Error('${dname} is required'))\n`
+            text += `}\n\n`
+        }
+
         return text
     }
 
-    private genMethod(method: TsMethod) {
-        const accessControl = this.genAccessControl(method.accessControl)
-        const args = this.genProperties(method.args)
-        const body = method.body ?? []
+    vname(type: BI.BoundedType, o?: ValidatorOptions): string {
+        let name = o?.vname ?? this.bounded.resolveTsVar(type)
+        if (o?.vprefix) name = o.vprefix + name
+        return name
+    }
 
-        const text = `
-            ${accessControl}${method.name}(
-                ${args}
-            ) {
-                ${body.join('\n')}
-            }
-        `
+    dname(type: BI.BoundedType, o?: ValidatorOptions): string {
+        let name = o?.dname ?? this.bounded.resolveTsVar(type)
+        if (o?.dprefix) name = o.dprefix + name
+        return name
+    }
+}
+
+class TsArrayValidators {
+    parent: TsValidators
+    bounded: TsGenerator
+
+    constructor(parent: TsValidators, bounded: TsGenerator) {
+        this.parent = parent
+        this.bounded = bounded
+    }
+
+    min(type: BI.BoundedArray, o?: ValidatorOptions): string {
+        let text = ''
+
+        if (type.min) {
+            const vname = this.parent.vname(type, o)
+            const dname = this.parent.dname(type, o)
+
+            if (type.optional)
+                text += `if(${vname} && ${vname}.length < ${type.min}) {\n`
+            else
+                text += `if(${vname}.length < ${type.min}) { \n`
+            text += `    errors.push(new Error('${dname} length is less than ${type.min} items'))\n`
+            text += `}\n\n`
+        }
 
         return text
     }
 
-    private genClass(token: TsClass): string {
-        const properties = this.genProperties(token.properties)
-        const methods = this.genMethods(token.methods)
+    max(type: BI.BoundedArray, o?: ValidatorOptions): string {
+        let text = ''
 
-        const result = `
-            ${this.genExported(token)}class ${token.name} {
-                ${properties.join('\n')}
-                ${methods.join('\n')}
-            }
-        `
-        return result
+        if (type.max) {
+            const vname = this.parent.vname(type, o)
+            const dname = this.parent.dname(type, o)
+
+            if (type.optional)
+                text += `if(${vname} && ${vname}.length < ${type.max}) {\n`
+            else
+                text += `if(${vname}.length < ${type.max}) { \n`
+            text += `    errors.push(new Error('${dname} length is greater than ${type.max} items'))\n`
+            text += `}\n\n`
+        }
+
+        return text
     }
 
-    private genEnum(token: TsEnumType): string {
-        const values = token.values?.map(value => {
-            const v = value.value ? ` = '${value.value}'` : ''
-            return `${value.name}${v}`
-        }) ?? []
+    items(type: BI.BoundedArray, o?: ValidatorOptions): string {
+        let text = ''
+        const vname = this.parent.vname(type, o)
 
-        const result = `
-            ${this.genExported(token)}enum ${token.name} {
-                ${values.join(',\n')}
-            }
-        `
 
-        return result
+        if (type.optional)
+            text += `if(${vname})`
+
+        text += `{\n`
+        text += `   for(const item of ${vname}) {`
+        text += this.parent.validate(type.items, { vname: 'item' })
+        text += `   }`
+
+        text += `}\n\n`
+
+        return text
+
+    }
+}
+
+
+class TsObjectValidators {
+    parent: TsValidators
+    bounded: TsGenerator
+
+    constructor(parent: TsValidators, bounded: TsGenerator) {
+        this.parent = parent
+        this.bounded = bounded
     }
 
-    private isArray(input: TsToken): boolean {
-        return isKey('array', input)
+    sub(type: BI.BoundedObject, o?: ValidatorOptions): string {
+        let text = ''
+
+        const vname = this.parent.vname(type, o)
+        // const dname = this.parent.dname(type, o)
+
+        if (type.optional)
+            text += `if(${vname})`
+
+        text += '{\n'
+        text += `    const ${name}Errors = ${vname}.validate()\n`
+        text += `    errors.push(...${name}Errors)\n`
+        text += `}\n\n`
+
+
+        return text
+    }
+}
+
+class TsRefValidators {
+    parent: TsValidators
+    bounded: TsGenerator
+
+    constructor(parent: TsValidators, bounded: TsGenerator) {
+        this.parent = parent
+        this.bounded = bounded
     }
 
-    private genArray(input: TsToken): string {
-        return this.isArray(input) ? '[]' : ''
+    validate(type: BI.BoundedRef, o?: ValidatorOptions): string {
+        let text = ''
+
+        const vname = this.parent.vname(type, o)
+        // const dname = this.parent.dname(type, o)
+
+        if (type.optional)
+            text += `if(${vname})`
+
+        text += '{\n'
+        text += `    const ${name}Errors = ${vname}.validate()\n`
+        text += `    errors.push(...${name}Errors)\n`
+        text += `}\n`
+
+
+        return text
+    }
+}
+
+class TsNumberValidators {
+    parent: TsValidators
+    bounded: TsGenerator
+
+    constructor(parent: TsValidators, bounded: TsGenerator) {
+        this.parent = parent
+        this.bounded = bounded
     }
 
-    private isExported(input: TsToken): boolean {
-        return isKey('exported', input)
+    min(type: BI.BoundedNumber, o?: ValidatorOptions): string {
+        let text = ''
+
+        if (type.min || type.min === 0) {
+            const vname = this.parent.vname(type, o)
+            const dname = this.parent.dname(type, o)
+
+            if (type.optional)
+                text += `if(${vname} && ${vname} < ${type.min}) {\n`
+            else
+                text += `if(${vname} < ${type.min}) { \n`
+            text += `    errors.push(new Error('${dname} length is less than ${type.min}'))\n`
+            text += `}\n\n`
+        }
+
+        return text
     }
 
-    private genExported(token: TsToken): string {
-        return this.isExported(token) ? 'export ' : ''
+    max(type: BI.BoundedNumber, o?: ValidatorOptions): string {
+        let text = ''
+
+        if (type.max) {
+            const vname = this.parent.vname(type, o)
+            const dname = this.parent.dname(type, o)
+
+            if (type.optional)
+                text += `if(${vname} && ${vname} > ${type.max}) {\n`
+            else
+                text += `if(${vname} > ${type.max}) {\n`
+
+            text += `    errors.push(new Error('${dname} length is less than ${type.max}'))\n`
+            text += `}\n\n`
+        }
+
+        return text
     }
 
-    private isOptional(input: TsToken): boolean {
-        return isKey('optional', input)
-    }
+    anyOf(type: BI.BoundedNumber, o?: ValidatorOptions): string {
+        let text = ''
 
-    private genOptional(token: TsToken): string {
-        return this.isOptional(token) ? '? ' : ''
-    }
+        if (type.anyOf) {
+            const vname = this.parent.vname(type, o)
+            const dname = this.parent.dname(type, o)
+            const values = type.anyOf.join(', ')
 
-    private genAccessControl(input?: TsAccessControl): string {
-        let text = ""
+            if (type.optional)
+                text += `if(${name})`
 
-        if (input) {
-            switch (input) {
-                case "public":
-                    break
-                case "private":
-                case "protected":
-                case 'readonly':
-                    text = `${input} `
-                    break
-                default:
-                    throw new Error(`invalid access control ${input}`)
-            }
+            text += ` {\n`
+
+            text += `    let found = false\n`
+            text += `    for(const v of [${values}]) {\n`
+            text += `       if(${vname} == v) {\n`
+            text += `           found = true\n`
+            text += `           break\n`
+            text += `       }\n`
+            text += `    }\n`
+            text += `\n`
+            text += `    if(!found) {\n`
+            text += `        errors.push(new Error('${dname} does not include one of ${values}}'))\n`
+            text += `    }\n`
+            text += `}\n\n`
         }
 
         return text
@@ -402,3 +508,113 @@ export class TsGenerator {
 }
 
 
+class TsStringValidators {
+    parent: TsValidators
+    bounded: TsGenerator
+
+    constructor(parent: TsValidators, bounded: TsGenerator) {
+        this.parent = parent
+        this.bounded = bounded
+    }
+
+    min(type: BI.BoundedString, o?: ValidatorOptions): string {
+        let text = ''
+
+        if (type.min) {
+            const vname = this.parent.vname(type, o)
+            const dname = this.parent.dname(type, o)
+
+            if (type.optional)
+                text += `if(${vname} && ${vname}.length < ${type.min}) {\n`
+            else
+                text += `if(${vname}.length < ${type.min}) { \n`
+            text += `    errors.push(new Error('${dname} length is less than ${type.min} characters'))\n`
+            text += `}\n\n`
+        }
+
+        return text
+    }
+
+    max(type: BI.BoundedString, o?: ValidatorOptions): string {
+        let text = ''
+
+        if (type.max) {
+            const vname = this.parent.vname(type, o)
+            const dname = this.parent.dname(type, o)
+
+            if (type.optional)
+                text += `if(${vname} && ${vname}.length > ${type.max}) {\n`
+            else
+                text += `if(${vname}.length > ${type.max}) {\n`
+
+            text += `    errors.push(new Error('${dname} length is less than ${type.max} characters'))\n`
+            text += `}\n\n`
+        }
+
+        return text
+    }
+
+    anyOf(type: BI.BoundedString, o?: ValidatorOptions): string {
+        let text = ''
+
+        if (type.anyOf) {
+            const vname = this.parent.vname(type, o)
+            const dname = this.parent.dname(type, o)
+            const values = type.anyOf.map(x => stringUtils.doubleQuote(x)).join(', ')
+
+            if (type.optional)
+                text += `if(${name})`
+
+            text += ` {\n`
+
+            text += `    let found = false\n`
+            text += `    for(const v of [${values}])\n`
+            text += `    if(${vname}.includes(v)) {\n`
+            text += `        found = true\n`
+            text += `        break\n`
+            text += `    }\n`
+            text += `\n`
+            text += `    if(!found) {\n`
+            text += `        errors.push(new Error('${dname} does not include one of ${values}}'))\n`
+            text += `    }\n`
+            text += `}\n\n`
+        }
+
+        return text
+    }
+
+    oneOf(type: BI.BoundedString, o?: ValidatorOptions): string {
+        let text = ''
+
+        if (type.oneOf) {
+            const vname = this.parent.vname(type, o)
+            const dname = this.parent.dname(type, o)
+            const values = type.oneOf.map(x => stringUtils.doubleQuote(x)).join(', ')
+
+            if (type.optional)
+                text += `if(${name})`
+
+            text += ` {\n`
+
+            text += `    let found: string[] = []\n`
+            text += `    for(const v of [${values}])\n`
+            text += `    if(${vname}.includes(v)) {\n`
+            text += `        found.push(v)\n`
+            text += `    }\n`
+            text += `\n`
+            text += `    switch(found.length) {\n`
+            text += `       case 0:\n`
+            text += `           errors.push(new Error('${dname} does not include one of ${values}}'))\n`
+            text += `           break\n`
+            text += `       case 1:\n`
+            text += `           break\n`
+            text += `       default:\n`
+            text += `           const founds = found.join(',')`
+            text += `           errors.push(new Error('${dname} includes ' + founds + ', more than one of ${values}}'))\n`
+            text += `    }\n`
+            text += `}\n\n`
+        }
+
+        return text
+    }
+}
