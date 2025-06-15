@@ -1,249 +1,53 @@
-
-import * as BI from './bounded-model.ts'
-import { TsNamer } from './namer.ts'
-
-export class SqliteGenerator2 {
-    bounded: BI.BoundedGenerator
-    namer = new TsNamer()
-
-    constructor(bounded: BI.BoundedGenerator) {
-        this.bounded = bounded
-    }
-
-    genTable(type: BI.BoundedType): string {
-        switch (type.kind) {
-            case 'object':
-                break
-            default:
-                throw new Error(`invalid type ${JSON.stringify(type)}`)
-        }
-
-        const tname = this.resolveSqlTable(type)
-        let content = `\n`
-        content += `            CREATE TABLE ${tname} (`
-        const lines: string[] = []
-
-        for (const prop of type.properties) {
-            const pname = this.resolveSqlColumn(prop)
-            let ptype: string
-
-            switch (prop.kind) {
-                case 'string':
-                case 'number':
-                    ptype = this.resolveSqlType(prop)
-                    break
-                case 'ref':
-                    continue
-                case 'array':
-                    continue
-                default:
-                    throw new Error(`invalid type ${JSON.stringify(type)}`)
-            }
-
-            let statment = `               ${pname} ${ptype}`
-
-            if (!prop.optional)
-                statment += ` NOT NULL`
-
-            lines.push(statment)
-        }
-
-
-        for (const prop of type.properties) {
-            const pname = this.resolveSqlColumn(prop)
-
-            switch (prop.kind) {
-                case 'string':
-                case 'number':
-                    if (prop.primaryKey)
-                        lines.push(`               PRIMARY KEY(${pname})`)
-                    break
-                case 'ref':
-                    continue
-                case 'array':
-                    continue
-                default:
-                    throw new Error(`invalid type ${JSON.stringify(type)}`)
-            }
-        }
-
-        for (const prop of type.properties) {
-            const pname = this.resolveSqlColumn(prop)
-
-            switch (prop.kind) {
-                case 'string':
-                case 'number':
-                    if (prop.unique)
-                        lines.push(`               UNIQUE(${pname})`)
-                    break
-                case 'ref':
-                    continue
-                case 'array':
-                    continue
-                default:
-                    throw new Error(`invalid type ${JSON.stringify(type)}`)
-            }
-        }
-
-        content += `\n`
-        content += lines.join(',\n')
-        content += `\n`
-
-
-        content += `            );\n`
-
-        const indexes: string[] = []
-
-        for (const prop of type.properties) {
-            const pname = this.resolveSqlColumn(prop)
-            let line = ''
-
-            switch (prop.kind) {
-                case 'string':
-                case 'number':
-                    if (prop.indexed || prop.primaryKey) {
-                        line += `           CREATE `
-                        if (prop.unique) line += `UNIQUE `
-                        line += `idx_${tname}_${pname} `
-                        line += `ON ${tname}(${pname});`
-                        indexes.push(line)
-                    }
-                    break
-                case 'ref':
-                    continue
-                case 'array':
-                    content += this.createJoin(type, prop)
-                    break
-                default:
-                    throw new Error(`invalid type ${JSON.stringify(type)}`)
-            }
-        }
-
-        content += indexes.join("\n")
-        content += `\n`
-
-        for (const prop of type.properties) {
-
-            switch (prop.kind) {
-                case 'string':
-                case 'number':
-                case 'ref':
-                    continue
-                case 'array':
-                    content += this.createJoin(type, prop)
-                    break
-                default:
-                    throw new Error(`invalid type ${JSON.stringify(type)}`)
-            }
-        }
-
-
-        return content
-    }
-
-    createJoin(parent: BI.BoundedType, child: BI.BoundedType) {
-        const pname = this.resolveSqlTable(parent)
-        const cname = this.resolveSqlTable(child)
-        const name = `${pname}__${cname}`
-
-        switch (child.kind) {
-            case 'string':
-                {
-                    const amodel: BI.BoundedObject = {
-                        kind: 'object',
-                        name,
-                        properties: [
-
-                        ]
-                    }
-                }
-                break
-        }
-    }
-
-    resolveSqlTable(type: BI.BoundedType): string {
-        let name = this.bounded.resolveName(type)
-
-        if (name === '')
-            throw new Error(`invalid type: missing name ${JSON.stringify(type)}`)
-
-        name = this.namer.sqlTable(name)
-        return name
-    }
-
-    resolveSqlColumn(type: BI.BoundedType): string {
-        let name = this.bounded.resolveName(type)
-
-        if (name === '')
-            throw new Error(`invalid type: missing name ${JSON.stringify(type)}`)
-
-        name = this.namer.sqlColumn(name)
-        return name
-    }
-
-    resolveSqlType(type: BI.BoundedType): string {
-        let name: string
-
-        switch (type.kind) {
-            case 'string':
-                name = 'TEXT'
-                break
-            case 'boolean':
-            case 'number':
-                name = 'INTEGER'
-                break
-            default:
-                throw new Error(`invalid type ${JSON.stringify(type)}`)
-        }
-
-        return name
-    }
-}
+import { StringBuffer } from "./utils.ts";
 
 export class SqliteGenerator {
-    private value(item: SqlValue): string {
+    sb: StringBuffer
+
+    constructor(sb: StringBuffer) {
+        this.sb = sb
+    }
+
+    private value(item: SqlValue) {
         function escape(s: string): string {
             return s.replaceAll("'", "''")
         }
-
-        let text: string
 
         switch (item.kind) {
             case 'integer':
             case 'numeric':
             case 'real':
-                text = `${item.value}`
+                this.sb.a(`${item.value}`)
                 break
             case 'text':
-                text = `'${escape(item.value)}'`
+                this.sb.a(`'${escape(item.value)}'`)
                 break
             case 'ts-interpolation-numeric':
-                text = '${' + item.name + '}'
+                this.sb.a('${' + item.name + '}')
                 break
             case 'ts-interpolation-text':
-                text = "'${" + item.name + "}'"
+                this.sb.a("'${" + item.name + "}'")
                 break
             case 'sql-parameter':
                 if (item.index)
-                    text = `?${item.index}`
+                    this.sb.a(`?${item.index}`)
                 else if (item.name)
-                    text = `:${item.name}`
+                    this.sb.a(`:${item.name}`)
                 else
-                    text = '?'
+                    this.sb.a('?')
                 break
             case 'boolean':
-                text = `${item.value}`
+                this.sb.a(`${item.value}`)
                 break
             case 'date':
                 switch (item.format) {
                     case 'epoch':
-                        text = this.value({ kind: 'integer', value: item.value.getTime() })
+                        this.value({ kind: 'integer', value: item.value.getTime() })
                         break
                     case 'ISO-8601':
-                        text = "TODO: ISO-8601"
+                        this.sb.a("TODO: ISO-8601")
                         break
                     case 'RFC-3339':
-                        text = "TODO: RFC-3339"
+                        this.sb.a("TODO: RFC-3339")
                         break
                     default:
                         throw new Error(`invalid sql date format ${JSON.stringify(item)}`)
@@ -252,83 +56,87 @@ export class SqliteGenerator {
             default:
                 throw new Error(`invalid sql value ${JSON.stringify(item)}`)
         }
-
-        return text
     }
 
     private refd(item: SqlRference): string { return `${item.table}.${item.column}` }
 
     private refp(item: SqlRference): string { return `${item.table}(${item.column})` }
 
-    expression(item: SqlExpr): string {
-        let text = ''
+    expression(item: SqlExpr) {
+        const handleList = (es: SqlExpr[], sep: string) => {
+            for (let i = 0; i < es.length; i++) {
+                this.expression(es[i])
 
-
-        const handleList = (es: SqlExpr[]): string[] => {
-            const results: string[] = []
-
-            for (const e of es) {
-                const or = this.expression(e)
-                results.push(or)
+                if (i < es.length - 1)
+                    this.sb.a(sep)
             }
-
-            return results
         }
 
         switch (item.kind) {
             case 'equal':
-                text = `${item.column} = ${this.value(item.value)}`
+                this.sb.a(`${item.column} = `)
+                this.value(item.value)
                 break
             case 'not-equal':
-                text = `${item.column} != ${this.value(item.value)}`
+                this.sb.a(`${item.column} != `)
+                this.value(item.value)
                 break
             case 'is':
-                text = `${item.column} IS ${this.value(item.value)}`
+                this.sb.a(`${item.column} IS `)
+                this.value(item.value)
                 break
             case 'is-not':
-                text = `${item.column} IS NOT ${this.value(item.value)}`
+                this.sb.a(`${item.column} IS NOT `)
+                this.value(item.value)
                 break
             case 'greater-than':
-                text = `${item.column} > ${this.value(item.value)}`
+                this.sb.a(`${item.column} > `)
+                this.value(item.value)
                 break
             case 'greater-than-or-equal':
-                text = `${item.column} >= ${this.value(item.value)}`
+                this.sb.a(`${item.column} >= `)
+                this.value(item.value)
                 break
             case 'less-than':
-                text = `${item.column} > ${this.value(item.value)}`
+                this.sb.a(`${item.column} > `)
+                this.value(item.value)
                 break
             case 'less-than-or-equal':
-                text = `${item.column} <= ${this.value(item.value)}`
+                this.sb.a(`${item.column} <= `)
+                this.value(item.value)
                 break
             case 'between':
-                text = `${item.column} BETWEEN ${this.value(item.lower)} AND ${this.value(item.upper)}`
+                this.sb.a(`${item.column} BETWEEN `)
+                this.value(item.lower)
+                this.sb.a(` AND `)
+                this.value(item.upper)
                 break
             case 'not':
-                text = `NOT ${this.expression(item.expression)}`
+                this.sb.a(`NOT `)
+                this.expression(item.expression)
                 break
             case 'and':
-                {
-                    const ands = handleList(item.expressions)
-                    text += ands.join(' AND ')
-                }
+                handleList(item.expressions, ' AND ')
                 break
             case 'or':
-                {
-                    const ors = handleList(item.expressions)
-                    text += ors.join(' OR ')
-                }
+                handleList(item.expressions, ' OR ')
                 break
             case 'literal-value':
-                text = this.value(item.value)
+                this.value(item.value)
                 break
             case 'in':
                 {
-                    const values: string[] = []
+                    this.sb.a(`${item.column} IN (`)
 
-                    for (const value of item.values)
-                        values.push(this.value(value))
+                    for (let i = 0; i < item.values.length; i++) {
+                        const value = item.values[i]
+                        this.value(value)
 
-                    text = `${item.column} IN (${values.join(',')})`
+                        if (i < item.values.length - 1)
+                            this.sb.a(',')
+                    }
+
+                    this.sb.a(')')
                 }
                 break
             case 'bind-parameter':
@@ -337,66 +145,77 @@ export class SqliteGenerator {
             default:
                 throw new Error(`invalid expression ${JSON.stringify(item)}`)
         }
-        return text
     }
 
-    updates(items: SqlUpdate[]): string {
-        const updates: string[] = []
-
+    updates(items: SqlUpdate[]) {
         if (items) {
             for (const item of items) {
-                updates.push(this.update(item))
+                this.update(item)
+                this.sb.nl()
             }
         }
-
-        return updates.join('\n')
     }
 
-    update(item: SqlUpdate): string {
-        let text = `UPDATE ${item.table} SET`
+    update(item: SqlUpdate) {
+        this.sb.l(`UPDATE ${item.table} SET`)
+        this.sb.nl()
 
-        if (item.values.length > 0) {
-            text += '\n'
+        {
+            this.sb.indent()
 
-            const pairs: string[] = []
+            for (let i = 0; i < item.values.length; i++) {
+                const value = item.values[i]
+                this.sb.a(`${value.column} = `)
+                this.value(value.value)
 
-            for (const value of item.values) {
-                const pText = `${value.column} = ${this.value(value.value)}`
-                pairs.push(pText)
+                if (i < item.values.length - 1) {
+                    this.sb.a(', ')
+                }
+
+                this.sb.nl()
             }
 
-            text += pairs.join(',')
+            this.sb.dedent()
         }
 
         if (item.where) {
-            text += ` WHERE ${this.expression(item.where)}`
+            this.sb.a(` WHERE `)
+            this.expression(item.where)
         }
 
-        text += ';\n'
-
-        return text
+        this.sb.l(';')
     }
 
-    selects(items: SqlSelect[]): string {
-        const selects: string[] = []
-
+    selects(items: SqlSelect[]) {
         if (items) {
             for (const item of items) {
-                selects.push(this.select(item))
+                this.select(item)
+                this.sb.nl()
             }
         }
-
-        return selects.join('\n')
     }
 
-    select(item: SqlSelect): string {
-        let text = `SELECT ${item.columns.join(', ')}`
-        text += ` FROM ${item.table}`
+    select(item: SqlSelect) {
+        this.sb.a(`SELECT `)
+        this.sb.j(item.columns, ', ')
+        this.sb.nl()
 
-        if (item.where)
-            text += ` WHERE ${this.expression(item.where)}`
+        {
+            this.sb.indent()
+            this.sb.a(`FROM ${item.table}`)
+            this.sb.dedent()
+        }
+
+        if (item.where) {
+            this.sb.indent()
+            this.sb.nl()
+            this.sb.a(`WHERE `)
+            this.expression(item.where)
+            this.sb.dedent()
+        }
 
         if (item.joins && item.joins.length > 0) {
+            this.sb.indent()
             for (const join of item.joins) {
                 let jtext = ''
 
@@ -410,8 +229,8 @@ export class SqliteGenerator {
                             column: join.column
                         }
 
-                        jtext += ` JOIN ${join.reference.table}`
-                        jtext += ` ON ${this.refd(tableRef)} = ${this.refd(join.reference)}`
+                        jtext += `JOIN ${join.reference.table}`
+                        jtext += `ON ${this.refd(tableRef)} = ${this.refd(join.reference)}`
                     }
                         break
                     case 'join-using':
@@ -425,102 +244,120 @@ export class SqliteGenerator {
                         throw new Error(`invalid join type ${JSON.stringify(join)}`)
                 }
 
-
-
-                text += jtext
+                this.sb.l(jtext)
             }
+            this.sb.dedent()
         }
 
         if (item.orderBy) {
-            text += ` ORDER BY ${item.orderBy.column}`
+            this.sb.indent()
+            this.sb.nl()
+            this.sb.a(`ORDER BY ${item.orderBy.column}`)
 
             if (item.orderBy.term)
-                text += ` ${item.orderBy.term}`
+                this.sb.a(` ${item.orderBy.term}`)
+            this.sb.dedent()
         }
 
         if (item.limit) {
-            text += ` LIMIT ${this.expression(item.limit.expression)}`
+            this.sb.indent()
+            this.sb.nl()
+            this.sb.a(`LIMIT `)
+            this.expression(item.limit.expression)
 
-            if (item.limit.offset)
-                text += ` OFFSET ${this.expression(item.limit.offset)}`
+            if (item.limit.offset) {
+                this.sb.a(` OFFSET `)
+                this.expression(item.limit.offset)
+            }
+
+            this.sb.dedent()
+            this.sb.nl()
         }
 
-        text += ';\n'
 
-        return text
+        this.sb.a(';')
+        this.sb.nl()
     }
 
-    deletes(items: SqlDelete[]): string {
-        const deletes: string[] = []
-
+    deletes(items: SqlDelete[]) {
         if (items) {
             for (const item of items) {
-                deletes.push(this.delete(item))
+                this.delete(item)
             }
         }
-
-        return deletes.join('\n')
     }
 
-
-    delete(item: SqlDelete): string {
-        let text = `DELETE FROM ${item.table}`
+    delete(item: SqlDelete) {
+        this.sb.a(`DELETE FROM ${item.table}`)
 
         if (item.where) {
-            text += ` WHERE ${this.expression(item.where)}`
+            this.sb.a(` WHERE `)
+            this.expression(item.where)
         }
 
-        text += ';\n'
-
-        return text
+        this.sb.a(';')
+        this.sb.nl()
     }
 
-    inserts(items: SqlInsert[]): string {
-        const inserts: string[] = []
-
+    inserts(items: SqlInsert[]) {
         if (items) {
             for (const item of items) {
-                inserts.push(this.insert(item))
+                this.insert(item)
+                this.sb.nl()
             }
         }
-
-        return inserts.join('\n')
     }
 
-    insert(item: SqlInsert): string {
-        let text = `INSERT INTO ${item.table} (`
+    insert(item: SqlInsert) {
+        this.sb.l(`INSERT INTO ${item.table} (`)
+        this.sb.nl()
 
-        if (item.values.length > 0) {
-            text += '\n'
+        {
+            this.sb.indent()
 
-            const columns: string[] = []
-            const values: string[] = []
+            for (let i = 0; i < item.values.length; i++) {
+                const value = item.values[i]
+                this.sb.a(value.column)
 
-            for (const value of item.values) {
-                columns.push(value.column)
-                values.push(this.value(value.value))
+                if (i < item.values.length - 1) {
+                    this.sb.a(', ')
+                }
             }
 
-            text += `(${columns.join(',')}) \n`
-            text += `(${values.join(',')});\n`
+            this.sb.dedent()
         }
 
-        return text
+        this.sb.l(`) VALUES (`)
+        this.sb.nl()
+
+        {
+            this.sb.indent()
+
+            for (let i = 0; i < item.values.length; i++) {
+                const value = item.values[i]
+                this.value(value.value)
+
+                if (i < item.values.length - 1) {
+                    this.sb.a(', ')
+                }
+            }
+
+            this.sb.dedent()
+        }
+
+        this.sb.l(');')
     }
 
-    indexes(items: SqlIndex[]): string {
-        const indexes: string[] = []
-
+    indexes(items: SqlIndex[]) {
         if (items) {
             for (const item of items) {
-                indexes.push(this.index(item))
+                this.index(item)
+                this.sb.nl()
             }
         }
-
-        return indexes.join('\n')
     }
 
-    index(item: SqlIndex): string {
+    index(item: SqlIndex) {
         let text = 'CREATE'
 
         if (item.unique)
@@ -542,24 +379,21 @@ export class SqliteGenerator {
 
         text += ';'
 
-        return text
+        this.sb.l(text)
     }
 
-    tables(items: SqlTable[]): string {
-        const tables: string[] = []
-
+    tables(items: SqlTable[]) {
         if (items) {
             for (const item of items) {
-                tables.push(this.table(item))
+                this.table(item)
+                this.sb.nl()
             }
         }
-
-        return tables.join('\n')
     }
 
-    table(item: SqlTable): string {
-        if (!item.colunms)
-            item.colunms = []
+    table(item: SqlTable) {
+        if (!item.columns)
+            item.columns = []
 
         if (!item.constraints)
             item.constraints = []
@@ -567,78 +401,80 @@ export class SqliteGenerator {
         if (!item.options)
             item.options = []
 
-        let text = `CREATE TABLE ${item.name}`
+        {
+            let line = `CREATE TABLE ${item.name}`
 
-        if (item.ifNotExists)
-            text += ' IF NOT EXISTS'
+            if (item.ifNotExists)
+                line += ' IF NOT EXISTS'
 
-        text += ' ('
-
-        const columns: string[] = []
-        const constraints: string[] = []
-
-        for (const column of item.colunms) {
-            const cText = `${column.column} ${column.type}`
-            columns.push(cText)
+            line += ' ('
+            this.sb.l(line)
         }
 
-        if (columns.length > 0) {
-            text += '\n'
-            text += columns.join(',\n')
-        }
+        {
 
-        if (item.constraints.length > 0) {
-            text += '\n'
+            this.sb.indent()
+            const columns: string[] = []
 
-            for (const constraint of item.constraints) {
-                let cText = ``
 
-                switch (constraint.kind) {
-                    case 'primary-key':
-                        cText += `PRIMARY KEY (${constraint.columns.join(',')})`
-                        break
-                    case 'unique-key':
-                        cText += `UNIQUE (${constraint.columns.join(',')})`
-                        break
-                    case 'foreign-key':
-                        cText += `FOREIGN KEY (${constraint.column}) REFERENCES ${this.refp(constraint.reference)}`
+            for (const column of item.columns) {
+                const cText = `${column.column} ${column.type}`
+                columns.push(cText)
+            }
 
-                        if (constraint.onDelete)
-                            cText += ` ON DELETE ${constraint.onDelete}`
+            if (item.constraints) {
+                for (const constraint of item.constraints) {
+                    let line = ``
 
-                        if (constraint.onUpdate)
-                            cText += ` ON UPDATE ${constraint.onDelete}`
+                    switch (constraint.kind) {
+                        case 'primary-key':
+                            line += `PRIMARY KEY (${constraint.columns.join(',')})`
+                            break
+                        case 'unique-key':
+                            line += `UNIQUE (${constraint.columns.join(',')})`
+                            break
+                        case 'foreign-key':
+                            line += `FOREIGN KEY (${constraint.column}) REFERENCES ${this.refp(constraint.reference)}`
 
-                        break
-                    default:
-                        throw new Error(`invalid constraint ${JSON.stringify(constraint)}`)
+                            if (constraint.onDelete)
+                                line += ` ON DELETE ${constraint.onDelete}`
+
+                            if (constraint.onUpdate)
+                                line += ` ON UPDATE ${constraint.onDelete}`
+
+                            break
+                        default:
+                            throw new Error(`invalid constraint ${JSON.stringify(constraint)}`)
+                    }
+
+                    columns.push(line)
                 }
-                constraints.push(cText)
             }
 
-            if (constraints.length > 0) {
-                text += constraints.join(',\n')
+            for (let i = 0; i < columns.length; i++) {
+                let line = columns[i]
+
+                if (i < columns.length - 1)
+                    line += ','
+
+                this.sb.l(line)
             }
+
+            this.sb.dedent()
         }
-
-        if (columns.length > 0 || constraints.length > 0)
-            text += '\n'
-
-        text += ');'
-
-        return text
+        this.sb.l(');')
     }
 }
 
-interface SqlTable {
+export interface SqlTable {
     name: string
-    colunms: SqlColumn[]
+    columns: SqlColumn[]
     constraints?: SqlTableConstraint[]
     options?: SqlTableOptions[]
     ifNotExists?: boolean
 }
 
-interface SqlIndex {
+export interface SqlIndex {
     name?: string
     table: string
     column: string
@@ -654,14 +490,17 @@ export enum SqlColumnType {
     Blob = 'BLOB',
 }
 
-interface SqlColumn {
+export interface SqlColumn {
     column: string
     type: SqlColumnType
 }
 
-type SqlTableConstraint = SqlTableConstraintPrimaryKey | SqlTableConstraintForeignKey | SqlTableConstraintUniqueKey
+export type SqlTableConstraint =
+    SqlTableConstraintPrimaryKey |
+    SqlTableConstraintForeignKey |
+    SqlTableConstraintUniqueKey
 
-enum SqlTableConstraintForeignKeyOn {
+export enum SqlTableConstraintForeignKeyOn {
     SetNull = 'SET NULL',
     SetDefault = 'SET DEFAULT',
     Cascade = 'CASCADE',
@@ -669,28 +508,28 @@ enum SqlTableConstraintForeignKeyOn {
     NoAction = 'NO ACTION',
 }
 
-enum SqlTableOptions {
+export enum SqlTableOptions {
     WithoutRowId = 'WITHOU ROWID',
     Strict = 'STRICT',
 }
 
-interface SqlTableIndexedColumn {
+export interface SqlTableIndexedColumn {
     column: string
     unique?: boolean
     ifNotExists?: boolean
 }
 
-interface SqlTableConstraintPrimaryKey {
+export interface SqlTableConstraintPrimaryKey {
     kind: 'primary-key'
     columns: string[]
 }
 
-interface SqlTableConstraintUniqueKey {
+export interface SqlTableConstraintUniqueKey {
     kind: 'unique-key'
     columns: string[]
 }
 
-interface SqlTableConstraintForeignKey {
+export interface SqlTableConstraintForeignKey {
     kind: 'foreign-key'
     column: string
     reference: SqlRference
@@ -698,7 +537,7 @@ interface SqlTableConstraintForeignKey {
     onUpdate?: SqlTableConstraintForeignKeyOn
 }
 
-interface SqlInsert {
+export interface SqlInsert {
     table: string
     values: {
         column: string
@@ -717,54 +556,54 @@ type SqlValue =
     SqlValueBoolean |
     SqlValueDate
 
-interface SqlValueDate {
+export interface SqlValueDate {
     kind: 'date'
     value: Date
     format: 'ISO-8601' | 'RFC-3339' | 'epoch'
 }
 
-interface SqlValueBoolean {
+export interface SqlValueBoolean {
     kind: 'boolean'
     value: boolean
 }
 
-interface SqlValueSqlParameter {
+export interface SqlValueSqlParameter {
     kind: 'sql-parameter'
     name?: string
     index?: number
 }
 
-interface SqlValueTsInterpolationNumeric {
+export interface SqlValueTsInterpolationNumeric {
     kind: 'ts-interpolation-numeric'
     name: string
 }
 
-interface SqlValueTsInterpolationText {
+export interface SqlValueTsInterpolationText {
     kind: 'ts-interpolation-text'
     name: string
 }
 
-interface SqlValueText {
+export interface SqlValueText {
     kind: 'text'
     value: string
 }
 
-interface SqlValueNumeric {
+export interface SqlValueNumeric {
     kind: 'numeric'
     value: number
 }
 
-interface SqlValueInteger {
+export interface SqlValueInteger {
     kind: 'integer'
     value: number
 }
 
-interface SqlValueReal {
+export interface SqlValueReal {
     kind: 'real'
     value: number
 }
 
-interface SqlUpdate {
+export interface SqlUpdate {
     table: string
     values: {
         column: string
@@ -773,12 +612,12 @@ interface SqlUpdate {
     where?: SqlExpr
 }
 
-interface SqlDelete {
+export interface SqlDelete {
     table: string
     where?: SqlExpr
 }
 
-interface SqlSelect {
+export interface SqlSelect {
     table: string
     columns: string[]
     where?: SqlExpr
@@ -799,28 +638,27 @@ export enum SqlOrderingTerm {
     Desc = 'DESC'
 }
 
-
-interface SqlRference {
+export interface SqlRference {
     table: string
     column: string
 }
 
-type SqlJoin = SqlJoinOn | SqlJoinUsing
+export type SqlJoin = SqlJoinOn | SqlJoinUsing
 
-interface SqlJoinOn {
+export interface SqlJoinOn {
     kind: 'join-on'
     column: string
     reference: SqlRference
     operator?: SqlJoinOperator
 }
 
-interface SqlJoinUsing {
+export interface SqlJoinUsing {
     kind: 'join-using'
     reference: SqlRference
     operator?: SqlJoinOperator
 }
 
-enum SqlJoinOperator {
+export enum SqlJoinOperator {
     Natrual = 'NATURAL',
     Lelt = 'LEFT',
     Right = 'RIGHT',
@@ -829,7 +667,7 @@ enum SqlJoinOperator {
     Cross = 'CROSS'
 }
 
-type SqlExpr =
+export type SqlExpr =
     SqlExprLiteralValue |
     SqlExprBindParameter |
     SqlExprEqual |
@@ -846,88 +684,87 @@ type SqlExpr =
     SqlExprNot |
     SqlExprIn
 
-interface SqlExprLiteralValue {
+export interface SqlExprLiteralValue {
     kind: 'literal-value'
     value: SqlValue
 }
 
-interface SqlExprBindParameter {
+export interface SqlExprBindParameter {
     kind: 'bind-parameter'
 }
 
-interface SqlExprEqual {
+export interface SqlExprEqual {
     kind: 'equal'
     column: string
     value: SqlValue
 }
 
-interface SqlExprNotEqual {
+export interface SqlExprNotEqual {
     kind: 'not-equal'
     column: string
     value: SqlValue
 }
 
-interface SqlExprIs {
+export interface SqlExprIs {
     kind: 'is'
     column: string
     value: SqlValue
 }
 
-interface SqlExprIsNot {
+export interface SqlExprIsNot {
     kind: 'is-not'
     column: string
     value: SqlValue
 }
 
-interface SqlExprGreaterThan {
+export interface SqlExprGreaterThan {
     kind: 'greater-than'
     column: string
     value: SqlValue
 }
 
-interface SqlExprGreaterThanOrEqual {
+export interface SqlExprGreaterThanOrEqual {
     kind: 'greater-than-or-equal'
     column: string
     value: SqlValue
 }
 
-interface SqlExprLessThan {
+export interface SqlExprLessThan {
     kind: 'less-than'
     column: string
     value: SqlValue
 }
 
-interface SqlExprLessThanOrEqual {
+export interface SqlExprLessThanOrEqual {
     kind: 'less-than-or-equal'
     column: string
     value: SqlValue
 }
 
-interface SqlExprIn {
+export interface SqlExprIn {
     kind: 'in'
     column: string
     values: SqlValue[]
 }
 
-interface SqlExprNot {
+export interface SqlExprNot {
     kind: 'not'
     expression: SqlExpr
 }
 
-interface SqlExprAnd {
+export interface SqlExprAnd {
     kind: 'and'
     expressions: SqlExpr[]
 }
 
-interface SqlExprOr {
+export interface SqlExprOr {
     kind: 'or'
     expressions: SqlExpr[]
 }
 
-interface SqlExprBetween {
+export interface SqlExprBetween {
     kind: 'between'
     column: string
     upper: SqlValue
     lower: SqlValue
 }
-

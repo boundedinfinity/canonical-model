@@ -27,10 +27,14 @@ export class TsNamer {
     }
 
     sqlTable(s: string): string {
-        return this.caser.phrase2SnakeLower(s)
+        return this.caser.phrase2SnakeLower(s, {
+            ignoreSymbols: ['_']
+        })
     }
 
     sqlColumn(s: string): string {
-        return this.caser.phrase2SnakeLower(s)
+        return this.caser.phrase2SnakeLower(s, {
+            ignoreSymbols: ['_']
+        })
     }
 }

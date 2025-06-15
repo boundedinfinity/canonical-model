@@ -11,8 +11,12 @@ export type CaseType = 'phrase'
 export class Caser {
     options: {
         safeChar: string,
+        ignoreSymbols: string[],
+        compactSpaces: boolean
     } = {
             safeChar: ' ',
+            compactSpaces: true,
+            ignoreSymbols: []
         }
 
     constructor(options?: Partial<typeof this.options>) {
@@ -63,6 +67,17 @@ export class Caser {
         return result
     }
 
+    private symbols(options: typeof this.options): string[] {
+        const results = su.symbols.filter(s => !options.ignoreSymbols.includes(s))
+        return results
+    }
+
+    private mergeOptions(options?: Partial<typeof this.options>): typeof this.options {
+        const result = _.cloneDeep(this.options)
+        _.merge(result, options)
+        return result
+    }
+
     kebab2phrase(s: string, options?: Partial<typeof this.options>): string {
         _.merge(this.options, options)
         return su.compactSpaces(s).split('-').join(' ')
@@ -98,10 +113,11 @@ export class Caser {
     }
 
     phrase2Kebab(s: string, options?: Partial<typeof this.options>): string {
-        _.merge(this.options, options)
+        const roptions = this.mergeOptions(options)
+        const rsymbols = this.symbols(roptions)
 
         return su.pipe(s,
-            su.replaceWithFn(su.symbols, ''),
+            su.replaceWithFn(rsymbols, ''),
             su.compactSpaces,
             su.replaceWithFn([' '], '_')
         )
@@ -116,10 +132,11 @@ export class Caser {
     }
 
     phrase2Snake(s: string, options?: Partial<typeof this.options>): string {
-        _.merge(this.options, options)
+        const roptions = this.mergeOptions(options)
+        const rsymbols = this.symbols(roptions)
 
         return su.pipe(s,
-            su.replaceWithFn(su.symbols, ''),
+            su.replaceWithFn(rsymbols, ''),
             su.compactSpaces,
             su.replaceWithFn([' '], '_')
         )
@@ -138,9 +155,11 @@ export class Caser {
     }
 
     phrase2Pascal(s: string, options?: Partial<typeof this.options>): string {
-        _.merge(this.options, options)
+        const roptions = this.mergeOptions(options)
+        const rsymbols = this.symbols(roptions)
+
         return su.pipe(s,
-            su.replaceWithFn(su.symbols, ''),
+            su.replaceWithFn(rsymbols, ''),
             su.compactSpaces,
             su.lowerCase,
             su.splitThen(' ', su.uppperCaseFirst),

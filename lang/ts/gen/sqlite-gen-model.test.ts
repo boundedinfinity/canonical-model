@@ -1,5 +1,6 @@
 import { assertEquals } from "@std/assert";
 import { SqliteGenerator, SqlColumnType, SqlOrderingTerm } from './sqlite-gen-model.ts'
+import { StringBuffer } from './utils.ts'
 
 function save(file: string, text: string) {
     const encoder = new TextEncoder();
@@ -17,10 +18,11 @@ function normal(text: string): string {
 }
 
 Deno.test('Generate create table', () => {
-    const actual = new SqliteGenerator().tables([
+    const sb = new StringBuffer()
+    new SqliteGenerator(sb).tables([
         {
             name: 'name_prefix',
-            colunms: [
+            columns: [
                 { column: 'id', type: SqlColumnType.Text },
                 { column: 'name', type: SqlColumnType.Text },
                 { column: 'description', type: SqlColumnType.Text }
@@ -33,7 +35,7 @@ Deno.test('Generate create table', () => {
         },
         {
             name: 'name_prefix__abbr',
-            colunms: [
+            columns: [
                 { column: 'name_prefix__id', type: SqlColumnType.Text },
                 { column: 'abbr', type: SqlColumnType.Text },
                 { column: 'index', type: SqlColumnType.Integer },
@@ -53,15 +55,16 @@ Deno.test('Generate create table', () => {
         }
     ])
 
-    save('./gen-output/generate-table.gen.sql', actual)
+    save('./gen-output/generate-table.gen.sql', sb.toString())
 
-    assertEquals(normal(actual), normal(`
+    assertEquals(normal(sb.toString()), normal(`
         Teest
     `))
 })
 
 Deno.test('Generate create index', () => {
-    const actual = new SqliteGenerator().indexes([
+    const sb = new StringBuffer()
+    new SqliteGenerator(sb).indexes([
         {
             table: 'name_prefix',
             column: 'name'
@@ -73,15 +76,16 @@ Deno.test('Generate create index', () => {
         },
     ])
 
-    save('./gen-output/generate-index.gen.sql', actual)
+    save('./gen-output/generate-index.gen.sql', sb.toString())
 
-    assertEquals(normal(actual), normal(`
+    assertEquals(normal(sb.toString()), normal(`
         Teest
     `))
 })
 
 Deno.test('Generate insert', () => {
-    const actual = new SqliteGenerator().inserts([
+    const sb = new StringBuffer()
+    new SqliteGenerator(sb).inserts([
         {
             table: 'name_prefix',
             values: [
@@ -103,15 +107,16 @@ Deno.test('Generate insert', () => {
 
     ])
 
-    save('./gen-output/generate-insert.gen.sql', actual)
+    save('./gen-output/generate-insert.gen.sql', sb.toString())
 
-    assertEquals(normal(actual), normal(`
+    assertEquals(normal(sb.toString()), normal(`
         Teest
     `))
 })
 
 Deno.test('Generate update', () => {
-    const actual = new SqliteGenerator().updates([
+    const sb = new StringBuffer()
+    new SqliteGenerator(sb).updates([
         {
             table: 'name_prefix',
             values: [
@@ -127,15 +132,16 @@ Deno.test('Generate update', () => {
 
     ])
 
-    save('./gen-output/generate-update.gen.sql', actual)
+    save('./gen-output/generate-update.gen.sql', sb.toString())
 
-    assertEquals(normal(actual), normal(`
+    assertEquals(normal(sb.toString()), normal(`
         Teest
     `))
 })
 
 Deno.test('Generate delete', () => {
-    const actual = new SqliteGenerator().deletes([
+    const sb = new StringBuffer()
+    new SqliteGenerator(sb).deletes([
         {
             table: 'name_prefix',
             where: {
@@ -147,15 +153,16 @@ Deno.test('Generate delete', () => {
 
     ])
 
-    save('./gen-output/generate-delete.gen.sql', actual)
+    save('./gen-output/generate-delete.gen.sql', sb.toString())
 
-    assertEquals(normal(actual), normal(`
+    assertEquals(normal(sb.toString()), normal(`
         Teest
     `))
 })
 
 Deno.test('Generate select', () => {
-    const actual = new SqliteGenerator().selects([
+    const sb = new StringBuffer()
+    new SqliteGenerator(sb).selects([
         {
             table: 'name_prefix',
             columns: [
@@ -170,12 +177,16 @@ Deno.test('Generate select', () => {
         {
             table: 'name_prefix',
             columns: [
-                'id'
+                'id', 'name'
             ],
             where: {
                 kind: 'and',
                 expressions: [
-                    { kind: 'equal', column: 'id', value: { kind: 'sql-parameter', name: 'id' } },
+                    {
+                        kind: 'equal',
+                        column: 'id',
+                        value: { kind: 'sql-parameter', name: 'id' }
+                    },
                     {
                         kind: 'in', column: 'name', values: [
                             { kind: 'text', value: 'a' },
@@ -223,9 +234,9 @@ Deno.test('Generate select', () => {
         },
     ])
 
-    save('./gen-output/generate-select.gen.sql', actual)
+    save('./gen-output/generate-select.gen.sql', sb.toString())
 
-    assertEquals(normal(actual), normal(`
+    assertEquals(normal(sb.toString()), normal(`
         Teest
     `))
 })

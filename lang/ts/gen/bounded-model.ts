@@ -5,7 +5,15 @@ type Prettify<T> = {
     [K in keyof T]: T[K];
 } & {};
 
-export type BoundedType = Prettify<BoundedObject | BoundedRef | BoundedArray | BoundedString | BoundedNumber | BoundedBoolean>
+export type BoundedType = Prettify<
+    BoundedObject |
+    BoundedRef |
+    BoundedArray |
+    BoundedString |
+    BoundedNumber |
+    BoundedInteger |
+    BoundedBoolean
+>
 
 export interface BoundedObject {
     kind: 'object'
@@ -21,6 +29,7 @@ export interface BoundedRef {
     name?: string
     optional?: boolean
     ref: string
+    searchable?: boolean
 }
 
 export interface BoundedArray {
@@ -31,6 +40,7 @@ export interface BoundedArray {
     optional?: boolean
     min?: number
     max?: number
+    searchable?: boolean
 }
 
 export interface BoundedString {
@@ -50,6 +60,24 @@ export interface BoundedString {
     startsWith?: string
     endsWith?: string
     matches?: string
+    searchable?: boolean
+}
+
+export interface BoundedInteger {
+    kind: 'integer'
+    parent?: BoundedType
+    name?: string
+    optional?: boolean
+    primaryKey?: boolean
+    unique?: boolean
+    indexed?: boolean
+    min?: number
+    max?: number
+    anyOf?: number[]
+    allOf?: number[]
+    noneOf?: number[]
+    multipleOf?: number
+    searchable?: boolean
 }
 
 export interface BoundedNumber {
@@ -66,6 +94,7 @@ export interface BoundedNumber {
     allOf?: number[]
     noneOf?: number[]
     multipleOf?: number
+    searchable?: boolean
 }
 
 export interface BoundedBoolean {
@@ -73,6 +102,7 @@ export interface BoundedBoolean {
     parent?: BoundedType
     name?: string
     optional?: boolean
+    searchable?: boolean
 }
 
 type Files = { [path: string]: string }
@@ -100,6 +130,8 @@ export class BoundedGenerator {
                     case 'array':
                         process(t.items, t)
                         break
+                    case 'boolean':
+                    case 'integer':
                     case 'number':
                     case 'string':
                         // Nothing to do
@@ -131,6 +163,9 @@ export class BoundedGenerator {
         switch (type.kind) {
             case 'ref':
                 found = this.typeMap[type.ref]
+                break
+            case 'array':
+                found = type.items
                 break
             default:
                 found = type
@@ -190,6 +225,7 @@ export class BoundedGenerator {
                 break
             case 'boolean':
             case 'number':
+            case 'integer':
             case 'string':
                 name = type.kind
                 break
@@ -219,6 +255,7 @@ export class BoundedGenerator {
                 break
             case 'boolean':
             case 'number':
+            case 'integer':
             case 'string':
                 name = type.name
                 break

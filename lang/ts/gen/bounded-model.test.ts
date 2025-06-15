@@ -43,14 +43,16 @@ Deno.test('Generate bounded object', () => {
                     min: 2,
                     max: 50,
                     unique: true,
-                    indexed: true
+                    indexed: true,
+                    searchable: true,
                 },
                 {
                     kind: 'string',
                     name: 'description',
                     optional: true,
                     min: 2,
-                    max: 500
+                    max: 500,
+                    searchable: true
                 }
             ]
         },

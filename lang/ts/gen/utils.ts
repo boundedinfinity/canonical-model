@@ -6,6 +6,87 @@ export type Prettify<T> = {
 } & {};
 
 
+export type StringBufferOptions = {
+    indent: number
+    tabSize: number
+}
+
+export class StringBuffer {
+    lines: string[] = []
+    options: StringBufferOptions
+
+    constructor(options?: Partial<StringBufferOptions>) {
+        this.options = {
+            indent: 0,
+            tabSize: 4,
+            ...options
+        }
+    }
+
+    indent(n?: number) {
+        const r = n ? n : 1
+        this.options.indent += r
+    }
+
+    dedent(n?: number) {
+        const r = n ? n : 1
+        this.options.indent -= r
+        if (this.options.indent < 0)
+            this.options.indent = 0
+    }
+
+    redent(n?: number) {
+        this.indent(n)
+        for (let i = 0; i < this.lines.length; i++) {
+            this.lines[i] = this.prefix(this.lines[i])
+        }
+        this.dedent(n)
+    }
+
+    private prefix(s: string): string {
+        const size = this.options.indent * this.options.tabSize
+        const prefix = " ".repeat(size)
+        let line = s.trimStart()
+        line = prefix + line
+        return line
+    }
+
+    a(s: string) {
+        if (this.lines.length == 0)
+            this.nl()
+
+        const index = this.lines.length - 1
+        let line = this.lines[index]
+
+        if (line == '')
+            line = this.prefix(line)
+
+        line += s
+        this.lines[index] = line
+    }
+
+    l(s: string) {
+        const current = this.prefix(s)
+        this.lines.push(current)
+    }
+
+    j(s: string[], sep: string) {
+        const last = s.length - 1
+        for (let i = 0; i < s.length; i++) {
+            if (i != last)
+                this.a(s[i] + sep)
+            else
+                this.a(s[i])
+        }
+    }
+
+    nl() { this.lines.push('') }
+
+    toString(): string {
+        return this.lines.join('\n')
+    }
+}
+
 export function isKey<T extends object>(name: string, token: T): boolean {
     for (const [key, val] of Object.entries(token)) {
         if (key == name && typeof val === 'boolean')
@@ -61,6 +142,13 @@ export const stringUtils = {
     isSpace: function (c: string): boolean {
         ensureSingleChar(c)
         return spaces.includes(c)
+    },
+    onlySpace(s: string): boolean {
+        for (const c of s) {
+            if (!this.isSpace(c))
+                return false
+        }
+        return true
     },
     isUpperCase: function (c: string): boolean {
         return stringUtils.isLetter(c) && c == c.toLocaleUpperCase()

@@ -1,33 +1,54 @@
 import * as BI from './bounded-model.ts'
 import { TsNamer } from './namer.ts'
-import { SqliteGenerator2 } from './sqlite-gen-model.ts'
-import { stringUtils } from './utils.ts'
+import { BoundedSqliteGenerator } from './bounded-sqlite-gen-model.ts'
+import { stringUtils, StringBuffer } from './utils.ts'
 
 type Files = { [path: string]: string }
+
+
+function fnwrap(pre: () => void, post: () => void, run: () => void) {
+    try {
+        pre()
+        run()
+    } finally {
+        post()
+    }
+}
+
+function indenter(sb: StringBuffer): (run: () => void) => void {
+    return function (run: () => void) {
+        fnwrap(
+            () => sb.indent(),
+            () => sb.dedent(),
+            run
+        )
+    }
+}
 
 export class TsGenerator {
     bounded: BI.BoundedGenerator
     namer = new TsNamer()
     validator: TsValidators
-    sql: SqliteGenerator2
 
     constructor(bounded: BI.BoundedGenerator) {
         this.bounded = bounded
         this.validator = new TsValidators(this)
-        this.sql = new SqliteGenerator2(bounded)
     }
 
     gen(type: BI.BoundedType): Files {
         const files: Files = {}
-        let content = ''
 
         switch (type.kind) {
             case 'object':
-                content = this.genClientTypeObject(type)
-                files[this.resolveClientPath(type)] = content
+                {
+                    // const sb1 = new StringBuffer()
+                    // this.genTypeObject(type, sb1, false)
+                    // files[this.resolveClientPath(type)] = sb1.toString()
 
-                content = this.genServerTypeObject(type)
-                files[this.resolveServerPath(type)] = content
+                    const sb2 = new StringBuffer()
+                    this.genTypeObject(type, sb2, true)
+                    files[this.resolveServerPath(type)] = sb2.toString()
+                }
                 break
             default:
                 throw new Error(`invalid type ${JSON.stringify(type)}`)
@@ -36,124 +57,115 @@ export class TsGenerator {
         return files
     }
 
-    private genClientTypeObject(type: BI.BoundedObject) {
+    private genTypeObject(type: BI.BoundedObject, sb: StringBuffer, isServer: boolean) {
+        const iw = indenter(sb)
         const name = this.resolveTsClass(type)
-        let content = ''
 
         for (const prop of type.properties) {
             if (this.bounded.resolveIsRef(prop)) {
                 const fname = this.resolveClientPath(prop)
                 const name = this.resolveType(prop, true)
-                content += `import {${name}} from './${fname}'\n`
+                sb.l(`import {${name}} from './${fname}'`)
             }
         }
 
-        if (content !== '') {
-            content += '\n'
+        if (sb.lines.length > 0) {
+            sb.nl()
         }
 
-        content += `export class ${name} {\n`
+        sb.l(`export class ${name} {`)
 
-        for (const prop of type.properties) {
-            const pname = this.resolveTsVar(prop)
-            const ptype = this.resolveType(prop)
-            content += `    ${pname}: ${ptype}\n`
-        }
-        content += `\n`
+        iw(() => {
+            iw(() => {
+                for (const prop of type.properties) {
+                    const pname = this.resolveTsVar(prop)
+                    const ptype = this.resolveType(prop)
+                    sb.l(`${pname}: ${ptype}`)
+                }
+            })
 
-        content += `    constructor(args: {\n`
-        for (const prop of type.properties) {
-            const pname = this.resolveTsVar(prop)
-            const ptype = this.resolveType(prop)
-            content += `        ${pname}: ${ptype}\n`
-        }
+            sb.nl()
 
-        content += `    }) {`
-        for (const prop of type.properties) {
-            const pname = this.resolveTsVar(prop)
-            content += `        this.${pname} = args.${pname}\n`
-        }
-        content += `    }\n\n`
+            iw(() => {
+                sb.l(`constructor(args: {`)
+                iw(() => {
+                    for (const prop of type.properties) {
+                        const pname = this.resolveTsVar(prop)
+                        const ptype = this.resolveType(prop)
+                        sb.l(`${pname}: ${ptype}`)
+                    }
+                })
 
+                sb.l(`}) {`)
 
-        content += `    validate(): Error[] {\n`
-        content += `        const errors: Error[] = []\n\n`
-        for (const prop of type.properties) {
-            content += this.validator.validate(prop, { vprefix: "this." })
-            content += `\n`
-        }
+                iw(() => {
+                    for (const prop of type.properties) {
+                        const pname = this.resolveTsVar(prop)
+                        sb.l(`this.${pname} = args.${pname}`)
+                    }
+                })
 
-        content += `\n`
-        content += `        return errors\n`
-        content += `    }`
+                sb.l(`}`)
+            })
 
-        content += `}`
+            sb.nl()
 
-        return content
-    }
+            iw(() => {
+                sb.l(`validate(): Error[] {`)
 
-    private genServerTypeObject(type: BI.BoundedObject) {
-        const name = this.resolveTsClass(type)
-        let content = ''
+                iw(() => {
+                    sb.l(`const errors: Error[] = []`)
+                    sb.nl()
 
-        for (const prop of type.properties) {
-            if (this.bounded.resolveIsRef(prop)) {
-                const fname = this.resolveClientPath(prop)
-                const name = this.resolveType(prop, true)
-                content += `import {${name}} from './${fname}'\n`
+                    for (const prop of type.properties) {
+                        this.validator.validate(prop, sb, { vprefix: "this." })
+                    }
+
+                    sb.nl()
+                    sb.l(`return errors`)
+                })
+
+                sb.l(`}`)
+            })
+
+            if (isServer) {
+                sb.nl()
+
+                iw(() => {
+                    sb.l(`sqlCreate(): string {`)
+
+                    iw(() => {
+                        sb.l('return `')
+
+                        iw(() => {
+                            new BoundedSqliteGenerator(this.bounded, sb).genTable(type)
+                        })
+
+                        sb.l('`')
+                    })
+
+                    sb.l(`}`)
+                })
+
+                iw(() => {
+                    sb.l(`sqlSelect(): string {`)
+
+                    iw(() => {
+                        sb.l('return `')
+
+                        iw(() => {
+                            new BoundedSqliteGenerator(this.bounded, sb).genSelect(type)
+                        })
+
+                        sb.l('`')
+                    })
+
+                    sb.l(`}`)
+                })
             }
-        }
-
-        if (content !== '') {
-            content += '\n'
-        }
-
-        content += `export class ${name} {\n`
-
-        for (const prop of type.properties) {
-            const pname = this.resolveTsVar(prop)
-            const ptype = this.resolveType(prop)
-            content += `    ${pname}: ${ptype}\n`
-        }
-        content += `\n`
-
-        content += `    constructor(args: {\n`
-        for (const prop of type.properties) {
-            const pname = this.resolveTsVar(prop)
-            const ptype = this.resolveType(prop)
-            content += `        ${pname}: ${ptype}\n`
-        }
-
-        content += `    }) {`
-        for (const prop of type.properties) {
-            const pname = this.resolveTsVar(prop)
-            content += `        this.${pname} = args.${pname}\n`
-        }
-        content += `    }\n\n`
-
-
-        content += `    validate(): Error[] {\n`
-        content += `        const errors: Error[] = []\n\n`
-        for (const prop of type.properties) {
-            content += this.validator.validate(prop, { vprefix: "this." })
-            content += `\n`
-        }
-
-        content += `\n`
-        content += `        return errors\n`
-        content += `    }\n\n`
-
-        content += `    sqlCreate(): string {\n`
-        content += `        return \``
-        content += this.sql.genTable(type)
-        content += `        \``
-        content += `\n}\n`
-
-        content += `}`
-
-        return content
+        })
+        sb.l(`}`)
     }
-
 
     resolveClientPath(type: BI.BoundedType): string {
         let name = this.resolveType(type)
@@ -198,6 +210,7 @@ export class TsGenerator {
             case 'string':
                 name = `string`
                 break
+            case 'integer':
             case 'number':
                 name = `number`
                 break
@@ -243,35 +256,36 @@ export class TsValidators {
         this.nv = new TsNumberValidators(this, bounded)
     }
 
-    validate(type: BI.BoundedType, o?: ValidatorOptions): string {
+    validate(type: BI.BoundedType, sb: StringBuffer, o?: ValidatorOptions) {
         let results = ''
 
         switch (type.kind) {
             case 'object':
-                this.optional(type, o)
-                this.ov.sub(type, o)
+                this.optional(type, sb, o)
+                this.ov.sub(type, sb, o)
                 break
             case 'string':
-                results += this.optional(type, o)
-                results += this.sv.max(type, o)
-                results += this.sv.min(type, o)
-                results += this.sv.anyOf(type, o)
+                results += this.optional(type, sb, o)
+                results += this.sv.max(type, sb, o)
+                results += this.sv.min(type, sb, o)
+                results += this.sv.anyOf(type, sb, o)
                 break
             case 'array':
-                results += this.optional(type, o)
-                results += this.av.min(type, o)
-                results += this.av.max(type, o)
-                results += this.av.items(type, o)
+                results += this.optional(type, sb, o)
+                results += this.av.min(type, sb, o)
+                results += this.av.max(type, sb, o)
+                results += this.av.items(type, sb, o)
                 break
             case 'ref':
-                results += this.optional(type, o)
-                results += this.rv.validate(type, o)
+                results += this.optional(type, sb, o)
+                results += this.rv.validate(type, sb, o)
                 break
+            case 'integer':
             case 'number':
-                results += this.optional(type, o)
-                results += this.nv.min(type, o)
-                results += this.nv.max(type, o)
-                results += this.nv.anyOf(type, o)
+                results += this.optional(type, sb, o)
+                results += this.nv.min(type, sb, o)
+                results += this.nv.max(type, sb, o)
+                results += this.nv.anyOf(type, sb, o)
                 break
             default:
                 throw new Error(`invalid type ${JSON.stringify(type)}`)
@@ -280,19 +294,20 @@ export class TsValidators {
         return results
     }
 
-    optional(type: BI.BoundedType, o?: ValidatorOptions): string {
+    optional(type: BI.BoundedType, sb: StringBuffer, o?: ValidatorOptions) {
         const vname = this.vname(type, o)
         const dname = this.dname(type, o)
-        let text = ''
-
 
         if (!type.optional) {
-            text += `if(${vname} === undefined || ${vname} === null) {\n`
-            text += `    errors.push(new Error('${dname} is required'))\n`
-            text += `}\n\n`
+            sb.l(`if(${vname} === undefined || ${vname} === null) {`)
+            {
+                sb.indent()
+                sb.l(`errors.push(new Error('${dname} is required'))`)
+                sb.dedent()
+            }
+            sb.l(`}`)
+            sb.nl()
         }
-
-        return text
     }
 
     vname(type: BI.BoundedType, o?: ValidatorOptions): string {
@@ -317,62 +332,65 @@ class TsArrayValidators {
         this.bounded = bounded
     }
 
-    min(type: BI.BoundedArray, o?: ValidatorOptions): string {
-        let text = ''
-
+    min(type: BI.BoundedArray, sb: StringBuffer, o?: ValidatorOptions) {
         if (type.min) {
             const vname = this.parent.vname(type, o)
             const dname = this.parent.dname(type, o)
 
             if (type.optional)
-                text += `if(${vname} && ${vname}.length < ${type.min}) {\n`
+                sb.l(`if(${vname} && ${vname}.length < ${type.min}) {`)
             else
-                text += `if(${vname}.length < ${type.min}) { \n`
-            text += `    errors.push(new Error('${dname} length is less than ${type.min} items'))\n`
-            text += `}\n\n`
+                sb.l(`if(${vname}.length < ${type.min}) {`)
+            sb.indent()
+            sb.l(`errors.push(new Error('${dname} length is less than ${type.min} items'))`)
+            sb.dedent()
+            sb.l(`}`)
+            sb.nl()
         }
-
-        return text
     }
 
-    max(type: BI.BoundedArray, o?: ValidatorOptions): string {
-        let text = ''
-
+    max(type: BI.BoundedArray, sb: StringBuffer, o?: ValidatorOptions) {
         if (type.max) {
             const vname = this.parent.vname(type, o)
             const dname = this.parent.dname(type, o)
 
             if (type.optional)
-                text += `if(${vname} && ${vname}.length < ${type.max}) {\n`
+                sb.l(`if(${vname} && ${vname}.length < ${type.max}) {`)
             else
-                text += `if(${vname}.length < ${type.max}) { \n`
-            text += `    errors.push(new Error('${dname} length is greater than ${type.max} items'))\n`
-            text += `}\n\n`
+                sb.l(`if(${vname}.length < ${type.max}) {`)
+            {
+                sb.indent()
+                sb.l(`errors.push(new Error('${dname} length is greater than ${type.max} items'))`)
+                sb.dedent()
+            }
+            sb.l(`}`)
+            sb.nl()
         }
-
-        return text
     }
 
-    items(type: BI.BoundedArray, o?: ValidatorOptions): string {
-        let text = ''
+    items(type: BI.BoundedArray, sb: StringBuffer, o?: ValidatorOptions) {
         const vname = this.parent.vname(type, o)
 
-
         if (type.optional)
-            text += `if(${vname})`
+            sb.l(`if(${vname}) {`)
+        else
+            sb.l(`{`)
 
-        text += `{\n`
-        text += `   for(const item of ${vname}) {`
-        text += this.parent.validate(type.items, { vname: 'item' })
-        text += `   }`
-
-        text += `}\n\n`
-
-        return text
-
+        {
+            sb.indent()
+            sb.l(`for(const item of ${vname}) {`)
+            {
+                sb.indent()
+                this.parent.validate(type.items, sb, { vname: 'item' })
+                sb.dedent()
+            }
+            sb.l(`}`)
+            sb.dedent()
+            sb.nl()
+        }
+        sb.l(`}`)
     }
 }
-
 
 class TsObjectValidators {
     parent: TsValidators
@@ -383,22 +401,22 @@ class TsObjectValidators {
         this.bounded = bounded
     }
 
-    sub(type: BI.BoundedObject, o?: ValidatorOptions): string {
-        let text = ''
-
+    sub(type: BI.BoundedObject, sb: StringBuffer, o?: ValidatorOptions) {
         const vname = this.parent.vname(type, o)
         // const dname = this.parent.dname(type, o)
 
         if (type.optional)
-            text += `if(${vname})`
+            sb.a(`if(${vname})`)
 
-        text += '{\n'
-        text += `    const ${name}Errors = ${vname}.validate()\n`
-        text += `    errors.push(...${name}Errors)\n`
-        text += `}\n\n`
-
-
-        return text
+        sb.l('{')
+        {
+            sb.indent()
+            sb.l(`const ${name}Errors = ${vname}.validate()`)
+            sb.l(`errors.push(...${name}Errors)`)
+            sb.dedent()
+        }
+        sb.l(`}`)
+        sb.nl()
     }
 }
 
@@ -411,22 +429,22 @@ class TsRefValidators {
         this.bounded = bounded
     }
 
-    validate(type: BI.BoundedRef, o?: ValidatorOptions): string {
-        let text = ''
-
+    validate(type: BI.BoundedRef, sb: StringBuffer, o?: ValidatorOptions) {
         const vname = this.parent.vname(type, o)
         // const dname = this.parent.dname(type, o)
 
         if (type.optional)
-            text += `if(${vname})`
+            sb.a(`if(${vname})`)
 
-        text += '{\n'
-        text += `    const ${name}Errors = ${vname}.validate()\n`
-        text += `    errors.push(...${name}Errors)\n`
-        text += `}\n`
-
-
-        return text
+        sb.l('{')
+        {
+            sb.indent()
+            sb.l(`const ${name}Errors = ${vname}.validate()`)
+            sb.l(`errors.push(...${name}Errors)`)
+            sb.dedent()
+        }
+        sb.l(`}`)
+        sb.nl()
     }
 }
 
@@ -439,74 +457,83 @@ class TsNumberValidators {
         this.bounded = bounded
     }
 
-    min(type: BI.BoundedNumber, o?: ValidatorOptions): string {
-        let text = ''
-
+    min(type: BI.BoundedNumber | BI.BoundedInteger, sb: StringBuffer, o?: ValidatorOptions) {
         if (type.min || type.min === 0) {
             const vname = this.parent.vname(type, o)
             const dname = this.parent.dname(type, o)
 
             if (type.optional)
-                text += `if(${vname} && ${vname} < ${type.min}) {\n`
+                sb.l(`if(${vname} && ${vname} < ${type.min}) {`)
             else
-                text += `if(${vname} < ${type.min}) { \n`
-            text += `    errors.push(new Error('${dname} length is less than ${type.min}'))\n`
-            text += `}\n\n`
+                sb.l(`if(${vname} < ${type.min}) { `)
+            {
+                sb.indent()
+                sb.l(`    errors.push(new Error('${dname} length is less than ${type.min}'))`)
+                sb.dedent()
+            }
+            sb.l(`}`)
+            sb.nl()
         }
-
-        return text
     }
 
-    max(type: BI.BoundedNumber, o?: ValidatorOptions): string {
-        let text = ''
-
+    max(type: BI.BoundedNumber | BI.BoundedInteger, sb: StringBuffer, o?: ValidatorOptions) {
         if (type.max) {
             const vname = this.parent.vname(type, o)
             const dname = this.parent.dname(type, o)
 
             if (type.optional)
-                text += `if(${vname} && ${vname} > ${type.max}) {\n`
+                sb.l(`if(${vname} && ${vname} > ${type.max}) {`)
             else
-                text += `if(${vname} > ${type.max}) {\n`
+                sb.l(`if(${vname} > ${type.max}) {`)
 
-            text += `    errors.push(new Error('${dname} length is less than ${type.max}'))\n`
-            text += `}\n\n`
+            {
+                sb.indent()
+                sb.l(`errors.push(new Error('${dname} length is less than ${type.max}'))`)
+                sb.dedent()
+            }
+            sb.l(`}`)
+            sb.nl()
         }
-
-        return text
     }
 
-    anyOf(type: BI.BoundedNumber, o?: ValidatorOptions): string {
-        let text = ''
-
+    anyOf(type: BI.BoundedNumber | BI.BoundedInteger, sb: StringBuffer, o?: ValidatorOptions) {
         if (type.anyOf) {
             const vname = this.parent.vname(type, o)
             const dname = this.parent.dname(type, o)
             const values = type.anyOf.join(', ')
 
             if (type.optional)
-                text += `if(${name})`
+                sb.l(`if(${name})`)
 
-            text += ` {\n`
-
-            text += `    let found = false\n`
-            text += `    for(const v of [${values}]) {\n`
-            text += `       if(${vname} == v) {\n`
-            text += `           found = true\n`
-            text += `           break\n`
-            text += `       }\n`
-            text += `    }\n`
-            text += `\n`
-            text += `    if(!found) {\n`
-            text += `        errors.push(new Error('${dname} does not include one of ${values}}'))\n`
-            text += `    }\n`
-            text += `}\n\n`
+            sb.l(` {`)
+            {
+                sb.indent()
+                sb.l(`let found = false`)
+                sb.l(`for(const v of [${values}]) {`)
+                {
+                    sb.indent()
+                    sb.l(`       if(${vname} == v) {`)
+                    {
+                        sb.indent()
+                        sb.l(`           found = true`)
+                        sb.l(`           break`)
+                        sb.dedent()
+                    }
+                    sb.l(`       }`)
+                    sb.l(`    }`)
+                    sb.dedent()
+                }
+                sb.l(``)
+                sb.l(`    if(!found) {`)
+                sb.l(`        errors.push(new Error('${dname} does not include one of ${values}}'))`)
+                sb.l(`    }`)
+                sb.dedent()
+            }
+            sb.l(`}`)
+            sb.nl()
         }
-
-        return text
     }
 }
-
 
 class TsStringValidators {
     parent: TsValidators
@@ -517,45 +544,41 @@ class TsStringValidators {
         this.bounded = bounded
     }
 
-    min(type: BI.BoundedString, o?: ValidatorOptions): string {
-        let text = ''
+    min(type: BI.BoundedString, sb: StringBuffer, o?: ValidatorOptions) {
+
 
         if (type.min) {
             const vname = this.parent.vname(type, o)
             const dname = this.parent.dname(type, o)
 
             if (type.optional)
-                text += `if(${vname} && ${vname}.length < ${type.min}) {\n`
+                sb.l(`if(${vname} && ${vname}.length < ${type.min}) {`)
             else
-                text += `if(${vname}.length < ${type.min}) { \n`
-            text += `    errors.push(new Error('${dname} length is less than ${type.min} characters'))\n`
-            text += `}\n\n`
+                sb.l(`if(${vname}.length < ${type.min}) { `)
+            sb.l(`    errors.push(new Error('${dname} length is less than ${type.min} characters'))`)
+            sb.l(`}`)
+            sb.nl()
         }
-
-        return text
     }
 
-    max(type: BI.BoundedString, o?: ValidatorOptions): string {
-        let text = ''
-
+    max(type: BI.BoundedString, sb: StringBuffer, o?: ValidatorOptions) {
         if (type.max) {
             const vname = this.parent.vname(type, o)
             const dname = this.parent.dname(type, o)
 
             if (type.optional)
-                text += `if(${vname} && ${vname}.length > ${type.max}) {\n`
+                sb.l(`if(${vname} && ${vname}.length > ${type.max}) {`)
             else
-                text += `if(${vname}.length > ${type.max}) {\n`
+                sb.l(`if(${vname}.length > ${type.max}) {`)
 
-            text += `    errors.push(new Error('${dname} length is less than ${type.max} characters'))\n`
-            text += `}\n\n`
+            sb.l(`    errors.push(new Error('${dname} length is less than ${type.max} characters'))`)
+            sb.l(`}`)
+            sb.nl()
         }
-
-        return text
     }
 
-    anyOf(type: BI.BoundedString, o?: ValidatorOptions): string {
-        let text = ''
+    anyOf(type: BI.BoundedString, sb: StringBuffer, o?: ValidatorOptions) {
+
 
         if (type.anyOf) {
             const vname = this.parent.vname(type, o)
@@ -563,28 +586,27 @@ class TsStringValidators {
             const values = type.anyOf.map(x => stringUtils.doubleQuote(x)).join(', ')
 
             if (type.optional)
-                text += `if(${name})`
+                sb.l(`if(${name})`)
 
-            text += ` {\n`
+            sb.l(` {`)
 
-            text += `    let found = false\n`
-            text += `    for(const v of [${values}])\n`
-            text += `    if(${vname}.includes(v)) {\n`
-            text += `        found = true\n`
-            text += `        break\n`
-            text += `    }\n`
-            text += `\n`
-            text += `    if(!found) {\n`
-            text += `        errors.push(new Error('${dname} does not include one of ${values}}'))\n`
-            text += `    }\n`
-            text += `}\n\n`
+            sb.l(`    let found = false`)
+            sb.l(`    for(const v of [${values}])`)
+            sb.l(`    if(${vname}.includes(v)) {`)
+            sb.l(`        found = true`)
+            sb.l(`        break`)
+            sb.l(`    }`)
+            sb.l(``)
+            sb.l(`    if(!found) {`)
+            sb.l(`        errors.push(new Error('${dname} does not include one of ${values}}'))`)
+            sb.l(`    }`)
+            sb.l(`}`)
+            sb.nl()
         }
-
-        return text
     }
 
-    oneOf(type: BI.BoundedString, o?: ValidatorOptions): string {
-        let text = ''
+    oneOf(type: BI.BoundedString, sb: StringBuffer, o?: ValidatorOptions) {
+
 
         if (type.oneOf) {
             const vname = this.parent.vname(type, o)
@@ -592,29 +614,28 @@ class TsStringValidators {
             const values = type.oneOf.map(x => stringUtils.doubleQuote(x)).join(', ')
 
             if (type.optional)
-                text += `if(${name})`
+                sb.l(`if(${name})`)
 
-            text += ` {\n`
+            sb.l(` {`)
 
-            text += `    let found: string[] = []\n`
-            text += `    for(const v of [${values}])\n`
-            text += `    if(${vname}.includes(v)) {\n`
-            text += `        found.push(v)\n`
-            text += `    }\n`
-            text += `\n`
-            text += `    switch(found.length) {\n`
-            text += `       case 0:\n`
-            text += `           errors.push(new Error('${dname} does not include one of ${values}}'))\n`
-            text += `           break\n`
-            text += `       case 1:\n`
-            text += `           break\n`
-            text += `       default:\n`
-            text += `           const founds = found.join(',')`
-            text += `           errors.push(new Error('${dname} includes ' + founds + ', more than one of ${values}}'))\n`
-            text += `    }\n`
-            text += `}\n\n`
+            sb.l(`    let found: string[] = []`)
+            sb.l(`    for(const v of [${values}])`)
+            sb.l(`    if(${vname}.includes(v)) {`)
+            sb.l(`        found.push(v)`)
+            sb.l(`    }`)
+            sb.l(``)
+            sb.l(`    switch(found.length) {`)
+            sb.l(`       case 0:`)
+            sb.l(`           errors.push(new Error('${dname} does not include one of ${values}}'))`)
+            sb.l(`           break`)
+            sb.l(`       case 1:`)
+            sb.l(`           break`)
+            sb.l(`       default:`)
+            sb.l(`           const founds = found.join(',')`)
+            sb.l(`           errors.push(new Error('${dname} includes ' + founds + ', more than one of ${values}}'))`)
+            sb.l(`    }`)
+            sb.l(`}`)
+            sb.nl()
         }
-
-        return text
     }
 }
