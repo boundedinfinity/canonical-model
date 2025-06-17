@@ -1,194 +1,153 @@
 import { assertEquals } from "@std/assert";
-import { SqliteGenerator, SqlColumnType, SqlOrderingTerm } from './sqlite-gen-model.ts'
-import { StringBuffer } from './utils.ts'
+import * as SQL from './sqlite-gen-model.ts'
+import { StringBuffer, stringUtils as su } from './utils.ts'
 
 function save(file: string, text: string) {
     const encoder = new TextEncoder();
     Deno.writeFileSync(file, encoder.encode(text))
 }
 
-function normal(text: string): string {
-    return text
-        .trim()
-        .split('\n')
-        .map(line => line.trim())
-        .filter(line => line !== '')
-        .join('\n')
-        .trim()
+function createTable1(): SQL.SqlTable {
+    return {
+        name: 'name_prefix',
+        columns: [
+            { name: 'id', type: SQL.SqlColumnType.Text, primaryKey: true },
+            { name: 'name', type: SQL.SqlColumnType.Text, indexed: true, unique: true },
+            { name: 'description', type: SQL.SqlColumnType.Text, optional: true }
+        ],
+    }
+}
+
+function createTable2(): SQL.SqlTable {
+    return {
+        name: 'name_prefix__abbr',
+        columns: [
+            { name: 'name_prefix__id', type: SQL.SqlColumnType.Text, primaryKey: true },
+            { name: 'abbr', type: SQL.SqlColumnType.Text, indexed: true },
+            { name: 'index', type: SQL.SqlColumnType.Integer },
+        ],
+        constraints: []
+    }
 }
 
 Deno.test('Generate create table', () => {
     const sb = new StringBuffer()
-    new SqliteGenerator(sb).tables([
-        {
-            name: 'name_prefix',
-            columns: [
-                { column: 'id', type: SqlColumnType.Text },
-                { column: 'name', type: SqlColumnType.Text },
-                { column: 'description', type: SqlColumnType.Text }
-            ],
-            constraints: [
-                { kind: 'primary-key', columns: ['id'] },
-                { kind: 'unique-key', columns: ['name'] }
-            ],
+    const sql = new SQL.SqliteGenerator(sb)
+    const table1 = createTable1()
+    const table2 = createTable2()
 
-        },
-        {
-            name: 'name_prefix__abbr',
-            columns: [
-                { column: 'name_prefix__id', type: SqlColumnType.Text },
-                { column: 'abbr', type: SqlColumnType.Text },
-                { column: 'index', type: SqlColumnType.Integer },
-            ],
-            constraints: [
-                {
-                    kind: 'foreign-key',
-                    column: 'id',
-                    reference: {
-                        column: 'name_prefix__id',
-                        table: 'name_prefix__abbr',
-                    }
-
-                },
-                { kind: 'unique-key', columns: ['index'] }
-            ],
+    table2.constraints?.push({
+        kind: 'foreign-key',
+        column: sql.getPrimaryKeys(table2)[0],
+        reference: {
+            table: table1,
+            column: sql.getPrimaryKeys(table1)[0]
         }
-    ])
+    })
+
+    sql.tables([table1, table2])
 
     save('./gen-output/generate-table.gen.sql', sb.toString())
 
-    assertEquals(normal(sb.toString()), normal(`
+    assertEquals(su.test.normal(sb.toString()), su.test.normal(`
         Teest
     `))
 })
 
 Deno.test('Generate create index', () => {
+    const table1 = createTable1()
+    const table2 = createTable2()
     const sb = new StringBuffer()
-    new SqliteGenerator(sb).indexes([
+    const sql = new SQL.SqliteGenerator(sb)
+
+    sql.indexes([
         {
-            table: 'name_prefix',
-            column: 'name'
+            table: table1,
         },
         {
-            table: 'name_prefix__abbr',
-            column: 'abbr',
-            unique: true
+            table: table2,
+            columns: [sql.getColumnByName(table2, 'abbr')!],
         },
     ])
 
     save('./gen-output/generate-index.gen.sql', sb.toString())
 
-    assertEquals(normal(sb.toString()), normal(`
-        Teest
+    assertEquals(su.test.normal(sb.toString()), su.test.normal(`
+        Test
     `))
 })
 
 Deno.test('Generate insert', () => {
     const sb = new StringBuffer()
-    new SqliteGenerator(sb).inserts([
-        {
-            table: 'name_prefix',
-            values: [
-                { column: 'id', value: { kind: 'sql-parameter', name: 'id' } },
-                { column: 'name', value: { kind: 'sql-parameter', index: 0 } },
-                { column: 'description', value: { kind: 'sql-parameter' } },
-                { column: 'arg1', value: { kind: 'text', value: 'arg1' } },
-                { column: 'arg2', value: { kind: 'numeric', value: 42 } },
-            ]
-        },
-        {
-            table: 'name_prefix__abbr',
-            values: [
-                { column: 'name_prefix__id', value: { kind: 'sql-parameter', name: 'id' } },
-                { column: 'abbr', value: { kind: 'text', value: 'Mr.' } },
-                { column: 'index', value: { kind: 'integer', value: 0 } },
-            ]
-        },
-
-    ])
+    const sql = new SQL.SqliteGenerator(sb)
+    const table1 = createTable1()
+    const table2 = createTable2()
+    sql.inserts([{ table: table1 }, { table: table2 }])
 
     save('./gen-output/generate-insert.gen.sql', sb.toString())
 
-    assertEquals(normal(sb.toString()), normal(`
+    assertEquals(su.test.normal(sb.toString()), su.test.normal(`
         Teest
     `))
 })
 
 Deno.test('Generate update', () => {
     const sb = new StringBuffer()
-    new SqliteGenerator(sb).updates([
-        {
-            table: 'name_prefix',
-            values: [
-                { column: 'name', value: { kind: 'sql-parameter', index: 0 } },
-                { column: 'description', value: { kind: 'sql-parameter' } },
-            ],
-            where: {
-                kind: 'equal',
-                column: 'id',
-                value: { kind: 'sql-parameter' }
-            }
-        },
-
-    ])
+    const sql = new SQL.SqliteGenerator(sb)
+    const table1 = createTable1()
+    const table2 = createTable2()
+    sql.updates([{ table: table1 }, { table: table2 }])
 
     save('./gen-output/generate-update.gen.sql', sb.toString())
 
-    assertEquals(normal(sb.toString()), normal(`
+    assertEquals(su.test.normal(sb.toString()), su.test.normal(`
         Teest
     `))
 })
 
 Deno.test('Generate delete', () => {
     const sb = new StringBuffer()
-    new SqliteGenerator(sb).deletes([
-        {
-            table: 'name_prefix',
-            where: {
-                kind: 'equal',
-                column: 'id',
-                value: { kind: 'sql-parameter' }
-            }
-        },
-
-    ])
+    const sql = new SQL.SqliteGenerator(sb)
+    const table1 = createTable1()
+    const table2 = createTable2()
+    sql.deletes([{ table: table1 }, { table: table2 }])
 
     save('./gen-output/generate-delete.gen.sql', sb.toString())
 
-    assertEquals(normal(sb.toString()), normal(`
+    assertEquals(su.test.normal(sb.toString()), su.test.normal(`
         Teest
     `))
 })
 
 Deno.test('Generate select', () => {
     const sb = new StringBuffer()
-    new SqliteGenerator(sb).selects([
+    const sql = new SQL.SqliteGenerator(sb)
+    const table1 = createTable1()
+    const table2 = createTable2()
+    sql.selects([
+        // {
+        //     table: table1,
+        //     where: {
+        //         kind: 'equal',
+        //         column: sql.getColumnByName(table1, 'id')!,
+        //         value: { kind: 'sql-parameter' }
+        //     }
+        // },
         {
-            table: 'name_prefix',
-            columns: [
-                'id'
-            ],
-            where: {
-                kind: 'equal',
-                column: 'id',
-                value: { kind: 'sql-parameter' }
-            }
-        },
-        {
-            table: 'name_prefix',
-            columns: [
-                'id', 'name'
-            ],
+            table: table2,
+            columns: [sql.getColumnByName(table1, 'name')!],
             where: {
                 kind: 'and',
                 expressions: [
                     {
                         kind: 'equal',
-                        column: 'id',
+                        column: sql.getColumnByName(table1, 'id')!,
                         value: { kind: 'sql-parameter', name: 'id' }
                     },
                     {
-                        kind: 'in', column: 'name', values: [
+                        kind: 'in',
+                        column: sql.getColumnByName(table1, 'name')!,
+                        values: [
                             { kind: 'text', value: 'a' },
                             { kind: 'text', value: 'b' }
                         ]
@@ -197,18 +156,18 @@ Deno.test('Generate select', () => {
                         kind: 'or', expressions: [
                             {
                                 kind: 'between',
-                                column: 'id',
+                                column: sql.getColumnByName(table1, 'id')!,
                                 lower: { kind: 'text', value: 'a' },
                                 upper: { kind: 'text', value: 'z' }
                             },
                             {
                                 kind: 'greater-than',
-                                column: 'id',
+                                column: sql.getColumnByName(table1, 'id')!,
                                 value: { kind: 'numeric', value: 1 }
                             },
                             {
                                 kind: 'greater-than',
-                                column: 'id',
+                                column: sql.getColumnByName(table1, 'id')!,
                                 value: { kind: 'ts-interpolation-text', name: 'id' }
                             }
                         ]
@@ -218,15 +177,24 @@ Deno.test('Generate select', () => {
             joins: [
                 {
                     kind: 'join-on',
-                    column: 'id',
-                    reference: { table: 'name_prefix__abbr', column: 'name_prefix__id' }
+                    column: sql.getColumnByName(table1, 'id')!,
+                    reference: {
+                        table: table1,
+                        column: sql.getColumnByName(table1, 'id')!,
+                    }
                 },
                 {
                     kind: 'join-using',
-                    reference: { table: 'table', column: 'column' }
+                    reference: {
+                        table: table1,
+                        column: sql.getColumnByName(table1, 'id')!,
+                    }
                 }
             ],
-            orderBy: { column: 'id', term: SqlOrderingTerm.Asc },
+            orderBy: {
+                column: sql.getColumnByName(table1, 'id')!,
+                term: SQL.SqlOrderingTerm.Asc
+            },
             limit: {
                 expression: { kind: 'literal-value', value: { kind: 'numeric', value: 10 } },
                 offset: { kind: 'literal-value', value: { kind: 'numeric', value: 100 } }
@@ -236,7 +204,7 @@ Deno.test('Generate select', () => {
 
     save('./gen-output/generate-select.gen.sql', sb.toString())
 
-    assertEquals(normal(sb.toString()), normal(`
+    assertEquals(su.test.normal(sb.toString()), su.test.normal(`
         Teest
     `))
 })

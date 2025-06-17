@@ -86,6 +86,7 @@ Deno.test('Generate bounded object', () => {
                         min: 1,
                         max: 10,
                         indexed: true,
+                        searchable: true
                     }
                 },
                 {

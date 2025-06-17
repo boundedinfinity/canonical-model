@@ -29,7 +29,6 @@ export interface BoundedRef {
     name?: string
     optional?: boolean
     ref: string
-    searchable?: boolean
 }
 
 export interface BoundedArray {
@@ -40,7 +39,6 @@ export interface BoundedArray {
     optional?: boolean
     min?: number
     max?: number
-    searchable?: boolean
 }
 
 export interface BoundedString {
@@ -61,6 +59,26 @@ export interface BoundedString {
     endsWith?: string
     matches?: string
     searchable?: boolean
+
+    // validation?: {
+    //     unique?: boolean
+    //     optional?: boolean
+    //     min?: number
+    //     max?: number
+    //     anyOf?: string[]
+    //     oneOf?: string[]
+    //     allOf?: string[]
+    //     noneOf?: string[]
+    //     startsWith?: string
+    //     endsWith?: string
+    //     matches?: string
+    // },
+    // query?: {
+    //     primaryKey?: boolean
+    //     indexed?: boolean
+    //     equal?: boolean
+    //     contains?: boolean
+    // }
 }
 
 export interface BoundedInteger {

@@ -1,10 +1,33 @@
 import _ from 'lodash'
 
+export function ce<T>(s: string, type: T): Error {
+    return new Error(`${s}: ${JSON.stringify(type)}`)
+}
+
 export type Prettify<T> = {
     [K in keyof T]: T[K];
     // deno-lint-ignore ban-types
 } & {};
 
+
+export function fnwrap(pre: () => void, post: () => void, run: () => void) {
+    try {
+        pre()
+        run()
+    } finally {
+        post()
+    }
+}
+
+export function indenter(sb: StringBuffer): (run: () => void) => void {
+    return function (run: () => void) {
+        fnwrap(
+            () => sb.indent(),
+            () => sb.dedent(),
+            run
+        )
+    }
+}
 
 export type StringBufferOptions = {
     indent: number
@@ -80,7 +103,12 @@ export class StringBuffer {
         }
     }
 
-    nl() { this.lines.push('') }
+    nl(n?: number) {
+        const c = n ?? 1
+
+        for (let i = 0; i < c; i++)
+            this.lines.push('')
+    }
 
     toString(): string {
         return this.lines.join('\n')
@@ -204,5 +232,22 @@ export const stringUtils = {
         result = result.trim()
         result = result.replace(/ +/, ' ')
         return result
+    },
+    unique: function (strs: string[]): string[] {
+        let result = [...strs]
+        result = [...new Set(result)]
+        return result
+    },
+    test: {
+        normal: function (text: string): string {
+            return text
+                .trim()
+                .split('\n')
+                .map(line => line.trim())
+                .filter(line => line !== '')
+                .join('\n')
+                .trim()
+        }
     }
 }
+
