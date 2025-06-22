@@ -7,10 +7,12 @@
     "npm:@prettier/sync@~0.5.5": "0.5.5_prettier@3.5.3",
     "npm:@types/lodash@^4.17.17": "4.17.17",
     "npm:@types/node@*": "22.15.15",
+    "npm:@types/typescript@2": "2.0.0",
     "npm:handlebars@^4.7.8": "4.7.8",
     "npm:lodash@^4.17.21": "4.17.21",
     "npm:prettier@^3.5.3": "3.5.3",
     "npm:typescript-formatter@^7.2.2": "7.2.2_typescript@5.8.3",
+    "npm:typescript@^5.8.3": "5.8.3",
     "npm:zod@^3.25.56": "3.25.56"
   },
   "jsr": {
@@ -43,6 +45,13 @@
       "dependencies": [
         "undici-types"
       ]
+    },
+    "@types/typescript@2.0.0": {
+      "integrity": "sha512-WMEWfMISiJ2QKyk5/dSdgL0ZwP//PZj0jmDU0hMh51FmLq4WIYzjlngsUQZXejQL+QtkXJUOGjb3G3UCvgZuSQ==",
+      "dependencies": [
+        "typescript"
+      ],
+      "deprecated": true
     },
     "commander@2.20.3": {
       "integrity": "sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ=="
@@ -144,10 +153,12 @@
       "jsr:@std/assert@1",
       "npm:@prettier/sync@~0.5.5",
       "npm:@types/lodash@^4.17.17",
+      "npm:@types/typescript@2",
       "npm:handlebars@^4.7.8",
       "npm:lodash@^4.17.21",
       "npm:prettier@^3.5.3",
       "npm:typescript-formatter@^7.2.2",
+      "npm:typescript@^5.8.3",
       "npm:zod@^3.25.56"
     ]
   }

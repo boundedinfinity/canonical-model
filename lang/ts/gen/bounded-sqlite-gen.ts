@@ -1,18 +1,19 @@
 import * as BI from './bounded-model.ts'
+import { BoundedGenerator } from './bounded-gen.ts'
 import { TsNamer } from './namer.ts'
 import { StringBuffer, type StringBufferOptions, ce } from "./utils.ts";
-import * as SQL from './sqlite-gen-model.ts'
+import * as SQL from './sqlite-gen.ts'
 
 type BoundedSqlGeneratorOptions = StringBufferOptions
 
 export class BoundedSqliteGenerator {
     options: BoundedSqlGeneratorOptions
-    bounded: BI.BoundedGenerator
+    bounded: BoundedGenerator
     namer = new TsNamer()
     sql: SQL.SqliteGenerator
     sb: StringBuffer
 
-    constructor(bounded: BI.BoundedGenerator, sb: StringBuffer, options?: Partial<BoundedSqlGeneratorOptions>) {
+    constructor(bounded: BoundedGenerator, sb: StringBuffer, options?: Partial<BoundedSqlGeneratorOptions>) {
         this.bounded = bounded
         this.options = {
             indent: 0,

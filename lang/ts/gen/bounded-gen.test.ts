@@ -1,5 +1,5 @@
 import { assertEquals } from "@std/assert";
-import { BoundedGenerator } from './bounded-model.ts'
+import { BoundedGenerator } from './bounded-gen.ts'
 
 function save(file: string, text: string) {
     const encoder = new TextEncoder();
@@ -17,7 +17,7 @@ function normal(text: string): string {
 }
 
 Deno.test('Generate bounded object', () => {
-    const actual = new BoundedGenerator().gen(
+    const actual = new BoundedGenerator().emit(
         {
             kind: 'object',
             name: 'Label',
@@ -111,7 +111,7 @@ Deno.test('Generate bounded object', () => {
     )
 
     for (const [path, content] of Object.entries(actual)) {
-        save(`./gen-output/${path}`, content)
+        save(path, content)
     }
     const x = 1
 

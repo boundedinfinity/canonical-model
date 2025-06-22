@@ -247,6 +247,10 @@ export const stringUtils = {
                 .filter(line => line !== '')
                 .join('\n')
                 .trim()
+        },
+        save: function (file: string, text: string) {
+            const encoder = new TextEncoder();
+            Deno.writeFileSync(file, encoder.encode(text))
         }
     }
 }
