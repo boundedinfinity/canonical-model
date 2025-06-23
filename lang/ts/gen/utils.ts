@@ -19,16 +19,6 @@ export function fnwrap(pre: () => void, post: () => void, run: () => void) {
     }
 }
 
-export function indenter(sb: StringBuffer): (run: () => void) => void {
-    return function (run: () => void) {
-        fnwrap(
-            () => sb.indent(),
-            () => sb.dedent(),
-            run
-        )
-    }
-}
-
 export type StringBufferOptions = {
     indent: number
     tabSize: number
@@ -44,6 +34,21 @@ export class StringBuffer {
             tabSize: 4,
             ...options
         }
+    }
+
+    i(run: () => void) {
+        fnwrap(
+            () => this.indent(),
+            () => this.dedent(),
+            run
+        )
+    }
+
+    merge(sb: StringBuffer | string) {
+        if (typeof sb == 'string')
+            this.lines.push(...sb.split('\n'))
+        else
+            this.lines.push(...sb.lines)
     }
 
     indent(n?: number) {

@@ -12,9 +12,11 @@ export class BoundedTsGenerator {
     bounded: BoundedGenerator
     namer = new TsNamer()
     tsGen = new TS.TsGenerator()
+    sqlGen: BoundedSqliteGenerator
 
     constructor(bounded: BoundedGenerator) {
         this.bounded = bounded
+        this.sqlGen = new BoundedSqliteGenerator(bounded)
     }
 
     private invalidTypeErr(type: BI.BoundedType): Error {
@@ -303,6 +305,19 @@ export class BoundedTsGenerator {
         }
 
         return lines
+    }
+
+    private emitSqlCreate(type: BI.BoundedObject): TS.TsMethodDecl {
+
+
+        const ctor: TS.TsMethodDecl = {
+            kind: 'method-decl',
+            name: 'sqlCreate',
+            return: 'Error[]',
+
+        }
+
+        return ctor
     }
 
     emitFilename(type: BI.BoundedType, ...path: string[]): string {

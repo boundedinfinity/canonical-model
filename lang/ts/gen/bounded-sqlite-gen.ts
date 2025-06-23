@@ -1,7 +1,7 @@
 import * as BI from './bounded-model.ts'
 import { BoundedGenerator } from './bounded-gen.ts'
 import { TsNamer } from './namer.ts'
-import { StringBuffer, type StringBufferOptions, ce } from "./utils.ts";
+import { type StringBufferOptions, ce } from "./utils.ts";
 import * as SQL from './sqlite-gen.ts'
 
 type BoundedSqlGeneratorOptions = StringBufferOptions
@@ -11,32 +11,32 @@ export class BoundedSqliteGenerator {
     bounded: BoundedGenerator
     namer = new TsNamer()
     sql: SQL.SqliteGenerator
-    sb: StringBuffer
 
-    constructor(bounded: BoundedGenerator, sb: StringBuffer, options?: Partial<BoundedSqlGeneratorOptions>) {
+
+    constructor(bounded: BoundedGenerator, options?: Partial<BoundedSqlGeneratorOptions>) {
         this.bounded = bounded
         this.options = {
             indent: 0,
             tabSize: 4,
             ...options
         }
-        this.sb = sb
-        this.sql = new SQL.SqliteGenerator(this.sb)
+
+        this.sql = new SQL.SqliteGenerator()
     }
 
     genTable(type: BI.BoundedObject) {
-        const primaryTable = this.resolvePrimaryTable(type)
+        const primaryTable = this.getPrimaryTable(type)
         this.sql.table(primaryTable)
         this.sql.index({ table: primaryTable })
 
-        const childTables = this.resolveChildTables(type)
+        const childTables = this.getChildTables(type)
         for (const childTable of childTables) {
             this.sql.table(childTable)
             this.sql.index({ table: childTable })
         }
     }
 
-    private resolveSqlType(type: BI.BoundedType): SQL.SqlColumnType | undefined {
+    private getSqlType(type: BI.BoundedType): SQL.SqlColumnType | undefined {
         let ctype: SQL.SqlColumnType | undefined
 
         switch (type.kind) {
@@ -59,7 +59,7 @@ export class BoundedSqliteGenerator {
         return ctype
     }
 
-    resolvePrimaryTable(type: BI.BoundedObject): SQL.SqlTable {
+    getPrimaryTable(type: BI.BoundedObject): SQL.SqlTable {
         const name = this.getSqlTableName(type)
         const table: SQL.SqlTable = {
             name,
@@ -69,7 +69,7 @@ export class BoundedSqliteGenerator {
 
         for (const prop of type.properties) {
             const pname = this.getSqlColumnName(prop)
-            const ptype = this.resolveSqlType(prop)
+            const ptype = this.getSqlType(prop)
 
             if (!ptype)
                 continue
@@ -103,9 +103,9 @@ export class BoundedSqliteGenerator {
         return table
     }
 
-    private resolveChildTables(type: BI.BoundedObject): SQL.SqlTable[] {
+    private getChildTables(type: BI.BoundedObject): SQL.SqlTable[] {
         const tables: SQL.SqlTable[] = []
-        const primaryTable = this.resolvePrimaryTable(type)
+        const primaryTable = this.getPrimaryTable(type)
         const primaryKeys = this.sql.getPrimaryKeys(primaryTable)
         const primaryTablePrimaryKey = primaryKeys[0]!
 
@@ -137,7 +137,7 @@ export class BoundedSqliteGenerator {
                     throw new Error(`invalid type ${JSON.stringify(type)}`)
             }
 
-            const columnType = this.resolveSqlType(prop.items)
+            const columnType = this.getSqlType(prop.items)
 
             if (!columnType)
                 continue
@@ -203,8 +203,8 @@ export class BoundedSqliteGenerator {
                 throw new Error(`invalid type ${JSON.stringify(type)}`)
         }
 
-        const primaryTable = this.resolvePrimaryTable(type)
-        const childTables = this.resolveChildTables(type)
+        const primaryTable = this.getPrimaryTable(type)
+        const childTables = this.getChildTables(type)
 
         for (const table of [primaryTable, ...childTables])
             this.sql.update({ table })
@@ -218,9 +218,9 @@ export class BoundedSqliteGenerator {
                 throw new Error(`invalid type ${JSON.stringify(type)}`)
         }
 
-        const primaryTable = this.resolvePrimaryTable(type)
+        const primaryTable = this.getPrimaryTable(type)
         const primaryTableKey = this.sql.getPrimaryKeys(primaryTable)![0]
-        const childTables = this.resolveChildTables(type)
+        const childTables = this.getChildTables(type)
         const joins: SQL.SqlJoin[] = []
         const expressions: SQL.SqlExpr[] = []
 
