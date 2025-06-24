@@ -106,7 +106,6 @@ Deno.test('Generate bounded object', () => {
     for (const [path, content] of Object.entries(actual)) {
         save(path, content)
     }
-    const x = 1
 
     // assertEquals(normal(actual), normal(`
     //     Test

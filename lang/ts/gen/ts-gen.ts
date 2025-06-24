@@ -174,9 +174,9 @@ export const TokenBuilder = {
     }
 }
 
-const utils = {
-    isKeyword: (s: string): boolean => TsKeywords.find(x => x == s) !== undefined
-}
+// const utils = {
+//     isKeyword: (s: string): boolean => TsKeywords.find(x => x == s) !== undefined
+// }
 
 export type TsGeneratorOptions = {
     keywordPrefix: string
