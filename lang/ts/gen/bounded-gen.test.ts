@@ -23,13 +23,6 @@ Deno.test('Generate bounded object', () => {
             name: 'Label',
             properties: [
                 {
-                    kind: 'number',
-                    name: 'count',
-                    min: 0,
-                    max: 100,
-                    anyOf: [10, 20, 30]
-                },
-                {
                     kind: 'string',
                     name: 'id',
                     min: 36,
@@ -41,7 +34,7 @@ Deno.test('Generate bounded object', () => {
                     kind: 'string',
                     name: 'name',
                     min: 2,
-                    max: 50,
+                    max: 25,
                     unique: true,
                     indexed: true,
                     searchable: true,

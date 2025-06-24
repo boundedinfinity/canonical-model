@@ -15,7 +15,6 @@ export class BoundedGenerator {
         }
 
         const process = (t: BoundedType, p?: BoundedType) => {
-            console.log(t)
             switch (t.kind) {
                 case 'ref':
                     if (!(t.ref in this.typeMap))

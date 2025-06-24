@@ -36,10 +36,10 @@ export class StringBuffer {
         }
     }
 
-    i(run: () => void) {
+    i(run: () => void, n?: number) {
         fnwrap(
-            () => this.indent(),
-            () => this.dedent(),
+            () => this.indent(n),
+            () => this.dedent(n),
             run
         )
     }

@@ -1,3 +1,5 @@
+import { StringBuffer } from "./utils.ts";
+
 export type TsSep = ', ' | '\n' | ',\n' | '\n\n'
 
 export type TsRaw = {
@@ -52,9 +54,10 @@ export type TsType = {
     type: TsPrimitiveType | TsObjectType | TsRaw
 }
 
+type TsModifierValue = 'const' | 'export' | 'public' | 'private' | 'static' | 'default'
 export type TsModifers = {
     kind: 'modifiers'
-    types: ('const' | 'export' | 'public' | 'private' | 'static' | 'default')[]
+    types: TsModifierValue[]
 }
 
 export type TsProperty = {
@@ -162,7 +165,13 @@ export const TokenBuilder = {
             kind: 'literal',
             value: TokenBuilder.primitive(v)
         }
-    })
+    }),
+    modifiers: (vs: TsModifierValue[]): TsModifers => {
+        return {
+            kind: 'modifiers',
+            types: vs
+        }
+    }
 }
 
 const utils = {
@@ -188,182 +197,244 @@ export class TsGenerator {
         }
     }
 
-    private wrap(before: string, after: string, sep: TsSep, tokens?: TsToken[]): string {
-        const results: string[] = []
+    private wrap(sb: StringBuffer, before: string, after: string, sep: TsSep, tokens?: TsToken[]) {
+        sb.a(before)
 
         if (tokens) {
-            for (const token of tokens) {
-                const result = this.emit(token)
-                results.push(result)
+            for (let i = 0; i < tokens.length; i++) {
+                const token = tokens[i]
+                this.emit(sb, token)
+
+                if (i < tokens.length - 1) {
+                    switch (sep) {
+                        case ', ':
+                            sb.a(sep)
+                            break
+                        case ',\n':
+                            sb.a(',')
+                            sb.nl()
+                            break
+                        case '\n':
+                            sb.nl()
+                            break
+                        case '\n\n':
+                            sb.nl()
+                            sb.nl()
+                            break
+                    }
+
+                }
             }
         }
 
-        const result = `${before}${results.join(sep)}${after}`
-        return result
+        sb.a(after)
     }
 
     private invalidTokenErr(token: TsToken) {
         new Error(`invalid token: ${JSON.stringify(token)}`)
     }
 
-    private e = {
-        raw: (v: string): string => { return this.emit(TokenBuilder.raw(v)) }
-    }
-
-    emit(token?: TsToken): string {
-        let result = ''
-
+    emit(sb: StringBuffer, token?: TsToken) {
         if (!token)
-            return result
+            return
 
         switch (token.kind) {
             case 'type':
-                result = this.emit(token.type)
+                this.emit(sb, token.type)
                 break
             case 'primitive-type':
-                result = token.type
+                sb.a(token.type)
                 break
             case 'object-type':
-                result = this.wrap('{', '}', token.sep, token.properties)
+                this.wrap(sb, '{', '}', token.sep, token.properties)
                 break
             case 'raw':
-                result = token.value
+                sb.a(token.value)
                 break
             case 'newline':
-                result = '\n'
+                sb.a('\n')
                 break
             case 'primitive':
                 switch (typeof token.value) {
                     case 'string':
-                        result = `'${token.value}'`
+                        sb.a(`'${token.value}'`)
                         break
                     case 'number':
                     case 'boolean':
                     case 'symbol':
-                        result = String(token.value)
+                        sb.a(String(token.value))
                         break
                     default:
                         throw this.invalidTokenErr(token)
                 }
                 break
             case 'modifiers':
-                result = token.types.join(' ')
-                if (result.length > 0)
-                    result += " "
+                for (const type of token.types)
+                    sb.a(`${type} `)
                 break
             case 'property':
-                result += this.emit(token.comments)
+                this.emit(sb, token.comments)
                 if (token.variadic)
-                    result += '...'
-                result += token.name
+                    sb.a('...')
+                sb.a(token.name)
                 if (token.optional)
-                    result += '?'
-                result += `: `
-                result += this.emit(token.type)
+                    sb.a('?')
+                sb.a(`: `)
+                this.emit(sb, token.type)
                 if (token.array || token.variadic)
-                    result += '[]'
+                    sb.a('[]')
                 break
             case 'arguments':
-                result += this.wrap('(', ')', token.sep, token.items)
+                this.wrap(sb, '(', ')', token.sep, token.items)
                 break
             case 'parameter-object':
-                result += this.wrap('{', '}', token.sep, token.items)
+                switch (token.sep) {
+                    case ',\n':
+                    case '\n':
+                    case '\n\n':
+                        sb.i(() => {
+                            this.wrap(sb, '{', '}', token.sep, token.items)
+                        })
+                        break
+                    default:
+                        this.wrap(sb, '{', '}', token.sep, token.items)
+                }
                 break
             case 'literal':
-                result = this.emit(token.value)
+                this.emit(sb, token.value)
                 break
             case 'literal-object':
                 {
-                    const lresults: string[] = []
-                    for (const item of token.items) {
-                        let lresult = item.name
-                        lresult += `: `
-                        lresult += this.emit(item.value)
-                        lresults.push(lresult)
+                    const fn = () => {
+                        for (let i = 0; i < token.items.length; i++) {
+                            const item = token.items[i]
+                            sb.a(`${item.name}: `)
+                            this.emit(sb, item.value)
+
+                            if (i < token.items.length - 1) {
+                                switch (token.sep) {
+                                    case ', ':
+                                        sb.a(token.sep)
+                                        break
+                                    case ',\n':
+                                        sb.a(',')
+                                        sb.nl()
+                                        break
+                                    case '\n':
+                                        sb.nl()
+                                        break
+                                    case '\n\n':
+                                        sb.nl()
+                                        sb.nl()
+                                        break
+                                }
+                            }
+                        }
                     }
-                    result += '{' + lresults.join(token.sep) + '}'
+
+                    sb.a(`{`)
+                    switch (token.sep) {
+                        case ',\n':
+                        case '\n':
+                        case '\n\n':
+                            sb.i(() => {
+                                fn()
+                            })
+                            break
+                        default:
+                            fn()
+                    }
+
+                    sb.a(`}`)
                 }
                 break
             case 'literal-array':
-                result += this.wrap('[', ']', ', ', token.items)
+                this.wrap(sb, '[', ']', ', ', token.items)
                 break
             case 'method-decl':
-                result += this.emit({ ...token, kind: 'function-decl' })
-                result = result.replaceAll(`function `, '')
-                break
-            case 'function-decl':
-                result += this.emit(token.comments)
-                result += this.emit(token.modifiers)
-                result += `function `
-                result += token.name
+                this.emit(sb, token.comments)
+                this.emit(sb, token.modifiers)
+
+                sb.a(token.name)
 
                 if (token.args)
-                    result += this.emit(token.args)
+                    this.emit(sb, token.args)
                 else
-                    result += this.emit({ kind: 'arguments', sep: ', ' })
+                    this.emit(sb, { kind: 'arguments', sep: ', ' })
 
                 if (token.return)
-                    result += `: ${token.return}`
+                    sb.a(`: ${token.return}`)
 
                 {
                     const body: TsRaw[] = token.body?.map(line => {
                         return { kind: 'raw', value: line }
                     }) ?? []
-                    result += this.wrap('{', '}', '\n', body)
+                    this.wrap(sb, '{', '}', '\n', body)
                 }
+                break
+            case 'function-decl':
+                sb.a(`function `)
+                this.emit(sb, { ...token, kind: 'method-decl' })
                 break
             case 'class-decl':
                 {
-                    result += this.emit(token.comments)
-                    result += this.emit(token.modifiers)
-                    result += `class ${token.name} `
+                    this.emit(sb, token.comments)
+                    this.emit(sb, token.modifiers)
+                    sb.a(`class ${token.name} `)
 
                     const properties: TsToken[] = token.properties
                         ? [...token.properties, this.Builder.newline()]
                         : []
 
-
                     const methods: TsToken[] = token.methods
                         ? token.methods.map(m => [m, this.Builder.newline()]).flat()
                         : []
 
+                    const items = [...properties, ...methods]
 
-                    result += this.wrap('{', '}', '\n', [...properties, ...methods])
+                    if (items.length > 0)
+                        sb.nl()
+
+                    this.wrap(sb, '{', '}', '\n', items)
                 }
                 break
             case 'comment':
-                result += token.lines?.map(line => `// ${line}`).join('\n')
-                if (!token.noNlewline)
-                    result += '\n'
+                if (token.lines) {
+                    for (const line of token.lines)
+                        sb.l(`// ${line}`)
+
+                    if (!token.noNlewline)
+                        sb.nl()
+                }
                 break
             case 'enum-value':
-                result += this.emit(token.comments)
-                result += `${token.name} = ${this.emit(token.value)}`
+                this.emit(sb, token.comments)
+                sb.a(`${token.name} = `)
+                this.emit(sb, token.value)
                 break
             case 'enum-decl':
-                result += this.emit(token.comments)
-                result += this.emit(token.modifiers)
-                result += token.name
-                result += this.wrap('{', '}', ',\n', token.values)
+                this.emit(sb, token.comments)
+                this.emit(sb, token.modifiers)
+                sb.a(token.name)
+                this.wrap(sb, '{', '}', ',\n', token.values)
                 break
             case 'import-symbol':
-                result = token.symbol
+                sb.a(token.symbol)
                 if (token.as)
-                    result += ` as ${token.as}`
+                    sb.a(` as ${token.as}`)
                 break
             case 'import':
-                result += 'import '
+                sb.a('import ')
                 if (token.star)
-                    result += `* as ${token.star}`
+                    sb.a(`* as ${token.star}`)
                 if (token.symbols)
-                    result += this.wrap('{', '}', ', ', token.symbols)
-                result += ` from ${token.from}`
+                    this.wrap(sb, '{', '}', ', ', token.symbols)
+                sb.a(` from '${token.from}'`)
+                sb.nl(2)
                 break
             default:
                 throw this.invalidTokenErr(token)
         }
-
-        return result
     }
 }
 

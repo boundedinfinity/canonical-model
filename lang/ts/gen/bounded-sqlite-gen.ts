@@ -1,7 +1,7 @@
 import * as BI from './bounded-model.ts'
 import { BoundedGenerator } from './bounded-gen.ts'
 import { TsNamer } from './namer.ts'
-import { type StringBufferOptions, ce } from "./utils.ts";
+import { StringBuffer, type StringBufferOptions, ce } from "./utils.ts";
 import * as SQL from './sqlite-gen.ts'
 
 type BoundedSqlGeneratorOptions = StringBufferOptions
@@ -24,15 +24,24 @@ export class BoundedSqliteGenerator {
         this.sql = new SQL.SqliteGenerator()
     }
 
-    genTable(type: BI.BoundedObject) {
+    private ensureObject(type: BI.BoundedObject) {
+        switch (type.kind) {
+            case 'object':
+                break
+            default:
+                throw new Error(`invalid type ${JSON.stringify(type)}`)
+        }
+    }
+
+    emitCreate(sb: StringBuffer, type: BI.BoundedObject) {
         const primaryTable = this.getPrimaryTable(type)
-        this.sql.table(primaryTable)
-        this.sql.index({ table: primaryTable })
+        this.sql.table(sb, primaryTable)
+        this.sql.index(sb, { table: primaryTable })
 
         const childTables = this.getChildTables(type)
         for (const childTable of childTables) {
-            this.sql.table(childTable)
-            this.sql.index({ table: childTable })
+            this.sql.table(sb, childTable)
+            this.sql.index(sb, { table: childTable })
         }
     }
 
@@ -60,6 +69,8 @@ export class BoundedSqliteGenerator {
     }
 
     getPrimaryTable(type: BI.BoundedObject): SQL.SqlTable {
+        this.ensureObject(type)
+
         const name = this.getSqlTableName(type)
         const table: SQL.SqlTable = {
             name,
@@ -104,6 +115,8 @@ export class BoundedSqliteGenerator {
     }
 
     private getChildTables(type: BI.BoundedObject): SQL.SqlTable[] {
+        this.ensureObject(type)
+
         const tables: SQL.SqlTable[] = []
         const primaryTable = this.getPrimaryTable(type)
         const primaryKeys = this.sql.getPrimaryKeys(primaryTable)
@@ -195,28 +208,34 @@ export class BoundedSqliteGenerator {
         return tables
     }
 
-    genUpdate(type: BI.BoundedType) {
-        switch (type.kind) {
-            case 'object':
-                break
-            default:
-                throw new Error(`invalid type ${JSON.stringify(type)}`)
-        }
+    emitUpdate(sb: StringBuffer, type: BI.BoundedObject): string {
+        this.ensureObject(type)
 
         const primaryTable = this.getPrimaryTable(type)
         const childTables = this.getChildTables(type)
 
         for (const table of [primaryTable, ...childTables])
-            this.sql.update({ table })
+            this.sql.update(sb, { table })
+
+        return sb.toString()
     }
 
-    genSelect(type: BI.BoundedType) {
-        switch (type.kind) {
-            case 'object':
-                break
-            default:
-                throw new Error(`invalid type ${JSON.stringify(type)}`)
+    emitInsert(sb: StringBuffer, type: BI.BoundedObject): string {
+        this.ensureObject(type)
+
+        const primaryTable = this.getPrimaryTable(type)
+        this.sql.insert(sb, { table: primaryTable })
+
+        const childTables = this.getChildTables(type)
+        for (const childTable of childTables) {
+            this.sql.insert(sb, { table: childTable })
         }
+
+        return sb.toString()
+    }
+
+    emitSelect(sb: StringBuffer, type: BI.BoundedObject): string {
+        this.ensureObject(type)
 
         const primaryTable = this.getPrimaryTable(type)
         const primaryTableKey = this.sql.getPrimaryKeys(primaryTable)![0]
@@ -270,10 +289,11 @@ export class BoundedSqliteGenerator {
             where: { kind: 'or', expressions }
         }
 
-        this.sql.select(select)
+        this.sql.select(sb, select)
+        return sb.toString()
     }
 
-    private genJoinTable(type: BI.BoundedObject) {
+    private genJoinTable(sb: StringBuffer, type: BI.BoundedObject) {
         const tname = this.getSqlTableName(type)
 
         for (const prop of type.properties) {
@@ -304,7 +324,7 @@ export class BoundedSqliteGenerator {
                                     ]
                                 }
 
-                                this.genTable(amodel)
+                                this.emitCreate(sb, amodel)
                             }
                             break
                         case 'ref':
@@ -327,36 +347,6 @@ export class BoundedSqliteGenerator {
             }
         }
     }
-
-    // private getPrimaryKey(type: BI.BoundedObject): BI.BoundedType {
-    //     let found: BI.BoundedType | undefined
-
-    //     for (const prop of type.properties) {
-    //         const pname = this.resolveSqlColumnName(prop)
-
-    //         switch (prop.kind) {
-    //             case 'string':
-    //             case 'integer':
-    //             case 'number':
-    //                 break
-    //             case 'ref':
-    //             case 'array':
-    //                 continue
-    //             default:
-    //                 throw new Error(`invalid type ${JSON.stringify(type)}`)
-    //         }
-
-    //         if (prop.primaryKey) {
-    //             found = prop
-    //             break
-    //         }
-    //     }
-
-    //     if (!found)
-    //         throw new Error(`invalid type ${JSON.stringify(type)}`)
-
-    //     return found
-    // }
 
     private getSqlTableName(type: BI.BoundedType): string {
         let name = this.bounded.resolveName(type)

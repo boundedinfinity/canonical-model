@@ -2,8 +2,7 @@ import { StringBuffer } from "./utils.ts";
 
 export class SqliteGenerator {
 
-    private value(item: SqlValue) {
-        const sb = new StringBuffer()
+    private value(sb: StringBuffer, item: SqlValue) {
         function escape(s: string): string {
             return s.replaceAll("'", "''")
         }
@@ -37,7 +36,7 @@ export class SqliteGenerator {
             case 'date':
                 switch (item.format) {
                     case 'epoch':
-                        this.value({ kind: 'integer', value: item.value.getTime() })
+                        this.value(sb, { kind: 'integer', value: item.value.getTime() })
                         break
                     case 'ISO-8601':
                         sb.a("TODO: ISO-8601")
@@ -89,12 +88,10 @@ export class SqliteGenerator {
         return found
     }
 
-    expression(item: SqlExpr): string {
-        const sb = new StringBuffer()
-
+    expression(sb: StringBuffer, item: SqlExpr): string {
         const handleList = (es: SqlExpr[], sep: string) => {
             for (let i = 0; i < es.length; i++) {
-                this.expression(es[i])
+                this.expression(sb, es[i])
 
                 if (i < es.length - 1)
                     sb.a(sep)
@@ -104,45 +101,45 @@ export class SqliteGenerator {
         switch (item.kind) {
             case 'equal':
                 sb.a(`${this.fqcn(item.column)} = `)
-                this.value(item.value)
+                this.value(sb, item.value)
                 break
             case 'not-equal':
                 sb.a(`${this.fqcn(item.column)} != `)
-                this.value(item.value)
+                this.value(sb, item.value)
                 break
             case 'is':
                 sb.a(`${this.fqcn(item.column)} IS `)
-                this.value(item.value)
+                this.value(sb, item.value)
                 break
             case 'is-not':
                 sb.a(`${this.fqcn(item.column)} IS NOT `)
-                this.value(item.value)
+                this.value(sb, item.value)
                 break
             case 'greater-than':
                 sb.a(`${this.fqcn(item.column)} > `)
-                this.value(item.value)
+                this.value(sb, item.value)
                 break
             case 'greater-than-or-equal':
                 sb.a(`${this.fqcn(item.column)} >= `)
-                this.value(item.value)
+                this.value(sb, item.value)
                 break
             case 'less-than':
                 sb.a(`${this.fqcn(item.column)} > `)
-                this.value(item.value)
+                this.value(sb, item.value)
                 break
             case 'less-than-or-equal':
                 sb.a(`${this.fqcn(item.column)} <= `)
-                this.value(item.value)
+                this.value(sb, item.value)
                 break
             case 'between':
                 sb.a(`${this.fqcn(item.column)} BETWEEN `)
-                this.value(item.lower)
+                this.value(sb, item.lower)
                 sb.a(` AND `)
-                this.value(item.upper)
+                this.value(sb, item.upper)
                 break
             case 'not':
                 sb.a(`NOT `)
-                this.expression(item.expression)
+                this.expression(sb, item.expression)
                 break
             case 'and':
                 handleList(item.expressions, ' AND ')
@@ -151,7 +148,7 @@ export class SqliteGenerator {
                 handleList(item.expressions, ' OR ')
                 break
             case 'literal-value':
-                this.value(item.value)
+                this.value(sb, item.value)
                 break
             case 'in':
                 {
@@ -159,7 +156,7 @@ export class SqliteGenerator {
 
                     for (let i = 0; i < item.values.length; i++) {
                         const value = item.values[i]
-                        this.value(value)
+                        this.value(sb, value)
 
                         if (i < item.values.length - 1)
                             sb.a(',')
@@ -178,8 +175,7 @@ export class SqliteGenerator {
         return sb.toString()
     }
 
-    update(item: SqlUpdate): string {
-        const sb = new StringBuffer()
+    update(sb: StringBuffer, item: SqlUpdate) {
         const keys = this.getPrimaryKeys(item.table)
 
         if (keys.length <= 0)
@@ -197,7 +193,7 @@ export class SqliteGenerator {
 
                 sb.a(`${column.name} = `)
 
-                this.value({ kind: 'sql-parameter' })
+                this.value(sb, { kind: 'sql-parameter' })
 
                 if (i < item.table.columns.length - 1) {
                     sb.a(', ')
@@ -209,7 +205,7 @@ export class SqliteGenerator {
 
         sb.a(` WHERE `)
 
-        this.expression({
+        this.expression(sb, {
             kind: 'equal',
             column: keys[0],
             value: { kind: 'sql-parameter' }
@@ -217,17 +213,13 @@ export class SqliteGenerator {
 
         if (item.where) {
             sb.a(` AND `)
-            this.expression(item.where)
+            this.expression(sb, item.where)
         }
 
         sb.l(';')
-
-        return sb.toString()
     }
 
-    select(item: SqlSelect): string {
-        const sb = new StringBuffer()
-
+    select(sb: StringBuffer, item: SqlSelect): string {
         sb.l(`SELECT `)
         sb.nl()
 
@@ -252,7 +244,7 @@ export class SqliteGenerator {
 
             sb.i(() => {
                 if (!item.where) return
-                this.expression(item.where)
+                this.expression(sb, item.where)
             })
         }
 
@@ -304,11 +296,11 @@ export class SqliteGenerator {
             sb.i(() => {
                 if (!item.limit) return
                 sb.a(`LIMIT `)
-                this.expression(item.limit.expression)
+                this.expression(sb, item.limit.expression)
 
                 if (item.limit.offset) {
                     sb.a(` OFFSET `)
-                    this.expression(item.limit.offset)
+                    this.expression(sb, item.limit.offset)
                 }
             })
 
@@ -321,8 +313,7 @@ export class SqliteGenerator {
         return sb.toString()
     }
 
-    delete(item: SqlDelete): string {
-        const sb = new StringBuffer()
+    delete(sb: StringBuffer, item: SqlDelete) {
         const keys = this.getPrimaryKeys(item.table)
 
         if (keys.length <= 0)
@@ -349,16 +340,12 @@ export class SqliteGenerator {
             where = equalId
         }
 
-        this.expression(where)
+        this.expression(sb, where)
 
         sb.a(';')
-
-        return sb.toString()
     }
 
-    insert(item: SqlInsert): string {
-        const sb = new StringBuffer()
-
+    insert(sb: StringBuffer, item: SqlInsert) {
         sb.l(`INSERT INTO ${item.table.name} (`)
         sb.nl()
 
@@ -385,9 +372,9 @@ export class SqliteGenerator {
                     const value = item.values[i]
 
                     if (value.value)
-                        this.value(value.value)
+                        this.value(sb, value.value)
                     else
-                        this.value({ kind: 'sql-parameter' })
+                        this.value(sb, { kind: 'sql-parameter' })
 
                     if (i < item.values.length - 1) {
                         sb.a(', ')
@@ -412,7 +399,7 @@ export class SqliteGenerator {
 
 
                 for (let i = 0; i < item.table.columns.length; i++) {
-                    this.value({ kind: 'sql-parameter' })
+                    this.value(sb, { kind: 'sql-parameter' })
 
                     if (i < item.table.columns.length - 1) {
                         sb.a(', ')
@@ -422,12 +409,9 @@ export class SqliteGenerator {
         }
 
         sb.l(');')
-
-        return sb.toString()
     }
 
-    index(item: SqlIndex): string {
-        const sb = new StringBuffer()
+    index(sb: StringBuffer, item: SqlIndex) {
         const prefix = item.prefix ?? 'idx'
 
         const create = (column: SqlColumn) => {
@@ -465,9 +449,7 @@ export class SqliteGenerator {
         return sb.toString()
     }
 
-    table(item: SqlTable): string {
-        const sb = new StringBuffer()
-
+    table(sb: StringBuffer, item: SqlTable) {
         if (!item.columns)
             item.columns = []
 
@@ -561,8 +543,6 @@ export class SqliteGenerator {
 
         sb.a(';')
         sb.nl()
-
-        return sb.toString()
     }
 }
 
