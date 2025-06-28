@@ -1,12 +1,12 @@
 import { Label, LabelDtoId } from './label'
 
-export interface NamePrefixDtoId {
-    kind: 'name-prefix-id'
+export interface NameSuffixDtoId {
+    kind: 'name-suffx-id'
     id: string
 }
 
-export interface NamePrefixDtoMin {
-    kind: 'name-prefix-full'
+export interface NameSuffixDtoMin {
+    kind: 'name-suffx-full'
     id: string
     name: string
     abbr?: string[]
@@ -14,8 +14,8 @@ export interface NamePrefixDtoMin {
     labels: LabelDtoId[]
 }
 
-export interface NamePrefixDtoFull {
-    kind: 'name-prefix-full'
+export interface NameSuffixDtoFull {
+    kind: 'name-suffx-full'
     id: string
     name: string
     abbr?: string[]
@@ -23,8 +23,8 @@ export interface NamePrefixDtoFull {
     labels: Label[]
 }
 
-export class NamePrefix {
-    kind = 'name-prefix'
+export class NameSuffix {
+    kind = 'name-suffx'
     id: string
     name: string
     abbr?: string[]
@@ -45,7 +45,7 @@ export class NamePrefix {
     }
 
     validate(options?: { prefix?: string }) {
-        const prefix = options?.prefix ? `${options.prefix}.` : '' + 'namePrefix.'
+        const prefix = options?.prefix ? `${options.prefix}.` : '' + 'nameSuffix.'
         const errors: Error[] = []
 
         if (!this.id) {
