@@ -60,26 +60,6 @@ export interface BoundedString {
   endsWith?: string;
   matches?: string;
   searchable?: boolean;
-
-  // validation?: {
-  //     unique?: boolean
-  //     optional?: boolean
-  //     min?: number
-  //     max?: number
-  //     anyOf?: string[]
-  //     oneOf?: string[]
-  //     allOf?: string[]
-  //     noneOf?: string[]
-  //     startsWith?: string
-  //     endsWith?: string
-  //     matches?: string
-  // },
-  // query?: {
-  //     primaryKey?: boolean
-  //     indexed?: boolean
-  //     equal?: boolean
-  //     contains?: boolean
-  // }
 }
 
 export interface BoundedInteger {

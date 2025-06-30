@@ -5,7 +5,6 @@
         "golang.Go",
         "ms-vscode.makefile-tools",
         "streetsidesoftware.avro",
-        "esbenp.prettier-vscode",
-        "phoenisx.cssvar"
+        "esbenp.prettier-vscode"
     ]
 }

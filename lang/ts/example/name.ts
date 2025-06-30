@@ -1,14 +1,15 @@
+import _ from 'lodash'
 import { Label, LabelDtoFull, LabelDtoId } from './label'
-import { NamePrefix, NamePrefixDtoId } from './name-prefix'
-import { NameSuffix, NameSuffixDtoId } from './name-suffix'
+import { NamePrefix, NamePrefixDtoId, NamePrefixJson } from './name-prefix'
+import { NameSuffix, NameSuffixDtoId, NameSuffixJson } from './name-suffix'
 
 interface NameDtoId {
     kind: 'name-id'
     id: string
 }
 
-interface NameDtoMin {
-    kind: 'name-min'
+interface NameDtoRef {
+    kind: 'name-ref'
     id: string
     prefix?: NamePrefixDtoId[]
     first?: string[]
@@ -19,6 +20,7 @@ interface NameDtoMin {
 }
 
 interface NameDtoFull {
+    kind: 'name-full'
     id: string
     prefix?: string[]
     first?: string[]
@@ -26,6 +28,52 @@ interface NameDtoFull {
     last?: string[]
     suffix?: string[]
     labels?: LabelDtoFull[]
+}
+
+export class LabelJson {
+    config: {
+        kind: 'id' | 'ref' | 'full'
+    } = {
+            kind: 'full'
+        }
+
+    constructor(config?: Partial<typeof this.config>) {
+        Object.assign(this.config, config)
+    }
+
+    serialize(obj: Name, config?: Partial<typeof this.config>): NameDtoId | NameDtoRef | NameDtoFull {
+        const rconfig: typeof this.config = _.merge(this.config, config)
+        const prefix = new NamePrefixJson()
+        const suffix = new NameSuffixJson()
+        const label = new LabelJson()
+
+        switch (rconfig.kind) {
+            case 'id':
+                return { kind: 'name-id', id: obj.id } as NameDtoId
+            case 'ref':
+                return {
+                    kind: 'name-ref',
+                    id: obj.id,
+                    prefix: obj.prefix?.map(p => prefix.serialize(p, { kind: 'id' })),
+                    first: obj.first?.map(n => n),
+                    middle: obj.middle?.map(n => n),
+                    last: obj.last?.map(n => n),
+                    suffix: obj.suffix?.map(s => suffix.serialize(s, { kind: 'id' })),
+                    labels: obj.labels?.map(l => label.serialize(l, { kind: 'id' })),
+                } as NameDtoRef
+            default:
+                return {
+                    kind: 'name-full',
+                    id: obj.id,
+                    prefix: obj.prefix?.map(p => prefix.serialize(p)),
+                    first: obj.first?.map(n => n),
+                    middle: obj.middle?.map(n => n),
+                    last: obj.last?.map(n => n),
+                    suffix: obj.suffix?.map(s => suffix.serialize(s)),
+                    labels: obj.labels?.map(l => label.serialize(l)),
+                } as NameDtoFull
+        }
+    }
 }
 
 export class Name {

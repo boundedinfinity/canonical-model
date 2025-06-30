@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export interface LabelDtoId {
     kind: 'label-id'
     id: string
@@ -8,6 +10,34 @@ export interface LabelDtoFull {
     id: string
     name: string
     description?: string | null
+}
+
+export class LabelJson {
+    config: {
+        kind: 'id' | 'full'
+    } = {
+            kind: 'full'
+        }
+
+    constructor(config?: Partial<typeof this.config>) {
+        Object.assign(this.config, config)
+    }
+
+    serialize(obj: Label, config?: Partial<typeof this.config>): LabelDtoId | LabelDtoFull {
+        const rconfig: typeof this.config = _.merge(this.config, config)
+
+        switch (rconfig.kind) {
+            case 'id':
+                return { kind: 'label-id', id: obj.id } as LabelDtoId
+            default:
+                return {
+                    kind: 'label-full',
+                    id: obj.id,
+                    name: obj.name,
+                    description: obj.description
+                } as LabelDtoFull
+        }
+    }
 }
 
 export class Label {

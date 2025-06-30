@@ -1,12 +1,13 @@
-import { Label, LabelDtoId } from './label'
+import _ from 'lodash'
+import { Label, LabelJson, LabelDtoFull, LabelDtoId } from './label'
 
 export interface NameSuffixDtoId {
-    kind: 'name-suffx-id'
+    kind: 'name-suffix-id'
     id: string
 }
 
-export interface NameSuffixDtoMin {
-    kind: 'name-suffx-full'
+export interface NameSuffixDtoRef {
+    kind: 'name-suffix-ref'
     id: string
     name: string
     abbr?: string[]
@@ -15,7 +16,7 @@ export interface NameSuffixDtoMin {
 }
 
 export interface NameSuffixDtoFull {
-    kind: 'name-suffx-full'
+    kind: 'name-suffix-full'
     id: string
     name: string
     abbr?: string[]
@@ -23,8 +24,48 @@ export interface NameSuffixDtoFull {
     labels: Label[]
 }
 
+export class NameSuffixJson {
+    config: {
+        kind: 'id' | 'ref' | 'full'
+    } = {
+            kind: 'full'
+        }
+
+    constructor(config?: Partial<typeof this.config>) {
+        Object.assign(this.config, config)
+    }
+
+    serialize(obj: NameSuffix, config?: Partial<typeof this.config>): NameSuffixDtoId | NameSuffixDtoRef | NameSuffixDtoFull {
+        const rconfig: typeof this.config = _.merge(this.config, config)
+        const label = new LabelJson()
+
+        switch (rconfig.kind) {
+            case 'id':
+                return { kind: 'name-suffix-id', id: obj.id } as NameSuffixDtoId
+            case 'ref':
+                return {
+                    kind: 'name-suffix-ref',
+                    id: obj.id,
+                    name: obj.name,
+                    abbr: obj.abbr?.map(a => a),
+                    description: obj.description,
+                    labels: obj.labels?.map(l => label.serialize(l, { kind: 'id' })),
+                } as NameSuffixDtoRef
+            default:
+                return {
+                    kind: 'name-suffix-full',
+                    id: obj.id,
+                    name: obj.name,
+                    abbr: obj.abbr?.map(a => a),
+                    description: obj.description,
+                    labels: obj.labels?.map(l => label.serialize(l)),
+                } as NameSuffixDtoFull
+        }
+    }
+}
+
 export class NameSuffix {
-    kind = 'name-suffx'
+    kind = 'name-suffix'
     id: string
     name: string
     abbr?: string[]

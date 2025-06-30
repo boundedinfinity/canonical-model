@@ -1,4 +1,4 @@
-import { createClient, InStatement, InArgs } from "@libsql/client";
+import { createClient } from "@libsql/client";
 import { Label } from './label'
 import { Name } from './name'
 import { NamePrefix } from './name-prefix'
