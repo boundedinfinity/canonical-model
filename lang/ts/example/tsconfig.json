@@ -6,6 +6,6 @@
         "strict": true,
         "outDir": "out",
         "skipLibCheck": true,
-        "sourceMap": true
+        "sourceMap": true,
     }
 }

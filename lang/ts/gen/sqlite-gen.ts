@@ -1,4 +1,220 @@
-import { StringBuffer } from "./utils.ts";
+import { StringBuffer } from "./utils";
+
+class DatabaseDefinition {
+    tables: TableDefinition[] = []
+
+    addTable(args: TableArgs) {
+        this.tables.push(new TableDefinition(args))
+    }
+}
+
+type TableArgs = {
+    name: string,
+    columns: ColumnDefinition[]
+    ifNotExists?: boolean
+}
+
+class TableDefinition {
+    name: string
+    columns: ColumnDefinition[]
+    foreignKeys?: ForeignKeyDefinition[]
+    ifNotExists?: boolean
+
+    constructor(args: TableArgs) {
+        this.name = args.name
+        this.columns = args.columns
+        this.ifNotExists = args.ifNotExists
+    }
+
+    tname(): string {
+        return `"${this.name}"`
+    }
+
+    addColumn(args: ColumnArgs) {
+        this.columns.push(new ColumnDefinition({ ...args, table: this }))
+    }
+
+    getColumn(name: string): ColumnDefinition | undefined {
+        return this.columns.find(column => column.name == name)
+    }
+
+    primaryKey(): ColumnDefinition[] | undefined {
+        return this.columns.filter(column => column.primary)
+    }
+
+    unique(): ColumnDefinition[] | undefined {
+        return this.columns.filter(column => column.unique)
+    }
+
+    index(): ColumnDefinition[] | undefined {
+        return this.columns.filter(column => column.index)
+    }
+
+    foreignKey(foreign: ColumnDefinition) {
+        if (!this.foreignKeys)
+            this.foreignKeys = []
+
+        this.foreignKeys.push(new ForeignKeyDefinition({
+            primary: this.primaryKey()![0],
+            reference: foreign
+        }))
+    }
+}
+
+type ForeignKeyArgs = {
+    primary: ColumnDefinition
+    reference: ColumnDefinition
+}
+
+class ForeignKeyDefinition {
+    primary: ColumnDefinition
+    reference: ColumnDefinition
+
+    constructor(args: ForeignKeyDefinition) {
+        this.primary = args.primary
+        this.reference = args.reference
+    }
+}
+
+type ColumnArgs = {
+    table: TableDefinition
+    name: string,
+    type: 'TEXT' | 'INTEGER' | 'NUMERIC' | 'REAL',
+    primary?: boolean,
+    index?: boolean,
+    unique?: boolean,
+}
+
+class ColumnDefinition {
+    table: TableDefinition
+    name: string
+    type: 'TEXT' | 'INTEGER' | 'NUMERIC' | 'REAL'
+    primary?: boolean
+    index?: boolean
+    unique?: boolean
+
+    constructor(args: ColumnArgs) {
+        this.table = args.table
+        this.name = args.name
+        this.type = args.type
+        this.primary = args.primary
+        this.index = args.index
+        this.unique = args.unique
+    }
+
+    qname(): string {
+        return `"${this.table.name}"."${this.name}"`
+    }
+
+    cname(): string {
+        return `"${this.name}"`
+    }
+}
+
+type ExpressionArgs = {
+    column: ColumnDefinition
+} | {
+    operator: '=' | '!='
+    value: string | number | ColumnDefinition
+} | {
+    operator: '>' | '<'
+    value: number
+} | {
+    operator: 'LIKE'
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+} | {
+    operator: 'IN'
+    values: string[]
+} | {
+    operator: 'BETWEEN'
+    left: string
+    right: string
+} | {
+    operator: 'IS'
+} | {
+    operator: 'IS NOT'
+}
+
+class ExpressionDefinition {
+    args: ExpressionArgs
+    constructor(args: ExpressionArgs) {
+        this.args = args
+    }
+}
+
+type JoinDefinition = {
+    TableA: TableDefinition
+    ColumnA: ColumnDefinition
+    TableN: TableDefinition
+    ColumnN: ColumnDefinition
+}
+
+type Relation1ToN = {
+    Table1: TableDefinition
+    Column1: TableDefinition
+    TableN: TableDefinition
+    ColumnN: ColumnDefinition
+    Sort: ColumnDefinition
+}
+
+function notLast<T>(array: T[], i: number, fn: () => void) {
+    if (i < array.length - 1)
+        fn()
+}
+
+export class SqliteGenerator2 {
+    create(sb: StringBuffer, table: TableDefinition) {
+        sb.a(`CREATE TABLE `)
+
+        if (table.ifNotExists)
+            sb.a(`IF NOT EXISTS `)
+
+        sb.a(`${table.tname()} (`)
+
+        sb.i(() => {
+            const lines: string[] = []
+
+            for (const column of table.columns) {
+                lines.push(`${column.cname()} ${column.type}`)
+            }
+
+            lines.push(...table.primaryKey()?.map(column => `PRIMARY KEY(${column.cname()})`) || [])
+            lines.push(...table.unique()?.map(column => `UNIQUE(${column.cname()})`) || [])
+
+
+
+            const primarykeys = table.primaryKey()?.map(column => column.cname()).join(', ')
+
+            if (primarykeys)
+                sb.l(`PRIMARY KEY (${primarykeys})`)
+
+        })
+        sb.l(`)`)
+    }
+}
+
+// switch (constraint.kind) {
+//                     case 'primary-key':
+//                         line += `PRIMARY KEY (${constraint.columns.map(c => c.name).join(',')})`
+//                         break
+//                     case 'unique-key':
+//                         line += `UNIQUE (${constraint.columns.map(c => c.name).join(',')})`
+//                         break
+//                     case 'foreign-key':
+//                         line += `FOREIGN KEY (${constraint.column.name}) REFERENCES ${this.fqcn(constraint.reference)}`
+
+//                         if (constraint.onDelete)
+//                             line += ` ON DELETE ${constraint.onDelete}`
+
+//                         if (constraint.onUpdate)
+//                             line += ` ON UPDATE ${constraint.onDelete}`
+
+//                         break
+//                     default:
+//                         throw new Error(`invalid constraint ${JSON.stringify(constraint)}`)
+//                 }
 
 export class SqliteGenerator {
 

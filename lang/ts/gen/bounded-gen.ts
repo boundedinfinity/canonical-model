@@ -1,176 +1,229 @@
-import { BoundedType } from './bounded-model.ts'
-import { BoundedTsGenerator } from './bounded-ts-gen.ts'
+import { BoundedKind } from "./bounded-model";
+import { BoundedTsGenerator } from "./bounded-ts-gen";
 
-type Files = { [path: string]: string }
+export class BoundedManager {
+    private typeMap: { [name: string]: BoundedKind } = {};
 
-export class BoundedGenerator {
-    private tsGen = new BoundedTsGenerator(this)
-    private typeMap: { [name: string]: BoundedType } = {}
-
-    emit(...types: BoundedType[]): Files {
-        for (const type of types) {
-            if (type.name && !(type.name in this.typeMap)) {
-                this.typeMap[type.name] = type
-            }
-        }
-
-        const process = (t: BoundedType, p?: BoundedType) => {
-            switch (t.kind) {
-                case 'ref':
-                    if (!(t.ref in this.typeMap))
-                        throw this.invalidTypeErr(t)
-                    break
-                case 'array':
-                    process(t.items, t)
-                    break
-                case 'boolean':
-                case 'integer':
-                case 'number':
-                case 'string':
-                    // Nothing to do
-                    break
-                case 'object':
-                    for (const prop of t.properties)
-                        process(prop, t)
-                    break
-                default:
-                    throw this.invalidTypeErr(t)
-            }
-            t.parent = p
-        }
-
-
-        for (const type of Object.values(this.typeMap)) {
-            process(type)
-        }
-
-        const files: Files = {}
-
-        for (const type of types) {
-            const content = this.tsGen.emit(type)
-            const path = this.tsGen.emitFilename(type, './gen-output/ts-gen')
-            files[path] = content
-        }
-
-        return files
+    private invalidTypeErr(type: BoundedKind): Error {
+        return new Error(`invalid token: ${JSON.stringify(type)}`);
     }
 
-    private invalidTypeErr(type: BoundedType) {
-        new Error(`invalid token: ${JSON.stringify(type)}`)
-    }
-
-    getType(type: BoundedType): BoundedType {
-        let found: BoundedType
-
-        switch (type.kind) {
-            case 'ref':
-                found = this.typeMap[type.ref]
-                break
-            case 'array':
-                found = type.items
-                break
-            default:
-                found = type
-        }
-
-        return found
-    }
-
-    resolveIsRef(type: BoundedType): boolean {
-        let found = false
-
-        switch (type.kind) {
-            case 'ref':
-                found = true
-                break
-            case 'array':
-                found = this.resolveIsRef(type.items)
-                break
-        }
-
-        return found
-    }
-
-    resolveIsArray(type: BoundedType): boolean {
-        let found = false
-
-        switch (type.kind) {
-            case 'ref':
-                {
-                    const rtype = this.getType(type)
-                    found = this.resolveIsArray(rtype)
+    register(token: BoundedKind) {
+        switch (token.kind) {
+            case "object":
+                if (token.name && !(token.name in this.typeMap)) {
+                    this.typeMap[token.name] = token;
                 }
-                break
-            case 'array':
-                found = true
-                break
+                break;
+            default:
+                throw this.invalidTypeErr(token);
         }
-
-        return found
     }
 
-    resolveType(type: BoundedType): string {
-        let name: string | undefined
+    validate() {
+        let errors: Error[] = [];
 
-        switch (type.kind) {
+        for (const token of Object.values(this.typeMap)) {
+            errors.push(...this._validate(token))
+        }
+
+        errors = [...new Set(errors)].filter(error => error !== undefined && error !== null)
+
+        if (errors.length > 0) {
+            throw errors;
+        }
+    }
+
+    private _validate(token: BoundedKind): Error[] {
+        const errors: Error[] = []
+
+        switch (token.kind) {
             case 'object':
-                name = type.name
-                break
-            case 'array':
-                name = this.resolveType(type.items)
-                break
-            case 'ref':
-                {
-                    const rtype = this.getType(type)
-                    name = this.resolveType(rtype)
+                for (const prop of token.properties) {
+                    errors.push(...this._validate(prop))
                 }
                 break
-            case 'boolean':
-            case 'number':
-            case 'integer':
-            case 'string':
-                name = type.kind
+            case 'array':
+                errors.push(...this._validate(token.items))
                 break
+            case 'ref':
+                if (!(token.ref in this.typeMap)) {
+                    errors.push(this.invalidTypeErr(token))
+                }
+                break
+            case "boolean":
+            case "integer":
+            case "number":
+            case "string":
+                // Nothing to do
+                break;
             default:
-                throw new Error(`invalid type ${JSON.stringify(type)}`)
+                throw this.invalidTypeErr(token);
+        }
+
+        return errors;
+    }
+
+    lookup(token: BoundedKind): BoundedKind {
+        let found: BoundedKind;
+
+        switch (token.kind) {
+            case "ref":
+                found = this.typeMap[token.ref];
+
+                if (!found)
+                    this.invalidTypeErr(token)
+                break;
+            case "array":
+                found = token.items;
+                break;
+            default:
+                found = token;
+        }
+
+        return found;
+    }
+
+    isPrimitive(type: BoundedKind): boolean {
+        const resolved = this.lookup(type);
+        let primitive = true;
+
+        switch (resolved.kind) {
+            case "object":
+                primitive = false;
+                break;
+        }
+
+        return primitive;
+    }
+
+    isRef(type: BoundedKind): boolean {
+        let found = false;
+
+        switch (type.kind) {
+            case "ref":
+                found = true;
+                break;
+            case "array":
+                found = this.isRef(type.items);
+                break;
+        }
+
+        return found;
+    }
+
+    isArray(type: BoundedKind): boolean {
+        let found = false;
+
+        switch (type.kind) {
+            case "ref":
+                {
+                    const rtype = this.lookup(type);
+                    found = this.isArray(rtype);
+                }
+                break;
+            case "array":
+                found = true;
+                break;
+        }
+
+        return found;
+    }
+
+    typeName(type: BoundedKind): string {
+        let name: string | undefined;
+
+        switch (type.kind) {
+            case "object":
+                name = type.name;
+                break;
+            case "array":
+                name = this.typeName(type.items);
+                break;
+            case "ref":
+                {
+                    const rtype = this.lookup(type);
+                    name = this.typeName(rtype);
+                }
+                break;
+            case "boolean":
+            case "number":
+            case "integer":
+            case "string":
+                name = type.kind;
+                break;
+            default:
+                throw new Error(`invalid type ${JSON.stringify(type)}`);
         }
 
         if (!name) {
-            throw new Error(`cannot resolve type for ${JSON.stringify(type)}`)
+            throw new Error(`cannot resolve type for ${JSON.stringify(type)}`);
         }
 
-        return name
+        return name;
     }
 
-    resolveName(type: BoundedType): string {
-        let name: string | undefined
+    itemName(type: BoundedKind): string {
+        let name: string | undefined;
 
         switch (type.kind) {
-            case 'object':
-                name = type.name
-                break
-            case 'array':
-                name = type.name ?? this.resolveName(type.items)
-                break
-            case 'ref':
-                name = type.name ?? this.resolveType(type)
-                break
-            case 'boolean':
-            case 'number':
-            case 'integer':
-            case 'string':
-                name = type.name
-                break
+            case "object":
+                name = type.name;
+                break;
+            case "array":
+                name = type.name ?? this.itemName(type.items);
+                break;
+            case "ref":
+                name = type.name ?? this.typeName(type);
+                break;
+            case "boolean":
+            case "number":
+            case "integer":
+            case "string":
+                name = type.name;
+                break;
             default:
-                throw new Error(`invalid type ${JSON.stringify(type)}`)
+                throw new Error(`invalid type ${JSON.stringify(type)}`);
         }
 
-        if (!name && type.parent)
-            name = type.parent.name
+        if (!name && type.parent) {
+            name = type.parent.name;
+        }
 
-        if (!name || name === '')
-            throw new Error(`invalid type ${JSON.stringify(type)}`)
+        if (!name || name === "") {
+            throw new Error(`invalid type ${JSON.stringify(type)}`);
+        }
 
-        return name
+        return name;
+    }
+}
+
+
+type Files = { [path: string]: string };
+
+export class BoundedGenerator {
+    private tsGen: BoundedTsGenerator;
+    private manager = new BoundedManager();
+
+    constructor() {
+        this.tsGen = new BoundedTsGenerator(this.manager);
+    }
+
+    emit(...types: BoundedKind[]): Files {
+        for (const type of types) {
+            this.manager.register(type);
+        }
+
+        this.manager.validate()
+
+        const files: Files = {};
+
+        for (const type of types) {
+            const content = this.tsGen.emit(type);
+            const path = this.tsGen.emitFilename(type, "./gen-output/ts-gen");
+            files[path] = content;
+        }
+
+        return files;
     }
 }

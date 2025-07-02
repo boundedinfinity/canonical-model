@@ -17,3 +17,7 @@ class BoundedString {
 
     }
 }
+
+const errors: Error[] = []
+
+const BOUNDED_STRING = 'x'
