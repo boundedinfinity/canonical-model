@@ -184,12 +184,6 @@ export class SqliteGenerator2 {
             lines.push(...table.unique()?.map(column => `UNIQUE(${column.cname()})`) || [])
 
 
-
-            const primarykeys = table.primaryKey()?.map(column => column.cname()).join(', ')
-
-            if (primarykeys)
-                sb.l(`PRIMARY KEY (${primarykeys})`)
-
         })
         sb.l(`)`)
     }
