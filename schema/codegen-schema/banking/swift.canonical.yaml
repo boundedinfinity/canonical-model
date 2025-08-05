@@ -1,0 +1,6 @@
+id: canonical://www.boundedinfinity.com/canonical/banking/swift
+description: |
+    <p>
+        The Society for Worldwide Interbank Financial Telecommunication (SWIFT) number.
+    </p>
+$ref: canonical://www.boundedinfinity.com/canonical/banking/bic

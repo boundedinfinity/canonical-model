@@ -1,0 +1,28 @@
+---
+
+id: canonical://www.boundedinfinity.com/canonical/hardware/usb
+description: The univeral serial bus (USB) specification
+kind: object
+properties:
+    -   name: id
+        description: The univeral serial bus (USB) ID
+        kind: string
+        format: uuid
+        persist:
+            primary: true
+            generated: increment
+    -   name: kind
+        description: The univeral serial bus (USB) type
+        kind: string
+    -   name: version
+        description: The univeral serial bus (USB) version
+        kind: string
+    -   name: connector
+        description: The univeral serial bus (USB) connector
+        kind: string
+        
+required:
+    - name
+    - type
+    - version
+    - connector

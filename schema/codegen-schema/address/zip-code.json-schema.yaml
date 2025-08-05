@@ -1,6 +1,0 @@
-types:
-    -   id: https://www.boundedinfinity.com/canonical/address/zip-code
-        description: A US ZIP Code
-        type: string
-        pattern: ^[0-9]{5}(?:-[0-9]{4})?$
-        required: true

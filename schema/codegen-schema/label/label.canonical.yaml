@@ -1,5 +1,5 @@
 
-types:
+kinds:
     -   id: https://www.boundedinfinity.com/canonical/label/label-model
         type: object
         description: The canonical view model for a Label

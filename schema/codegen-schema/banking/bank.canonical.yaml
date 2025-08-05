@@ -1,0 +1,18 @@
+id: canonical://www.boundedinfinity.com/canonical/banking/bank
+description: Bank
+kind: object
+properties:
+    -   name: id
+        $ref: canonical://www.boundedinfinity.com/canonical/banking/bank-id
+    -   name: name
+        description: The name of the bank
+        kind: string
+    -   name: description
+        description: The description of the bank
+        kind: string
+    -   name: routing-number
+        $ref: canonical://www.boundedinfinity.com/canonical/banking/aba-rtn
+required:
+    - id
+    - name
+    - routing-number

@@ -1,0 +1,29 @@
+id: canonical://www.boundedinfinity.com/canonical/banking/account
+description: Banking Account
+kind: object
+properties:
+    -   name: name
+        description: The name of the account
+        kind: string
+    -   name: alias
+        description: An alias for the account
+        kind: string
+    -   name: description
+        description: The description of the account
+        kind: string
+    -   name: account-number
+        description: The bank account number
+        kind: string
+    -   name: kind
+        $ref: canonical://www.boundedinfinity.com/canonical/banking/account-type
+    -   name: bank-id
+        $ref: canonical://www.boundedinfinity.com/canonical/banking/bank-id
+    -   name: bank-info
+        $ref: canonical://www.boundedinfinity.com/canonical/banking/bank
+    -   name: swift
+        $ref: canonical://www.boundedinfinity.com/canonical/banking/swift
+    -   name: iban
+        $ref: canonical://www.boundedinfinity.com/canonical/banking/iban
+required:
+    - account-number
+    - bank-id

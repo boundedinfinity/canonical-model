@@ -1,0 +1,37 @@
+id: canonical://www.boundedinfinity.com/canonical/calendar/task
+description: Calendar Task
+kind: object
+properties:
+    -   name: title
+        description: The event title
+        kind: string
+    -   name: description
+        description: The description of the event
+        kind: string
+    -   name: by
+        $ref: canonical://www.boundedinfinity.com/canonical/time/timestamp
+    -   name: required
+        kind: array
+        items:
+            $ref: canonical://www.boundedinfinity.com/canonical/people/contact
+    -   name: optional
+        kind: array
+        items:
+            $ref: canonical://www.boundedinfinity.com/canonical/people/contact
+    -   name: notifications
+        kind: array
+        items:
+            $ref: canonical://www.boundedinfinity.com/canonical/calendar/notification
+    -   name: visibility
+        kind: string
+        enum:
+            - default
+            - public
+            - private
+    -   name: labels
+        kind: array
+        items:
+            $ref: canonical://www.boundedinfinity.com/canonical/label/label
+required:
+    - title
+    - by

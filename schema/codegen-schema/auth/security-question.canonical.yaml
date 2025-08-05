@@ -1,4 +1,4 @@
-types:
+kinds:
     -   id: https://www.boundedinfinity.com/canonical/auth/security-question
         description: Account security questions
         type: object

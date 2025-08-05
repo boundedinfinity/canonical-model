@@ -1,0 +1,4 @@
+id: canonical://www.boundedinfinity.com/canonical/currency/usd
+description: US dollar
+kind: number
+minimum: 0

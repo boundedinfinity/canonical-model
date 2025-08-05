@@ -1,0 +1,20 @@
+---
+
+id: canonical://www.boundedinfinity.com/canonical/hardware/memory
+description: The memory specification
+kind: object
+properties:
+    -   name: id
+        description: The memory ID
+        kind: string
+        format: uuid
+        persist:
+            primary: true
+            generated: increment
+    -   name: name
+        description: The memory name
+        kind: string
+        max: 200
+        min: 2 
+required:
+    - name

@@ -1,0 +1,13 @@
+id: canonical://www.boundedinfinity.com/canonical/telephone/fomatter
+description: A telephone formatter
+kind: object
+properties:
+    -   name: title
+        description: Title of the telephone number
+        kind: string
+        max: 200
+    -   name: format
+        description: The starting date of this email address
+        kind: string
+required:
+    -   format

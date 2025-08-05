@@ -1,4 +1,4 @@
-types:
+kinds:
     -   id: https://www.boundedinfinity.com/canonical/util/abbreviation
         name: abbreviation
         type: object

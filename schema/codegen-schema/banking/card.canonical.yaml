@@ -1,0 +1,28 @@
+id: canonical://www.boundedinfinity.com/canonical/banking/card
+description: Bank
+kind: object
+properties:
+    -   name: name
+        $ref: canonical://www.boundedinfinity.com/canonical/people/name
+    -   name: description
+        description: The description of the account
+        kind: string
+    -   name: number
+        kind: string
+        min: 16
+        max: 16
+    -   name: pin
+        kind: string
+        min: 4
+        max: 10
+    -   name: kind
+        $ref: canonical://www.boundedinfinity.com/canonical/banking/card-type
+    -   name: account
+        $ref: canonical://www.boundedinfinity.com/canonical/banking/account
+    -   name: dates
+        kind: array
+        items:
+            $ref: canonical://www.boundedinfinity.com/canonical/label/labeled-date
+required:
+    - name
+    - routing-number

@@ -1,0 +1,4 @@
+id: canonical://www.boundedinfinity.com/canonical/time/duration
+description: Duration
+kind: string
+format: duration

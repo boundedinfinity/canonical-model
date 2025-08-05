@@ -1,4 +1,4 @@
-types:
+kinds:
     -   id: https://www.boundedinfinity.com/canonical/people/prefix
         description: |
             The prefix of a personal name.

@@ -1,0 +1,4 @@
+id: canonical://www.boundedinfinity.com/canonical/time/datetime
+description: Timestamp
+kind: string
+format: date-time

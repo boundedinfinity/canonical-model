@@ -1,0 +1,15 @@
+id: canonical://www.boundedinfinity.com/canonical/bookkeeping/transaction-action
+description: Double Entry Bookkeeping Transaction Debit
+kind: object
+properties:
+    -   name: account
+        $ref: canonical://www.boundedinfinity.com/canonical/bookkeeping/account
+    -   name: amount
+        $ref: canonical://www.boundedinfinity.com/canonical/currency/usd
+    -   name: date
+        kind: string
+        format: date
+required:
+    - account
+    - amount
+    - date

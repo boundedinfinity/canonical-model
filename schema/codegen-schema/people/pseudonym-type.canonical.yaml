@@ -1,0 +1,25 @@
+id: canonical://www.boundedinfinity.com/canonical/people/pseudonym-type
+title: A person's pseudonym type
+kind: object
+properties:
+    -   name: id
+        kind: string
+        description: The suffix ID
+        format: uri
+    -   name: text
+        kind: string
+        description: The suffix text
+        max: 20
+        min: 1
+    -   name: abbreviation
+        kind: string
+        description: The suffix abbreviation
+        max: 5
+        min: 1
+    -   name: description
+        $ref: canonical://www.boundedinfinity.com/canonical/util/description
+        description: The suffix description
+    -   name: status
+        $ref: canonical://www.boundedinfinity.com/canonical/util/record-status
+required:
+    -   text

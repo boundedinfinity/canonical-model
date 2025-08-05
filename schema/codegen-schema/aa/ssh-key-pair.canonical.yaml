@@ -1,0 +1,18 @@
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/aa/ssh-key-pair
+        description: SSH Key pair
+        kind: object
+        properties:
+            -   name: public-key
+                description: The public key
+                kind: string
+            -   name: private-key
+                description: The private key
+                kind: string
+            -   name: algorithm
+                description: The algorithm used to generate the key
+                kind: string
+        required:
+            - public-key
+            - private-key
+            - algorithm

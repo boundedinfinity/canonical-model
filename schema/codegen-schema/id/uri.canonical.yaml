@@ -1,4 +1,4 @@
-types:
+kinds:
     -   id: https://www.boundedinfinity.com/canonical/util/url
         name: URL
         type: string

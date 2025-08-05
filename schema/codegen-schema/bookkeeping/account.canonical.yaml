@@ -1,0 +1,27 @@
+id: canonical://www.boundedinfinity.com/canonical/bookkeeping/account
+description: Double Entry Bookkeeping Account
+kind: object
+properties:
+    -   name: id
+        description: The URL representing the ID of this account.
+        kind: uri
+    -   name: name
+        description: The name of the account
+        kind: string
+    -   name: description
+        description: The description of the account
+        kind: string
+    -   name: kind
+        $ref: canonical://www.boundedinfinity.com/canonical/bookkeeping/account-type
+    -   name: parent
+        description: URL representing the parent ID
+        kind: uri
+    -   name: dates
+        kind: array
+        items:
+            $ref: canonical://www.boundedinfinity.com/canonical/label/labled-datetime
+required:
+    - id
+    - name
+    - type
+    - parent

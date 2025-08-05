@@ -1,0 +1,21 @@
+id: canonical://www.boundedinfinity.com/canonical/data/acro
+description: An acroymn definition
+kind: object
+properties:
+    -   name: title
+        description: The acronym title
+        kind: string
+        max: 200
+    -   name: abbr
+        description: An abbreviation
+        kind: string
+    -   name: dates
+        kind: array
+        items:
+            $ref: canonical://www.boundedinfinity.com/canonical/time/labeled-datetime
+    -   name: labels
+        kind: array
+        items:
+            $ref: canonical://www.boundedinfinity.com/canonical/label/label
+required:
+    - title

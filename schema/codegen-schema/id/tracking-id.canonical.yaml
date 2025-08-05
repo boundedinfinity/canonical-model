@@ -1,4 +1,4 @@
-types:
+kinds:
     -   id: https://www.boundedinfinity.com/canonical/util/tracking-id
         name: tracking-id
         type: string

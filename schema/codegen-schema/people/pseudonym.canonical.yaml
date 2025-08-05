@@ -1,0 +1,13 @@
+id: canonical://www.boundedinfinity.com/canonical/people/pseudonym
+title: A person's pseudonym
+kind: object
+properties:
+    -   name: kind
+        $ref: canonical://www.boundedinfinity.com/canonical/people/pseudonym-type
+    -   name: text
+        description: The pseudonym text
+        kind: string
+        max: 50
+        min: 1
+required:
+    -   text

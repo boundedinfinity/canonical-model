@@ -1,6 +1,6 @@
-types:
-    -   id: https://www.boundedinfinity.com/canonical/people/name
-        type: object
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/people/name
+        kind: object
         properties:
             -   name: id
                 type: ref

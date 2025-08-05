@@ -1,0 +1,16 @@
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/aa/security-qa
+        description: Account security questions
+        kind: object
+        properties:
+            -   name: question
+                description: The security question
+                kind: string
+                max: 200
+            -   name: answer
+                description: The security answer
+                kind: string
+                max: 200
+        required:
+            - question
+            - answer

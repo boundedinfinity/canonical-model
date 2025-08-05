@@ -1,6 +1,6 @@
 # https://www.mcmaster.com/products/screws/
 
-types:
+kinds:
     -   stype: https://www.boundedinfinity.com/canonical/hardware/screw
         name: screw
         type: object
