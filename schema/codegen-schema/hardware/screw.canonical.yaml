@@ -1,7 +1,7 @@
 # https://www.mcmaster.com/products/screws/
 
 kinds:
-    -   stype: https://www.boundedinfinity.com/canonical/hardware/screw
+    -   id: https://www.boundedinfinity.com/canonical/hardware/screw
         name: screw
         type: object
         description: Screw
@@ -13,7 +13,7 @@ kinds:
             -   ref: https://www.boundedinfinity.com/canonical/hardware/screw-material
             -   ref: https://www.boundedinfinity.com/canonical/hardware/screw-finish
 
-    -   stype: https://www.boundedinfinity.com/canonical/hardware/screw-finish
+    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-finish
         name: screw-length
         type: object
         properties:
@@ -21,7 +21,7 @@ kinds:
                 type: string
                 required: true
 
-    -   stype: https://www.boundedinfinity.com/canonical/hardware/screw-material
+    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-material
         name: screw-length
         type: object
         properties:
@@ -29,7 +29,7 @@ kinds:
                 type: string
                 required: true
 
-    -   stype: https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: screw-length
         type: object
         properties:
@@ -37,7 +37,7 @@ kinds:
                 type: string
                 required: true
 
-    -   stype: https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: thread-size
         type: object
         properties:
@@ -55,7 +55,7 @@ kinds:
             -   name: description
                 type: string
 
-    -   stype: https://www.boundedinfinity.com/canonical/hardware/screw-head-style
+    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-head-style
         name: head-style
         type: object
         properties:
@@ -73,7 +73,7 @@ kinds:
             -   name: description
                 type: string
 
-    -   stype: https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
+    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
         name: drive-style
         type: object
         properties:
@@ -92,301 +92,301 @@ kinds:
                 type: string
 
 data:
-    -   stype: https://www.boundedinfinity.com/canonical/hardware/screw-finish
+    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-finish
         name: Black Oxide
-    -   stype: https://www.boundedinfinity.com/canonical/hardware/screw-finish
+    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-finish
         name: Corrosion-Resistant Coated
-    -   stype: https://www.boundedinfinity.com/canonical/hardware/screw-finish
+    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-finish
         name: Dyed
-    -   stype: https://www.boundedinfinity.com/canonical/hardware/screw-finish
+    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-finish
         name: Passivated
-    -   stype: https://www.boundedinfinity.com/canonical/hardware/screw-finish
+    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-finish
         name: Zinc Plated
 
 
-    -   stype: https://www.boundedinfinity.com/canonical/hardware/screw-material
+    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-material
         name: 6061 Aluminum
-    -   stype: https://www.boundedinfinity.com/canonical/hardware/screw-material
+    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-material
         name: Brass
-    -   stype: https://www.boundedinfinity.com/canonical/hardware/screw-material
+    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-material
         name: Plastic
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-material
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-material
         name: Stainless Steel
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-material
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-material
         name: Steel
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-material
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-material
         name: Titanium
 
 
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 1/16"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 3/32"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 1/8"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 5/32"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 3/16"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 7/32"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 1/4"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 9/32"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 5/16"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 11/32"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 3/8"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 7/16"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 1/2"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 9/16"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 5/8"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 3/4"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 7/8"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 1"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 1 1/8"
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 6 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 8 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 10 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 12 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 13 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 14 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 15 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 16 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 18 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 20 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 22 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 25 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 30 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 35 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 40 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 45 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 50 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 55 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 60 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 65 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 70 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 75 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 80 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 90 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 100 mm
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-length
         name: 120 mm
 
 
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 0000-160
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 000-120
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 00-90
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 00-96
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 0-80
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 1-64
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 1-72
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 2-56
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 2-64
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 3-48
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 3-56
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 4-40
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 4-48
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 5-40
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 5-44
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 6-32
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 6-40
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 6-48
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 8-32
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 8-36
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 8-40
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 10-24
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 10-32
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 12-24
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 12-28
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 1/4"-20
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 1/4"-28
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 1/4"-32
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 5/16"-18
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 5/16"-24
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 5/16"-32
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 3/8"-16
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 3/8"-24
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 3/8"-32
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 7/16"-14
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 7/16"-20
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 1/2"-13
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 1/2"-20
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 5/8"-11
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 5/8"-18
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: 3/4"-10
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M0.5
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M0.8
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M0.9
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M1
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M1.2
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M1.4
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M1.6
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M1.7
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M1.8
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M2
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M2.2
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M2.5
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M2.6
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M3
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M3.5
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M4
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M4.5
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M5
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M6
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M8
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M10
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M12
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
         name: M16
 
 
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-head-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-head-style
         name: Binding
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-head-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-head-style
         name: Button
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-head-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-head-style
         name: Cheese
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-head-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-head-style
         name: Fillister
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-head-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-head-style
         name: Pan
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-head-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-head-style
         name: Round
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-head-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-head-style
         name: Truss
 
 
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
         name: Asymmetrical
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
         name: Drilled Spanner
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
         name: Hex
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
         name: Japanese Industrial Standards
         acronym: 
             -   JIS
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
         name: One Way
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
         name: Philips
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
         name: Slotted
         alias:
             -   Flathead
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
         name: Tamper Resistant Hex
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
         name: Tamper Resistant Torx
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
         name: Torx
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
         name: Torx Plus
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
         name: Tri-Groove
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
         name: Wrench Flats
-    -   stype:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
+    -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
         name: Robertson
         alias:
             -   Square
