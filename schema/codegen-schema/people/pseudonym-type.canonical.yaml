@@ -11,6 +11,7 @@ properties:
         description: The suffix text
         max: 20
         min: 1
+        required: true
     -   name: abbreviation
         kind: string
         description: The suffix abbreviation
@@ -21,5 +22,3 @@ properties:
         description: The suffix description
     -   name: status
         $ref: canonical://www.boundedinfinity.com/canonical/util/record-status
-required:
-    -   text

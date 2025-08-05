@@ -9,5 +9,4 @@ properties:
     -   name: format
         description: The starting date of this email address
         kind: string
-required:
-    -   format
+        required: true

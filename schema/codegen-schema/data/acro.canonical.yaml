@@ -6,6 +6,7 @@ properties:
         description: The acronym title
         kind: string
         max: 200
+        required: true
     -   name: abbr
         description: An abbreviation
         kind: string
@@ -17,5 +18,3 @@ properties:
         kind: array
         items:
             $ref: canonical://www.boundedinfinity.com/canonical/label/label
-required:
-    - title

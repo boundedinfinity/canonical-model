@@ -11,18 +11,16 @@ properties:
         persist:
             primary: true
             generated: increment
+        required: true
     -   name: kind
         description: The univeral serial bus (USB) type
         kind: string
+        required: true
     -   name: version
         description: The univeral serial bus (USB) version
         kind: string
+        required: true
     -   name: connector
         description: The univeral serial bus (USB) connector
         kind: string
-        
-required:
-    - name
-    - type
-    - version
-    - connector
+        required: true

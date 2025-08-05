@@ -4,6 +4,7 @@ kind: object
 properties:
     -   name: before
         $ref: canonical://www.boundedinfinity.com/canonical/time/duration
+        required: true
     -   name: method
         kind: string
         enum:
@@ -11,5 +12,3 @@ properties:
             - email
             - text
             - all
-required:
-    - before

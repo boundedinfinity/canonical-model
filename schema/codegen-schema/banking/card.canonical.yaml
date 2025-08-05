@@ -4,6 +4,7 @@ kind: object
 properties:
     -   name: name
         $ref: canonical://www.boundedinfinity.com/canonical/people/name
+        required: true
     -   name: description
         description: The description of the account
         kind: string
@@ -11,6 +12,7 @@ properties:
         kind: string
         min: 16
         max: 16
+        required: true
     -   name: pin
         kind: string
         min: 4
@@ -23,6 +25,3 @@ properties:
         kind: array
         items:
             $ref: canonical://www.boundedinfinity.com/canonical/label/labeled-date
-required:
-    - name
-    - routing-number

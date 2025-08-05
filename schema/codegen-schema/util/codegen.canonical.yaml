@@ -26,6 +26,7 @@ properties:
             description: Title should be model name
             # Don't know how to represent a reference to a schema in a schema
             format: uri-reference
+        required: true
     -   name: operations
         kind: array
         items:
@@ -51,6 +52,7 @@ properties:
                             kind: string
                         $ref:
                             kind: string
+        required: true
     -   name: templates
         kind: array
         items:
@@ -83,9 +85,4 @@ properties:
                         If this template should recurse be applied to the
                         children namespaces of the current namespace.
                         Defaults to false.
-
-required:
-    -   models
-    -   operations
-    -   templates
-
+        required: true

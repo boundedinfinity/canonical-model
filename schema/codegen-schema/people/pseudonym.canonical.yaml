@@ -9,5 +9,4 @@ properties:
         kind: string
         max: 50
         min: 1
-required:
-    -   text
+        required: true

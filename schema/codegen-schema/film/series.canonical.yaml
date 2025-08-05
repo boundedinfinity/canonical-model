@@ -4,6 +4,7 @@ kind: object
 properties:
     -   name: title
         kind: string
+        required: true
     -   name: sub-title
         kind: string
     -   name: episodes
@@ -18,5 +19,3 @@ properties:
         kind: array
         items:
             kind: canonical://www.boundedinfinity.com/canonical/time/sdate
-required:
-    -   title

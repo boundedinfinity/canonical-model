@@ -1,15 +1,6 @@
 ## Specification
 
-### Kinds
-
--   `id`:
-    The **id** field is a URL which describes the globally unique identifier for this description.
-
-    The **sheme** should be **canonical** e.g.:
-
-    ```
-    canonical://path/to/schema
-    ```
+### Kind
 
 -   `kind`:
 
@@ -22,8 +13,8 @@
     -   `float`
     -   `array`
     -   `object`
-    -   `ref`
     -   `enum`
+    -   `ref`
     -   `one2one`
     -   `one2many`
     -   `many2many`
@@ -33,6 +24,15 @@
 
     If this is a referenced type, then referenced type's fields will be inserted into this type. If this type defines
     any fields, the fields in this type will overried the fields from the given `id` referenced type.
+
+-   `id`:
+    The **id** field is a URL which describes the globally unique identifier for this description.
+
+    The **sheme** should be **canonical** e.g.:
+
+    ```
+    canonical://path/to/schema
+    ```
 
 -   `id`:
 

@@ -6,12 +6,11 @@ properties:
         description: Job title
         kind: string
         max: 200
+        required: true
     -   name: company
         $ref: canonical://www.boundedinfinity.com/canonical/corporation/company
+        required: true
     -   name: dates
         kind: array
         items:
             kinds: canonical://www.boundedinfinity.com/canonical/time/sdate
-required:
-    - title
-    - company

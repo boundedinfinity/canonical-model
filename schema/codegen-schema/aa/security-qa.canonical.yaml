@@ -7,10 +7,9 @@ kinds:
                 description: The security question
                 kind: string
                 max: 200
+                required: true
             -   name: answer
                 description: The security answer
                 kind: string
                 max: 200
-        required:
-            - question
-            - answer
+                required: true

@@ -6,6 +6,7 @@ properties:
         description: Name of company
         kind: string
         max: 200
+        required: true
     -   name: image
         description: Link to image of company
         kind: string
@@ -28,5 +29,3 @@ properties:
         kind: array
         items:
             $ref: canonical://www.boundedinfinity.com/canonical/label/label
-required:
-    -   name

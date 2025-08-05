@@ -5,11 +5,13 @@ properties:
     -   name: title
         description: The event title
         kind: string
+        required: true
     -   name: description
         description: The description of the event
         kind: string
     -   name: by
         $ref: canonical://www.boundedinfinity.com/canonical/time/timestamp
+        required: true
     -   name: required
         kind: array
         items:
@@ -32,6 +34,3 @@ properties:
         kind: array
         items:
             $ref: canonical://www.boundedinfinity.com/canonical/label/label
-required:
-    - title
-    - by

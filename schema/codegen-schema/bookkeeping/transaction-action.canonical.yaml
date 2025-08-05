@@ -4,12 +4,11 @@ kind: object
 properties:
     -   name: account
         $ref: canonical://www.boundedinfinity.com/canonical/bookkeeping/account
+        required: true
     -   name: amount
         $ref: canonical://www.boundedinfinity.com/canonical/currency/usd
+        required: true
     -   name: date
         kind: string
         format: date
-required:
-    - account
-    - amount
-    - date
+        required: true

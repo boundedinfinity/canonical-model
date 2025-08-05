@@ -14,16 +14,15 @@ properties:
     -   name: account-number
         description: The bank account number
         kind: string
+        required: true
     -   name: kind
         $ref: canonical://www.boundedinfinity.com/canonical/banking/account-type
     -   name: bank-id
         $ref: canonical://www.boundedinfinity.com/canonical/banking/bank-id
+        required: true
     -   name: bank-info
         $ref: canonical://www.boundedinfinity.com/canonical/banking/bank
     -   name: swift
         $ref: canonical://www.boundedinfinity.com/canonical/banking/swift
     -   name: iban
         $ref: canonical://www.boundedinfinity.com/canonical/banking/iban
-required:
-    - account-number
-    - bank-id

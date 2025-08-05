@@ -11,6 +11,7 @@ properties:
         persist:
             primary: true
             generated: increment
+        required: true
     -   name: name
         description: The motherboard name
         kind: string
@@ -21,7 +22,8 @@ properties:
         kind: array
         items:
             $ref: canonical://www.boundedinfinity.com/canonical/hardware/cpu-socket
-        minItems: 1
+        min: 1
+        required: true
     -   name: cpus
         description: The motherboard central processing units (CPU)
         kind: array
@@ -32,9 +34,6 @@ properties:
         kind: array
         items:
             $ref: canonical://www.boundedinfinity.com/canonical/hardware/usb
-required:
-    - name
-    - cpu-sockets
 
 ---
 

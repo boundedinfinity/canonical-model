@@ -5,6 +5,7 @@ properties:
     -   name: person
         description: Contact person
         $ref: canonical://www.boundedinfinity.com/canonical/people/person
+        required: true
     -   name: emails
         description: Email addresses
         kind: array
@@ -34,5 +35,3 @@ properties:
         kind: array
         items:
             $ref: canonical://www.boundedinfinity.com/canonical/label/label
-required:
-    -   person

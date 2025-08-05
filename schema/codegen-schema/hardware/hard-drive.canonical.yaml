@@ -11,10 +11,9 @@ properties:
         persist:
             primary: true
             generated: increment
+        required: true
     -   name: name
         description: The hard drive name
         kind: string
         max: 200
         min: 2 
-required:
-    - name

@@ -15,6 +15,5 @@ properties:
         description: The central processing unit (CPU) name
         kind: string
         max: 200
-        min: 2 
-required:
-    - name
+        min: 2
+        required: true

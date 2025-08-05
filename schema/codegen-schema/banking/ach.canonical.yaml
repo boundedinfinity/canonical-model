@@ -6,14 +6,13 @@ properties:
     -   name: name
         description: The ACH name
         kind: string
+        required: true
     -   name: description
         description: The ACH name
         kind: string
-    -   name: account-number
+    -   name: routing-number
         description: The bank account number
         kind: string
+        required: true
     -   name: bank
         $ref: canonical://www.boundedinfinity.com/canonical/banking/bank
-required:
-    - name
-    - routing-number
