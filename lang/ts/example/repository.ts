@@ -14,32 +14,36 @@ import {
 } from 'kysely'
 
 interface Database {
-    person: LabelTable
-    namePrefix: NamePrefixTable
-    nameSuffix: NameSuffixTable
-    name: NameTable
+    person: Label_Table
+    namePrefix: NamePrefix_Table
+    nameSuffix: NameSuffix_Table
+    name: Name_Table
 }
 
-interface LabelTable {
+interface Label_Table {
     id: string
     name: string
     description: string | null
 }
 
-interface NamePrefixTable {
+interface NamePrefix_Table {
     id: string
     name: string
     description?: string | null
 }
 
+interface NamePrefix__Abbr__Table {
+    id: string
+    index: number
+}
 
-interface NameSuffixTable {
+interface NameSuffix_Table {
     id: string
     name: string
     description?: string | null
 }
 
-interface NameTable {
+interface Name_Table {
     id: string
 }
 
