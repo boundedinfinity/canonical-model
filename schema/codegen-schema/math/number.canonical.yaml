@@ -1,4 +1,4 @@
-types:
+kinds:
     -   id: https://www.boundedinfinity.com/canonical/math/number/fraction
         name: fraction
         type: object

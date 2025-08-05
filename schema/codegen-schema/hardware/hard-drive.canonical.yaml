@@ -1,19 +1,18 @@
----
-
-id: canonical://www.boundedinfinity.com/canonical/hardware/hard-drive
-description: The hard drive specification
-kind: object
-properties:
-    -   name: id
-        description: The hard drive ID
-        kind: string
-        format: uuid
-        persist:
-            primary: true
-            generated: increment
-        required: true
-    -   name: name
-        description: The hard drive name
-        kind: string
-        max: 200
-        min: 2 
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/hardware/hard-drive
+        description: The hard drive specification
+        kind: object
+        properties:
+            -   name: id
+                description: The hard drive ID
+                kind: string
+                format: uuid
+                persist:
+                    primary: true
+                    generated: increment
+                required: true
+            -   name: name
+                description: The hard drive name
+                kind: string
+                max: 200
+                min: 2 

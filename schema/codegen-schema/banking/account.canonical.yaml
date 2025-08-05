@@ -1,33 +1,34 @@
-id: canonical://www.boundedinfinity.com/canonical/banking/account
-description: Banking Account
-kind: object
-properties:
-    -   name: name
-        description: The name of the account
-        kind: string
-    -   name: alias
-        description: An alias for the account
-        kind: string
-    -   name: description
-        description: The description of the account
-        kind: string
-    -   name: account-number
-        description: The bank account number
-        kind: string
-        required: true
-    -   name: kind
-        kind: ref
-        ref: canonical://www.boundedinfinity.com/canonical/banking/account-type
-    -   name: bank-id
-        kind: ref
-        ref: canonical://www.boundedinfinity.com/canonical/banking/bank-id
-        required: true
-    -   name: bank-info
-        kind: ref
-        ref: canonical://www.boundedinfinity.com/canonical/banking/bank
-    -   name: swift
-        kind: ref
-        ref: canonical://www.boundedinfinity.com/canonical/banking/swift
-    -   name: iban
-        kind: ref
-        ref: canonical://www.boundedinfinity.com/canonical/banking/iban
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/banking/account
+        description: Banking Account
+        kind: object
+        properties:
+            -   name: name
+                description: The name of the account
+                kind: string
+            -   name: alias
+                description: An alias for the account
+                kind: string
+            -   name: description
+                description: The description of the account
+                kind: string
+            -   name: account-number
+                description: The bank account number
+                kind: string
+                required: true
+            -   name: kind
+                kind: ref
+                ref: canonical://www.boundedinfinity.com/canonical/banking/account-type
+            -   name: bank-id
+                kind: ref
+                ref: canonical://www.boundedinfinity.com/canonical/banking/bank-id
+                required: true
+            -   name: bank-info
+                kind: ref
+                ref: canonical://www.boundedinfinity.com/canonical/banking/bank
+            -   name: swift
+                kind: ref
+                ref: canonical://www.boundedinfinity.com/canonical/banking/swift
+            -   name: iban
+                kind: ref
+                ref: canonical://www.boundedinfinity.com/canonical/banking/iban

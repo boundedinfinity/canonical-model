@@ -1,19 +1,18 @@
----
-
-id: canonical://www.boundedinfinity.com/canonical/hardware/video-type
-description: The memory specification
-kind: object
-properties:
-    -   name: id
-        description: The video type ID
-        kind: string
-        format: uuid
-        persist:
-            primary: true
-            generated: increment
-    -   name: name
-        description: The video type name
-        kind: string
-        max: 200
-        min: 2
-        required: true
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/hardware/video-type
+        description: The memory specification
+        kind: object
+        properties:
+            -   name: id
+                description: The video type ID
+                kind: string
+                format: uuid
+                persist:
+                    primary: true
+                    generated: increment
+            -   name: name
+                description: The video type name
+                kind: string
+                max: 200
+                min: 2
+                required: true

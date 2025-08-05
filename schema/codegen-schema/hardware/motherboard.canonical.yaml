@@ -1,80 +1,74 @@
----
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/hardware/motherboard
+        description: The mother board specification
+        kind: object
+        properties:
+            -   name: id
+                description: The label ID
+                kind: string
+                format: uuid
+                persist:
+                    primary: true
+                    generated: increment
+                required: true
+            -   name: name
+                description: The motherboard name
+                kind: string
+                max: 200
+                min: 2 
+            -   name: cpu-sockets
+                description: The motherboard central processing unit (CPU) sockets
+                kind: array
+                items:
+                    kind: ref
+                    ref: canonical://www.boundedinfinity.com/canonical/hardware/cpu-socket
+                min: 1
+                required: true
+            -   name: cpus
+                description: The motherboard central processing units (CPU)
+                kind: array
+                items:
+                    kind: ref
+                    ref: canonical://www.boundedinfinity.com/canonical/hardware/cpu
+            -   name: usb-ports
+                description: The list of universal serial bus (USB) ports
+                kind: array
+                items:
+                    kind: ref
+                    ref: canonical://www.boundedinfinity.com/canonical/hardware/usb
 
-id: canonical://www.boundedinfinity.com/canonical/hardware/motherboard
-description: The mother board specification
-kind: object
-properties:
-    -   name: id
-        description: The label ID
-        kind: string
-        format: uuid
-        persist:
-            primary: true
-            generated: increment
-        required: true
-    -   name: name
-        description: The motherboard name
-        kind: string
-        max: 200
-        min: 2 
-    -   name: cpu-sockets
-        description: The motherboard central processing unit (CPU) sockets
-        kind: array
-        items:
-            kind: ref
-            ref: canonical://www.boundedinfinity.com/canonical/hardware/cpu-socket
-        min: 1
-        required: true
-    -   name: cpus
-        description: The motherboard central processing units (CPU)
-        kind: array
-        items:
-            kind: ref
-            ref: canonical://www.boundedinfinity.com/canonical/hardware/cpu
-    -   name: usb-ports
-        description: The list of universal serial bus (USB) ports
-        kind: array
-        items:
-            kind: ref
-            ref: canonical://www.boundedinfinity.com/canonical/hardware/usb
+    -   id: canonical://www.boundedinfinity.com/canonical/hardware/chipset
+        description: The motherboard chipset specification
+        kind: object
+        properties:
+            -   name: id
+                description: The motherboard chipset ID
+                kind: string
+                format: uuid
+                persist:
+                    primary: true
+                    generated: increment
+            -   name: name
+                description: The motherboard chipset name
+                kind: string
+                max: 200
+                min: 2
+                required: true
 
----
-
-id: canonical://www.boundedinfinity.com/canonical/hardware/chipset
-description: The motherboard chipset specification
-kind: object
-properties:
-    -   name: id
-        description: The motherboard chipset ID
-        kind: string
-        format: uuid
-        persist:
-            primary: true
-            generated: increment
-    -   name: name
-        description: The motherboard chipset name
-        kind: string
-        max: 200
-        min: 2
-        required: true
-
-
----
-
-id: canonical://www.boundedinfinity.com/canonical/hardware/cpu-socket
-description: The central processing unit (CPU) socket specification
-kind: object
-properties:
-    -   name: id
-        description: The central processing unit (CPU) socket ID
-        kind: string
-        format: uuid
-        persist:
-            primary: true
-            generated: increment
-    -   name: name
-        description: The central processing unit (CPU) socket name
-        kind: string
-        max: 200
-        min: 2
-        required: true
+    -   id: canonical://www.boundedinfinity.com/canonical/hardware/cpu-socket
+        description: The central processing unit (CPU) socket specification
+        kind: object
+        properties:
+            -   name: id
+                description: The central processing unit (CPU) socket ID
+                kind: string
+                format: uuid
+                persist:
+                    primary: true
+                    generated: increment
+            -   name: name
+                description: The central processing unit (CPU) socket name
+                kind: string
+                max: 200
+                min: 2
+                required: true

@@ -1,41 +1,42 @@
-id: canonical://www.boundedinfinity.com/canonical/calendar/task
-description: Calendar Task
-kind: object
-properties:
-    -   name: title
-        description: The event title
-        kind: string
-        required: true
-    -   name: description
-        description: The description of the event
-        kind: string
-    -   name: by
-        kind: ref
-        ref: canonical://www.boundedinfinity.com/canonical/time/timestamp
-        required: true
-    -   name: required
-        kind: array
-        items:
-            kind: ref
-            ref: canonical://www.boundedinfinity.com/canonical/people/contact
-    -   name: optional
-        kind: array
-        items:
-            kind: ref
-            ref: canonical://www.boundedinfinity.com/canonical/people/contact
-    -   name: notifications
-        kind: array
-        items:
-            kind: ref
-            ref: canonical://www.boundedinfinity.com/canonical/calendar/notification
-    -   name: visibility
-        kind: string
-        enum:
-            - default
-            - public
-            - private
-    -   name: labels
-        kind: array
-        items:
-            kind: ref
-            ref: canonical://www.boundedinfinity.com/canonical/label/label
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/calendar/task
+        description: Calendar Task
+        kind: object
+        properties:
+            -   name: title
+                description: The event title
+                kind: string
+                required: true
+            -   name: description
+                description: The description of the event
+                kind: string
+            -   name: by
+                kind: ref
+                ref: canonical://www.boundedinfinity.com/canonical/time/timestamp
+                required: true
+            -   name: required
+                kind: array
+                items:
+                    kind: ref
+                    ref: canonical://www.boundedinfinity.com/canonical/people/contact
+            -   name: optional
+                kind: array
+                items:
+                    kind: ref
+                    ref: canonical://www.boundedinfinity.com/canonical/people/contact
+            -   name: notifications
+                kind: array
+                items:
+                    kind: ref
+                    ref: canonical://www.boundedinfinity.com/canonical/calendar/notification
+            -   name: visibility
+                kind: string
+                enum:
+                    - default
+                    - public
+                    - private
+            -   name: labels
+                kind: array
+                items:
+                    kind: ref
+                    ref: canonical://www.boundedinfinity.com/canonical/label/label

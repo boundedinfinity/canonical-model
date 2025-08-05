@@ -1,19 +1,20 @@
-id: canonical://www.boundedinfinity.com/canonical/government/us-social-security-number
-description: Social Security Number
-kind: object
-properties:
-    -   name: name
-        kind: ref
-        ref: canonical://www.boundedinfinity.com/canonical/people/name
-    -   name: area-number
-        kind: string
-        min: 3
-        max: 3
-    -   name: group-number
-        kind: string
-        min: 2
-        max: 2
-    -   name: serial-number
-        kind: string
-        min: 4
-        max: 4
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/government/us-social-security-number
+        description: Social Security Number
+        kind: object
+        properties:
+            -   name: name
+                kind: ref
+                ref: canonical://www.boundedinfinity.com/canonical/people/name
+            -   name: area-number
+                kind: string
+                min: 3
+                max: 3
+            -   name: group-number
+                kind: string
+                min: 2
+                max: 2
+            -   name: serial-number
+                kind: string
+                min: 4
+                max: 4

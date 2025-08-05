@@ -1,26 +1,64 @@
-id: canonical://www.boundedinfinity.com/canonical/people/pseudonym-type
-title: A person's pseudonym type
-kind: object
-properties:
-    -   name: id
-        kind: string
-        description: The suffix ID
-        format: uri
-    -   name: text
-        kind: string
-        description: The suffix text
-        max: 20
-        min: 1
-        required: true
-    -   name: abbreviation
-        kind: string
-        description: The suffix abbreviation
-        max: 5
-        min: 1
-    -   name: description
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/people/pseudonym-type
+        title: A person's pseudonym type
+        kind: object
+        properties:
+            -   name: id
+                kind: string
+                description: The suffix ID
+                format: uri
+            -   name: text
+                kind: string
+                description: The suffix text
+                max: 20
+                min: 1
+                required: true
+            -   name: abbreviation
+                kind: string
+                description: The suffix abbreviation
+                max: 5
+                min: 1
+            -   name: description
+                kind: ref
+                ref: canonical://www.boundedinfinity.com/canonical/util/description
+                description: The suffix description
+            -   name: status
+                kind: ref
+                ref: canonical://www.boundedinfinity.com/canonical/util/record-status
+
+data:
+    # https://en.wikipedia.org/wiki/Pseudonym
+
+    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/nickname
+        title: Nickname
+        description: A person's nick name.
+    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/alias
+        title: Alias
+        description: A person alias
+    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/stage-name
+        title: Stage name
+        description: A person's stage name
+    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/ring-name
+        title: Ring name
+        description: A person's ring name
+    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/pen-name
+        title: Pen
+        description: A person's pen name
+    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/nom-de-plume
+        title: Nom de plume
         kind: ref
-        ref: canonical://www.boundedinfinity.com/canonical/util/description
-        description: The suffix description
-    -   name: status
+        ref: https://www.boundedinfinity.com/canonical/people/pseudonym-type/pen-name
+    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/regnal-name
+        title: Regnal name
+        description: A person's regnal name
+    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/regnant-name
+        title: Regnant name
         kind: ref
-        ref: canonical://www.boundedinfinity.com/canonical/util/record-status
+        ref: https://www.boundedinfinity.com/canonical/people/pseudonym-type/regnal-name
+    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/reign-name
+        title: Reign name
+        kind: ref
+        ref: https://www.boundedinfinity.com/canonical/people/pseudonym-type/reign-name
+    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/online-name
+        title: Online name
+        description: A person's online name

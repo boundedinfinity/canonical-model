@@ -1,51 +1,51 @@
-id: canonical://www.boundedinfinity.com/canonical/calendar/event
-description: Calendar Event
-kind: object
-properties:
-    -   name: title
-        description: The event title
-        kind: string
-    -   name: description
-        description: The description of the event
-        kind: string
-    -   name: start
-        kind: ref
-        ref: canonical://www.boundedinfinity.com/canonical/time/timestamp
-    -   name: end
-        kind: ref
-        ref: canonical://www.boundedinfinity.com/canonical/time/timestamp
-    -   name: required
-        kind: array
-        items:
-            kind: ref
-            ref: canonical://www.boundedinfinity.com/canonical/people/contact
-    -   name: optional
-        kind: array
-        items:
-            kind: ref
-            ref: canonical://www.boundedinfinity.com/canonical/people/contact
-    -   name: notifications
-        kind: array
-        items:
-            kind: ref
-            ref: canonical://www.boundedinfinity.com/canonical/calendar/notification
-    -   name: visibility
-        kind: string
-        enum:
-            - default
-            - public
-            - private
-    -   name: show-as
-        kind: string
-        enum:
-            - busy
-            - free
-    -   name: labels
-        kind: array
-        items:
-            kind: ref
-            ref: canonical://www.boundedinfinity.com/canonical/label/label
-required:
-    - title
-    - start
-    - end
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/calendar/event
+        description: Calendar Event
+        kind: object
+        properties:
+            -   name: title
+                description: The event title
+                kind: string
+                required: true
+            -   name: description
+                description: The description of the event
+                kind: string
+            -   name: start
+                kind: ref
+                ref: canonical://www.boundedinfinity.com/canonical/time/timestamp
+                required: true
+            -   name: end
+                kind: ref
+                ref: canonical://www.boundedinfinity.com/canonical/time/timestamp
+                required: true
+            -   name: required
+                kind: array
+                items:
+                    kind: ref
+                    ref: canonical://www.boundedinfinity.com/canonical/people/contact
+            -   name: optional
+                kind: array
+                items:
+                    kind: ref
+                    ref: canonical://www.boundedinfinity.com/canonical/people/contact
+            -   name: notifications
+                kind: array
+                items:
+                    kind: ref
+                    ref: canonical://www.boundedinfinity.com/canonical/calendar/notification
+            -   name: visibility
+                kind: string
+                enum:
+                    - default
+                    - public
+                    - private
+            -   name: show-as
+                kind: string
+                enum:
+                    - busy
+                    - free
+            -   name: labels
+                kind: array
+                items:
+                    kind: ref
+                    ref: canonical://www.boundedinfinity.com/canonical/label/label

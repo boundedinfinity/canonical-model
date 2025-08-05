@@ -1,37 +1,38 @@
-id: canonical://www.boundedinfinity.com/canonical/telephone/nanp
-description: A NANP telephone number plan
-kind: object
-properties:
-    -   name: title
-        description: Title of this email address
-        kind: string
-        max: 200
-    -   name: dates
-        kind: array
-        items:
-            kind: ref
-            ref: canonical://www.boundedinfinity.com/canonical/time/sdate
-    -   name: area-code
-        description: Numbering plan area code
-        kind: string
-        pattern: ^[2-9]{1}[0-9]{2}$
-        required: true
-    -   name: exchange-code
-        description: Central office exchange code
-        kind: string
-        pattern: ^[2-9]{1}[0-9]{2}$
-        required: true
-    -   name: line-number
-        description: Line number
-        kind: string
-        pattern: ^[0-9]{4}$
-        required: true
-    -   name: extention
-        description: Extention number
-        kind: string
-        pattern: ^[0-9;,*#]{1,30}$
-    -   name: labels
-        kind: array
-        items:
-            kind: ref
-            ref: canonical://www.boundedinfinity.com/canonical/label/label
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/telephone/nanp
+        description: A NANP telephone number plan
+        kind: object
+        properties:
+            -   name: title
+                description: Title of this email address
+                kind: string
+                max: 200
+            -   name: dates
+                kind: array
+                items:
+                    kind: ref
+                    ref: canonical://www.boundedinfinity.com/canonical/time/sdate
+            -   name: area-code
+                description: Numbering plan area code
+                kind: string
+                pattern: ^[2-9]{1}[0-9]{2}$
+                required: true
+            -   name: exchange-code
+                description: Central office exchange code
+                kind: string
+                pattern: ^[2-9]{1}[0-9]{2}$
+                required: true
+            -   name: line-number
+                description: Line number
+                kind: string
+                pattern: ^[0-9]{4}$
+                required: true
+            -   name: extention
+                description: Extention number
+                kind: string
+                pattern: ^[0-9;,*#]{1,30}$
+            -   name: labels
+                kind: array
+                items:
+                    kind: ref
+                    ref: canonical://www.boundedinfinity.com/canonical/label/label

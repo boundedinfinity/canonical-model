@@ -1,19 +1,20 @@
-id: canonical://www.boundedinfinity.com/canonical/banking/automatic-clearning-house
-description: |
-    The bank Automatic Clearning House (ACH) routing number
-kind: object
-properties:
-    -   name: name
-        description: The ACH name
-        kind: string
-        required: true
-    -   name: description
-        description: The ACH name
-        kind: string
-    -   name: routing-number
-        description: The bank account number
-        kind: string
-        required: true
-    -   name: bank
-        kind: ref
-        ref: canonical://www.boundedinfinity.com/canonical/banking/bank
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/banking/automatic-clearning-house
+        description: |
+            The bank Automatic Clearning House (ACH) routing number
+        kind: object
+        properties:
+            -   name: name
+                description: The ACH name
+                kind: string
+                required: true
+            -   name: description
+                description: The ACH name
+                kind: string
+            -   name: routing-number
+                description: The bank account number
+                kind: string
+                required: true
+            -   name: bank
+                kind: ref
+                ref: canonical://www.boundedinfinity.com/canonical/banking/bank

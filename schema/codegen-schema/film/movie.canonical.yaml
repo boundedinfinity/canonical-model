@@ -1,24 +1,25 @@
-id: canonical://www.boundedinfinity.com/canonical/film/movie
-description: A movie record
-kind: object
-properties:
-    -   name: title
-        kind: string
-    -   name: sub-title
-        kind: string
-    -   name: actors
-        kind: array
-        items:
-            kind: canonical://www.boundedinfinity.com/canonical/film/actor
-    -   name: people
-        kind: array
-        items:
-            kind: canonical://www.boundedinfinity.com/canonical/film/person
-    -   name: labels
-        kind: array
-        items:
-            kind: canonical://www.boundedinfinity.com/canonical/label/kvlabel
-    -   name: dates
-        kind: array
-        items:
-            kind: canonical://www.boundedinfinity.com/canonical/time/sdate
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/film/movie
+        description: A movie record
+        kind: object
+        properties:
+            -   name: title
+                kind: string
+            -   name: sub-title
+                kind: string
+            -   name: actors
+                kind: array
+                items:
+                    kind: canonical://www.boundedinfinity.com/canonical/film/actor
+            -   name: people
+                kind: array
+                items:
+                    kind: canonical://www.boundedinfinity.com/canonical/film/person
+            -   name: labels
+                kind: array
+                items:
+                    kind: canonical://www.boundedinfinity.com/canonical/label/kvlabel
+            -   name: dates
+                kind: array
+                items:
+                    kind: canonical://www.boundedinfinity.com/canonical/time/sdate

@@ -1,27 +1,60 @@
-id: canonical://www.boundedinfinity.com/canonical/bookkeeping/account
-description: Double Entry Bookkeeping Account
-kind: object
-properties:
-    -   name: id
-        description: The URL representing the ID of this account.
-        kind: uri
-        required: true
-    -   name: name
-        description: The name of the account
-        kind: string
-    -   name: description
-        description: The description of the account
-        kind: string
-    -   name: kind
-        kind: ref
-        ref: canonical://www.boundedinfinity.com/canonical/bookkeeping/account-type
-        required: true
-    -   name: parent
-        description: URL representing the parent ID
-        kind: uri
-        required: true
-    -   name: dates
-        kind: array
-        items:
-            kind: ref
-            ref: canonical://www.boundedinfinity.com/canonical/label/labled-datetime
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/bookkeeping/account
+        description: Double Entry Bookkeeping Account
+        kind: object
+        properties:
+            -   name: id
+                description: The URL representing the ID of this account.
+                kind: uri
+                required: true
+            -   name: name
+                description: The name of the account
+                kind: string
+            -   name: description
+                description: The description of the account
+                kind: string
+            -   name: kind
+                kind: ref
+                ref: canonical://www.boundedinfinity.com/canonical/bookkeeping/account-type
+                required: true
+            -   name: parent
+                description: URL representing the parent ID
+                kind: uri
+                required: true
+            -   name: dates
+                kind: array
+                items:
+                    kind: ref
+                    ref: canonical://www.boundedinfinity.com/canonical/label/labled-datetime
+data:
+    -   name: Owns
+        description: Increased by Debits
+        id: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns
+    -   name: Owes
+        description: Increased by Credits
+        id: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns
+    -   name: Assets
+        id: https://www.boundedinfinity.com/canonical/bookkeeping/account/assets
+        description: |
+            Anything that has current or future economic value to a business.
+        parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns
+    -   name: Liabilities
+        id: https://www.boundedinfinity.com/canonical/bookkeeping/account/liabilities
+        description: |
+            A liability is a present or future obligation of an entity to transfer 
+            an economic benefit.
+        parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owes
+    -   name: Owner's Equity
+        id: https://www.boundedinfinity.com/canonical/bookkeeping/account/owners-equity
+        description: |
+            The value attributable to the owners of a business.
+        parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owes
+    -   name: Expenses
+        id: https://www.boundedinfinity.com/canonical/bookkeeping/account/expenses
+        parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns
+    -   name: Revenues
+        id: https://www.boundedinfinity.com/canonical/bookkeeping/account/revenues
+        parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owes
+    -   name: Dividends
+        id: https://www.boundedinfinity.com/canonical/bookkeeping/account/dividends
+        parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns

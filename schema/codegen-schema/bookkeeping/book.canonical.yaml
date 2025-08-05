@@ -1,10 +1,11 @@
-id: canonical://www.boundedinfinity.com/canonical/bookkeeping/book
-description: Double Entry Bookkeeping Book
-kind: object
-properties:
-    -   name: name
-        description: The name of the account
-        kind: string
-    -   name: description
-        description: The description of the account
-        kind: string
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/bookkeeping/book
+        description: Double Entry Bookkeeping Book
+        kind: object
+        properties:
+            -   name: name
+                description: The name of the account
+                kind: string
+            -   name: description
+                description: The description of the account
+                kind: string

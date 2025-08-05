@@ -1,26 +1,27 @@
-id: canonical://www.boundedinfinity.com/canonical/bookkeeping/transaction
-description: Double Entry Bookkeeping Transaction
-kind: object
-properties:
-    -   name: description
-        description: The description of the transaction
-        kind: string
-    -   name: debits
-        kind: array
-        min: 1
-        items:
-            kind: ref
-            ref: canonical://www.boundedinfinity.com/canonical/bookkeeping/transaction-action
-        required: true
-    -   name: credits
-        kind: array
-        min: 1
-        items:
-            kind: ref
-            ref: canonical://www.boundedinfinity.com/canonical/bookkeeping/transaction-action
-        required: true
-    -   name: labels
-        kind: array
-        items:
-            kind: ref
-            ref: canonical://www.boundedinfinity.com/canonical/label/label
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/bookkeeping/transaction
+        description: Double Entry Bookkeeping Transaction
+        kind: object
+        properties:
+            -   name: description
+                description: The description of the transaction
+                kind: string
+            -   name: debits
+                kind: array
+                min: 1
+                items:
+                    kind: ref
+                    ref: canonical://www.boundedinfinity.com/canonical/bookkeeping/transaction-action
+                required: true
+            -   name: credits
+                kind: array
+                min: 1
+                items:
+                    kind: ref
+                    ref: canonical://www.boundedinfinity.com/canonical/bookkeeping/transaction-action
+                required: true
+            -   name: labels
+                kind: array
+                items:
+                    kind: ref
+                    ref: canonical://www.boundedinfinity.com/canonical/label/label

@@ -1,6 +1,7 @@
-id: canonical://www.boundedinfinity.com/canonical/banking/card-type
-description: Card Type
-kind: string
-enum:
-    -   Credit
-    -   Debit
+kinds:
+    -   id: canonical://www.boundedinfinity.com/canonical/banking/card-type
+        description: Card Type
+        kind: string
+        enum:
+            -   Credit
+            -   Debit
