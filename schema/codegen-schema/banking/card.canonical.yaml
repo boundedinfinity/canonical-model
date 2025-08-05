@@ -3,7 +3,8 @@ description: Bank
 kind: object
 properties:
     -   name: name
-        $ref: canonical://www.boundedinfinity.com/canonical/people/name
+        kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/people/name
         required: true
     -   name: description
         description: The description of the account
@@ -18,10 +19,13 @@ properties:
         min: 4
         max: 10
     -   name: kind
-        $ref: canonical://www.boundedinfinity.com/canonical/banking/card-type
+        kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/banking/card-type
     -   name: account
-        $ref: canonical://www.boundedinfinity.com/canonical/banking/account
+        kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/banking/account
     -   name: dates
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/label/labeled-date
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/label/labeled-date

@@ -21,19 +21,22 @@ properties:
         description: The motherboard central processing unit (CPU) sockets
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/hardware/cpu-socket
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/hardware/cpu-socket
         min: 1
         required: true
     -   name: cpus
         description: The motherboard central processing units (CPU)
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/hardware/cpu
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/hardware/cpu
     -   name: usb-ports
         description: The list of universal serial bus (USB) ports
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/hardware/usb
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/hardware/usb
 
 ---
 
@@ -52,9 +55,8 @@ properties:
         description: The motherboard chipset name
         kind: string
         max: 200
-        min: 2 
-required:
-    - name
+        min: 2
+        required: true
 
 
 ---
@@ -74,6 +76,5 @@ properties:
         description: The central processing unit (CPU) socket name
         kind: string
         max: 200
-        min: 2 
-required:
-    - name
+        min: 2
+        required: true

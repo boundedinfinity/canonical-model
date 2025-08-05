@@ -11,15 +11,18 @@ properties:
         kind: string
         format: date
     -   name: formation-state
-        $ref: canonical://www.boundedinfinity.com/canonical/address/us-state
+        kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/address/us-state
     -   name: members
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/people/contact
+            kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/people/contact
     -   name: managers
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/people/contact
+            kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/people/contact
     -   name: tax-status
         kind: string
         enum:

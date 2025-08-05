@@ -13,8 +13,10 @@ properties:
     -   name: bookmarks
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/util/bookmark
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/util/bookmark
     -   name: labels
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/label/label
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/label/label

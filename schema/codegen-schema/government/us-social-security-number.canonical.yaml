@@ -3,7 +3,8 @@ description: Social Security Number
 kind: object
 properties:
     -   name: name
-        $ref: canonical://www.boundedinfinity.com/canonical/people/name
+        kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/people/name
     -   name: area-number
         kind: string
         min: 3

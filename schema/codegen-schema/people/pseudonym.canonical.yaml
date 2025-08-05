@@ -3,7 +3,8 @@ title: A person's pseudonym
 kind: object
 properties:
     -   name: kind
-        $ref: canonical://www.boundedinfinity.com/canonical/people/pseudonym-type
+        kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/people/pseudonym-type
     -   name: text
         description: The pseudonym text
         kind: string

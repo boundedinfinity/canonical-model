@@ -15,17 +15,21 @@ properties:
         description: List of addresses
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/address/mailing
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/address/mailing
     -   name: telephone-numbers
         description: Telephone numbers
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/telephone/nanp
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/telephone/nanp
     -   name: dates
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/time/sdate
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/time/sdate
     -   name: labels
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/label/label
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/label/label

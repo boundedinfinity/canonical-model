@@ -3,10 +3,12 @@ description: Double Entry Bookkeeping Transaction Debit
 kind: object
 properties:
     -   name: account
-        $ref: canonical://www.boundedinfinity.com/canonical/bookkeeping/account
+        kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/bookkeeping/account
         required: true
     -   name: amount
-        $ref: canonical://www.boundedinfinity.com/canonical/currency/usd
+        kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/currency/usd
         required: true
     -   name: date
         kind: string

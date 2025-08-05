@@ -8,7 +8,8 @@ properties:
         max: 200
         required: true
     -   name: company
-        $ref: canonical://www.boundedinfinity.com/canonical/corporation/company
+        kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/corporation/company
         required: true
     -   name: dates
         kind: array

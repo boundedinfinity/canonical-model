@@ -10,20 +10,24 @@ properties:
         description: The description of the event
         kind: string
     -   name: by
-        $ref: canonical://www.boundedinfinity.com/canonical/time/timestamp
+        kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/time/timestamp
         required: true
     -   name: required
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/people/contact
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/people/contact
     -   name: optional
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/people/contact
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/people/contact
     -   name: notifications
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/calendar/notification
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/calendar/notification
     -   name: visibility
         kind: string
         enum:
@@ -33,4 +37,5 @@ properties:
     -   name: labels
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/label/label
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/label/label

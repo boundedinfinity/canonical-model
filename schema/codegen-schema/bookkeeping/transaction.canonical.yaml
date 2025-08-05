@@ -9,15 +9,18 @@ properties:
         kind: array
         min: 1
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/bookkeeping/transaction-action
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/bookkeeping/transaction-action
         required: true
     -   name: credits
         kind: array
         min: 1
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/bookkeeping/transaction-action
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/bookkeeping/transaction-action
         required: true
     -   name: labels
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/label/label
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/label/label

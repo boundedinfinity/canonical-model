@@ -15,4 +15,5 @@ properties:
         kind: string
         required: true
     -   name: bank
-        $ref: canonical://www.boundedinfinity.com/canonical/banking/bank
+        kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/banking/bank

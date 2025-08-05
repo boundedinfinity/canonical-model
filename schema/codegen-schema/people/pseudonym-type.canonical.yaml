@@ -18,7 +18,9 @@ properties:
         max: 5
         min: 1
     -   name: description
-        $ref: canonical://www.boundedinfinity.com/canonical/util/description
+        kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/util/description
         description: The suffix description
     -   name: status
-        $ref: canonical://www.boundedinfinity.com/canonical/util/record-status
+        kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/util/record-status

@@ -3,7 +3,8 @@ description: Calendar Notification
 kind: object
 properties:
     -   name: before
-        $ref: canonical://www.boundedinfinity.com/canonical/time/duration
+        kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/time/duration
         required: true
     -   name: method
         kind: string

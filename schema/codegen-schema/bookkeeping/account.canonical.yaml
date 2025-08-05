@@ -13,7 +13,8 @@ properties:
         description: The description of the account
         kind: string
     -   name: kind
-        $ref: canonical://www.boundedinfinity.com/canonical/bookkeeping/account-type
+        kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/bookkeeping/account-type
         required: true
     -   name: parent
         description: URL representing the parent ID
@@ -22,4 +23,5 @@ properties:
     -   name: dates
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/label/labled-datetime
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/label/labled-datetime

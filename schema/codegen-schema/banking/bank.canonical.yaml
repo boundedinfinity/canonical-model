@@ -3,7 +3,8 @@ description: Bank
 kind: object
 properties:
     -   name: id
-        $ref: canonical://www.boundedinfinity.com/canonical/banking/bank-id
+        kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/banking/bank-id
         required: true
     -   name: name
         description: The name of the bank
@@ -13,5 +14,6 @@ properties:
         description: The description of the bank
         kind: string
     -   name: routing-number
-        $ref: canonical://www.boundedinfinity.com/canonical/banking/aba-rtn
+        kind: ref
+        ref: canonical://www.boundedinfinity.com/canonical/banking/aba-rtn
         required: true

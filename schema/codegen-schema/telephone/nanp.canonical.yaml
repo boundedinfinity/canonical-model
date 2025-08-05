@@ -9,7 +9,8 @@ properties:
     -   name: dates
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/time/sdate
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/time/sdate
     -   name: area-code
         description: Numbering plan area code
         kind: string
@@ -32,4 +33,5 @@ properties:
     -   name: labels
         kind: array
         items:
-            $ref: canonical://www.boundedinfinity.com/canonical/label/label
+            kind: ref
+            ref: canonical://www.boundedinfinity.com/canonical/label/label
