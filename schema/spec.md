@@ -1,6 +1,18 @@
-## Specification
+# Specification
 
-### Kind
+## General
+
+### ID
+
+A **kind** **ID** has the following format:
+
+```
+canonical://path/to/schema
+```
+
+Where the _scheme_ portion of the URL is `canonical`.
+
+## Kind
 
 -   `kind`:
 
