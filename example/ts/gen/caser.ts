@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { stringUtils as su } from "./utils.ts";
+import { stringUtils as su } from "./utils.js";
 
 export type CaseType =
   | "phrase"
@@ -18,10 +18,10 @@ export class Caser {
     ignoreSymbols: string[];
     compactSpaces: boolean;
   } = {
-    safeChar: " ",
-    compactSpaces: true,
-    ignoreSymbols: [],
-  };
+      safeChar: " ",
+      compactSpaces: true,
+      ignoreSymbols: [],
+    };
 
   constructor(options?: Partial<typeof this.options>) {
     _.merge(this.options, options);

@@ -1,6 +1,6 @@
 import * as assert from "@std/assert";
-import { TsGenerator } from './ts-gen.ts'
-import { stringUtils as su } from './utils.ts'
+import { TsGenerator } from './ts-gen.js'
+import { stringUtils as su } from './utils.js'
 
 // Deno.test('Test primitive', () => {
 //     const gen = new TsGenerator()

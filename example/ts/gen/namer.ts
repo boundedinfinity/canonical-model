@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { Caser, type CaseType } from './caser.ts'
+import { Caser, type CaseType } from './caser.js'
 
 export class TsNamer {
     private caser = new Caser()

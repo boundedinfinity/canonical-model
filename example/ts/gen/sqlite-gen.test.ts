@@ -1,6 +1,6 @@
 import { assertEquals } from "@std/assert";
-import * as SQL from './sqlite-gen-model.ts'
-import { StringBuffer, stringUtils as su } from './utils.ts'
+import * as SQL from './sqlite-gen-model.js'
+import { StringBuffer, stringUtils as su } from './utils.js'
 
 function save(file: string, text: string) {
     const encoder = new TextEncoder();

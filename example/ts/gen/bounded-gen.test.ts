@@ -1,5 +1,5 @@
 import { assertEquals } from "@std/assert";
-import { BoundedGenerator } from './bounded-gen.ts'
+import { BoundedGenerator } from './bounded-gen.js'
 
 function save(file: string, text: string) {
     const encoder = new TextEncoder();

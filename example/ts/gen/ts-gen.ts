@@ -1,4 +1,4 @@
-import { StringBuffer } from "./utils.ts";
+import { StringBuffer } from "./utils.js";
 
 export type TsSep = ', ' | '\n' | ',\n' | '\n\n'
 
