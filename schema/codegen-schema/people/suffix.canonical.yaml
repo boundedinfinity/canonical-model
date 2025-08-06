@@ -1,5 +1,5 @@
 kinds:
-    -   id: https://www.boundedinfinity.com/canonical/people/suffix
+    -   id: canonical:people/suffix
         description: |
             The suffix of a personal name.
 
@@ -24,7 +24,7 @@ kinds:
             -   type: ref
                 ref: https://www.boundedinfinity.com/canonical/util/description
 
-    -   id: https://www.boundedinfinity.com/canonical/people/suffix-format
+    -   id: canonical:people/suffix-format
         description: The suffix format of a personal name.            
         type: object
         properties:
@@ -42,7 +42,7 @@ kinds:
 
 operations:
     -   kind: canonical://www.boundedinfinity.com/canonical/people/suffix
-        id: https://www.boundedinfinity.com/canonical/people/suffix/create
+        id: canonical:people/suffix/create
         name: create
         input:
             -   ref: https://www.boundedinfinity.com/canonical/people/suffix

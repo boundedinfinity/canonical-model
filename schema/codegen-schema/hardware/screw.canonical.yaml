@@ -1,7 +1,7 @@
 # https://www.mcmaster.com/products/screws/
 
 kinds:
-    -   id: https://www.boundedinfinity.com/canonical/hardware/screw
+    -   id: canonical:hardware/screw
         name: screw
         type: object
         description: Screw
@@ -13,7 +13,7 @@ kinds:
             -   ref: https://www.boundedinfinity.com/canonical/hardware/screw-material
             -   ref: https://www.boundedinfinity.com/canonical/hardware/screw-finish
 
-    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-finish
+    -   id: canonical:hardware/screw-finish
         name: screw-length
         type: object
         properties:
@@ -21,7 +21,7 @@ kinds:
                 type: string
                 required: true
 
-    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-material
+    -   id: canonical:hardware/screw-material
         name: screw-length
         type: object
         properties:
@@ -29,7 +29,7 @@ kinds:
                 type: string
                 required: true
 
-    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-length
+    -   id: canonical:hardware/screw-length
         name: screw-length
         type: object
         properties:
@@ -37,7 +37,7 @@ kinds:
                 type: string
                 required: true
 
-    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-thread-size
+    -   id: canonical:hardware/screw-thread-size
         name: thread-size
         type: object
         properties:
@@ -55,7 +55,7 @@ kinds:
             -   name: description
                 type: string
 
-    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-head-style
+    -   id: canonical:hardware/screw-head-style
         name: head-style
         type: object
         properties:
@@ -73,7 +73,7 @@ kinds:
             -   name: description
                 type: string
 
-    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-drive-style
+    -   id: canonical:hardware/screw-drive-style
         name: drive-style
         type: object
         properties:
@@ -92,23 +92,23 @@ kinds:
                 type: string
 
 data:
-    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-finish
+    -   id: canonical:hardware/screw-finish
         name: Black Oxide
-    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-finish
+    -   id: canonical:hardware/screw-finish
         name: Corrosion-Resistant Coated
-    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-finish
+    -   id: canonical:hardware/screw-finish
         name: Dyed
-    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-finish
+    -   id: canonical:hardware/screw-finish
         name: Passivated
-    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-finish
+    -   id: canonical:hardware/screw-finish
         name: Zinc Plated
 
 
-    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-material
+    -   id: canonical:hardware/screw-material
         name: 6061 Aluminum
-    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-material
+    -   id: canonical:hardware/screw-material
         name: Brass
-    -   id: https://www.boundedinfinity.com/canonical/hardware/screw-material
+    -   id: canonical:hardware/screw-material
         name: Plastic
     -   id:  https://www.boundedinfinity.com/canonical/hardware/screw-material
         name: Stainless Steel

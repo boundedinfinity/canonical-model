@@ -29,36 +29,36 @@ kinds:
 data:
     # https://en.wikipedia.org/wiki/Pseudonym
 
-    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/nickname
+    -   id: canonical:people/pseudonym-type/nickname
         title: Nickname
         description: A person's nick name.
-    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/alias
+    -   id: canonical:people/pseudonym-type/alias
         title: Alias
         description: A person alias
-    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/stage-name
+    -   id: canonical:people/pseudonym-type/stage-name
         title: Stage name
         description: A person's stage name
-    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/ring-name
+    -   id: canonical:people/pseudonym-type/ring-name
         title: Ring name
         description: A person's ring name
-    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/pen-name
+    -   id: canonical:people/pseudonym-type/pen-name
         title: Pen
         description: A person's pen name
-    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/nom-de-plume
+    -   id: canonical:people/pseudonym-type/nom-de-plume
         title: Nom de plume
         kind: ref
         ref: https://www.boundedinfinity.com/canonical/people/pseudonym-type/pen-name
-    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/regnal-name
+    -   id: canonical:people/pseudonym-type/regnal-name
         title: Regnal name
         description: A person's regnal name
-    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/regnant-name
+    -   id: canonical:people/pseudonym-type/regnant-name
         title: Regnant name
         kind: ref
         ref: https://www.boundedinfinity.com/canonical/people/pseudonym-type/regnal-name
-    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/reign-name
+    -   id: canonical:people/pseudonym-type/reign-name
         title: Reign name
         kind: ref
         ref: https://www.boundedinfinity.com/canonical/people/pseudonym-type/reign-name
-    -   id: https://www.boundedinfinity.com/canonical/people/pseudonym-type/online-name
+    -   id: canonical:people/pseudonym-type/online-name
         title: Online name
         description: A person's online name

@@ -49,7 +49,7 @@ kinds:
                 type: ref
                 ref: https://www.boundedinfinity.com/canonical/people/name-format
 
-    -   id: https://www.boundedinfinity.com/canonical/people/name-format
+    -   id: canonical:people/name-format
         type: object
         properties:
             -   name: id

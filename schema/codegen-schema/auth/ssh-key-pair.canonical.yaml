@@ -1,5 +1,5 @@
 kinds:
-    -   id: https://www.boundedinfinity.com/canonical/auth/ssh-key-pair
+    -   id: canonical:auth/ssh-key-pair
         description: SSH Key pair
         type: object
         properties:
@@ -13,7 +13,7 @@ kinds:
                 type: string
             -   ref: https://www.boundedinfinity.com/canonical/auth/ssh-key-algorithm
 
-    -   id: https://www.boundedinfinity.com/canonical/auth/ssh-key-algorithm
+    -   id: canonical:auth/ssh-key-algorithm
         description: The algorithm used to generate the key
         type: object
         properties:

@@ -1,5 +1,5 @@
 kinds:
-    -   id: https://www.boundedinfinity.com/canonical/util/description
+    -   id: canonical:util/description
         type: string
         name: description
         min: 5

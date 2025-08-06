@@ -1,23 +1,23 @@
 kinds:
-    -   id: https://www.boundedinfinity.com/canonical/util/name-5
+    -   id: canonical:util/name-5
         type: string
         name: name
         min: 1
         max: 5
 
-    -   id: https://www.boundedinfinity.com/canonical/util/name-10
+    -   id: canonical:util/name-10
         type: string
         name: name
         min: 1
         max: 10
 
-    -   id: https://www.boundedinfinity.com/canonical/util/name-20
+    -   id: canonical:util/name-20
         type: string
         name: name
         min: 1
         max: 20
 
-    -   id: https://www.boundedinfinity.com/canonical/util/name-50
+    -   id: canonical:util/name-50
         type: string
         name: name
         min: 1

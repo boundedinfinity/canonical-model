@@ -1,5 +1,5 @@
 kinds:
-    -   id: https://www.boundedinfinity.com/canonical/util/uri
+    -   id: canonical:util/uri
         type: string
         max: 200
         description: >

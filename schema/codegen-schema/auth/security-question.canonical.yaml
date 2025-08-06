@@ -1,5 +1,5 @@
 kinds:
-    -   id: https://www.boundedinfinity.com/canonical/auth/security-question
+    -   id: canonical:auth/security-question
         description: Account security questions
         type: object
         properties:

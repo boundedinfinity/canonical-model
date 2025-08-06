@@ -1,5 +1,5 @@
 kinds:
-    -   id: https://www.boundedinfinity.com/canonical/util/tracking-id
+    -   id: canonical:util/tracking-id
         name: tracking-id
         type: string
         description: A Tracking ID

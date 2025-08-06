@@ -1,5 +1,5 @@
 kinds:
-    -   id: https://www.boundedinfinity.com/canonical/people/prefix
+    -   id: canonical:people/prefix
         description: |
             The prefix of a personal name.
 
@@ -25,7 +25,7 @@ kinds:
             -   type: ref
                 ref: https://www.boundedinfinity.com/canonical/util/description
 
-    -   id: https://www.boundedinfinity.com/canonical/people/prefix-format
+    -   id: canonical:people/prefix-format
         description: The prefix format of a personal name.            
         type: object
         properties:
@@ -42,7 +42,7 @@ kinds:
                 ref: https://www.boundedinfinity.com/canonical/util/description
 
 operations:
-    -   id: https://www.boundedinfinity.com/canonical/people/prefix/create
+    -   id: canonical:people/prefix/create
         name: create
         input:
             -   ref: https://www.boundedinfinity.com/canonical/people/prefix

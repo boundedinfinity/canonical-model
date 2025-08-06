@@ -1,5 +1,5 @@
 kinds:
-    -   id: https://www.boundedinfinity.com/canonical/id
+    -   id: canonical:id
         name: ID
         type: string
         description: The standard ID format for the canonical model.

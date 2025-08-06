@@ -1,11 +1,11 @@
 kinds:
-    -   id: https://www.boundedinfinity.com/canonical/util/url
+    -   id: canonical:util/url
         name: URL
         type: string
         min: 1
         max: 100
         regex: ^(https?://)?([^\s/?\.#-]+\.?)+(\/[^\s]*)?$
-    -   id: https://www.boundedinfinity.com/canonical/util/uri
+    -   id: canonical:util/uri
         name: URI
         type: string
         min: 1

@@ -29,32 +29,32 @@ kinds:
 data:
     -   name: Owns
         description: Increased by Debits
-        id: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns
+        id: canonical:bookkeeping/account/owns
     -   name: Owes
         description: Increased by Credits
-        id: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns
+        id: canonical:bookkeeping/account/owns
     -   name: Assets
-        id: https://www.boundedinfinity.com/canonical/bookkeeping/account/assets
+        id: canonical:bookkeeping/account/assets
         description: |
             Anything that has current or future economic value to a business.
         parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns
     -   name: Liabilities
-        id: https://www.boundedinfinity.com/canonical/bookkeeping/account/liabilities
+        id: canonical:bookkeeping/account/liabilities
         description: |
             A liability is a present or future obligation of an entity to transfer 
             an economic benefit.
         parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owes
     -   name: Owner's Equity
-        id: https://www.boundedinfinity.com/canonical/bookkeeping/account/owners-equity
+        id: canonical:bookkeeping/account/owners-equity
         description: |
             The value attributable to the owners of a business.
         parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owes
     -   name: Expenses
-        id: https://www.boundedinfinity.com/canonical/bookkeeping/account/expenses
+        id: canonical:bookkeeping/account/expenses
         parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns
     -   name: Revenues
-        id: https://www.boundedinfinity.com/canonical/bookkeeping/account/revenues
+        id: canonical:bookkeeping/account/revenues
         parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owes
     -   name: Dividends
-        id: https://www.boundedinfinity.com/canonical/bookkeeping/account/dividends
+        id: canonical:bookkeeping/account/dividends
         parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns

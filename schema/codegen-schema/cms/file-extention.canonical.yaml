@@ -1,5 +1,5 @@
 kinds:
-    -   id: https://www.boundedinfinity.com/canonical/cms/file-extention
+    -   id: canonical:cms/file-extention
         name: file-extention
         properties:
             -   name: name

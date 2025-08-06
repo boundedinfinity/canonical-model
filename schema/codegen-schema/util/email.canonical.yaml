@@ -1,5 +1,5 @@
 kinds:
-    -   id: https://www.boundedinfinity.com/canonical/util/email
+    -   id: canonical:util/email
         type: string
         max: 200
         

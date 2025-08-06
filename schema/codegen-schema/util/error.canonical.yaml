@@ -1,5 +1,5 @@
 kinds:
-    -   id: https://www.boundedinfinity.com/canonical/util/error
+    -   id: canonical:util/error
         type: object
         properties:
             -   name: user-message
@@ -13,7 +13,7 @@ kinds:
                 required: true
             -   name: error-code
                 type: integer
-    -   id: https://www.boundedinfinity.com/canonical/util/error-list
+    -   id: canonical:util/error-list
         description: Errors
         type: array
         items: 
