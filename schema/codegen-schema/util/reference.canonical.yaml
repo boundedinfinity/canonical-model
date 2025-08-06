@@ -2,5 +2,5 @@ kinds:
     -   id: https://www.boundedinfinity.com/canonical/util/reference
         type: object
         properties:
-            -   type: https://www.boundedinfinity.com/canonical/util/name-20
+            -   kind: canonical://www.boundedinfinity.com/canonical/util/name-20
             -   urls:

@@ -30,4 +30,4 @@ kinds:
         properties:
             -   type: integer
                 name: whole
-            -   type: https://www.boundedinfinity.com/canonical/math/number/rational
+            -   kind: canonical://www.boundedinfinity.com/canonical/math/number/rational

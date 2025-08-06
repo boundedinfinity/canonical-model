@@ -4,19 +4,19 @@ kinds:
         type: object
         description: The canonical view model for a Label
         properties:
-            -   type: https://www.boundedinfinity.com/canonical/id
+            -   kind: canonical://www.boundedinfinity.com/canonical/id
             -   name: parent
-                type: https://www.boundedinfinity.com/canonical/label/label-model
+                kind: canonical://www.boundedinfinity.com/canonical/label/label-model
             -   name: children
                 type: array
                 items:
-                    type: https://www.boundedinfinity.com/canonical/label/label-model
+                    kind: canonical://www.boundedinfinity.com/canonical/label/label-model
             -   name: name
                 type: string
                 min: 2
                 max: 50
                 required: true
-            -   type: https://www.boundedinfinity.com/canonical/util/description
+            -   kind: canonical://www.boundedinfinity.com/canonical/util/description
             -   name: acronyms
                 type: array
                 unique: true
@@ -33,7 +33,7 @@ kinds:
                     max: 50
 
 data:
-    -   type: https://www.boundedinfinity.com/canonical/label/label-model
+    -   kind: canonical://www.boundedinfinity.com/canonical/label/label-model
         items:
             -   id: 380F7F39-6D8C-4AD5-83E9-15180A3867D2
                 name: Friends

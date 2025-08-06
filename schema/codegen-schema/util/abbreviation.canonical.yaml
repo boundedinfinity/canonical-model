@@ -3,7 +3,7 @@ kinds:
         name: abbreviation
         type: object
         properties:
-            -   type: https://www.boundedinfinity.com/canonical/id
+            -   kind: canonical://www.boundedinfinity.com/canonical/id
             -   name: title
                 type: string
                 min: 1
@@ -30,4 +30,4 @@ kinds:
                     max: 10
                 min: 1
                 required: true
-            -   type: https://www.boundedinfinity.com/canonical/util/description
+            -   kind: canonical://www.boundedinfinity.com/canonical/util/description
