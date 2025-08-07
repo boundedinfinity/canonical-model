@@ -1,3 +1,5 @@
+# https://github.com/boundedinfinity/specification/blob/master/id/uri.md
+
 kinds:
     -   id: canonical:id/url
         name: Uniform Resource Locator
