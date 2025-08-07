@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/banking/bank-id
+    -   id: canonical:///banking/bank-id
         description: |
             <p>An system unique bank ID</p>
             <p>

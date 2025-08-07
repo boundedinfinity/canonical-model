@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/people/pseudonym
+    -   id: canonical:///people/pseudonym
         title: A person's pseudonym
         kind: object
         properties:

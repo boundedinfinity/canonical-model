@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/aa/security-qa
+    -   id: canonical:///aa/security-qa
         description: Account security questions
         kind: object
         properties:

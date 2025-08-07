@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/address/mailing
+    -   id: canonical:///address/mailing
         description: A US mailing address
         kind: object
         properties:

@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/calendar/task
+    -   id: canonical:///calendar/task
         description: Calendar Task
         kind: object
         properties:

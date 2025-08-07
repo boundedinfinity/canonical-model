@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/government/form-ss-4
+    -   id: canonical:///government/form-ss-4
         description: |
             US Form SS-4
         Reference: canonical://www.irs.gov/pub/irs-pdf/fss4.pdf

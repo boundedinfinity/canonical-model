@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/address/email
+    -   id: canonical:///address/email
         description: An e-mail address
         kind: object
         properties:

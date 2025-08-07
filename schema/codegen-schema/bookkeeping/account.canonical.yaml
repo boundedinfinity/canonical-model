@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/bookkeeping/account
+    -   id: canonical:///bookkeeping/account
         description: Double Entry Bookkeeping Account
         kind: object
         properties:

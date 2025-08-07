@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/people/employment
+    -   id: canonical:///people/employment
         description: Employment
         kind: object
         properties:

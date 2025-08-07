@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/banking/aba-format
+    -   id: canonical:///banking/aba-format
         description: |
             <p>
                 The bank American Banking Association (ABA) routing transit number (RTN) format.

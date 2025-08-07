@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/bookkeeping/transaction
+    -   id: canonical:///bookkeeping/transaction
         description: Double Entry Bookkeeping Transaction
         kind: object
         properties:

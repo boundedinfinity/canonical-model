@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/util/record-status
+    -   id: canonical:///util/record-status
         description: The record status
         kind: string
         enum:

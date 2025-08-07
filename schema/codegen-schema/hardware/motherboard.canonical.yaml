@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/hardware/motherboard
+    -   id: canonical:///hardware/motherboard
         description: The mother board specification
         kind: object
         properties:
@@ -37,7 +37,7 @@ kinds:
                     kind: ref
                     ref: canonical://www.boundedinfinity.com/canonical/hardware/usb
 
-    -   id: canonical://www.boundedinfinity.com/canonical/hardware/chipset
+    -   id: canonical:///hardware/chipset
         description: The motherboard chipset specification
         kind: object
         properties:
@@ -55,7 +55,7 @@ kinds:
                 min: 2
                 required: true
 
-    -   id: canonical://www.boundedinfinity.com/canonical/hardware/cpu-socket
+    -   id: canonical:///hardware/cpu-socket
         description: The central processing unit (CPU) socket specification
         kind: object
         properties:

@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/hardware/cpu
+    -   id: canonical:///hardware/cpu
         description: The central processing unit (CPU) specification
         kind: object
         properties:

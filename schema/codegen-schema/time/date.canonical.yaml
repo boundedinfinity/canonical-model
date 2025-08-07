@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/time/date
+    -   id: canonical:///time/date
         description: Date
         kind: string
         format: date

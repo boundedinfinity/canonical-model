@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/film/movie
+    -   id: canonical:///film/movie
         description: A movie record
         kind: object
         properties:

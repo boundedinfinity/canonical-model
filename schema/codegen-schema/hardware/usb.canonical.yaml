@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/hardware/usb
+    -   id: canonical:///hardware/usb
         description: The univeral serial bus (USB) specification
         kind: object
         properties:

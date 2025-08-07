@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/hardware/memory
+    -   id: canonical:///hardware/memory
         description: The memory specification
         kind: object
         properties:

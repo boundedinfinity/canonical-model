@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/calendar/notification
+    -   id: canonical:///calendar/notification
         description: Calendar Notification
         kind: object
         properties:

@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/banking/automatic-clearning-house
+    -   id: canonical:///banking/automatic-clearning-house
         description: |
             The bank Automatic Clearning House (ACH) routing number
         kind: object

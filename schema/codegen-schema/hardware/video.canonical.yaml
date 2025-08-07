@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/hardware/video-type
+    -   id: canonical:///hardware/video-type
         description: The memory specification
         kind: object
         properties:

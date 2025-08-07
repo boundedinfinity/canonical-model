@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/address/us-state
+    -   id: canonical:///address/us-state
         description: US State
         kind: object
         properties:

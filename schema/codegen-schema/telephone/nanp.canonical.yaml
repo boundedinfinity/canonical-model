@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/telephone/nanp
+    -   id: canonical:///telephone/nanp
         description: A NANP telephone number plan
         kind: object
         properties:

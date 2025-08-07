@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/address/zip-code
+    -   id: canonical:///address/zip-code
         description: A US ZIP Code
         kind: string
         pattern: ^[0-9]{5}(?:-[0-9]{4})?$

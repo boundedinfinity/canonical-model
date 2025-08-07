@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/address/internet
+    -   id: canonical:///address/internet
         description: An internet address
         kind: object
         properties:

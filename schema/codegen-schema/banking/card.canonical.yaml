@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/banking/card
+    -   id: canonical:///banking/card
         description: Bank
         kind: object
         properties:

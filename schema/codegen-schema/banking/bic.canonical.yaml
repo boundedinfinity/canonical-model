@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/banking/bic
+    -   id: canonical:///banking/bic
         description: |
             <p>
                 The Business Identifier Codes (BIC) formatted number.

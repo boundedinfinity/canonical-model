@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/people/name
+    -   id: canonical:///people/name
         kind: object
         properties:
             -   name: id

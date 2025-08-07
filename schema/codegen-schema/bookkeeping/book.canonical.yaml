@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/bookkeeping/book
+    -   id: canonical:///bookkeeping/book
         description: Double Entry Bookkeeping Book
         kind: object
         properties:

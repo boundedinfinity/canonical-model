@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical://www.boundedinfinity.com/canonical/telephone/fomatter
+    -   id: canonical:///telephone/fomatter
         description: A telephone formatter
         kind: object
         properties:
