@@ -14,7 +14,7 @@ kinds:
                 items:
                     -   type: string
                         max: 50
-            -   ref: https://www.boundedinfinity.com/canonical/prescriptions/drug-class
+            -   ref: canonical://prescriptions/drug-class
 
     -   id: canonical:prescriptions/drug-class
         name: id
@@ -40,7 +40,7 @@ kinds:
                 items:
                     -   type: object
                         properties:
-                            -   ref: https://www.boundedinfinity.com/canonical/prescriptions/drug-side-effect-type
+                            -   ref: canonical://prescriptions/drug-side-effect-type
                             -   name: description
                                 type: string
 

@@ -37,24 +37,24 @@ data:
         id: canonical:bookkeeping/account/assets
         description: |
             Anything that has current or future economic value to a business.
-        parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns
+        parent: canonical://bookkeeping/account/owns
     -   name: Liabilities
         id: canonical:bookkeeping/account/liabilities
         description: |
             A liability is a present or future obligation of an entity to transfer 
             an economic benefit.
-        parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owes
+        parent: canonical://bookkeeping/account/owes
     -   name: Owner's Equity
         id: canonical:bookkeeping/account/owners-equity
         description: |
             The value attributable to the owners of a business.
-        parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owes
+        parent: canonical://bookkeeping/account/owes
     -   name: Expenses
         id: canonical:bookkeeping/account/expenses
-        parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns
+        parent: canonical://bookkeeping/account/owns
     -   name: Revenues
         id: canonical:bookkeeping/account/revenues
-        parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owes
+        parent: canonical://bookkeeping/account/owes
     -   name: Dividends
         id: canonical:bookkeeping/account/dividends
-        parent: https://www.boundedinfinity.com/canonical/bookkeeping/account/owns
+        parent: canonical://bookkeeping/account/owns

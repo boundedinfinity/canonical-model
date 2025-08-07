@@ -1,9 +1,9 @@
 kinds:
-    -   id:     https://www.boundedinfinity.com/canonical/contact/role
+    -   id:     canonical://contact/role
         name:   role
         properties:
             -   type:   ref
-                ref:    https://www.boundedinfinity.com/canonical/business
+                ref:    canonical://business
                 name:   Business
             -   type:   array
                 items:  

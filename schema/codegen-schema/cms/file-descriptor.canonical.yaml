@@ -14,9 +14,9 @@ kinds:
                 type: string
                 max: 200
                 required: false
-            -   ref: https://www.boundedinfinity.com/canonical/cms/mime-type
+            -   ref: canonical://cms/mime-type
                 required: true
-            -   ref: https://www.boundedinfinity.com/canonical/cms/file-extention
+            -   ref: canonical://cms/file-extention
             -   name: locations
                 id: array
                 items:

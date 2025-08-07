@@ -4,5 +4,5 @@ kinds:
         type: object
         description: Drug prescription
         properties:
-            -   ref: https://www.boundedinfinity.com/canonical/prescriptions/drug
+            -   ref: canonical://prescriptions/drug
                 

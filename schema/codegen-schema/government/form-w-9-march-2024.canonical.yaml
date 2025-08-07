@@ -44,7 +44,7 @@ kinds:
             -   name: Exemption from Foreign Account Tax Compliance Act Reporting Code
                 alias: Line 4 FATCA Act Reporting Code
             -   type: ref
-                ref: https://www.boundedinfinity.com/canonical/address/mailing
+                ref: canonical://address/mailing
                 alias: Line 5 and 6
             -   
             

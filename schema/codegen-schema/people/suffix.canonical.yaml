@@ -9,7 +9,7 @@ kinds:
         properties:
             -   name: id
                 type: ref
-                ref: https://www.boundedinfinity.com/canonical/id
+                ref: canonical://id
             -   name: name
                 type: string
                 min: 1
@@ -22,7 +22,7 @@ kinds:
                     min: 1
                     max: 10
             -   type: ref
-                ref: https://www.boundedinfinity.com/canonical/util/description
+                ref: canonical://util/description
 
     -   id: canonical:people/suffix-format
         description: The suffix format of a personal name.            
@@ -30,7 +30,7 @@ kinds:
         properties:
             -   name: id
                 type: ref
-                ref: https://www.boundedinfinity.com/canonical/id
+                ref: canonical://id
             -   name: name
                 type: string
                 min: 1
@@ -38,16 +38,16 @@ kinds:
                 required: true
                 indexed: true
             -   type: ref
-                ref: https://www.boundedinfinity.com/canonical/util/description
+                ref: canonical://util/description
 
 operations:
     -   kind: canonical://www.boundedinfinity.com/canonical/people/suffix
         id: canonical:people/suffix/create
         name: create
         input:
-            -   ref: https://www.boundedinfinity.com/canonical/people/suffix
+            -   ref: canonical://people/suffix
         output:  
-            -   ref: https://www.boundedinfinity.com/canonical/people/suffix
+            -   ref: canonical://people/suffix
 data:
     # https://en.wikipedia.org/wiki/English_honorifics
     -   kind: canonical://www.boundedinfinity.com/canonical/people/suffix
@@ -60,7 +60,7 @@ data:
     -   kind: canonical://www.boundedinfinity.com/canonical/people/suffix
         id: D5E4E33C-F2B2-4853-8FD9-A29F903E01D1
         abbreviation: AB
-        ref: https://www.boundedinfinity.com/canonical/people/suffix/ba
+        ref: canonical://people/suffix/ba
     -   kind: canonical://www.boundedinfinity.com/canonical/people/suffix
         id: 97FB22CC-2976-467E-B460-3D766090DCBB
         name: Bachelor of Science
@@ -71,15 +71,15 @@ data:
     -   kind: canonical://www.boundedinfinity.com/canonical/people/suffix
         id: B48FB009-AF28-4934-8E5F-EBC278C72E82
         abbreviation: B.Sc.
-        ref: https://www.boundedinfinity.com/canonical/people/suffix/bs
+        ref: canonical://people/suffix/bs
     -   kind: canonical://www.boundedinfinity.com/canonical/people/suffix
-        id:  https://www.boundedinfinity.com/canonical/people/suffix/sb
+        id:  canonical://people/suffix/sb
         abbreviation: SB
-        ref: https://www.boundedinfinity.com/canonical/people/suffix/sb
+        ref: canonical://people/suffix/sb
     -   kind: canonical://www.boundedinfinity.com/canonical/people/suffix
         id: 49062FE9-C330-4446-B6A0-55513F57BABA
         abbreviation: ScB
-        ref: https://www.boundedinfinity.com/canonical/people/scb
+        ref: canonical://people/scb
     -   kind: canonical://www.boundedinfinity.com/canonical/people/suffix
         id: 57947AFF-6047-4E41-BFB0-37DAFB7598DD
         name: Master of Business Administration

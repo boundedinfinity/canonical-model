@@ -8,7 +8,7 @@ kinds:
         type: object
         properties:
             -   type: ref
-                ref: https://www.boundedinfinity.com/canonical/id
+                ref: canonical://id
             -   name: name
                 type: string
                 min: 1
@@ -23,7 +23,7 @@ kinds:
                     max: 10
                 indexed: true
             -   type: ref
-                ref: https://www.boundedinfinity.com/canonical/util/description
+                ref: canonical://util/description
 
     -   id: canonical:people/prefix-format
         description: The prefix format of a personal name.            
@@ -31,7 +31,7 @@ kinds:
         properties:
             -   name: id
                 type: ref
-                ref: https://www.boundedinfinity.com/canonical/id
+                ref: canonical://id
             -   name: name
                 type: string
                 min: 1
@@ -39,15 +39,15 @@ kinds:
                 required: true
                 indexed: true
             -   type: ref
-                ref: https://www.boundedinfinity.com/canonical/util/description
+                ref: canonical://util/description
 
 operations:
     -   id: canonical:people/prefix/create
         name: create
         input:
-            -   ref: https://www.boundedinfinity.com/canonical/people/prefix
+            -   ref: canonical://people/prefix
         output:  
-            -   ref: https://www.boundedinfinity.com/canonical/people/prefix
+            -   ref: canonical://people/prefix
 data:
     # https://en.wikipedia.org/wiki/English_honorifics
     -   kind: canonical://www.boundedinfinity.com/canonical/people/prefix 

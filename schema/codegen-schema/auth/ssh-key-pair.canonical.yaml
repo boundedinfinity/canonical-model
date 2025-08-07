@@ -11,7 +11,7 @@ kinds:
                 description: The private key
                 required: true
                 type: string
-            -   ref: https://www.boundedinfinity.com/canonical/auth/ssh-key-algorithm
+            -   ref: canonical://auth/ssh-key-algorithm
 
     -   id: canonical:auth/ssh-key-algorithm
         description: The algorithm used to generate the key

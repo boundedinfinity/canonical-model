@@ -4,20 +4,20 @@ kinds:
         properties:
             -   name: id
                 type: ref
-                ref: https://www.boundedinfinity.com/canonical/id
+                ref: canonical://id
             -   name: name                
                 type: ref
-                ref: https://www.boundedinfinity.com/canonical/people/name
+                ref: canonical://people/name
             -   name: pseudonyms
                 type: array
                 items:
                     type: ref
-                    ref: https://www.boundedinfinity.com/canonical/people/name
+                    ref: canonical://people/name
     -   id: canonical:people/pseudonym
         type: object
         properties:
             -   type: ref
-                ref: https://www.boundedinfinity.com/canonical/id
+                ref: canonical://id
             -   name: name
                 type: string
                 min: 1
@@ -25,7 +25,7 @@ kinds:
                 required: true
                 indexed: true
             -   type: ref
-                ref: https://www.boundedinfinity.com/canonical/util/description
+                ref: canonical://util/description
 
 data:
     -   id: canonical:people/pseudonym
@@ -45,16 +45,16 @@ data:
         description: A person's pen name
     -   id: canonical:people/pseudonym-type/nom-de-plume
         name: Nom de plume
-        ref: https://www.boundedinfinity.com/canonical/people/pseudonym-type/pen-name
+        ref: canonical://people/pseudonym-type/pen-name
     -   id: canonical:people/pseudonym-type/regnal-name
         name: Regnal name
         description: A person's regnal name
     -   id: canonical:people/pseudonym-type/regnant-name
         name: Regnant name
-        ref: https://www.boundedinfinity.com/canonical/people/pseudonym-type/regnal-name
+        ref: canonical://people/pseudonym-type/regnal-name
     -   id: canonical:people/pseudonym-type/reign-name
         name: Reign name
-        ref: https://www.boundedinfinity.com/canonical/people/pseudonym-type/reign-name
+        ref: canonical://people/pseudonym-type/reign-name
     -   id: canonical:people/pseudonym-type/online-name
         name: Online name
         description: A person's online name

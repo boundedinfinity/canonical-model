@@ -4,11 +4,11 @@ kinds:
         properties:
             -   name: id
                 type: ref
-                ref: https://www.boundedinfinity.com/canonical/id
+                ref: canonical://id
             -   name: prefixes
                 type: array
                 items:
-                    ref: https://www.boundedinfinity.com/canonical/people/prefix
+                    ref: canonical://people/prefix
             -   name: first-names
                 type: array
                 required: true
@@ -44,17 +44,17 @@ kinds:
             -   name: suffixes
                 type: array
                 items:
-                    ref: https://www.boundedinfinity.com/canonical/people/suffix
+                    ref: canonical://people/suffix
             -   name: format
                 type: ref
-                ref: https://www.boundedinfinity.com/canonical/people/name-format
+                ref: canonical://people/name-format
 
     -   id: canonical:people/name-format
         type: object
         properties:
             -   name: id
                 type: ref
-                ref: https://www.boundedinfinity.com/canonical/id
+                ref: canonical://id
             -   name: name
                 type: string
                 max: 25
