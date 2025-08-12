@@ -1,393 +1,388 @@
 # https://www.mcmaster.com/products/screws/
 
 kinds:
-    -   id: canonical:hardware/screw
-        name: screw
-        type: object
-        description: Screw
-        properties:
-            -   ref: canonical://hardware/screw-length
-            -   ref: canonical://hardware/screw-thread-size
-            -   ref: canonical://hardware/screw-drive-style
-            -   ref: canonical://hardware/screw-head-style
-            -   ref: canonical://hardware/screw-material
-            -   ref: canonical://hardware/screw-finish
+    - id: canonical:hardware/screw
+      name: screw
+      kind: object
+      description: Screw
+      properties:
+          - ref: canonical://hardware/screw-length
+          - ref: canonical://hardware/screw-thread-size
+          - ref: canonical://hardware/screw-drive-style
+          - ref: canonical://hardware/screw-head-style
+          - ref: canonical://hardware/screw-material
+          - ref: canonical://hardware/screw-finish
 
-    -   id: canonical:hardware/screw-finish
-        name: screw-length
-        type: object
-        properties:
-            -   name: name
-                type: string
-                required: true
+    - id: canonical:hardware/screw-finish
+      name: screw-length
+      kind: object
+      properties:
+          - name: name
+            kind: string
+            required: true
 
-    -   id: canonical:hardware/screw-material
-        name: screw-length
-        type: object
-        properties:
-            -   name: name
-                type: string
-                required: true
+    - id: canonical:hardware/screw-material
+      name: screw-length
+      kind: object
+      properties:
+          - name: name
+            kind: string
+            required: true
 
-    -   id: canonical:hardware/screw-length
-        name: screw-length
-        type: object
-        properties:
-            -   name: name
-                type: string
-                required: true
+    - id: canonical:hardware/screw-length
+      name: screw-length
+      kind: object
+      properties:
+          - name: name
+            kind: string
+            required: true
 
-    -   id: canonical:hardware/screw-thread-size
-        name: thread-size
-        type: object
-        properties:
-            -   name: name
-                type: string
-                required: true
-            -   name: acronym
-                type: array
-                items:
-                    type: string
-            -   name: alias
-                type: array
-                items:
-                    type: string
-            -   name: description
-                type: string
+    - id: canonical:hardware/screw-thread-size
+      name: thread-size
+      kind: object
+      properties:
+          - name: name
+            kind: string
+            required: true
+          - name: acronym
+            kind: array
+            items:
+                kind: string
+          - name: alias
+            kind: array
+            items:
+                kind: string
+          - name: description
+            kind: string
 
-    -   id: canonical:hardware/screw-head-style
-        name: head-style
-        type: object
-        properties:
-            -   name: name
-                type: string
-                required: true
-            -   name: acronym
-                type: array
-                items:
-                    type: string
-            -   name: alias
-                type: array
-                items:
-                    type: string
-            -   name: description
-                type: string
+    - id: canonical:hardware/screw-head-style
+      name: head-style
+      kind: object
+      properties:
+          - name: name
+            kind: string
+            required: true
+          - name: acronym
+            kind: array
+            items:
+                kind: string
+          - name: alias
+            kind: array
+            items:
+                kind: string
+          - name: description
+            kind: string
 
-    -   id: canonical:hardware/screw-drive-style
-        name: drive-style
-        type: object
-        properties:
-            -   name: name
-                type: string
-                required: true
-            -   name: acronym
-                type: array
-                items:
-                    type: string
-            -   name: alias
-                type: array
-                items:
-                    type: string
-            -   name: description
-                type: string
+    - id: canonical:hardware/screw-drive-style
+      name: drive-style
+      kind: object
+      properties:
+          - name: name
+            kind: string
+            required: true
+          - name: acronym
+            kind: array
+            items:
+                kind: string
+          - name: alias
+            kind: array
+            items:
+                kind: string
+          - name: description
+            kind: string
 
 data:
-    -   id: canonical:hardware/screw-finish
-        name: Black Oxide
-    -   id: canonical:hardware/screw-finish
-        name: Corrosion-Resistant Coated
-    -   id: canonical:hardware/screw-finish
-        name: Dyed
-    -   id: canonical:hardware/screw-finish
-        name: Passivated
-    -   id: canonical:hardware/screw-finish
-        name: Zinc Plated
+    - id: canonical:hardware/screw-finish
+      name: Black Oxide
+    - id: canonical:hardware/screw-finish
+      name: Corrosion-Resistant Coated
+    - id: canonical:hardware/screw-finish
+      name: Dyed
+    - id: canonical:hardware/screw-finish
+      name: Passivated
+    - id: canonical:hardware/screw-finish
+      name: Zinc Plated
 
+    - id: canonical:hardware/screw-material
+      name: 6061 Aluminum
+    - id: canonical:hardware/screw-material
+      name: Brass
+    - id: canonical:hardware/screw-material
+      name: Plastic
+    - id: canonical://hardware/screw-material
+      name: Stainless Steel
+    - id: canonical://hardware/screw-material
+      name: Steel
+    - id: canonical://hardware/screw-material
+      name: Titanium
 
-    -   id: canonical:hardware/screw-material
-        name: 6061 Aluminum
-    -   id: canonical:hardware/screw-material
-        name: Brass
-    -   id: canonical:hardware/screw-material
-        name: Plastic
-    -   id:  canonical://hardware/screw-material
-        name: Stainless Steel
-    -   id:  canonical://hardware/screw-material
-        name: Steel
-    -   id:  canonical://hardware/screw-material
-        name: Titanium
+    - id: canonical://hardware/screw-length
+      name: 1/16"
+    - id: canonical://hardware/screw-length
+      name: 3/32"
+    - id: canonical://hardware/screw-length
+      name: 1/8"
+    - id: canonical://hardware/screw-length
+      name: 5/32"
+    - id: canonical://hardware/screw-length
+      name: 3/16"
+    - id: canonical://hardware/screw-length
+      name: 7/32"
+    - id: canonical://hardware/screw-length
+      name: 1/4"
+    - id: canonical://hardware/screw-length
+      name: 9/32"
+    - id: canonical://hardware/screw-length
+      name: 5/16"
+    - id: canonical://hardware/screw-length
+      name: 11/32"
+    - id: canonical://hardware/screw-length
+      name: 3/8"
+    - id: canonical://hardware/screw-length
+      name: 7/16"
+    - id: canonical://hardware/screw-length
+      name: 1/2"
+    - id: canonical://hardware/screw-length
+      name: 9/16"
+    - id: canonical://hardware/screw-length
+      name: 5/8"
+    - id: canonical://hardware/screw-length
+      name: 3/4"
+    - id: canonical://hardware/screw-length
+      name: 7/8"
+    - id: canonical://hardware/screw-length
+      name: 1"
+    - id: canonical://hardware/screw-length
+      name: 1 1/8"
+    - id: canonical://hardware/screw-length
+      name: 6 mm
+    - id: canonical://hardware/screw-length
+      name: 8 mm
+    - id: canonical://hardware/screw-length
+      name: 10 mm
+    - id: canonical://hardware/screw-length
+      name: 12 mm
+    - id: canonical://hardware/screw-length
+      name: 13 mm
+    - id: canonical://hardware/screw-length
+      name: 14 mm
+    - id: canonical://hardware/screw-length
+      name: 15 mm
+    - id: canonical://hardware/screw-length
+      name: 16 mm
+    - id: canonical://hardware/screw-length
+      name: 18 mm
+    - id: canonical://hardware/screw-length
+      name: 20 mm
+    - id: canonical://hardware/screw-length
+      name: 22 mm
+    - id: canonical://hardware/screw-length
+      name: 25 mm
+    - id: canonical://hardware/screw-length
+      name: 30 mm
+    - id: canonical://hardware/screw-length
+      name: 35 mm
+    - id: canonical://hardware/screw-length
+      name: 40 mm
+    - id: canonical://hardware/screw-length
+      name: 45 mm
+    - id: canonical://hardware/screw-length
+      name: 50 mm
+    - id: canonical://hardware/screw-length
+      name: 55 mm
+    - id: canonical://hardware/screw-length
+      name: 60 mm
+    - id: canonical://hardware/screw-length
+      name: 65 mm
+    - id: canonical://hardware/screw-length
+      name: 70 mm
+    - id: canonical://hardware/screw-length
+      name: 75 mm
+    - id: canonical://hardware/screw-length
+      name: 80 mm
+    - id: canonical://hardware/screw-length
+      name: 90 mm
+    - id: canonical://hardware/screw-length
+      name: 100 mm
+    - id: canonical://hardware/screw-length
+      name: 120 mm
 
+    - id: canonical://hardware/screw-thread-size
+      name: 0000-160
+    - id: canonical://hardware/screw-thread-size
+      name: 000-120
+    - id: canonical://hardware/screw-thread-size
+      name: 00-90
+    - id: canonical://hardware/screw-thread-size
+      name: 00-96
+    - id: canonical://hardware/screw-thread-size
+      name: 0-80
+    - id: canonical://hardware/screw-thread-size
+      name: 1-64
+    - id: canonical://hardware/screw-thread-size
+      name: 1-72
+    - id: canonical://hardware/screw-thread-size
+      name: 2-56
+    - id: canonical://hardware/screw-thread-size
+      name: 2-64
+    - id: canonical://hardware/screw-thread-size
+      name: 3-48
+    - id: canonical://hardware/screw-thread-size
+      name: 3-56
+    - id: canonical://hardware/screw-thread-size
+      name: 4-40
+    - id: canonical://hardware/screw-thread-size
+      name: 4-48
+    - id: canonical://hardware/screw-thread-size
+      name: 5-40
+    - id: canonical://hardware/screw-thread-size
+      name: 5-44
+    - id: canonical://hardware/screw-thread-size
+      name: 6-32
+    - id: canonical://hardware/screw-thread-size
+      name: 6-40
+    - id: canonical://hardware/screw-thread-size
+      name: 6-48
+    - id: canonical://hardware/screw-thread-size
+      name: 8-32
+    - id: canonical://hardware/screw-thread-size
+      name: 8-36
+    - id: canonical://hardware/screw-thread-size
+      name: 8-40
+    - id: canonical://hardware/screw-thread-size
+      name: 10-24
+    - id: canonical://hardware/screw-thread-size
+      name: 10-32
+    - id: canonical://hardware/screw-thread-size
+      name: 12-24
+    - id: canonical://hardware/screw-thread-size
+      name: 12-28
+    - id: canonical://hardware/screw-thread-size
+      name: 1/4"-20
+    - id: canonical://hardware/screw-thread-size
+      name: 1/4"-28
+    - id: canonical://hardware/screw-thread-size
+      name: 1/4"-32
+    - id: canonical://hardware/screw-thread-size
+      name: 5/16"-18
+    - id: canonical://hardware/screw-thread-size
+      name: 5/16"-24
+    - id: canonical://hardware/screw-thread-size
+      name: 5/16"-32
+    - id: canonical://hardware/screw-thread-size
+      name: 3/8"-16
+    - id: canonical://hardware/screw-thread-size
+      name: 3/8"-24
+    - id: canonical://hardware/screw-thread-size
+      name: 3/8"-32
+    - id: canonical://hardware/screw-thread-size
+      name: 7/16"-14
+    - id: canonical://hardware/screw-thread-size
+      name: 7/16"-20
+    - id: canonical://hardware/screw-thread-size
+      name: 1/2"-13
+    - id: canonical://hardware/screw-thread-size
+      name: 1/2"-20
+    - id: canonical://hardware/screw-thread-size
+      name: 5/8"-11
+    - id: canonical://hardware/screw-thread-size
+      name: 5/8"-18
+    - id: canonical://hardware/screw-thread-size
+      name: 3/4"-10
+    - id: canonical://hardware/screw-thread-size
+      name: M0.5
+    - id: canonical://hardware/screw-thread-size
+      name: M0.8
+    - id: canonical://hardware/screw-thread-size
+      name: M0.9
+    - id: canonical://hardware/screw-thread-size
+      name: M1
+    - id: canonical://hardware/screw-thread-size
+      name: M1.2
+    - id: canonical://hardware/screw-thread-size
+      name: M1.4
+    - id: canonical://hardware/screw-thread-size
+      name: M1.6
+    - id: canonical://hardware/screw-thread-size
+      name: M1.7
+    - id: canonical://hardware/screw-thread-size
+      name: M1.8
+    - id: canonical://hardware/screw-thread-size
+      name: M2
+    - id: canonical://hardware/screw-thread-size
+      name: M2.2
+    - id: canonical://hardware/screw-thread-size
+      name: M2.5
+    - id: canonical://hardware/screw-thread-size
+      name: M2.6
+    - id: canonical://hardware/screw-thread-size
+      name: M3
+    - id: canonical://hardware/screw-thread-size
+      name: M3.5
+    - id: canonical://hardware/screw-thread-size
+      name: M4
+    - id: canonical://hardware/screw-thread-size
+      name: M4.5
+    - id: canonical://hardware/screw-thread-size
+      name: M5
+    - id: canonical://hardware/screw-thread-size
+      name: M6
+    - id: canonical://hardware/screw-thread-size
+      name: M8
+    - id: canonical://hardware/screw-thread-size
+      name: M10
+    - id: canonical://hardware/screw-thread-size
+      name: M12
+    - id: canonical://hardware/screw-thread-size
+      name: M16
 
-    -   id:  canonical://hardware/screw-length
-        name: 1/16"
-    -   id:  canonical://hardware/screw-length
-        name: 3/32"
-    -   id:  canonical://hardware/screw-length
-        name: 1/8"
-    -   id:  canonical://hardware/screw-length
-        name: 5/32"
-    -   id:  canonical://hardware/screw-length
-        name: 3/16"
-    -   id:  canonical://hardware/screw-length
-        name: 7/32"
-    -   id:  canonical://hardware/screw-length
-        name: 1/4"
-    -   id:  canonical://hardware/screw-length
-        name: 9/32"
-    -   id:  canonical://hardware/screw-length
-        name: 5/16"
-    -   id:  canonical://hardware/screw-length
-        name: 11/32"
-    -   id:  canonical://hardware/screw-length
-        name: 3/8"
-    -   id:  canonical://hardware/screw-length
-        name: 7/16"
-    -   id:  canonical://hardware/screw-length
-        name: 1/2"
-    -   id:  canonical://hardware/screw-length
-        name: 9/16"
-    -   id:  canonical://hardware/screw-length
-        name: 5/8"
-    -   id:  canonical://hardware/screw-length
-        name: 3/4"
-    -   id:  canonical://hardware/screw-length
-        name: 7/8"
-    -   id:  canonical://hardware/screw-length
-        name: 1"
-    -   id:  canonical://hardware/screw-length
-        name: 1 1/8"
-    -   id:  canonical://hardware/screw-length
-        name: 6 mm
-    -   id:  canonical://hardware/screw-length
-        name: 8 mm
-    -   id:  canonical://hardware/screw-length
-        name: 10 mm
-    -   id:  canonical://hardware/screw-length
-        name: 12 mm
-    -   id:  canonical://hardware/screw-length
-        name: 13 mm
-    -   id:  canonical://hardware/screw-length
-        name: 14 mm
-    -   id:  canonical://hardware/screw-length
-        name: 15 mm
-    -   id:  canonical://hardware/screw-length
-        name: 16 mm
-    -   id:  canonical://hardware/screw-length
-        name: 18 mm
-    -   id:  canonical://hardware/screw-length
-        name: 20 mm
-    -   id:  canonical://hardware/screw-length
-        name: 22 mm
-    -   id:  canonical://hardware/screw-length
-        name: 25 mm
-    -   id:  canonical://hardware/screw-length
-        name: 30 mm
-    -   id:  canonical://hardware/screw-length
-        name: 35 mm
-    -   id:  canonical://hardware/screw-length
-        name: 40 mm
-    -   id:  canonical://hardware/screw-length
-        name: 45 mm
-    -   id:  canonical://hardware/screw-length
-        name: 50 mm
-    -   id:  canonical://hardware/screw-length
-        name: 55 mm
-    -   id:  canonical://hardware/screw-length
-        name: 60 mm
-    -   id:  canonical://hardware/screw-length
-        name: 65 mm
-    -   id:  canonical://hardware/screw-length
-        name: 70 mm
-    -   id:  canonical://hardware/screw-length
-        name: 75 mm
-    -   id:  canonical://hardware/screw-length
-        name: 80 mm
-    -   id:  canonical://hardware/screw-length
-        name: 90 mm
-    -   id:  canonical://hardware/screw-length
-        name: 100 mm
-    -   id:  canonical://hardware/screw-length
-        name: 120 mm
+    - id: canonical://hardware/screw-head-style
+      name: Binding
+    - id: canonical://hardware/screw-head-style
+      name: Button
+    - id: canonical://hardware/screw-head-style
+      name: Cheese
+    - id: canonical://hardware/screw-head-style
+      name: Fillister
+    - id: canonical://hardware/screw-head-style
+      name: Pan
+    - id: canonical://hardware/screw-head-style
+      name: Round
+    - id: canonical://hardware/screw-head-style
+      name: Truss
 
-
-    -   id:  canonical://hardware/screw-thread-size
-        name: 0000-160
-    -   id:  canonical://hardware/screw-thread-size
-        name: 000-120
-    -   id:  canonical://hardware/screw-thread-size
-        name: 00-90
-    -   id:  canonical://hardware/screw-thread-size
-        name: 00-96
-    -   id:  canonical://hardware/screw-thread-size
-        name: 0-80
-    -   id:  canonical://hardware/screw-thread-size
-        name: 1-64
-    -   id:  canonical://hardware/screw-thread-size
-        name: 1-72
-    -   id:  canonical://hardware/screw-thread-size
-        name: 2-56
-    -   id:  canonical://hardware/screw-thread-size
-        name: 2-64
-    -   id:  canonical://hardware/screw-thread-size
-        name: 3-48
-    -   id:  canonical://hardware/screw-thread-size
-        name: 3-56
-    -   id:  canonical://hardware/screw-thread-size
-        name: 4-40
-    -   id:  canonical://hardware/screw-thread-size
-        name: 4-48
-    -   id:  canonical://hardware/screw-thread-size
-        name: 5-40
-    -   id:  canonical://hardware/screw-thread-size
-        name: 5-44
-    -   id:  canonical://hardware/screw-thread-size
-        name: 6-32
-    -   id:  canonical://hardware/screw-thread-size
-        name: 6-40
-    -   id:  canonical://hardware/screw-thread-size
-        name: 6-48
-    -   id:  canonical://hardware/screw-thread-size
-        name: 8-32
-    -   id:  canonical://hardware/screw-thread-size
-        name: 8-36
-    -   id:  canonical://hardware/screw-thread-size
-        name: 8-40
-    -   id:  canonical://hardware/screw-thread-size
-        name: 10-24
-    -   id:  canonical://hardware/screw-thread-size
-        name: 10-32
-    -   id:  canonical://hardware/screw-thread-size
-        name: 12-24
-    -   id:  canonical://hardware/screw-thread-size
-        name: 12-28
-    -   id:  canonical://hardware/screw-thread-size
-        name: 1/4"-20
-    -   id:  canonical://hardware/screw-thread-size
-        name: 1/4"-28
-    -   id:  canonical://hardware/screw-thread-size
-        name: 1/4"-32
-    -   id:  canonical://hardware/screw-thread-size
-        name: 5/16"-18
-    -   id:  canonical://hardware/screw-thread-size
-        name: 5/16"-24
-    -   id:  canonical://hardware/screw-thread-size
-        name: 5/16"-32
-    -   id:  canonical://hardware/screw-thread-size
-        name: 3/8"-16
-    -   id:  canonical://hardware/screw-thread-size
-        name: 3/8"-24
-    -   id:  canonical://hardware/screw-thread-size
-        name: 3/8"-32
-    -   id:  canonical://hardware/screw-thread-size
-        name: 7/16"-14
-    -   id:  canonical://hardware/screw-thread-size
-        name: 7/16"-20
-    -   id:  canonical://hardware/screw-thread-size
-        name: 1/2"-13
-    -   id:  canonical://hardware/screw-thread-size
-        name: 1/2"-20
-    -   id:  canonical://hardware/screw-thread-size
-        name: 5/8"-11
-    -   id:  canonical://hardware/screw-thread-size
-        name: 5/8"-18
-    -   id:  canonical://hardware/screw-thread-size
-        name: 3/4"-10
-    -   id:  canonical://hardware/screw-thread-size
-        name: M0.5
-    -   id:  canonical://hardware/screw-thread-size
-        name: M0.8
-    -   id:  canonical://hardware/screw-thread-size
-        name: M0.9
-    -   id:  canonical://hardware/screw-thread-size
-        name: M1
-    -   id:  canonical://hardware/screw-thread-size
-        name: M1.2
-    -   id:  canonical://hardware/screw-thread-size
-        name: M1.4
-    -   id:  canonical://hardware/screw-thread-size
-        name: M1.6
-    -   id:  canonical://hardware/screw-thread-size
-        name: M1.7
-    -   id:  canonical://hardware/screw-thread-size
-        name: M1.8
-    -   id:  canonical://hardware/screw-thread-size
-        name: M2
-    -   id:  canonical://hardware/screw-thread-size
-        name: M2.2
-    -   id:  canonical://hardware/screw-thread-size
-        name: M2.5
-    -   id:  canonical://hardware/screw-thread-size
-        name: M2.6
-    -   id:  canonical://hardware/screw-thread-size
-        name: M3
-    -   id:  canonical://hardware/screw-thread-size
-        name: M3.5
-    -   id:  canonical://hardware/screw-thread-size
-        name: M4
-    -   id:  canonical://hardware/screw-thread-size
-        name: M4.5
-    -   id:  canonical://hardware/screw-thread-size
-        name: M5
-    -   id:  canonical://hardware/screw-thread-size
-        name: M6
-    -   id:  canonical://hardware/screw-thread-size
-        name: M8
-    -   id:  canonical://hardware/screw-thread-size
-        name: M10
-    -   id:  canonical://hardware/screw-thread-size
-        name: M12
-    -   id:  canonical://hardware/screw-thread-size
-        name: M16
-
-
-    -   id:  canonical://hardware/screw-head-style
-        name: Binding
-    -   id:  canonical://hardware/screw-head-style
-        name: Button
-    -   id:  canonical://hardware/screw-head-style
-        name: Cheese
-    -   id:  canonical://hardware/screw-head-style
-        name: Fillister
-    -   id:  canonical://hardware/screw-head-style
-        name: Pan
-    -   id:  canonical://hardware/screw-head-style
-        name: Round
-    -   id:  canonical://hardware/screw-head-style
-        name: Truss
-
-
-    -   id:  canonical://hardware/screw-drive-style
-        name: Asymmetrical
-    -   id:  canonical://hardware/screw-drive-style
-        name: Drilled Spanner
-    -   id:  canonical://hardware/screw-drive-style
-        name: Hex
-    -   id:  canonical://hardware/screw-drive-style
-        name: Japanese Industrial Standards
-        acronym: 
-            -   JIS
-    -   id:  canonical://hardware/screw-drive-style
-        name: One Way
-    -   id:  canonical://hardware/screw-drive-style
-        name: Philips
-    -   id:  canonical://hardware/screw-drive-style
-        name: Slotted
-        alias:
-            -   Flathead
-    -   id:  canonical://hardware/screw-drive-style
-        name: Tamper Resistant Hex
-    -   id:  canonical://hardware/screw-drive-style
-        name: Tamper Resistant Torx
-    -   id:  canonical://hardware/screw-drive-style
-        name: Torx
-    -   id:  canonical://hardware/screw-drive-style
-        name: Torx Plus
-    -   id:  canonical://hardware/screw-drive-style
-        name: Tri-Groove
-    -   id:  canonical://hardware/screw-drive-style
-        name: Wrench Flats
-    -   id:  canonical://hardware/screw-drive-style
-        name: Robertson
-        alias:
-            -   Square
-            -   Scrulox
+    - id: canonical://hardware/screw-drive-style
+      name: Asymmetrical
+    - id: canonical://hardware/screw-drive-style
+      name: Drilled Spanner
+    - id: canonical://hardware/screw-drive-style
+      name: Hex
+    - id: canonical://hardware/screw-drive-style
+      name: Japanese Industrial Standards
+      acronym:
+          - JIS
+    - id: canonical://hardware/screw-drive-style
+      name: One Way
+    - id: canonical://hardware/screw-drive-style
+      name: Philips
+    - id: canonical://hardware/screw-drive-style
+      name: Slotted
+      alias:
+          - Flathead
+    - id: canonical://hardware/screw-drive-style
+      name: Tamper Resistant Hex
+    - id: canonical://hardware/screw-drive-style
+      name: Tamper Resistant Torx
+    - id: canonical://hardware/screw-drive-style
+      name: Torx
+    - id: canonical://hardware/screw-drive-style
+      name: Torx Plus
+    - id: canonical://hardware/screw-drive-style
+      name: Tri-Groove
+    - id: canonical://hardware/screw-drive-style
+      name: Wrench Flats
+    - id: canonical://hardware/screw-drive-style
+      name: Robertson
+      alias:
+          - Square
+          - Scrulox

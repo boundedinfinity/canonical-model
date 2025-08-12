@@ -1,11 +1,11 @@
 kinds:
     - id: canonical:util/abbreviation
       name: abbreviation
-      type: object
+      kind: object
       properties:
           - kind: canonical:id
           - name: title
-            type: string
+            kind: string
             min: 1
             max: 150
             required: true
@@ -17,7 +17,7 @@ kinds:
                     for the display.
                 </p>
           - name: abbr
-            type: array
+            kind: array
             unique: true
             description: >
                 <p>The list of abbreviations for the given text.</p>
@@ -25,7 +25,7 @@ kinds:
                     Certain text may have more than one common abbreviation.
                 </p>
             items:
-                type: string
+                kind: string
                 min: 1
                 max: 10
             min: 1

@@ -1,26 +1,23 @@
 kinds:
-    -   id: canonical:cms/file-descriptor
-        name: file-descriptor
-        properties:
-            -   name: name
-                description: |
-                    The name of the file.  This should not be a path or contain
-                    the extention.
-                type: string
-                max: 100
-                required: false
-            -   name: description
-                description: A description file or file contents.
-                type: string
-                max: 200
-                required: false
-            -   ref: canonical://cms/mime-type
-                required: true
-            -   ref: canonical://cms/file-extention
-            -   name: locations
-                id: array
-                items:
-                    id: uri
-                
-
-            
+    - id: canonical:cms/file-descriptor
+      name: file-descriptor
+      properties:
+          - name: name
+            description: |
+                The name of the file.  This should not be a path or contain
+                the extention.
+            kind: string
+            max: 100
+            required: false
+          - name: description
+            description: A description file or file contents.
+            kind: string
+            max: 200
+            required: false
+          - ref: canonical://cms/mime-type
+            required: true
+          - ref: canonical://cms/file-extention
+          - name: locations
+            id: array
+            items:
+                id: uri

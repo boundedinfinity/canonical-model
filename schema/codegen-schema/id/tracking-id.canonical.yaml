@@ -1,8 +1,8 @@
 kinds:
-    - id: canonical:id/tracking-id
-      name: tracking-id
-      type: string
-      description: A Tracking ID
-      min: 2
-      max: 20
-      regex: \w+
+  - id: canonical:id/tracking-id
+    name: tracking-id
+    kind: string
+    description: A Tracking ID
+    min: 2
+    max: 20
+    regex: \w+

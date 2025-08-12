@@ -1,60 +1,60 @@
 kinds:
-    -   id: canonical:people/person
-        type: object
-        properties:
-            -   name: id
-                type: ref
-                ref: canonical://id
-            -   name: name                
-                type: ref
+    - id: canonical:people/person
+      kind: object
+      properties:
+          - name: id
+            kind: ref
+            ref: canonical://id
+          - name: name
+            kind: ref
+            ref: canonical://people/name
+          - name: pseudonyms
+            kind: array
+            items:
+                kind: ref
                 ref: canonical://people/name
-            -   name: pseudonyms
-                type: array
-                items:
-                    type: ref
-                    ref: canonical://people/name
-    -   id: canonical:people/pseudonym
-        type: object
-        properties:
-            -   type: ref
-                ref: canonical://id
-            -   name: name
-                type: string
-                min: 1
-                max: 50
-                required: true
-                indexed: true
-            -   type: ref
-                ref: canonical://util/description
+    - id: canonical:people/pseudonym
+      kind: object
+      properties:
+          - kind: ref
+            ref: canonical://id
+          - name: name
+            kind: string
+            min: 1
+            max: 50
+            required: true
+            indexed: true
+          - kind: ref
+            ref: canonical://util/description
 
 data:
-    -   id: canonical:people/pseudonym
-        name: Nickname
-        description: A person's nick name.
-    -   id: canonical:people/pseudonym
-        name: Alias
-        description: A person alias
-    -   id: canonical:people/pseudonym
-        name: Stage name
-        description: A person's stage name
-    -   id: canonical:people/pseudonym-type/ring-name
-        name: Ring name
-        description: A person's ring name
-    -   id: canonical:people/pseudonym-type/pen-name
-        name: Pen name
-        description: A person's pen name
-    -   id: canonical:people/pseudonym-type/nom-de-plume
-        name: Nom de plume
-        ref: canonical://people/pseudonym-type/pen-name
-    -   id: canonical:people/pseudonym-type/regnal-name
-        name: Regnal name
-        description: A person's regnal name
-    -   id: canonical:people/pseudonym-type/regnant-name
-        name: Regnant name
-        ref: canonical://people/pseudonym-type/regnal-name
-    -   id: canonical:people/pseudonym-type/reign-name
-        name: Reign name
-        ref: canonical://people/pseudonym-type/reign-name
-    -   id: canonical:people/pseudonym-type/online-name
-        name: Online name
-        description: A person's online name
+    - id: canonical:people/pseudonym
+      name: Nickname
+      description: A person's nick name.
+    - id: canonical:people/pseudonym
+      name: Alias
+      description: A person alias
+    - id: canonical:people/pseudonym
+      name: Stage name
+      description: A person's stage name
+    - id: canonical:people/pseudonym-type/ring-name
+      name: Ring name
+      description: A person's ring name
+    - id: canonical:people/pseudonym-type/pen-name
+      name: Pen name
+      description: A person's pen name
+    - id: canonical:people/pseudonym-type/nom-de-plume
+      name: Nom de plume
+      ref: canonical://people/pseudonym-type/pen-name
+    - id: canonical:people/pseudonym-type/regnal-name
+      name: Regnal name
+      description: A person's regnal name
+    - id: canonical:people/pseudonym-type/regnant-name
+      name: Regnant name
+      ref: canonical://people/pseudonym-type/regnal-name
+    - id: canonical:people/pseudonym-type/reign-name
+      name: Reign name
+      ref: canonical://people/pseudonym-type/reign-name
+    - id: canonical:people/pseudonym-type/online-name
+      name: Online name
+      description: A person's online name

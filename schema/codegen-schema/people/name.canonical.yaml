@@ -3,18 +3,18 @@ kinds:
     kind: object
     properties:
       - name: id
-        type: ref
+        kind: ref
         ref: canonical://id
       - name: prefixes
-        type: array
+        kind: array
         items:
           ref: canonical://people/prefix
       - name: first-names
-        type: array
+        kind: array
         required: true
         min: 1
         items:
-          type: string
+          kind: string
           max: 25
           min: 1
         description: |
@@ -22,19 +22,19 @@ kinds:
 
           These are also referred to as given names.
       - name: middle-names
-        type: array
+        kind: array
         required: true
         min: 1
         items:
-          type: string
+          kind: string
           max: 25
           min: 1
       - name: last-names
-        type: array
+        kind: array
         required: true
         min: 1
         items:
-          type: string
+          kind: string
           max: 25
           min: 1
         description: |
@@ -42,24 +42,24 @@ kinds:
 
           These are also referred to as family names.
       - name: suffixes
-        type: array
+        kind: array
         items:
           ref: canonical://people/suffix
       - name: format
-        type: ref
+        kind: ref
         ref: canonical://people/name-format
 
   - id: canonical:people/name-format
-    type: object
+    kind: object
     properties:
       - name: id
-        type: ref
+        kind: ref
         ref: canonical://id
       - name: name
-        type: string
+        kind: string
         max: 25
       - name: description
-        type: string
+        kind: string
         max: 200
 
 data:
