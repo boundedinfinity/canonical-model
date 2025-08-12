@@ -1,0 +1,29 @@
+kinds:
+    - id: canonical:banking/checking-statement
+      description: Banking Account Checking Statement
+      kind: object
+      properties:
+          - name: canonical:id/ulid
+
+          - name: description
+            description: The description of the transaction
+            kind: string
+          - name: debits
+            kind: array
+            min: 1
+            items:
+                kind: ref
+                ref: canonical:bookkeeping/transaction-action
+            required: true
+          - name: credits
+            kind: array
+            min: 1
+            items:
+                kind: ref
+                ref: canonical:bookkeeping/transaction-action
+            required: true
+          - name: labels
+            kind: array
+            items:
+                kind: ref
+                ref: canonical:label/label
