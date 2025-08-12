@@ -1,90 +1,90 @@
 kinds:
-    -   id: canonical:///people/name
-        kind: object
-        properties:
-            -   name: id
-                type: ref
-                ref: canonical://id
-            -   name: prefixes
-                type: array
-                items:
-                    ref: canonical://people/prefix
-            -   name: first-names
-                type: array
-                required: true
-                min: 1
-                items:
-                    type: string
-                    max: 25
-                    min: 1
-                description: |
-                    List of first names.
+  - id: canonical:people/name
+    kind: object
+    properties:
+      - name: id
+        type: ref
+        ref: canonical://id
+      - name: prefixes
+        type: array
+        items:
+          ref: canonical://people/prefix
+      - name: first-names
+        type: array
+        required: true
+        min: 1
+        items:
+          type: string
+          max: 25
+          min: 1
+        description: |
+          List of first names.
 
-                    These are also referred to as given names.
-            -   name: middle-names
-                type: array
-                required: true
-                min: 1
-                items:
-                    type: string
-                    max: 25
-                    min: 1
-            -   name: last-names
-                type: array
-                required: true
-                min: 1
-                items:
-                    type: string
-                    max: 25
-                    min: 1
-                description: |
-                    List of last names.
+          These are also referred to as given names.
+      - name: middle-names
+        type: array
+        required: true
+        min: 1
+        items:
+          type: string
+          max: 25
+          min: 1
+      - name: last-names
+        type: array
+        required: true
+        min: 1
+        items:
+          type: string
+          max: 25
+          min: 1
+        description: |
+          List of last names.
 
-                    These are also referred to as family names.
-            -   name: suffixes
-                type: array
-                items:
-                    ref: canonical://people/suffix
-            -   name: format
-                type: ref
-                ref: canonical://people/name-format
+          These are also referred to as family names.
+      - name: suffixes
+        type: array
+        items:
+          ref: canonical://people/suffix
+      - name: format
+        type: ref
+        ref: canonical://people/name-format
 
-    -   id: canonical:people/name-format
-        type: object
-        properties:
-            -   name: id
-                type: ref
-                ref: canonical://id
-            -   name: name
-                type: string
-                max: 25
-            -   name: description
-                type: string
-                max: 200
+  - id: canonical:people/name-format
+    type: object
+    properties:
+      - name: id
+        type: ref
+        ref: canonical://id
+      - name: name
+        type: string
+        max: 25
+      - name: description
+        type: string
+        max: 200
 
 data:
-    -   kind: canonical://www.boundedinfinity.com/canonical/people/name-format
-        name: First, Middle, Last
-        id: 57B684F0-D255-4B49-AF55-B8A89F11108E
-        description: >
-            A.K.A.: Western Name Order
-    -   kind: canonical://www.boundedinfinity.com/canonical/people/name-format
-        id: 94D4E730-679E-4D6C-AA7C-BE5FB12E98A2
-        name: Last, First, Middle
-        description: >
-            A.K.A.: Eastern Name Order
-    -   kind: canonical://www.boundedinfinity.com/canonical/people/name-format
-        id: BB2E0580-6879-43AF-93CB-D6045C65BF18
-        name: Last, Comma, First, Middle
-        description: >
-            Common naming ordering for corporate IT systems.
-    -   kind: canonical://www.boundedinfinity.com/canonical/people/name-format
-        id: FA06BF79-9B1D-48AF-90C0-E533E43997DA
-        name: Prefix, First, Middle, Last, Suffix
-        description: >
-            A.K.A.: Western Name Order with prefixes and suffixes
-    -   kind: canonical://www.boundedinfinity.com/canonical/people/name-format
-        id: 489D3081-3CE5-4EAB-9E28-DEEACE1D5E2A
-        name: Prefix, Last, First, Middle, Suffix
-        description: >
-            A.K.A.: Eastern Name Order with prefixes and suffixes
+  - kind: canonical:people/name-format
+    name: First, Middle, Last
+    id: 57B684F0-D255-4B49-AF55-B8A89F11108E
+    description: >
+      A.K.A.: Western Name Order
+  - kind: canonical:people/name-format
+    id: 94D4E730-679E-4D6C-AA7C-BE5FB12E98A2
+    name: Last, First, Middle
+    description: >
+      A.K.A.: Eastern Name Order
+  - kind: canonical:people/name-format
+    id: BB2E0580-6879-43AF-93CB-D6045C65BF18
+    name: Last, Comma, First, Middle
+    description: >
+      Common naming ordering for corporate IT systems.
+  - kind: canonical:people/name-format
+    id: FA06BF79-9B1D-48AF-90C0-E533E43997DA
+    name: Prefix, First, Middle, Last, Suffix
+    description: >
+      A.K.A.: Western Name Order with prefixes and suffixes
+  - kind: canonical:people/name-format
+    id: 489D3081-3CE5-4EAB-9E28-DEEACE1D5E2A
+    name: Prefix, Last, First, Middle, Suffix
+    description: >
+      A.K.A.: Eastern Name Order with prefixes and suffixes

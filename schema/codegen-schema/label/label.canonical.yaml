@@ -1,54 +1,53 @@
-
 kinds:
-    -   id: canonical:label/label-model
-        type: object
-        description: The canonical view model for a Label
-        properties:
-            -   kind: canonical://www.boundedinfinity.com/canonical/id
-            -   name: parent
-                kind: canonical://www.boundedinfinity.com/canonical/label/label-model
-            -   name: children
-                type: array
-                items:
-                    kind: canonical://www.boundedinfinity.com/canonical/label/label-model
-            -   name: name
+    - id: canonical:label/label-model
+      type: object
+      description: The canonical view model for a Label
+      properties:
+          - kind: canonical:id
+          - name: parent
+            kind: canonical:label/label-model
+          - name: children
+            type: array
+            items:
+                kind: canonical:label/label-model
+          - name: name
+            type: string
+            min: 2
+            max: 50
+            required: true
+          - kind: canonical:util/description
+          - name: acronyms
+            type: array
+            unique: true
+            items:
+                type: string
+                min: 1
+                max: 10
+          - name: aliases
+            type: array
+            unique: true
+            items:
                 type: string
                 min: 2
                 max: 50
-                required: true
-            -   kind: canonical://www.boundedinfinity.com/canonical/util/description
-            -   name: acronyms
-                type: array
-                unique: true
-                items:
-                    type: string
-                    min: 1
-                    max: 10
-            -   name: aliases
-                type: array
-                unique: true
-                items:
-                    type: string
-                    min: 2
-                    max: 50
 
 data:
-    -   kind: canonical://www.boundedinfinity.com/canonical/label/label-model
-        items:
-            -   id: 380F7F39-6D8C-4AD5-83E9-15180A3867D2
-                name: Friends
-            -   id: 2B2218BF-A51C-431F-AE4C-BC9155AFC03A
-                name: Family
-            -   id: 70908294-1021-475E-AF40-F68C058ADFC9
-                name: Work
-            -   id: 02A91A95-D16E-49C9-B5BA-26DA8F141BDC
-                name: Home
-            -   id: D04EBF5F-1215-44C0-AC2A-254D9A2FD55C
-                name: Tax
-            -   id: 5F3F4D99-BB60-4FF2-A300-6C295607CCA0
-                name: State
-            -   id: D9CA5094-6D7E-4C2A-957C-4756F02766AC
-                parent: 5F3F4D99-BB60-4FF2-A300-6C295607CCA0
-                name: Mississippi
-                acronyms:
-                    -   MS
+    - kind: canonical:label/label-model
+      items:
+          - id: 380F7F39-6D8C-4AD5-83E9-15180A3867D2
+            name: Friends
+          - id: 2B2218BF-A51C-431F-AE4C-BC9155AFC03A
+            name: Family
+          - id: 70908294-1021-475E-AF40-F68C058ADFC9
+            name: Work
+          - id: 02A91A95-D16E-49C9-B5BA-26DA8F141BDC
+            name: Home
+          - id: D04EBF5F-1215-44C0-AC2A-254D9A2FD55C
+            name: Tax
+          - id: 5F3F4D99-BB60-4FF2-A300-6C295607CCA0
+            name: State
+          - id: D9CA5094-6D7E-4C2A-957C-4756F02766AC
+            parent: 5F3F4D99-BB60-4FF2-A300-6C295607CCA0
+            name: Mississippi
+            acronyms:
+                - MS

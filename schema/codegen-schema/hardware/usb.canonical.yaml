@@ -1,25 +1,25 @@
 kinds:
-    -   id: canonical:///hardware/usb
-        description: The univeral serial bus (USB) specification
-        kind: object
-        properties:
-            -   name: id
-                description: The univeral serial bus (USB) ID
-                kind: string
-                format: uuid
-                persist:
-                    primary: true
-                    generated: increment
-                required: true
-            -   name: kind
-                description: The univeral serial bus (USB) type
-                kind: string
-                required: true
-            -   name: version
-                description: The univeral serial bus (USB) version
-                kind: string
-                required: true
-            -   name: connector
-                description: The univeral serial bus (USB) connector
-                kind: string
-                required: true
+    - id: canonical:hardware/usb
+      description: The univeral serial bus (USB) specification
+      kind: object
+      properties:
+          - name: id
+            description: The univeral serial bus (USB) ID
+            kind: string
+            format: uuid
+            persist:
+                primary: true
+                generated: increment
+            required: true
+          - name: kind
+            description: The univeral serial bus (USB) type
+            kind: string
+            required: true
+          - name: version
+            description: The univeral serial bus (USB) version
+            kind: string
+            required: true
+          - name: connector
+            description: The univeral serial bus (USB) connector
+            kind: string
+            required: true

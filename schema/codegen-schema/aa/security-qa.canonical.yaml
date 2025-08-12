@@ -1,15 +1,15 @@
 kinds:
-    -   id: canonical:///aa/security-qa
-        description: Account security questions
-        kind: object
-        properties:
-            -   name: question
-                description: The security question
-                kind: string
-                max: 200
-                required: true
-            -   name: answer
-                description: The security answer
-                kind: string
-                max: 200
-                required: true
+    - id: canonical:aa/security-qa
+      description: Account security questions
+      kind: object
+      properties:
+          - name: question
+            description: The security question
+            kind: string
+            max: 200
+            required: true
+          - name: answer
+            description: The security answer
+            kind: string
+            max: 200
+            required: true

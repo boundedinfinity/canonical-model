@@ -1,12 +1,12 @@
 kinds:
-    -   id: canonical:///util/record-status
-        description: The record status
-        kind: string
-        enum:
-            -   Enabled
-            -   Disabled
-            -   Hidden
-        enum-description:
-            Enabled: This record is enabled
-            Disabled: This record is disabled
-            Hidden: This record is hidden
+    - id: canonical:util/record-status
+      description: The record status
+      kind: string
+      enum:
+          - Enabled
+          - Disabled
+          - Hidden
+      enum-description:
+          Enabled: This record is enabled
+          Disabled: This record is disabled
+          Hidden: This record is hidden

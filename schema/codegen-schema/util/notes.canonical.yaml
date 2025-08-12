@@ -1,15 +1,15 @@
 kinds:
-    -   id: canonical:///util/notes
-        description: A list of notes
-        kind: array
-        items:
-            kind: object
-            properties:
-                -   name: title
-                    kind: string
-                    description: The note title
-                    max: 200
-                -   name: text
-                    kind: string
-                    description: The note text
-                    max: 20000
+    - id: canonical:util/notes
+      description: A list of notes
+      kind: array
+      items:
+          kind: object
+          properties:
+              - name: title
+                kind: string
+                description: The note title
+                max: 200
+              - name: text
+                kind: string
+                description: The note text
+                max: 20000

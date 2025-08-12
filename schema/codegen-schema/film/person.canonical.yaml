@@ -1,15 +1,15 @@
 kinds:
-    -   id: canonical:///film/person
-        description: A movie record
-        kind: object
-        properties:
-            -   name: title
-                kind: string
-            -   name: person
-                kind: array
-                items:
-                    kinds: canonical://www.boundedinfinity.com/canonical/people/person
-            -   name: dates
-                kind: array
-                items:
-                    kinds: canonical://www.boundedinfinity.com/canonical/time/sdate
+  - id: canonical:film/person
+    description: A movie record
+    kind: object
+    properties:
+      - name: title
+        kind: string
+      - name: person
+        kind: array
+        items:
+          kinds: canonical:people/person
+      - name: dates
+        kind: array
+        items:
+          kinds: canonical:time/sdate

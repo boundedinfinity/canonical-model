@@ -1,7 +1,7 @@
 kinds:
-    -   id: canonical:///bookkeeping/account-type
-        description: Double Entry Book Keeping Account Types
-        kind: string
-        enum:
-            -   Owns
-            -   Owes
+    - id: canonical:bookkeeping/account-type
+      description: Double Entry Book Keeping Account Types
+      kind: string
+      enum:
+          - Owns
+          - Owes

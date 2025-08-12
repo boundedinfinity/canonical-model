@@ -1,22 +1,22 @@
 kinds:
-    -   id: canonical:///film/series
-        description: A television series record
-        kind: object
-        properties:
-            -   name: title
-                kind: string
-                required: true
-            -   name: sub-title
-                kind: string
-            -   name: episodes
-                kind: array
-                items:
-                    kind: canonical://www.boundedinfinity.com/canonical/film/episode
-            -   name: labels
-                kind: array
-                items:
-                    kind: canonical://www.boundedinfinity.com/canonical/label/kvlabel
-            -   name: dates
-                kind: array
-                items:
-                    kind: canonical://www.boundedinfinity.com/canonical/time/sdate
+  - id: canonical:film/series
+    description: A television series record
+    kind: object
+    properties:
+      - name: title
+        kind: string
+        required: true
+      - name: sub-title
+        kind: string
+      - name: episodes
+        kind: array
+        items:
+          kind: canonical:film/episode
+      - name: labels
+        kind: array
+        items:
+          kind: canonical:label/kvlabel
+      - name: dates
+        kind: array
+        items:
+          kind: canonical:time/sdate

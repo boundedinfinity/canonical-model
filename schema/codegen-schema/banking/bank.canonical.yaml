@@ -1,20 +1,20 @@
 kinds:
-    -   id: canonical:///banking/bank
-        description: Bank
-        kind: object
-        properties:
-            -   name: id
-                kind: ref
-                ref: canonical://www.boundedinfinity.com/canonical/banking/bank-id
-                required: true
-            -   name: name
-                description: The name of the bank
-                kind: string
-                required: true
-            -   name: description
-                description: The description of the bank
-                kind: string
-            -   name: routing-number
-                kind: ref
-                ref: canonical://www.boundedinfinity.com/canonical/banking/aba-rtn
-                required: true
+  - id: canonical:banking/bank
+    description: Bank
+    kind: object
+    properties:
+      - name: id
+        kind: ref
+        ref: canonical:banking/bank-id
+        required: true
+      - name: name
+        description: The name of the bank
+        kind: string
+        required: true
+      - name: description
+        description: The description of the bank
+        kind: string
+      - name: routing-number
+        kind: ref
+        ref: canonical:banking/aba-rtn
+        required: true

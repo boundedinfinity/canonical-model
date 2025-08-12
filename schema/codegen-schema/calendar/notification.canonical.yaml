@@ -1,16 +1,16 @@
 kinds:
-    -   id: canonical:///calendar/notification
-        description: Calendar Notification
-        kind: object
-        properties:
-            -   name: before
-                kind: ref
-                ref: canonical://www.boundedinfinity.com/canonical/time/duration
-                required: true
-            -   name: method
-                kind: string
-                enum:
-                    - default
-                    - email
-                    - text
-                    - all
+  - id: canonical:calendar/notification
+    description: Calendar Notification
+    kind: object
+    properties:
+      - name: before
+        kind: ref
+        ref: canonical:time/duration
+        required: true
+      - name: method
+        kind: string
+        enum:
+          - default
+          - email
+          - text
+          - all

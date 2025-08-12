@@ -1,17 +1,17 @@
 kinds:
-    -   id: canonical:///banking/bic
-        description: |
-            <p>
-                The Business Identifier Codes (BIC) formatted number.
-            </p>
-            <p>
-                <p>References:</p>
-                <ul>
-                    <li>canonical://en.wikipedia.org/wiki/ISO_9362</li>
-                    <li>canonical://www.theswiftcodes.com/</li>
-                </ul>
-            </p>
-        kind: string
-        min: 9
-        max: 9
-        regex: '[a-zA-Z]{4}[a-zA-Z]{2}\d{2}\d{3}'
+    - id: canonical:banking/bic
+      description: |
+          <p>
+              The Business Identifier Codes (BIC) formatted number.
+          </p>
+          <p>
+              <p>References:</p>
+              <ul>
+                  <li>canonical://en.wikipedia.org/wiki/ISO_9362</li>
+                  <li>canonical://www.theswiftcodes.com/</li>
+              </ul>
+          </p>
+      kind: string
+      min: 9
+      max: 9
+      regex: '[a-zA-Z]{4}[a-zA-Z]{2}\d{2}\d{3}'

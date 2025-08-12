@@ -1,6 +1,6 @@
 kinds:
-    -   id: canonical:util/reference
-        type: object
-        properties:
-            -   kind: canonical://www.boundedinfinity.com/canonical/util/name-20
-            -   urls:
+    - id: canonical:util/reference
+      type: object
+      properties:
+          - kind: canonical:util/name-20
+          - urls:

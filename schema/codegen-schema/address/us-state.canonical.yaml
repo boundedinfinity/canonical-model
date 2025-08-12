@@ -1,14 +1,14 @@
 kinds:
-    -   id: canonical:///address/us-state
-        description: US State
-        kind: object
-        properties:
-            -   name: code
-                description: The 2-letter code
-                kind: string
-                min: 2
-                max: 2
-            -   name: name
-                description: The name
-                kind: string
-                max: 2
+    - id: canonical:address/us-state
+      description: US State
+      kind: object
+      properties:
+          - name: code
+            description: The 2-letter code
+            kind: string
+            min: 2
+            max: 2
+          - name: name
+            description: The name
+            kind: string
+            max: 2

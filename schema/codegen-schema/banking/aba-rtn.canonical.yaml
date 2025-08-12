@@ -1,14 +1,14 @@
 kinds:
-    -   id: canonical:///banking/aba-rtn
-        description: |
-            <p>
-                The bank American Banking Association (ABA) routing transit number (ABA RTN)
-                in the MICR format.
-            </p>
-            <p>
-                Referece: canonical://en.wikipedia.org/wiki/ABA_routing_transit_number
-            </p>
-        kind: string
-        min: 9
-        max: 9
-        regex: \d{4}\d{4}\d{1}
+    - id: canonical:banking/aba-rtn
+      description: |
+          <p>
+              The bank American Banking Association (ABA) routing transit number (ABA RTN)
+              in the MICR format.
+          </p>
+          <p>
+              Referece: canonical://en.wikipedia.org/wiki/ABA_routing_transit_number
+          </p>
+      kind: string
+      min: 9
+      max: 9
+      regex: \d{4}\d{4}\d{1}

@@ -1,18 +1,18 @@
 kinds:
-    -   id: canonical:///hardware/cpu
-        description: The central processing unit (CPU) specification
-        kind: object
-        properties:
-            -   name: id
-                description: The central processing unit (CPU) ID
-                kind: string
-                format: uuid
-                persist:
-                    primary: true
-                    generated: increment
-            -   name: name
-                description: The central processing unit (CPU) name
-                kind: string
-                max: 200
-                min: 2
-                required: true
+    - id: canonical:hardware/cpu
+      description: The central processing unit (CPU) specification
+      kind: object
+      properties:
+          - name: id
+            description: The central processing unit (CPU) ID
+            kind: string
+            format: uuid
+            persist:
+                primary: true
+                generated: increment
+          - name: name
+            description: The central processing unit (CPU) name
+            kind: string
+            max: 200
+            min: 2
+            required: true

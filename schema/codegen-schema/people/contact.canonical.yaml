@@ -1,45 +1,45 @@
 kinds:
-    -   id: canonical:///people/contact
-        description: A contact record
-        kind: object
-        properties:
-            -   name: person
-                description: Contact person
-                kind: ref
-                ref: canonical://www.boundedinfinity.com/canonical/people/person
-                required: true
-            -   name: emails
-                description: Email addresses
-                kind: array
-                items:
-                    kind: ref
-                    ref: canonical://www.boundedinfinity.com/canonical/address/email
-            -   name: telephone-numbers
-                description: Telephone numbers
-                kind: array
-                items:
-                    kind: ref
-                    ref: canonical://www.boundedinfinity.com/canonical/telephone/nanp
-            -   name: mailing-addresses
-                description: List of mailing addresses
-                kind: array
-                items:
-                    kind: ref
-                    ref: canonical://www.boundedinfinity.com/canonical/address/mailing
-            -   name: internet-addresses
-                description: List of internet addresses
-                kind: array
-                items:
-                    kind: ref
-                    ref: canonical://www.boundedinfinity.com/canonical/address/internet
-            -   name: employment
-                description: Employment
-                kind: array
-                items:
-                    kind: ref
-                    ref: canonical://www.boundedinfinity.com/canonical/people/employment
-            -   name: labels
-                kind: array
-                items:
-                    kind: ref
-                    ref: canonical://www.boundedinfinity.com/canonical/label/label
+  - id: canonical:people/contact
+    description: A contact record
+    kind: object
+    properties:
+      - name: person
+        description: Contact person
+        kind: ref
+        ref: canonical:people/person
+        required: true
+      - name: emails
+        description: Email addresses
+        kind: array
+        items:
+          kind: ref
+          ref: canonical:address/email
+      - name: telephone-numbers
+        description: Telephone numbers
+        kind: array
+        items:
+          kind: ref
+          ref: canonical:telephone/nanp
+      - name: mailing-addresses
+        description: List of mailing addresses
+        kind: array
+        items:
+          kind: ref
+          ref: canonical:address/mailing
+      - name: internet-addresses
+        description: List of internet addresses
+        kind: array
+        items:
+          kind: ref
+          ref: canonical:address/internet
+      - name: employment
+        description: Employment
+        kind: array
+        items:
+          kind: ref
+          ref: canonical:people/employment
+      - name: labels
+        kind: array
+        items:
+          kind: ref
+          ref: canonical:label/label

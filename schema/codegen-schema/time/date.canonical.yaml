@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical:///time/date
-        description: Date
-        kind: string
-        format: date
+    - id: canonical:time/date
+      description: Date
+      kind: string
+      format: date

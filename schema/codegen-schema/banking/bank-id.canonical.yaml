@@ -1,9 +1,9 @@
 kinds:
-    -   id: canonical:///banking/bank-id
-        description: |
-            <p>An system unique bank ID</p>
-            <p>
-                The is used for external entities to link to a bank record.
-            </p>
-        kind: string
-        format: uri-reference
+    - id: canonical:banking/bank-id
+      description: |
+          <p>An system unique bank ID</p>
+          <p>
+              The is used for external entities to link to a bank record.
+          </p>
+      kind: string
+      format: uri-reference

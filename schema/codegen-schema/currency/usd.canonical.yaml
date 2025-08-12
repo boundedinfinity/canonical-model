@@ -1,5 +1,5 @@
 kinds:
-    -   id: canonical:///currency/usd
-        description: US dollar
-        kind: number
-        minimum: 0
+    - id: canonical:currency/usd
+      description: US dollar
+      kind: number
+      minimum: 0

@@ -1,17 +1,17 @@
 kinds:
-    -   id: canonical:///film/actor
-        description: An actor record
-        kind: object
-        properties:
-            -   name: role
-                kind: array
-                items:
-                    kinds: string
-            -   name: person
-                kind: array
-                items:
-                    kinds: canonical://www.boundedinfinity.com/canonical/people/person
-            -   name: dates
-                kind: array
-                items:
-                    kinds: canonical://www.boundedinfinity.com/canonical/time/sdate
+  - id: canonical:film/actor
+    description: An actor record
+    kind: object
+    properties:
+      - name: role
+        kind: array
+        items:
+          kinds: string
+      - name: person
+        kind: array
+        items:
+          kinds: canonical:people/person
+      - name: dates
+        kind: array
+        items:
+          kinds: canonical:time/sdate

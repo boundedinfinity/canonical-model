@@ -1,36 +1,36 @@
 kinds:
-    -   id: canonical:///address/mailing
-        description: A US mailing address
-        kind: object
-        properties:
-            -   name: title
-                description: Title of the email address
-                kind: string
-                max: 200
-            -   name: addresses
-                description: List of address lines
-                kind: array
-                min: 1
-                items:
-                    kind: string
-                    max: 200
-                required: true
-            -   name: city
-                description: They city or town name
-                kind: string
-                max: 200
-                required: true
-            -   name: state
-                description: The US state or territory
-                kind: string
-                max: 200
-                required: true
-            -   name: zip-code
-                kind: ref
-                ref: canonical://www.boundedinfinity.com/canonical/address/zip-code
-            -   name: labels
-                kind: array
-                items:
-                    kind: ref
-                    ref: canonical://www.boundedinfinity.com/canonical/label/label
-                required: true
+  - id: canonical:address/mailing
+    description: A US mailing address
+    kind: object
+    properties:
+      - name: title
+        description: Title of the email address
+        kind: string
+        max: 200
+      - name: addresses
+        description: List of address lines
+        kind: array
+        min: 1
+        items:
+          kind: string
+          max: 200
+        required: true
+      - name: city
+        description: They city or town name
+        kind: string
+        max: 200
+        required: true
+      - name: state
+        description: The US state or territory
+        kind: string
+        max: 200
+        required: true
+      - name: zip-code
+        kind: ref
+        ref: canonical:/address/zip-code
+      - name: labels
+        kind: array
+        items:
+          kind: ref
+          ref: canonical:/label/label
+        required: true
