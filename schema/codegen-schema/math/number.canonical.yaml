@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:math/number/fraction
+  - type: canonical:math/number/fraction
     name: fraction
     kind: object
     description: Fractional Number
@@ -12,7 +12,7 @@ kinds:
         invalid: [0]
         min: 0
 
-  - id: canonical:math/number/rational
+  - type: canonical:math/number/rational
     name: rational
     kind: object
     description: Rational Number
@@ -23,7 +23,7 @@ kinds:
         name: denominator
         invalid: [0]
 
-  - id: canonical:math/number/mixed
+  - type: canonical:math/number/mixed
     name: rational
     kind: object
     description: Mixed Number

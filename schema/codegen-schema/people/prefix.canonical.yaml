@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:people/prefix
+  - type: canonical:people/prefix
     description: |
       The prefix of a personal name.
 
@@ -25,7 +25,7 @@ kinds:
       - kind: ref
         ref: canonical://util/description
 
-  - id: canonical:people/prefix-format
+  - type: canonical:people/prefix-format
     description: The prefix format of a personal name.
     kind: object
     properties:
@@ -42,7 +42,7 @@ kinds:
         ref: canonical://util/description
 
 operations:
-  - id: canonical:people/prefix/create
+  - type: canonical:people/prefix/create
     name: create
     input:
       - ref: canonical://people/prefix

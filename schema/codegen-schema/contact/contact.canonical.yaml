@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:contact/role
+  - type: canonical:contact/role
     name: role
     properties:
       - kind: ref

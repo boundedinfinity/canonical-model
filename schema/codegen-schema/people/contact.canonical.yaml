@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:people/contact
+  - type: canonical:people/contact
     description: A contact record
     kind: object
     properties:

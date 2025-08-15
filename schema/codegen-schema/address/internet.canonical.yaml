@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:address/internet
+  - type: canonical:address/internet
     description: An internet address
     kind: object
     properties:

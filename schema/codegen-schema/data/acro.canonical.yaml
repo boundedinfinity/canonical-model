@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:data/acro
+  - type: canonical:data/acro
     description: An acroymn definition
     kind: object
     properties:

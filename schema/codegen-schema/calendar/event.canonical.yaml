@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:calendar/event
+  - type: canonical:calendar/event
     description: Calendar Event
     kind: object
     properties:

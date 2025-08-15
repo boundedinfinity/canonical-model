@@ -1,5 +1,5 @@
 kinds:
-    - id: canonical:time/datetime
-      description: Timestamp
-      kind: string
-      format: date-time
+  - type: canonical:time/datetime
+    description: Timestamp
+    kind: string
+    format: date-time

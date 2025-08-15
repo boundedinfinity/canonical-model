@@ -1,0 +1,14 @@
+-   Central Authenication Service (CAS)
+        -   https://en.wikipedia.org/wiki/Central_Authentication_Service
+-   Mozilla Persona
+        -   https://en.wikipedia.org/wiki/Mozilla_Persona
+-   Oauth 2.0
+        -   https://datatracker.ietf.org/doc/html/rfc6749
+-   OpenID Connect (OIDC)
+        -   https://openid.net/developers/how-connect-works/
+-   Passkey
+        -   https://developers.google.com/identity/passkeys
+-   Secure Quick Reliable Login
+        -   https://en.wikipedia.org/wiki/SQRL
+-   WebAuthn
+        -   https://en.wikipedia.org/wiki/WebAuthn

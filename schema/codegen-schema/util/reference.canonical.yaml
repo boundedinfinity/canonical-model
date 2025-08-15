@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:util/reference
+  - type: canonical:util/reference
     kind: object
     properties:
       - kind: canonical:util/name-20

@@ -1,5 +1,5 @@
 kinds:
-    - id: canonical:banking/iban
+    - type: canonical:banking/iban
       description: |
           <p>
               The Business Identifier Codes (BIC) formatted number.

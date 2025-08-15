@@ -1,4 +1,4 @@
 kinds:
-    - id: canonical:util/email
-      kind: string
-      max: 200
+  - type: canonical:util/email
+    kind: string
+    max: 200

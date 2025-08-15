@@ -1,7 +1,7 @@
 kinds:
-    - id: canonical:prescriptions/prescription
-      name: id
-      kind: object
-      description: Drug prescription
-      properties:
-          - ref: canonical://prescriptions/drug
+  - type: canonical:prescriptions/prescription
+    name: id
+    kind: object
+    description: Drug prescription
+    properties:
+      - ref: canonical://prescriptions/drug

@@ -1,5 +1,5 @@
 kinds:
-    - id: canonical:banking/bic
+    - type: canonical:banking/bic
       description: |
           <p>
               The Business Identifier Codes (BIC) formatted number.

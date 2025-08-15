@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:film/movie
+  - type: canonical:film/movie
     description: A movie record
     kind: object
     properties:

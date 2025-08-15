@@ -1,17 +1,17 @@
 kinds:
-    - id: canonical:util/geographical-location
-      description: A Geographical location
-      kind: object
-      properties:
-          - name: latitude
-            kind: number
-            description: The Geographical latitude
-            minimum: -90
-            maximum: 90
-            required: true
-          - name: longitude
-            kind: number
-            description: The Geographical longitude
-            minimum: -90
-            maximum: 90
-            required: true
+  - type: canonical:util/geographical-location
+    description: A Geographical location
+    kind: object
+    properties:
+      - name: latitude
+        kind: number
+        description: The Geographical latitude
+        minimum: -90
+        maximum: 90
+        required: true
+      - name: longitude
+        kind: number
+        description: The Geographical longitude
+        minimum: -90
+        maximum: 90
+        required: true

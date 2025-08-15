@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:people/suffix
+  - type: canonical:people/suffix
     description: |
       The suffix of a personal name.
 
@@ -24,7 +24,7 @@ kinds:
       - kind: ref
         ref: canonical://util/description
 
-  - id: canonical:people/suffix-format
+  - type: canonical:people/suffix-format
     description: The suffix format of a personal name.
     kind: object
     properties:
@@ -42,7 +42,7 @@ kinds:
 
 operations:
   - kind: canonical:people/suffix
-    id: canonical:people/suffix/create
+    type: canonical:people/suffix/create
     name: create
     input:
       - ref: canonical://people/suffix
@@ -73,7 +73,7 @@ data:
     abbreviation: B.Sc.
     ref: canonical://people/suffix/bs
   - kind: canonical:people/suffix
-    id: canonical://people/suffix/sb
+    type: canonical://people/suffix/sb
     abbreviation: SB
     ref: canonical://people/suffix/sb
   - kind: canonical:people/suffix

@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:banking/account
+  - type: canonical:banking/account
     description: Banking Account
     kind: object
     properties:

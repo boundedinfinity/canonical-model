@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:film/series
+  - type: canonical:film/series
     description: A television series record
     kind: object
     properties:

@@ -1,5 +1,5 @@
 kinds:
-    - id: canonical:util/record-status
+    - type: canonical:util/record-status
       description: The record status
       kind: string
       enum:

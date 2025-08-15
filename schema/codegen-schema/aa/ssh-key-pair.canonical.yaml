@@ -1,17 +1,17 @@
 kinds:
-    - id: canonical:aa/ssh-key-pair
-      description: SSH Key pair
-      kind: object
-      properties:
-          - name: public-key
-            description: The public key
-            kind: string
-            required: true
-          - name: private-key
-            description: The private key
-            kind: string
-            required: true
-          - name: algorithm
-            description: The algorithm used to generate the key
-            kind: string
-            required: true
+  - type: canonical:aa/ssh-key-pair
+    description: SSH Key pair
+    kind: object
+    properties:
+      - name: public-key
+        description: The public key
+        kind: string
+        required: true
+      - name: private-key
+        description: The private key
+        kind: string
+        required: true
+      - name: algorithm
+        description: The algorithm used to generate the key
+        kind: string
+        required: true

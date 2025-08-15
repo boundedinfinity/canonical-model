@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:physical-inventory/item
+  - type: canonical:physical-inventory/item
     description: A physical item
     kind: object
     properties:

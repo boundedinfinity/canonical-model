@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:film/actor
+  - type: canonical:film/actor
     description: An actor record
     kind: object
     properties:

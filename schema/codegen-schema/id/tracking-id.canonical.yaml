@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:id/tracking-id
+  - type: canonical:id/tracking-id
     name: tracking-id
     kind: string
     description: A Tracking ID

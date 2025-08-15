@@ -1,5 +1,5 @@
 kinds:
-    - id: canonical:time/duration
-      description: Duration
-      kind: string
-      format: duration
+  - type: canonical:time/duration
+    description: Duration
+    kind: string
+    format: duration

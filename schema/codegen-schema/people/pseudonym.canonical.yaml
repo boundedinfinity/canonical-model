@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:people/pseudonym
+  - type: canonical:people/pseudonym
     title: A person's pseudonym
     kind: object
     properties:

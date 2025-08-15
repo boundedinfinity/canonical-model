@@ -51,14 +51,14 @@ data:
   - id: canonical:people/pseudonym-type/regnal-name
     title: Regnal name
     description: A person's regnal name
-  - id: canonical:people/pseudonym-type/regnant-name
+  - type: canonical:people/pseudonym-type/regnant-name
     title: Regnant name
     kind: ref
     ref: canonical://people/pseudonym-type/regnal-name
-  - id: canonical:people/pseudonym-type/reign-name
+  - type: canonical:people/pseudonym-type/reign-name
     title: Reign name
     kind: ref
     ref: canonical://people/pseudonym-type/reign-name
-  - id: canonical:people/pseudonym-type/online-name
+  - type: canonical:people/pseudonym-type/online-name
     title: Online name
     description: A person's online name

@@ -1,0 +1,117 @@
+# https://www.ssa.gov/history/ssn/geocard.html
+# http://en.wikipedia.org/wiki/Social_Security_number#List_of_Social_Security_area_numbers
+
+kinds:
+    - type: canonical:government/us-social-security-number
+      description: Social Security Number
+      kind: object
+      properties:
+          - kind: integer
+            name: Area Number
+            min: 001
+            max: 772
+            description: |
+                Social Security Number Area Number
+
+                Given the Social Security Number's format:
+
+                    AAA-GG-SSS
+
+                The area number is the first three digits in the format.
+
+                This number coorsponds to an area within the U.S.
+          - name: Group Number
+            kind: string
+            min: 2
+            max: 2
+            description: |
+                The Social Security Number Group Number.
+
+                Given the Social Security Number's format:
+
+                    AAA-GG-SSS
+
+                The group number is the middle 2 digits.
+
+                Within each area, the group number (middle two (2) digits) 
+                range from 01 to 99 but are not assigned in consecutive order. 
+                For administrative reasons, group numbers issued first consist 
+                of the ODD numbers from 01 through 09 and then EVEN numbers 
+                from 10 through 98, within each area number allocated to a 
+                State. After all numbers in group 98 of a particular area have 
+                been issued, the EVEN Groups 02 through 08 are used, followed 
+                by ODD Groups 11 through 99.
+
+                Group numbers are assigned as follows:
+
+                | Type | Numbers            |
+                | ---- | ------------------ |
+                | ODD  | 01, 03, 05, 07, 09 |
+                | EVEN | 02, 04, 06, 08     |
+          - name: Serial Number
+            kind: string
+            min: 4
+            max: 4
+            description: |
+                The Social Security Number Serial Number
+
+                Given the Social Security Number's format:
+
+                    AAA-GG-SSS
+
+                The serial number is the last 4 digits.
+
+    - type: canonical:government/us-social-security-number/area-number
+      name: Area Number
+      description: |
+          Social Security Number Area Number
+
+          Given the Social Security Number's format:
+
+              AAA-GG-SSS
+
+          The area number is the first three digits in the format.
+
+          This number coorsponds to an area within the U.S.
+      kind: object
+      properties:
+          - name: Location
+            kind: string
+            description: |
+                The name of the location for this area number.
+          - name: Numbers
+            kind: object
+            properties:
+                - kind: integer
+                  name: Lower Bound
+                  min: 001
+                  max: 772
+                - kind: integer
+                  name: Upper Bound
+                  min: 001
+                  max: 772
+            description: |
+                The upper and lower .
+
+data:
+    - type: canonical:government/us-social-security-number/area-number
+      Location: New Hampshire
+      Lower Bound: 001
+      Upper Bound: 002
+    - type: canonical:government/us-social-security-number/area-number
+      Location: Main
+      Numbers:
+          - 004
+          - 005
+          - 006
+          - 007
+    - type: canonical:government/us-social-security-number/area-number
+      Location: Vermont
+      Numbers:
+          - 008
+          - 009
+    - type: canonical:government/us-social-security-number/area-number
+      Location: Massachusetts
+      Numbers:
+          - 010
+          - 009

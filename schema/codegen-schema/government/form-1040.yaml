@@ -1,0 +1,12 @@
+kinds:
+    -   type: canonical:government/soc
+    -   type: canonical:government/form-1040-schedule-c
+        name: Form 1040 Schedule C
+        description: |
+            Form 1040 Profit and Loss From Business
+        kind: object
+        properties:
+            -   name: Name of propietor
+                kind: string
+            -   name: Social security number
+                kind: string

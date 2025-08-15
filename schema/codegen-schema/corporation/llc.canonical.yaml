@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:corporation/llc
+  - type: canonical:corporation/llc
     description: Limited Liability Company
     kind: object
     properties:

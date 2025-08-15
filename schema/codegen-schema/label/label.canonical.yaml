@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:label/label-model
+  - type: canonical:label/label-model
     kind: object
     description: The canonical view model for a Label
     properties:

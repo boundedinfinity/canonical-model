@@ -1,5 +1,5 @@
 kinds:
-    - id: canonical:banking/swift
+    - type: canonical:banking/swift
       description: |
           <p>
               The Society for Worldwide Interbank Financial Telecommunication (SWIFT) number.

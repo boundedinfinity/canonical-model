@@ -1,5 +1,5 @@
 kinds:
-    - id: canonical:cms/file-descriptor
+    - type: canonical:cms/file-descriptor
       name: file-descriptor
       properties:
           - name: name
@@ -14,9 +14,11 @@ kinds:
             kind: string
             max: 200
             required: false
-          - ref: canonical://cms/mime-type
+          - kind: ref
+            ref: canonical://cms/mime-type
             required: true
-          - ref: canonical://cms/file-extention
+          - kind: ref
+            ref: canonical://cms/file-extention
           - name: locations
             id: array
             items:

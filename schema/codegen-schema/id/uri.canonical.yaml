@@ -1,24 +1,24 @@
 # https://github.com/boundedinfinity/specification/blob/master/id/uri.md
 
 kinds:
-    - id: canonical:id/url
-      name: Uniform Resource Locator
-      kind: string
-      min: 1
-      max: 100
-      regex: ^(https?://)?([^\s/?\.#-]+\.?)+(\/[^\s]*)?$
+  - type: canonical:id/url
+    name: Uniform Resource Locator
+    kind: string
+    min: 1
+    max: 100
+    regex: ^(https?://)?([^\s/?\.#-]+\.?)+(\/[^\s]*)?$
 
-    - id: canonical:id/urn
-      name: Uniform Resource Name
-      kind: string
-      min: 1
-      max: 100
+  - type: canonical:id/urn
+    name: Uniform Resource Name
+    kind: string
+    min: 1
+    max: 100
 
-    - id: canonical:id/uri
-      name: Uniform Resource Identifier
-      kind: union
-      one-of:
-          - kind: ref
-            ref: id/url
-          - kind: ref
-            ref: id/urn
+  - type: canonical:id/uri
+    name: Uniform Resource Identifier
+    kind: union
+    one-of:
+      - kind: ref
+        ref: id/url
+      - kind: ref
+        ref: id/urn

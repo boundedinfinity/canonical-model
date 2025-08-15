@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:calendar/task
+  - type: canonical:calendar/task
     description: Calendar Task
     kind: object
     properties:

@@ -3,8 +3,6 @@
         "redhat.vscode-yaml",
         "EditorConfig.EditorConfig",
         "golang.Go",
-        "ms-vscode.makefile-tools",
-        "streetsidesoftware.avro",
         "esbenp.prettier-vscode"
     ]
 }

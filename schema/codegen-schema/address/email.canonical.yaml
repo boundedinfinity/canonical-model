@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:address/email
+  - type: canonical:address/email
     description: An e-mail address
     kind: object
     properties:

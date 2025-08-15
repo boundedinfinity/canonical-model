@@ -1,21 +1,21 @@
 kinds:
-    - id: canonical:util/error
-      kind: object
-      properties:
-          - name: user-message
-            kind: string
-            min: 1
-            max: 200
-          - name: error-message
-            kind: string
-            min: 1
-            max: 200
-            required: true
-          - name: error-code
-            kind: integer
-    - id: canonical:util/error-list
-      description: Errors
-      kind: array
-      items:
-          kind: ref
-          ref: canonical://util/error
+  - type: canonical:util/error
+    kind: object
+    properties:
+      - name: user-message
+        kind: string
+        min: 1
+        max: 200
+      - name: error-message
+        kind: string
+        min: 1
+        max: 200
+        required: true
+      - name: error-code
+        kind: integer
+  - type: canonical:util/error-list
+    description: Errors
+    kind: array
+    items:
+      kind: ref
+      ref: canonical://util/error

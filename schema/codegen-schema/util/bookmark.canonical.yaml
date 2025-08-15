@@ -1,14 +1,14 @@
 kinds:
-    - id: canonical:util/bookmark
-      description: A Bookmark
-      kind: object
-      properties:
-          - name: title
-            kind: string
-            description: The book mark title
-            max: 200
-          - name: url
-            kind: string
-            description: The URL
-            format: url
-            max: 2000
+  - type: canonical:util/bookmark
+    description: A Bookmark
+    kind: object
+    properties:
+      - name: title
+        kind: string
+        description: The book mark title
+        max: 200
+      - name: url
+        kind: string
+        description: The URL
+        format: url
+        max: 2000

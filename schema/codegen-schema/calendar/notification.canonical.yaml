@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:calendar/notification
+  - type: canonical:calendar/notification
     description: Calendar Notification
     kind: object
     properties:

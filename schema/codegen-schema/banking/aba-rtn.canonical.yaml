@@ -1,5 +1,5 @@
 kinds:
-    - id: canonical:banking/aba-rtn
+    - type: canonical:banking/aba-rtn
       description: |
           <p>
               The bank American Banking Association (ABA) routing transit number (ABA RTN)

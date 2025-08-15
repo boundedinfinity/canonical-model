@@ -1,5 +1,5 @@
 kinds:
-    - id: canonical:banking/bank-id
+    - type: canonical:banking/bank-id
       description: |
           <p>An system unique bank ID</p>
           <p>

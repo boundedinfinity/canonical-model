@@ -1,18 +1,18 @@
 kinds:
-    - id: canonical:hardware/video-type
-      description: The memory specification
-      kind: object
-      properties:
-          - name: id
-            description: The video type ID
-            kind: string
-            format: uuid
-            persist:
-                primary: true
-                generated: increment
-          - name: name
-            description: The video type name
-            kind: string
-            max: 200
-            min: 2
-            required: true
+  - type: canonical:hardware/video-type
+    description: The memory specification
+    kind: object
+    properties:
+      - name: id
+        description: The video type ID
+        kind: string
+        format: uuid
+        persist:
+          primary: true
+          generated: increment
+      - name: name
+        description: The video type name
+        kind: string
+        max: 200
+        min: 2
+        required: true

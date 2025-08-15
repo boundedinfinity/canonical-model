@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:banking/bank
+  - type: canonical:banking/bank
     description: Bank
     kind: object
     properties:

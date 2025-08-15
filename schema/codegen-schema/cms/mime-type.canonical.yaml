@@ -1,5 +1,5 @@
 kinds:
-    - id: canonical:cms/mime-type
+    - type: canonical:cms/mime-type
       name: mime-type
       kind: object
       properties:

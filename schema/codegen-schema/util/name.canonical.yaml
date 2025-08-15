@@ -1,24 +1,24 @@
 kinds:
-    - id: canonical:util/name-5
-      kind: string
-      name: name
-      min: 1
-      max: 5
+  - type: canonical:util/name-5
+    kind: string
+    name: name
+    min: 1
+    max: 5
 
-    - id: canonical:util/name-10
-      kind: string
-      name: name
-      min: 1
-      max: 10
+  - type: canonical:util/name-10
+    kind: string
+    name: name
+    min: 1
+    max: 10
 
-    - id: canonical:util/name-20
-      kind: string
-      name: name
-      min: 1
-      max: 20
+  - type: canonical:util/name-20
+    kind: string
+    name: name
+    min: 1
+    max: 20
 
-    - id: canonical:util/name-50
-      kind: string
-      name: name
-      min: 1
-      max: 50
+  - type: canonical:util/name-50
+    kind: string
+    name: name
+    min: 1
+    max: 50

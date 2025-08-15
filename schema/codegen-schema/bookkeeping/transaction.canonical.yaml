@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:bookkeeping/transaction
+  - type: canonical:bookkeeping/transaction
     description: Double Entry Bookkeeping Transaction
     kind: object
     properties:

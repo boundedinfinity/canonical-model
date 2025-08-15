@@ -1,5 +1,5 @@
 kinds:
-    - id: canonical:util/abbreviation
+    - type: canonical:util/abbreviation
       name: abbreviation
       kind: object
       properties:

@@ -1,26 +1,26 @@
 kinds:
-    - id: canonical:cms/file-extention
-      name: file-extention
-      properties:
-          - name: name
-            description: |
-                The extention name without a leading "." file name separator.
-            kind: string
-            max: 10
-            required: true
-          - name: alternatives
-            kind: array
-            required: false
-            description: |
-                A list of alternative extentions without a leading "." file 
-                name separator.
-            items:
-                kind: string
-                max: 200
-                required: true
-            min: 1
-          - name: description
-            description: A description of the extention.
-            kind: string
-            max: 200
-            required: false
+  - type: canonical:cms/file-extention
+    name: file-extention
+    properties:
+      - name: name
+        description: |
+          The extention name without a leading "." file name separator.
+        kind: string
+        max: 10
+        required: true
+      - name: alternatives
+        kind: array
+        required: false
+        description: |
+          A list of alternative extentions without a leading "." file 
+          name separator.
+        items:
+          kind: string
+          max: 200
+          required: true
+        min: 1
+      - name: description
+        description: A description of the extention.
+        kind: string
+        max: 200
+        required: false

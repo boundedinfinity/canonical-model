@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:address/mailing
+  - type: canonical:address/mailing
     description: A US mailing address
     kind: object
     properties:

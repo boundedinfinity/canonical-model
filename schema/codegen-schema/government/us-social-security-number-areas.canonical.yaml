@@ -1,12 +1,12 @@
 kinds:
-    - id: canonical:government/us-social-security-number-area
-      description: Social Security Number
-      kind: object
-      properties:
-          - name: location
-            kind: string
-          - name: numbers
-            kind: array
-            items:
-                kind: string
+  - type: canonical:government/us-social-security-number-area
+    description: Social Security Number
+    kind: object
+    properties:
+      - name: location
+        kind: string
+      - name: numbers
+        kind: array
+        items:
+          kind: string
 # canonical://en.wikipedia.org/wiki/Social_Security_number#List_of_Social_Security_area_numbers

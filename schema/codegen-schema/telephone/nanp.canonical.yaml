@@ -1,5 +1,5 @@
 kinds:
-  - id: canonical:telephone/nanp
+  - type: canonical:telephone/nanp
     description: A NANP telephone number plan
     kind: object
     properties:

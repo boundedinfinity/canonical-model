@@ -1,7 +1,7 @@
 # https://github.com/boundedinfinity/specification/blob/master/id/ulid.md
 
 kinds:
-    - id: canonical:id/ulid
+    - type: canonical:id/ulid
       name: ULID
       description: >
           A Universally Unique Lexicographically Sortable Identifier.
