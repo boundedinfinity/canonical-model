@@ -1,14 +1,14 @@
 kinds:
-    - type: canonical:id/uuidv4
-      name: UUID v4
-      description: >
-          A Universally Unique Identifier.
+    -   type: canonical:id/uuidv4
+        name: UUID v4
+        description: >
+            A Universally Unique Identifier.
 
-          Specifications located at:
+            Specifications located at:
 
-          - https://www.rfc-editor.org/rfc/rfc9562.html#name-uuid-version-4
-          - https://www.rfc-editor.org/rfc/rfc4122.html
-      kind: string
-      min: 36
-      max: 36
-      regex: '[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}'
+            - https://www.rfc-editor.org/rfc/rfc9562.html#name-uuid-version-4
+            - https://www.rfc-editor.org/rfc/rfc4122.html
+
+# https://www.rfc-editor.org/info/rfc9562
+# https://www.rfc-editor.org/rfc/rfc4122
+# https://en.wikipedia.org/wiki/Universally_unique_identifier
