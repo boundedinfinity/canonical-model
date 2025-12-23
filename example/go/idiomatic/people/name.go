@@ -17,6 +17,7 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/boundedinfinity/go-commoner/idiomatic/mapper"
 	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 	"github.com/boundedinfinity/schema/idiomatic/id"
@@ -36,13 +37,12 @@ var (
 )
 
 type Name struct {
-	Id       id.Id      `json:"id,omitempty"`
-	Prefixes []Prefix   `json:"prefixes,omitempty"`
-	Firsts   []string   `json:"firsts,omitempty"`
-	Middles  []string   `json:"middles,omitempty"`
-	Lasts    []string   `json:"lasts,omitempty"`
-	Suffixes []Suffix   `json:"suffixes,omitempty"`
-	Format   NameFormat `json:"format,omitempty"`
+	Id       id.Id    `json:"id,omitempty,omitzero"`
+	Prefixes []Prefix `json:"prefix,omitempty,omitzero"`
+	Given    []string `json:"given,omitempty,omitzero"`
+	Middle   []string `json:"middle,omitempty,omitzero"`
+	Family   []string `json:"family,omitempty,omitzero"`
+	Suffix   []Suffix `json:"suffix,omitempty,omitzero"`
 }
 
 var _ id.TypeNamer = &Name{}
@@ -69,25 +69,25 @@ func (t Name) Validate() error {
 		}
 	}
 
-	for i, first := range t.Firsts {
+	for i, first := range t.Given {
 		if first == "" {
 			return fmt.Errorf("%w[%d]", ErrNameInvalidFirst, i)
 		}
 	}
 
-	for i, middle := range t.Middles {
+	for i, middle := range t.Middle {
 		if middle == "" {
 			return fmt.Errorf("%w[%d]", ErrNameInvalidMiddle, i)
 		}
 	}
 
-	for i, last := range t.Lasts {
+	for i, last := range t.Family {
 		if last == "" {
 			return fmt.Errorf("%w[%d]", ErrNameInvalidLast, i)
 		}
 	}
 
-	for i, suffix := range t.Suffixes {
+	for i, suffix := range t.Suffix {
 		if err := suffix.Validate(); err != nil {
 			return errors.Join(
 				fmt.Errorf("%w[%d]", ErrNameInvalidSuffix, i),
@@ -99,43 +99,92 @@ func (t Name) Validate() error {
 	return nil
 }
 
-func (t Name) Prefix() string {
-	strings := slicer.Map(
+func (t Name) Full() string {
+	prefix := slicer.Map(
 		func(_ int, item Prefix) string { return item.String() },
 		t.Prefixes...,
 	)
 
-	return stringer.Join(" ", strings...)
-}
-
-func (t Name) First() string {
-	return stringer.Join(" ", t.Firsts...)
-}
-
-func (t Name) Middle() string {
-	return stringer.Join(" ", t.Middles...)
-}
-
-func (t Name) Last() string {
-	return stringer.Join(" ", t.Lasts...)
-}
-
-func (t Name) Suffix() string {
-	strings := slicer.Map(
+	suffix := slicer.Map(
 		func(_ int, item Suffix) string { return item.String() },
-		t.Suffixes...,
+		t.Suffix...,
 	)
 
-	return stringer.Join(" ", strings...)
-}
-
-func (t Name) Full() string {
 	return stringer.Join(
 		" ",
-		t.Prefix(),
-		t.First(),
-		t.Middle(),
-		t.Last(),
-		t.Suffix(),
+		stringer.Join(" ", prefix...),
+		stringer.Join(" ", t.Given...),
+		stringer.Join(" ", t.Middle...),
+		stringer.Join(" ", t.Family...),
+		stringer.Join(" ", suffix...),
 	)
+}
+
+type StringQuery struct {
+	Includes string
+	Excludes string
+}
+
+type NameFind struct {
+	Term   StringQuery
+	Given  StringQuery
+	Middle StringQuery
+	Family StringQuery
+}
+
+type NameRepository interface {
+	Find(query NameFind) []Name
+}
+
+var _ NameRepository = &NameMemoryRepository{}
+
+type NameMemoryRepository struct {
+	names []Name
+}
+
+func (this *NameMemoryRepository) Find(query NameFind) []Name {
+	m := map[id.Id]Name{}
+
+	match := func(name Name, list []string, fn func(int, string) bool) {
+		items := slicer.Filter(fn, list...)
+		if len(items) > 0 {
+			if _, ok := m[name.Id]; !ok {
+				m[name.Id] = name
+			}
+		}
+	}
+
+	includes := func(terms ...string) func(int, string) bool {
+		return func(_ int, s string) bool {
+			for _, term := range terms {
+				if term != "" && stringer.Contains(s, term) {
+					return true
+				}
+			}
+			return false
+		}
+	}
+
+	excludes := func(terms ...string) func(int, string) bool {
+		return func(_ int, s string) bool {
+			for _, term := range terms {
+				if term != "" && !stringer.Contains(s, term) {
+					return true
+				}
+			}
+			return false
+		}
+	}
+
+	for _, name := range this.names {
+		match(name, name.Given, includes(query.Given.Includes, query.Term.Includes))
+		match(name, name.Middle, includes(query.Middle.Includes, query.Term.Includes))
+		match(name, name.Family, includes(query.Family.Includes, query.Term.Includes))
+
+		match(name, name.Given, excludes(query.Given.Excludes, query.Term.Excludes))
+		match(name, name.Middle, excludes(query.Middle.Excludes, query.Term.Excludes))
+		match(name, name.Family, excludes(query.Family.Excludes, query.Term.Excludes))
+	}
+
+	return mapper.Values(m)
 }

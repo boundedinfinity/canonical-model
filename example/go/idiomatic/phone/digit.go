@@ -1,40 +1,56 @@
 package phone
 
+// https://en.wikipedia.org/wiki/North_American_Numbering_Plan#Alphabetic_mnemonic_system
+// https://en.wikipedia.org/wiki/E.161
+// https://www.itu.int/rec/T-REC-E.161
+
 import (
-	"strconv"
+	"fmt"
 
 	"errors"
+
+	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
+	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 
 type Digit struct {
-	Number int  `json:"number,omitempty"`
-	Letter rune `json:"letter,omitempty"`
+	Key       string   `json:"key,omitempty,omitzero"`
+	Mnemonics []string `json:"mnemonics,omitempty,omitzero"`
+}
+
+type SelectedDigit struct {
+	Digit
+	Mnemonic string `json:"mnemonic,omitempty,omitzero"`
 }
 
 var (
-	ErrDigitNotBetween0And9 = errors.New("digit must be between 0 and 9")
+	ErrDigitNotValid  = errors.New(`digit must be one of: a number between 0 and 9, a mnemonic letter between A-Z or a-z, or the characters +, #, ','`)
+	errDigitNotValidf = func(digit string) error { return fmt.Errorf("%s: %w", digit, ErrDigitNotValid) }
 )
 
 func (t Digit) String() string {
-	return strconv.FormatInt(int64(t.Number), 10)
+	return t.Key
 }
 
-func NewDigit(digit int) (Digit, error) {
-	if digit < 0 || digit > 9 {
-		return Digit{}, ErrDigitNotBetween0And9
+var (
+	digitMap = map[string]Digit{}
+)
+
+func (this digits) Parse(s string) (Digit, error) {
+	var digit *Digit
+	var err error
+
+	for _, d := range this.All() {
+		nlc := slicer.Map(func(_ int, s string) string { return stringer.Lowercase(s) }, d.Mnemonics...)
+
+		if d.Key == s || stringer.ContainsAny(s, d.Mnemonics...) || stringer.ContainsAny(s, nlc...) {
+			digit = &d
+		}
 	}
 
-	return Digit{
-		Number: digit,
-	}, nil
-}
-
-func NewDigitMust(digit int) Digit {
-	d, err := NewDigit(digit)
-
-	if err != nil {
-		panic(err)
+	if digit == nil {
+		err = errDigitNotValidf(s)
 	}
 
-	return d
+	return *digit, err
 }

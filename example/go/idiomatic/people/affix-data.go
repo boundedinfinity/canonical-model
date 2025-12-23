@@ -9,8 +9,12 @@ import (
 //go:embed prefix.data.yaml
 var prefixYaml string
 
+//go:embed suffix.data.yaml
+var suffixYaml string
+
 var (
 	Prefixes = []Prefix{}
+	Suffixes = []Suffix{}
 )
 
 func init() {

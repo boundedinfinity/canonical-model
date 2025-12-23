@@ -8,7 +8,7 @@ import (
 )
 
 func Test_Label_Marshal(t *testing.T) {
-	nameOnlyLabel := label.NameOnlyLabel{
+	nameOnlyLabel := label.Label{
 		Name: label.LabelNames.MustFind("dob"),
 	}
 

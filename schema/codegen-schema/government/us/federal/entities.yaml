@@ -1,0 +1,44 @@
+# https://irsefiletaxfiling.com/application/
+
+kinds:
+    - type: canonical:government/us/federal/entity/limited-liability-company
+      name: Limited Liability Company
+      description: |
+          A limited liability company (LLC) is a structure allowed by state statute. An LLC is formed by filing 
+          articles of organization with the individual state's secretary of state. Owners of an LLC are called 
+          members. Members may include individuals, corporations, other LLCs, and foreign entities. An LLC can be 
+          formed by one or more members, and there is no maximum number of members. An LLC can also be organized as 
+          a professional limited liability company (PLLC) or a limited company (LC). For federal tax purposes, an 
+          LLC may be treated as a partnership or a corporation, or be disregarded as an entity separate from its 
+          owner.
+
+          A Limited Liability Company (LLC) is an entity organized under the laws of a state. You must file or
+          intend to file articles of organization with your state before you can be recognized as an LLC. There can 
+          only be one LLC with the same name in any one state.
+      kind: object
+      properties:
+          - name: Name
+            kind: string
+    - type: canonical:government/us/federal/entity/sole-proprietor
+      name: Sole Proprietor
+      description: |
+          A sole proprietor is one individual who owns a company that is not incorporated or registered with the 
+          state as a limited liability company (LLC). Sole proprietors may or may not have employees. The business 
+          does not exist separately from the owner. The risks of business apply to the individual's personal assets, 
+          including those not used for the business. The sole proprietor reports business income on his or her 
+          individual tax return.
+      kind: object
+      properties:
+          - name: Name
+            kind: string
+    - type: canonical:government/us/federal/entity/estate
+      name: Estate
+      description: |
+          An estate (or decedent estate) or succession is a legal entity created as a result of a person's death. 
+          The estate consists of the real estate and/or personal property of the deceased person. The estate pays 
+          any debts owed by the decedent, and distributes the balance of the estate's assets to the beneficiaries 
+          of the estate.
+      kind: object
+      properties:
+          - name: Name
+            kind: string

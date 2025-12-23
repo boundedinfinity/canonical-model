@@ -2,7 +2,7 @@
 # http://en.wikipedia.org/wiki/Social_Security_number#List_of_Social_Security_area_numbers
 
 kinds:
-    - type: canonical:government/us-social-security-number
+    - type: canonical:government/us/federal/us-social-security-number
       description: Social Security Number
       kind: object
       properties:

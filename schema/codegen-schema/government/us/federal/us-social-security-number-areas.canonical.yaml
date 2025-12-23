@@ -1,5 +1,5 @@
 kinds:
-  - type: canonical:government/us-social-security-number-area
+  - type: canonical:government/us/federal/us-social-security-number-area
     description: Social Security Number
     kind: object
     properties:

@@ -1,5 +1,5 @@
 kinds:
-  - type: canonical:government/form-w-9-march-2024
+  - type: canonical:government/us/federal/form-w-9-march-2024
     description: >
       From W-9 Rev. March 2024.
       Reference: 
@@ -46,4 +46,3 @@ kinds:
       - kind: ref
         ref: canonical://address/mailing
         alias: Line 5 and 6
-      -

@@ -10,6 +10,7 @@ import (
 
 // https://en.wikipedia.org/wiki/North_American_Numbering_Plan
 // https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers
+// https://en.wikipedia.org/wiki/North_American_Numbering_Plan#Alphabetic_mnemonic_system
 
 type NanpNumber struct {
 	Id              id.Id                    `json:"id,omitempty"`
@@ -41,7 +42,7 @@ func (t NanpNumber) String() string {
 			sb.WriteRune('+')
 
 			for _, code := range t.CountryCode {
-				sb.WriteString(fmt.Sprint(code.Number))
+				sb.WriteString(fmt.Sprint(code.Key))
 			}
 
 			switch separatorFormat {
@@ -61,7 +62,7 @@ func (t NanpNumber) String() string {
 	}
 
 	for _, code := range t.Npa {
-		sb.WriteString(fmt.Sprint(code.Number))
+		sb.WriteString(fmt.Sprint(code.Key))
 	}
 
 	switch separatorFormat {
@@ -75,7 +76,7 @@ func (t NanpNumber) String() string {
 	}
 
 	for _, code := range t.Nxx {
-		sb.WriteString(fmt.Sprint(code.Number))
+		sb.WriteString(fmt.Sprint(code.Key))
 	}
 
 	switch separatorFormat {
@@ -87,7 +88,7 @@ func (t NanpNumber) String() string {
 	}
 
 	for _, code := range t.LineNumber {
-		sb.WriteString(fmt.Sprint(code.Number))
+		sb.WriteString(fmt.Sprint(code.Key))
 	}
 
 	if t.Extention.Has() {

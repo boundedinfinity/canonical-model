@@ -2,21 +2,20 @@ package label
 
 import (
 	"fmt"
-	"reflect"
 
 	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 	"github.com/boundedinfinity/schema/idiomatic/id"
 )
 
-type labelNames []LabelName
+type labelNames []Label
 
-func (t labelNames) IsZero(item LabelName) bool {
-	return reflect.DeepEqual(item, zeroLabelName)
+func (t labelNames) IsZero(item Label) bool {
+	return len(t) <= 0
 }
 
-func (t labelNames) Find(s string) (LabelName, bool) {
-	fn := func(_ int, name LabelName) bool {
+func (t labelNames) Find(s string) (Label, bool) {
+	fn := func(_ int, name Label) bool {
 		return stringer.EqualIgnoreCase(name.Name, s) ||
 			stringer.EqualIgnoreCase(s, name.Abbreviation)
 	}
@@ -24,7 +23,7 @@ func (t labelNames) Find(s string) (LabelName, bool) {
 	return slicer.FindFn(fn, t...)
 }
 
-func (t labelNames) MustFind(s string) LabelName {
+func (t labelNames) MustFind(s string) Label {
 	if found, ok := t.Find(s); !ok {
 		panic(fmt.Errorf("can't find label name %v", s))
 	} else {
@@ -33,7 +32,7 @@ func (t labelNames) MustFind(s string) LabelName {
 }
 
 var (
-	zeroLabelName LabelName
+	zeroLabelName Label
 
 	LabelNames = labelNames{
 		{

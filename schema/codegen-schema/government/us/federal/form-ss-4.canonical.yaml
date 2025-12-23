@@ -1,5 +1,5 @@
 kinds:
-  - type: canonical:government/form-ss-4
+  - type: canonical:government/us/federal/form-ss-4
     description: |
       US Form SS-4
     Reference: canonical://www.irs.gov/pub/irs-pdf/fss4.pdf

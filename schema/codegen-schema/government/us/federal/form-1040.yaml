@@ -1,6 +1,6 @@
 kinds:
-    - type: canonical:government/soc
-    - type: canonical:government/form-1040-schedule-c
+    - type: canonical:government/us/federal/soc
+    - type: canonical:government/us/federal/form-1040-schedule-c
       name: Form 1040 Schedule C
       description: |
           Form 1040 Profit and Loss From Business

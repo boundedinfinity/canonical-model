@@ -26,8 +26,8 @@ func Test_Marshaler_Marshal(t *testing.T) {
 				},
 				Value: cpeople.Person{
 					Name: cpeople.Name{
-						Firsts: []string{"James"},
-						Lasts:  []string{"Bond"},
+						Given:  []string{"James"},
+						Family: []string{"Bond"},
 					},
 				},
 			},
