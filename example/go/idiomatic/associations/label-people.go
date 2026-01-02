@@ -6,6 +6,6 @@ import (
 )
 
 type LabelToPerson struct {
-	Label  label.NameOnlyLabel
+	Label  label.Label
 	Person people.Person
 }

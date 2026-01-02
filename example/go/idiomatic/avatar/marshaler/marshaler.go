@@ -28,7 +28,7 @@ func NewMarshaller() *EventMarshaler {
 	km := EventMarshaler{
 		km: marshaler.NewKind(
 			model.EventTypeDiscriminator{},
-			func(d model.EventTypeDiscriminator) string { return d.Header.Type },
+			func(d model.EventTypeDiscriminator) string { return d.Header.Kind },
 		),
 		// tm: NewAvatarTypes(),
 	}

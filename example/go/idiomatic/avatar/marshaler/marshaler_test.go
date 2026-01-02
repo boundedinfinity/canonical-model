@@ -22,7 +22,7 @@ func Test_Marshaler_Marshal(t *testing.T) {
 			name: "person.PersonEvent",
 			input: people.PersonEvent{
 				Header: model.EventHeader{
-					Type: people.PersonEvent{}.Value.TypeName(),
+					Kind: people.PersonEvent{}.Value.TypeName(),
 				},
 				Value: cpeople.Person{
 					Name: cpeople.Name{

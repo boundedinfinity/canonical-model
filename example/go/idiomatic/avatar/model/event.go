@@ -11,7 +11,7 @@ type EventTypeDiscriminator struct {
 }
 
 type EventHeader struct {
-	Type           string                      `json:"type,omitempty"`
+	Kind           string                      `json:"type,omitempty"`
 	ReceivedAt     rfc3339date.Rfc3339DateTime `json:"received-at,omitempty"`
 	SequenceNumber int                         `json:"sequence-number,omitempty"`
 }
