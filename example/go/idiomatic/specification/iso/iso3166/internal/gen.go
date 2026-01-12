@@ -49,11 +49,16 @@ func main() {
 			},
 		}
 
-		if err := get_3166_1(url, &infos); err != nil {
+		var dataM dataMatcher
+		if err := readJson("matchers.json", &dataM); err != nil {
 			panic(err)
 		}
 
-		if err := write_iso_3166(infos, jsonPath); err != nil {
+		if err := get_3166_1(dataM, &infos); err != nil {
+			panic(err)
+		}
+
+		if err := writeJson(jsonPath, infos); err != nil {
 			panic(err)
 		}
 	} else {
@@ -193,6 +198,11 @@ type templateData struct {
 	Numerics []string
 }
 
+var (
+	errColumnNotFound  = errors.New("column not found")
+	errColumnNotFoundf = func(n string) error { return fmt.Errorf("%w, %s", errColumnNotFound, n) }
+)
+
 func gen(path string, jsonData iso_3166) error {
 	templateData := templateData{
 		Records: jsonData.Data,
@@ -231,10 +241,10 @@ func gen(path string, jsonData iso_3166) error {
 }
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
+// Utilities
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-func write_iso_3166(data iso_3166, path string) error {
+func writeJson(path string, data any) error {
 	bs, err := json.MarshalIndent(data, "", "    ")
 
 	if err != nil {
@@ -248,24 +258,42 @@ func write_iso_3166(data iso_3166, path string) error {
 	return nil
 }
 
+func readJson(path string, data any) error {
+	bs, err := os.ReadFile(path)
+
+	if err != nil {
+		return err
+	}
+
+	return json.Unmarshal(bs, data)
+}
+
 type iso_3166 struct {
 	GeneratedAt rfc3339date.Rfc3339DateTime `json:"generated-at"`
 	References  []string                    `json:"references,omitempty,omitzero"`
 	Data        []iso3166.Iso3166_1         `json:"data,omitempty,omitzero"`
 }
 
+type dataMatcher struct {
+	List1 pageMatcher   `json:"list-1"`
+	List2 []pageMatcher `json:"list-2"`
+}
+
+type pageMatcher struct {
+	Source string         `json:"source"`
+	Tables []tableMatcher `json:"tables"`
+}
+
 type tableMatcher struct {
-	Source  string          `json:"source"`
-	Table   int             `json:"table"`
-	Row     int             `json:"row"`
-	Columns []columnMatcher `json:"columns"`
+	Table        int             `json:"table"`
+	FirstDataRow int             `json:"first-data-row"`
+	Columns      []columnMatcher `json:"columns"`
 }
 
 type columnMatcher struct {
 	Name   string `json:"name"`
-	Header string `json:"header"`
-	Index  int    `json:"index"`
-	ok     bool   `json:"-"`
+	Column int    `json:"column"`
+	Value  string `json:"value"`
 }
 
 func getPage(url string) (*goquery.Document, error) {
@@ -312,274 +340,224 @@ func normalize(t *goquery.Selection) string {
 	return s
 }
 
-func getText(doc *goquery.Document, matcher tableMatcher, name string) (string, bool) {
-	selection := getSelection(doc, matcher, name)
-	var value string
+func getTableSelection(doc *goquery.Document, tableM tableMatcher) *goquery.Selection {
+	var selection *goquery.Selection
+	next := true
 
-	if selection != nil {
-		value = normalize(selection)
-	}
-
-	return value, value != ""
-}
-
-func getLink(url string, tr *goquery.Selection, value *string, matcher columnMatcher) {
-	if matcher.ok {
-		tr.Find("th,td").Each(func(i2 int, td *goquery.Selection) {
-			if matcher.Index == i2 {
-				td.Find("a").Each(func(_ int, anchor *goquery.Selection) {
-					if found, ok := anchor.Attr("href"); ok {
-						if parsed, err := gurl.Parse(url); err == nil {
-							parsed.Path = found
-							encoded := parsed.String()
-							if decoded, err := gurl.QueryUnescape(encoded); err == nil {
-								*value = decoded
-							}
-						}
-					}
-				})
-			}
-		})
-	}
-}
-
-func findLink(url string, tr *goquery.Selection, value *string) {
-	var found bool
-
-	tr.Find("th,td").EachWithBreak(func(i2 int, td *goquery.Selection) bool {
-		td.Find("a").EachWithBreak(func(_ int, anchor *goquery.Selection) bool {
-			if href, ok := anchor.Attr("href"); ok {
-				if parsed, err := gurl.Parse(url); err == nil {
-					parsed.Path = href
-					encoded := parsed.String()
-					if decoded, err := gurl.QueryUnescape(encoded); err == nil {
-						*value = decoded
-						found = true
-					}
-				}
-			}
-
-			return !found
-		})
-
-		return !found
-	})
-}
-
-func get_3166_2(matcher *tableMatcher, info *iso3166.Iso3166_1, info2 *iso3166.Iso3166_2) error {
-	if info != nil && info2.Source == "" {
-		return nil
-	}
-
-	doc, err := getPage(info2.Source)
-	if err != nil {
-		return err
-	}
-
-	doc.Find("table").Each(func(i int, table *goquery.Selection) {
-		if i != 0 {
-			return
+	doc.Find("table").EachWithBreak(func(i int, table *goquery.Selection) bool {
+		if tableM.Table != i || !next {
+			return next
 		}
 
-		code := getHeader(table, []string{"Code"})
-		name := getHeader(table, []string{
-			"Subdivision name (ja)",
-			"Subdivision name in English",
-			"Subdivision name (en)",
-			"Subdivision",
-		})
-		// reference := getHeader(table, []string{"Subdivision name"})
-		category := getHeader(table, []string{
-			"Subdivision category",
-			"Subd. cat.",
-		})
+		selection = table
+		next = false
 
-		matcher.Columns = append(matcher.Columns, code)
-		matcher.Columns = append(matcher.Columns, name)
-		matcher.Columns = append(matcher.Columns, category)
-
-		table.Find("tr").Each(func(i int, tr *goquery.Selection) {
-			if i == 0 {
-				return
-			}
-
-			getText(tr, &info2.Code, code)
-			// getLink(info2.Source, tr, &info2.Reference, reference)
-			findLink(info2.Source, tr, &info2.Reference)
-			getText(tr, &info2.Name, name)
-			getText(tr, &info2.Category, category)
-
-			ignores := func(s string) bool {
-				items := []string{
-					"conventional names",
-					"BGN/PCGN",
-					"Name",
-				}
-
-				for _, item := range items {
-					if strings.Contains(s, item) {
-						return true
-					}
-				}
-
-				return false
-			}
-
-			if info2.Code != "" && !ignores(info2.Code) {
-				if info2.Reference == "" {
-					fmt.Printf("no reference for: %s\n", info2.Source)
-				}
-
-				info.Subdivisions = append(info.Subdivisions, *info2)
-			}
-		})
+		return next
 	})
 
-	return nil
+	return selection
+
 }
 
-func getSelection(doc *goquery.Document, matcher tableMatcher, name string) *goquery.Selection {
-	var found columnMatcher
-	var ok bool
+func getCellSelection(row *goquery.Selection, tableM tableMatcher, columnName string) *goquery.Selection {
+	var columnM columnMatcher
+	var cmok bool
 	var selection *goquery.Selection
 
-	for _, columnMatcher := range matcher.Columns {
-		if columnMatcher.Name == name {
-			found = columnMatcher
-			ok = true
+	if row == nil {
+		return selection
+	}
+
+	for _, current := range tableM.Columns {
+		if current.Name == columnName && current.Value == "" {
+			columnM = current
+			cmok = true
 			break
 		}
 	}
 
-	if !ok {
+	if !cmok {
 		return selection
 	}
 
-	doc.Find("table").Each(func(i int, table *goquery.Selection) {
-		if matcher.Table != i {
-			return
+	next := true
+
+	row.Find("th,td").EachWithBreak(func(i int, td *goquery.Selection) bool {
+		if columnM.Column != i || !next {
+			return next
 		}
 
-		table.Find("tr").Each(func(i int, tr *goquery.Selection) {
-			if matcher.Row != i {
-				return
-			}
+		selection = td
+		next = false
 
-			tr.Find("th,td").Each(func(i int, td *goquery.Selection) {
-				if found.Index != i {
-					return
-				}
-
-				selection = td
-			})
-		})
+		return next
 	})
 
 	return selection
 }
 
-func get_3166_1(url string, data *iso_3166) error {
-	list1matcher := tableMatcher{
-		Source: "https://en.wikipedia.org/wiki/ISO_3166-1",
-		Table:  1,
-		Row:    1,
-		Columns: []columnMatcher{
-			{
-				Name:  "Name",
-				Index: 0,
-			},
-			{
-				Name:  "Alpha2",
-				Index: 1,
-			},
-			{
-				Name:  "Alpha3",
-				Index: 2,
-			},
-			{
-				Name:  "Numeric",
-				Index: 3,
-			},
-			{
-				Name:  "Source",
-				Index: 4,
-			},
-			{
-				Name:  "Reference",
-				Index: 0,
-			},
-			{
-				Name:  "Independent",
-				Index: 5,
-			},
-		},
+func getText(row *goquery.Selection, tableM tableMatcher, columnName string, value *string) bool {
+	selection := getCellSelection(row, tableM, columnName)
+
+	if selection != nil {
+		*value = normalize(selection)
+	} else {
+		for _, current := range tableM.Columns {
+			if current.Name == columnName {
+				if current.Value != "" {
+					*value = current.Value
+				}
+			}
+		}
 	}
 
-	matchers := []tableMatcher{}
+	return *value != ""
+}
 
-	doc, ferr := getPage(url)
+func getLink(row *goquery.Selection, matcher tableMatcher, name string, value *string, baseUrl string) bool {
+	selection := getCellSelection(row, matcher, name)
+
+	if selection == nil {
+		return false
+	}
+
+	selection.Find("a").Each(func(_ int, anchor *goquery.Selection) {
+		if found, ok := anchor.Attr("href"); ok {
+			if parsed, err := gurl.Parse(baseUrl); err == nil {
+				parsed.Path = found
+				encoded := parsed.String()
+				if decoded, err := gurl.QueryUnescape(encoded); err == nil {
+					*value = decoded
+				}
+			}
+		}
+	})
+
+	return *value != ""
+}
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// List 1
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+func get_3166_1(dataM dataMatcher, data *iso_3166) error {
+	var doc *goquery.Document
+	var ferr error
+
+	doc, ferr = getPage(dataM.List1.Source)
 	if ferr != nil {
 		return ferr
 	}
 
-	doc.Find("table:has(caption)").Each(func(_ int, table *goquery.Selection) {
-		matcher := tableMatcher{
-			Table:   0,
-			Row:     1,
-			Columns: []columnMatcher{},
+	list1matcher := dataM.List1.Tables[0]
+	table := getTableSelection(doc, list1matcher)
+
+	if table == nil {
+		return ferr
+	}
+
+	table.Find("tr").Each(func(i int, row *goquery.Selection) {
+		if i < list1matcher.FirstDataRow {
+			return
 		}
 
-		name := getHeader(table, []string{"short name"})
-		alpha2 := getHeader(table, []string{"Alpha-2 code"})
-		alpha3 := getHeader(table, []string{"Alpha-3 code"})
-		numeric := getHeader(table, []string{"Numeric code"})
-		list2 := getHeader(table, []string{"Link to"})
-		independent := getHeader(table, []string{"Independent"})
+		info := iso3166.Iso3166_1{
+			Source: dataM.List1.Source,
+		}
 
-		table.Find("tr").Each(func(i int, tr *goquery.Selection) {
-			if i == 0 {
+		getText(row, list1matcher, "Name", &info.Name)
+		getText(row, list1matcher, "Alpha2", &info.Alpha2)
+		getText(row, list1matcher, "Alpha3", &info.Alpha3)
+		getText(row, list1matcher, "Numeric", &info.Numeric)
+		getText(row, list1matcher, "Independent", &info.Independent)
+		getLink(row, list1matcher, "Reference", &info.Reference, info.Source)
+
+		var list2Source string
+		if ok := getLink(row, list1matcher, "list-2", &list2Source, info.Source); ok {
+			fn := func(info2 iso3166.Iso3166_2) {
+				if info2.Name != "" {
+					info.Subdivisions = append(info.Subdivisions, info2)
+				}
+			}
+
+			if err := get_3166_2(dataM, list2Source, fn); err != nil {
+				ferr = err
 				return
 			}
+		}
 
-			info := iso3166.Iso3166_1{
-				Source: url,
-			}
-
-			getText(tr, &info.Name, name)
-			// getLink(url, tr, &info.Reference, name)
-			findLink(url, tr, &info.Reference)
-			getText(tr, &info.Alpha2, alpha2)
-			getText(tr, &info.Alpha3, alpha3)
-			getText(tr, &info.Numeric, numeric)
-			getText(tr, &info.Independent, independent)
-
-			var list2Source string
-			getLink(url, tr, &list2Source, list2)
-			if list2Source != "" {
-				matcher.Source = list2Source
-
-				info2 := iso3166.Iso3166_2{Source: list2Source}
-				if err := get_3166_2(&matcher, &info, &info2); err != nil {
-					ferr = err
-					return
-				}
-
-				matchers = append(matchers, matcher)
-			}
-
-			if info.Name != "" {
-				data.Data = append(data.Data, info)
-			}
-		})
+		if info.Name != "" {
+			data.Data = append(data.Data, info)
+		}
 	})
 
-	if bs, err := json.MarshalIndent(matchers, "", "    "); err != nil {
+	return ferr
+}
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// List 2
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+func get_3166_2(dataM dataMatcher, source string, fn func(iso3166.Iso3166_2)) error {
+	doc, err := getPage(source)
+	if err != nil {
 		return err
-	} else {
-		if err := os.WriteFile("matchers.json", bs, os.FileMode(0755)); err != nil {
-			return err
+	}
+
+	var pageM pageMatcher
+	var pmok bool
+
+	for _, current := range dataM.List2 {
+		if current.Source == source {
+			pageM = current
+			pmok = true
+			break
 		}
 	}
 
-	return ferr
+	if !pmok {
+		for _, current := range dataM.List2 {
+			if current.Source == "default" {
+				pageM = current
+				pmok = true
+				break
+			}
+		}
+	}
+
+	if !pmok {
+		return nil
+	}
+
+	for _, tableM := range pageM.Tables {
+		table := getTableSelection(doc, tableM)
+
+		if table == nil {
+			return nil
+		}
+
+		table.Find("tr").Each(func(i int, row *goquery.Selection) {
+			if i < tableM.FirstDataRow {
+				return
+			}
+
+			info2 := iso3166.Iso3166_2{
+				Source: source,
+			}
+
+			getText(row, tableM, "Name", &info2.Name)
+			getText(row, tableM, "Code", &info2.Code)
+			getLink(row, tableM, "Reference", &info2.Reference, info2.Source)
+			getText(row, tableM, "Category", &info2.Category)
+			getText(row, tableM, "Parent", &info2.Parent)
+			getText(row, tableM, "AlternateCode", &info2.AlternateCode)
+			getText(row, tableM, "PreviousCode", &info2.PreviousCode)
+
+			if fn != nil {
+				fn(info2)
+			}
+		})
+	}
+
+	return nil
 }
