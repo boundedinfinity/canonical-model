@@ -125,17 +125,18 @@ func init() {
 `
 
 func gen(path string, xmlData xmlData) error {
+	add := func(m map[string]bool, value string) {
+		if _, ok := m[value]; !ok && value != "" {
+			m[value] = true
+		}
+	}
+
 	codes := map[string]bool{}
 	numerics := map[string]bool{}
 
 	for _, item := range xmlData.Table.Items {
-		if _, ok := codes[item.Code]; !ok && item.Code != "" {
-			codes[item.Code] = true
-		}
-
-		if _, ok := numerics[item.Numeric]; !ok && item.Numeric != "" {
-			numerics[item.Numeric] = true
-		}
+		add(codes, item.Code)
+		add(numerics, item.Numeric)
 	}
 
 	data := templateData{
@@ -146,7 +147,6 @@ func gen(path string, xmlData xmlData) error {
 
 	fm := template.FuncMap{
 		"lower": func(s string) string { return strings.ToLower(s) },
-		"upper": func(s string) string { return strings.ToUpper(s) },
 	}
 
 	tmpl, err := template.New("").Funcs(fm).Parse(content)

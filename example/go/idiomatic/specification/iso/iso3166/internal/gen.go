@@ -6,8 +6,12 @@ package main
 // https://github.com/PuerkitoBio/goquery?tab=readme-ov-file#examples
 
 import (
+	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"go/format"
+	"html/template"
 	"io"
 	"net/http"
 	gurl "net/url"
@@ -16,30 +20,219 @@ import (
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 	"github.com/boundedinfinity/rfc3339date"
+	"github.com/boundedinfinity/schema/idiomatic/specification/iso/iso3166"
 )
 
 func main() {
 	fmt.Println("Generating ISO 3166 : Country Codes")
 	url := "https://en.wikipedia.org/wiki/ISO_3166-1"
+	jsonPath := "iso-3166.json"
+	genPath := "../iso-3166.gen.go"
 
-	infos := iso_3166{
-		GeneratedAt: rfc3339date.NewDateTime(time.Now()),
-		References: []string{
-			"https://www.iso.org/iso-3166-country-codes.html",
-			"https://en.wikipedia.org/wiki/ISO_3166-1",
-		},
-	}
+	_, err := os.Stat(jsonPath)
 
-	if err := get_3166_1(url, &infos); err != nil {
+	if err != nil && !errors.Is(err, os.ErrNotExist) {
 		panic(err)
 	}
 
-	if err := write_iso_3166(infos, "../iso-3166.json"); err != nil {
+	var infos iso_3166
+
+	if errors.Is(err, os.ErrNotExist) {
+		fmt.Printf("Downloading data from %v\n", url)
+
+		infos = iso_3166{
+			GeneratedAt: rfc3339date.NewDateTime(time.Now()),
+			References: []string{
+				"https://www.iso.org/iso-3166-country-codes.html",
+				"https://en.wikipedia.org/wiki/ISO_3166-1",
+			},
+		}
+
+		if err := get_3166_1(url, &infos); err != nil {
+			panic(err)
+		}
+
+		if err := write_iso_3166(infos, jsonPath); err != nil {
+			panic(err)
+		}
+	} else {
+		bs, err := os.ReadFile(jsonPath)
+
+		if err != nil {
+			panic(err)
+		}
+
+		if err := json.Unmarshal(bs, &infos); err != nil {
+			panic(err)
+		}
+	}
+
+	if err := gen(genPath, infos); err != nil {
 		panic(err)
 	}
 }
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Generate
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+var content = `
+package iso3166
+
+var Iso3166s = iso3166s{}
+
+type iso3166s struct {
+	records  	[]Iso3166_1
+	lc  	 	[]Iso3166_1
+	alpha2s  	[]Iso3166_1_Alpha2
+	alpha3s  	[]Iso3166_1_Alpha3
+	numerics 	[]Iso3166_1_Numeric
+	list2_codes []Iso3166_2_Code
+
+{{- range .Records }}
+	{{ .Alpha2 }} Iso3166_1_Alpha2
+{{- end }}
+
+{{- range .Records }}
+	{{ .Alpha3 }} Iso3166_1_Alpha3
+{{- end }}
+
+{{- range .Records }}
+	N_{{ .Numeric }} Iso3166_1_Numeric
+{{- end }}
+
+{{- range .Records }}
+{{- range .Subdivisions }}
+	{{ kebab2snake .Code }} Iso3166_2
+{{- end }}
+{{- end }}
+}
+
+func init() {
+{{- range .Records }}
+	Iso3166s.{{ .Alpha2 }} = Iso3166_1_Alpha2("{{ .Alpha2 }}")
+{{- end }}
+
+{{ range .Records }}
+	Iso3166s.{{ .Alpha3 }} = Iso3166_1_Alpha3("{{ .Alpha3 }}")
+{{- end }}
+
+{{ range .Records }}
+	Iso3166s.N_{{ .Numeric }} = Iso3166_1_Numeric("{{ .Numeric }}")
+{{- end }}
+
+	Iso3166s.alpha2s = []Iso3166_1_Alpha2{
+{{- range .Records }}
+		Iso3166s.{{ .Alpha2 }},
+{{- end }}
+	}
+
+	Iso3166s.alpha3s = []Iso3166_1_Alpha3{
+{{- range .Records }}
+		Iso3166s.{{ .Alpha3 }},
+{{- end }}
+	}
+
+	Iso3166s.numerics = []Iso3166_1_Numeric{
+{{- range .Records }}
+		Iso3166s.N_{{ .Numeric }},
+{{- end }}
+	}
+
+	Iso3166s.records = []Iso3166_1{
+{{- range .Records }}
+		{
+			Name: "{{ .Name }}",
+			Alpha2: "{{ .Alpha2 }}",
+			Alpha3: "{{ .Alpha3 }}",
+			Numeric: "{{ .Numeric }}",
+			Independent: "{{ .Independent }}",
+			Reference: "{{ .Reference }}",
+			Subdivisions: []Iso3166_2{
+{{- range .Subdivisions }}
+				{
+					Name: "{{ .Name }}",
+					Code: "{{ .Code }}",
+					Reference: "{{ .Reference }}",
+				},
+{{- end }}
+			},
+		},
+{{- end }}
+	}
+
+	Iso3166s.lc = []Iso3166_1{
+{{- range .Records }}
+		{
+			Name: "{{ lower .Name }}",
+			Alpha2: "{{ lower .Alpha2 }}",
+			Alpha3: "{{ lower .Alpha3 }}",
+			Numeric: "{{ lower .Numeric }}",
+			Independent: "{{ lower .Independent }}",
+			Reference: "{{ .Reference }}",
+			Subdivisions: []Iso3166_2{
+{{- range .Subdivisions }}
+				{
+					Name: "{{ lower .Name }}",
+					Code: "{{ lower .Code }}",
+					Reference: "{{ .Reference }}",
+				},
+{{- end }}
+			},
+		},
+{{- end }}
+	}
+}
+`
+
+type templateData struct {
+	Records  []iso3166.Iso3166_1
+	Alpha2   []string
+	Alpha3   []string
+	Numerics []string
+}
+
+func gen(path string, jsonData iso_3166) error {
+	templateData := templateData{
+		Records: jsonData.Data,
+	}
+
+	fm := template.FuncMap{
+		"lower":       func(s string) string { return strings.ToLower(s) },
+		"kebab2snake": func(s string) string { return strings.ReplaceAll(s, "-", "_") },
+	}
+
+	tmpl, err := template.New("").Funcs(fm).Parse(content)
+
+	if err != nil {
+		panic(err)
+	}
+
+	var bs []byte
+	var buf bytes.Buffer
+
+	if err := tmpl.Execute(&buf, templateData); err != nil {
+		return err
+	}
+
+	bs = buf.Bytes()
+
+	bs, err = format.Source(bs)
+	if err != nil {
+		return err
+	}
+
+	if err := os.WriteFile(path, bs, os.FileMode(0755)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 func write_iso_3166(data iso_3166, path string) error {
 	bs, err := json.MarshalIndent(data, "", "    ")
@@ -58,33 +251,21 @@ func write_iso_3166(data iso_3166, path string) error {
 type iso_3166 struct {
 	GeneratedAt rfc3339date.Rfc3339DateTime `json:"generated-at"`
 	References  []string                    `json:"references,omitempty,omitzero"`
-	Data        []iso_3166_1                `json:"data,omitempty,omitzero"`
+	Data        []iso3166.Iso3166_1         `json:"data,omitempty,omitzero"`
 }
 
-type iso_3166_1 struct {
-	Source       string       `json:"source,omitempty,omitzero"`
-	Name         string       `json:"name,omitempty,omitzero"`
-	Alpha2       string       `json:"alpha-2,omitempty,omitzero"`
-	Alpha3       string       `json:"alpha-3,omitempty,omitzero"`
-	Numeric      string       `json:"numeric,omitempty,omitzero"`
-	Independent  string       `json:"independent,omitempty,omitzero"`
-	Reference    string       `json:"reference,omitempty,omitzero"`
-	Subdivisions []iso_3166_2 `json:"subdivisions,omitempty,omitzero"`
-}
-
-type iso_3166_2 struct {
-	Source    string `json:"source,omitempty,omitzero"`
-	Name      string `json:"name,omitempty,omitzero"`
-	Code      string `json:"code,omitempty,omitzero"`
-	Category  string `json:"cagetory,omitempty,omitzero"`
-	Reference string `json:"reference,omitempty,omitzero"`
+type tableMatcher struct {
+	Source  string          `json:"source"`
+	Table   int             `json:"table"`
+	Row     int             `json:"row"`
+	Columns []columnMatcher `json:"columns"`
 }
 
 type columnMatcher struct {
-	name   string
-	header string
-	index  int
-	ok     bool
+	Name   string `json:"name"`
+	Header string `json:"header"`
+	Index  int    `json:"index"`
+	ok     bool   `json:"-"`
 }
 
 func getPage(url string) (*goquery.Document, error) {
@@ -93,7 +274,7 @@ func getPage(url string) (*goquery.Document, error) {
 		return nil, err
 	}
 
-	req.Header.Set("User-Agent", "Golang_Spider_Bot/3.0")
+	req.Header.Set("User-Agent", "Golang_Canonical_Model/1.0")
 
 	client := &http.Client{}
 	res, err := client.Do(req)
@@ -131,44 +312,21 @@ func normalize(t *goquery.Selection) string {
 	return s
 }
 
-func getHeader(table *goquery.Selection, names []string) columnMatcher {
-	var matcher columnMatcher
-	var headers []string
+func getText(doc *goquery.Document, matcher tableMatcher, name string) (string, bool) {
+	selection := getSelection(doc, matcher, name)
+	var value string
 
-	table.Find("tr th").Each(func(i2 int, th *goquery.Selection) {
-		headers = append(headers, normalize(th))
-	})
-
-FOUND:
-	for _, name := range names {
-		for i2, header := range headers {
-			if stringer.Contains(header, name) {
-				matcher.name = name
-				matcher.header = header
-				matcher.index = i2
-				matcher.ok = true
-				break FOUND
-			}
-		}
+	if selection != nil {
+		value = normalize(selection)
 	}
 
-	return matcher
-}
-
-func getText(s *goquery.Selection, value *string, matcher columnMatcher) {
-	if matcher.ok {
-		s.Find("th,td").Each(func(i2 int, td *goquery.Selection) {
-			if matcher.index == i2 {
-				*value = normalize(td)
-			}
-		})
-	}
+	return value, value != ""
 }
 
 func getLink(url string, tr *goquery.Selection, value *string, matcher columnMatcher) {
 	if matcher.ok {
 		tr.Find("th,td").Each(func(i2 int, td *goquery.Selection) {
-			if matcher.index == i2 {
+			if matcher.Index == i2 {
 				td.Find("a").Each(func(_ int, anchor *goquery.Selection) {
 					if found, ok := anchor.Attr("href"); ok {
 						if parsed, err := gurl.Parse(url); err == nil {
@@ -208,7 +366,7 @@ func findLink(url string, tr *goquery.Selection, value *string) {
 	})
 }
 
-func get_3166_2(info *iso_3166_1, info2 *iso_3166_2) error {
+func get_3166_2(matcher *tableMatcher, info *iso3166.Iso3166_1, info2 *iso3166.Iso3166_2) error {
 	if info != nil && info2.Source == "" {
 		return nil
 	}
@@ -225,6 +383,7 @@ func get_3166_2(info *iso_3166_1, info2 *iso_3166_2) error {
 
 		code := getHeader(table, []string{"Code"})
 		name := getHeader(table, []string{
+			"Subdivision name (ja)",
 			"Subdivision name in English",
 			"Subdivision name (en)",
 			"Subdivision",
@@ -234,6 +393,10 @@ func get_3166_2(info *iso_3166_1, info2 *iso_3166_2) error {
 			"Subdivision category",
 			"Subd. cat.",
 		})
+
+		matcher.Columns = append(matcher.Columns, code)
+		matcher.Columns = append(matcher.Columns, name)
+		matcher.Columns = append(matcher.Columns, category)
 
 		table.Find("tr").Each(func(i int, tr *goquery.Selection) {
 			if i == 0 {
@@ -246,7 +409,23 @@ func get_3166_2(info *iso_3166_1, info2 *iso_3166_2) error {
 			getText(tr, &info2.Name, name)
 			getText(tr, &info2.Category, category)
 
-			if info2.Code != "" {
+			ignores := func(s string) bool {
+				items := []string{
+					"conventional names",
+					"BGN/PCGN",
+					"Name",
+				}
+
+				for _, item := range items {
+					if strings.Contains(s, item) {
+						return true
+					}
+				}
+
+				return false
+			}
+
+			if info2.Code != "" && !ignores(info2.Code) {
 				if info2.Reference == "" {
 					fmt.Printf("no reference for: %s\n", info2.Source)
 				}
@@ -259,13 +438,97 @@ func get_3166_2(info *iso_3166_1, info2 *iso_3166_2) error {
 	return nil
 }
 
+func getSelection(doc *goquery.Document, matcher tableMatcher, name string) *goquery.Selection {
+	var found columnMatcher
+	var ok bool
+	var selection *goquery.Selection
+
+	for _, columnMatcher := range matcher.Columns {
+		if columnMatcher.Name == name {
+			found = columnMatcher
+			ok = true
+			break
+		}
+	}
+
+	if !ok {
+		return selection
+	}
+
+	doc.Find("table").Each(func(i int, table *goquery.Selection) {
+		if matcher.Table != i {
+			return
+		}
+
+		table.Find("tr").Each(func(i int, tr *goquery.Selection) {
+			if matcher.Row != i {
+				return
+			}
+
+			tr.Find("th,td").Each(func(i int, td *goquery.Selection) {
+				if found.Index != i {
+					return
+				}
+
+				selection = td
+			})
+		})
+	})
+
+	return selection
+}
+
 func get_3166_1(url string, data *iso_3166) error {
+	list1matcher := tableMatcher{
+		Source: "https://en.wikipedia.org/wiki/ISO_3166-1",
+		Table:  1,
+		Row:    1,
+		Columns: []columnMatcher{
+			{
+				Name:  "Name",
+				Index: 0,
+			},
+			{
+				Name:  "Alpha2",
+				Index: 1,
+			},
+			{
+				Name:  "Alpha3",
+				Index: 2,
+			},
+			{
+				Name:  "Numeric",
+				Index: 3,
+			},
+			{
+				Name:  "Source",
+				Index: 4,
+			},
+			{
+				Name:  "Reference",
+				Index: 0,
+			},
+			{
+				Name:  "Independent",
+				Index: 5,
+			},
+		},
+	}
+
+	matchers := []tableMatcher{}
+
 	doc, ferr := getPage(url)
 	if ferr != nil {
 		return ferr
 	}
 
 	doc.Find("table:has(caption)").Each(func(_ int, table *goquery.Selection) {
+		matcher := tableMatcher{
+			Table:   0,
+			Row:     1,
+			Columns: []columnMatcher{},
+		}
+
 		name := getHeader(table, []string{"short name"})
 		alpha2 := getHeader(table, []string{"Alpha-2 code"})
 		alpha3 := getHeader(table, []string{"Alpha-3 code"})
@@ -278,7 +541,7 @@ func get_3166_1(url string, data *iso_3166) error {
 				return
 			}
 
-			info := iso_3166_1{
+			info := iso3166.Iso3166_1{
 				Source: url,
 			}
 
@@ -293,11 +556,15 @@ func get_3166_1(url string, data *iso_3166) error {
 			var list2Source string
 			getLink(url, tr, &list2Source, list2)
 			if list2Source != "" {
-				info2 := iso_3166_2{Source: list2Source}
-				if err := get_3166_2(&info, &info2); err != nil {
+				matcher.Source = list2Source
+
+				info2 := iso3166.Iso3166_2{Source: list2Source}
+				if err := get_3166_2(&matcher, &info, &info2); err != nil {
 					ferr = err
 					return
 				}
+
+				matchers = append(matchers, matcher)
 			}
 
 			if info.Name != "" {
@@ -305,6 +572,14 @@ func get_3166_1(url string, data *iso_3166) error {
 			}
 		})
 	})
+
+	if bs, err := json.MarshalIndent(matchers, "", "    "); err != nil {
+		return err
+	} else {
+		if err := os.WriteFile("matchers.json", bs, os.FileMode(0755)); err != nil {
+			return err
+		}
+	}
 
 	return ferr
 }
