@@ -1,0 +1,29 @@
+- [Routing transit number](https://en.wikipedia.org/wiki/Routing_transit_number)
+    -   [American Bankers Association (ABA)](https://en.wikipedia.org/wiki/American_Bankers_Association) routing transit number (ABA RTN)
+    -   [Magnetic Ink Character Recognition (MICR)](https://en.wikipedia.org/wiki/Magnetic_ink_character_recognition)
+        - U+2446 ⑆ OCR BRANCH BANK IDENTIFICATION
+        - U+2447 ⑇ OCR AMOUNT OF CHECK
+        - U+2448 ⑈ OCR DASH (corrected alias MICR ON US SYMBOL)
+        - U+2449 ⑉ OCR CUSTOMER ACCOUNT NUMBER (corrected alias MICR DASH SYMBOL)
+
+    -   Formats
+        - MICR - XXXXYYYYC
+            - XXXX: Federal Reserve Routing Symbol
+                - First 2 digits
+                    - https://en.wikipedia.org/wiki/Routing_transit_number#Federal_Reserve
+                    - https://en.wikipedia.org/wiki/Federal_Reserve_Bank
+                    - 00 Series: Checks and drafts of the U.S. Government and its agencies (except federal banks).
+                    - 01-12 Series: All checks and electronic transactions of banks, Federal Reserve Banks, Federal Home Loan Banks, Federal Land Banks, Federal Intermediate Credit Banks, Farm Credit Banks, and state government units.
+                    - 13-20 Series: Reserved for future use.
+                    - 21-32 Series: Checks, drafts and electronic transactions ofthrift institutions. (Discontinued assignment in 1985. Since that date thrift institutions are assigned routing numbers in the 01-12 series.)
+                    - 33-39 Series: Reserved for future use.
+                    - 40-49 Series: Reserved for future use.
+                    - 50-59 Series: Reserved for internal process control purposes by banks, Federal Reserve Banks, and other entities.
+                    - 60 Series: Reserved for future use.
+                    - 61-72 Series: Electronic Transaction Identifiers.
+                    - 73-79 Series: Reserved for future use.
+                    - 80 Series:Travelers Checks.
+                    - 81-92 Series: Reserved for future use. (Numbers in the90-91 series were originally used to identify non-par items. Such usage is now obsolete.)
+                    - 93-99 Series: Reserved for future use.
+            - YYYY: ABA Institution Identifier
+            - C: https://en.wikipedia.org/wiki/Routing_transit_number#Check_digit

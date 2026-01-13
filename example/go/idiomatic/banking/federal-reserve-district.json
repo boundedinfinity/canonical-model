@@ -1,0 +1,55 @@
+{
+    "federal-reserve-district": [
+        {
+            "name": "Federal Reserve Bank of Boston",
+            "number": 1,
+            "letter": "A",
+            "states": [
+                "ME",
+                "MA",
+                "NY",
+                "NH",
+                "RI",
+                "VT",
+                "CT"
+            ],
+            "website": "https://www.bostonfed.org"
+        },
+        {
+            "name": "Federal Reserve Bank of New York",
+            "number": 2,
+            "letter": "B",
+            "states": [
+                "NY",
+                "CT",
+                "NJ",
+                "PR",
+                "VI"
+            ],
+            "website": "https://www.newyorkfed.org"
+        },
+        {
+            "name": "Federal Reserve Bank of Philadelphia",
+            "number": 2,
+            "letter": "B",
+            "states": [
+                "NY",
+                "CT",
+                "NJ",
+                "PR",
+                "VI"
+            ],
+            "website": "https://www.newyorkfed.org"
+        }
+    ],
+    "micr-federal-reserve": [
+        {
+            "range": "00",
+            "name": "United States Government"
+        },
+        {
+            "range": "01",
+            "name": "Boston"
+        }
+    ]
+}
