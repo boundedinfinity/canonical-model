@@ -1211,6 +1211,1070 @@
                     ]
                 }
             ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:EC",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 2
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:EG",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 4
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:GQ",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 4
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "value": "Region"
+                        }
+                    ]
+                },
+                {
+                    "table": 1,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 4
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Parent",
+                            "column": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:ER",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 5
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:EE",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 2
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "value": "County"
+                        }
+                    ]
+                },
+                {
+                    "table": 1,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 1
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "column": 2
+                        },
+                        {
+                            "name": "Parent",
+                            "column": 3
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:ET",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 3
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "column": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:FK"
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:FO"
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:FJ",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 1
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "column": 2
+                        }
+                    ]
+                },
+                {
+                    "table": 1,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 1
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Parent",
+                            "column": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:FI",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 3
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:KZ",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 6
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "column": 7
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:JO",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 4
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:JE"
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:IT",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 2
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "column": 3
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:IL",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 2,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 1
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:IM"
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:IE",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 1
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "value": "Provience"
+                        }
+                    ]
+                },
+                {
+                    "table": 1,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 1
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "value": "County"
+                        },
+                        {
+                            "name": "Parent",
+                            "column": 3
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:IQ",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 5
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "column": 6
+                        },
+                        {
+                            "name": "Parent",
+                            "column": 7
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:IR",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 3
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:ID",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 2
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        }
+                    ]
+                },
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 3
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "column": 4
+                        },
+                        {
+                            "name": "Parent",
+                            "column": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:IN",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 1
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "column": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:IS",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 2
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        }
+                    ]
+                },
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 2
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Parent",
+                            "column": 3
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:HU",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 1
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "column": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:HK"
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:VA"
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:HM"
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:HT",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 3
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:GW",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 2
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        }
+                    ]
+                },
+                {
+                    "table": 1,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 1
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "column": 3
+                        },
+                        {
+                            "name": "Parent",
+                            "column": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:GN",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 1
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "column": 2
+                        }
+                    ]
+                },
+                {
+                    "table": 1,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 1
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Parent",
+                            "column": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:GG"
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:GT",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 2
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:GU"
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:GP"
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:GD",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Name",
+                            "column": 1
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "column": 3
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:GL",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Name",
+                            "column": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:GR",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Name",
+                            "column": 3
+                        },
+                        {
+                            "name": "Category",
+                            "column": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:GI"
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:DE",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Name",
+                            "column": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:GE",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Name",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "column": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:GM",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Name",
+                            "column": 1
+                        },
+                        {
+                            "name": "Category",
+                            "column": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:GA",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Name",
+                            "column": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:TF"
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:PF"
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:GF"
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:FR",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Name",
+                            "column": 2
+                        },
+                        {
+                            "name": "Category",
+                            "column": 3
+                        }
+                    ]
+                },
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Name",
+                            "column": 2
+                        },
+                        {
+                            "name": "Category",
+                            "column": 3
+                        },
+                        {
+                            "name": "Parent",
+                            "column": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "https://en.wikipedia.org/wiki/ISO_3166-2:FI",
+            "tables": [
+                {
+                    "table": 0,
+                    "first-data-row": 1,
+                    "columns": [
+                        {
+                            "name": "Code",
+                            "column": 0
+                        },
+                        {
+                            "name": "Reference",
+                            "column": 1
+                        },
+                        {
+                            "name": "Name",
+                            "column": 3
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

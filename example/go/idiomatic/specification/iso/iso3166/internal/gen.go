@@ -73,7 +73,7 @@ func main() {
 		}
 	}
 
-	if err := gen(genPath, infos); err != nil {
+	if err := gen(genPath, infos, false); err != nil {
 		panic(err)
 	}
 }
@@ -203,7 +203,7 @@ var (
 	errColumnNotFoundf = func(n string) error { return fmt.Errorf("%w, %s", errColumnNotFound, n) }
 )
 
-func gen(path string, jsonData iso_3166) error {
+func gen(path string, jsonData iso_3166, formatSource bool) error {
 	templateData := templateData{
 		Records: jsonData.Data,
 	}
@@ -228,9 +228,11 @@ func gen(path string, jsonData iso_3166) error {
 
 	bs = buf.Bytes()
 
-	bs, err = format.Source(bs)
-	if err != nil {
-		return err
+	if formatSource {
+		bs, err = format.Source(bs)
+		if err != nil {
+			return err
+		}
 	}
 
 	if err := os.WriteFile(path, bs, os.FileMode(0755)); err != nil {
