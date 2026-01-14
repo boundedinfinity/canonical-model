@@ -1,59 +1,81 @@
 package banking
 
-var FederalReserveDistrictInfo = federalReserveDistrictInfo{}
-
-type federalReserveDistrictInfo struct {
-	number map[int]FederalReserveDistrict
-	order  map[string]FederalReserveDistrict
-	letter map[string]FederalReserveDistrict
+type FederalReserveDistrict struct {
+	Name   string
+	Number int
+	Letter string
 }
 
-// func (t federalReserveDistrictInfo) FromNo(number int) FederalReserveDistrict {
+var FederalReserveDistricts = federalReserveDistricts{}
 
-// }
+type federalReserveDistricts struct {
+	all    []FederalReserveDistrict
+	number map[int]FederalReserveDistrict
+	letter map[string]FederalReserveDistrict
+
+	Boston       FederalReserveDistrict
+	NewYork      FederalReserveDistrict
+	Philadelphia FederalReserveDistrict
+	Cleveland    FederalReserveDistrict
+	Richmond     FederalReserveDistrict
+	Atlanta      FederalReserveDistrict
+	Chicago      FederalReserveDistrict
+	StLouis      FederalReserveDistrict
+	Minneapolis  FederalReserveDistrict
+	KansasCity   FederalReserveDistrict
+	Dallas       FederalReserveDistrict
+	SanFrancisco FederalReserveDistrict
+}
+
+func (this federalReserveDistricts) All() []FederalReserveDistrict {
+	return this.all
+}
 
 func init() {
-	FederalReserveDistrictInfo.number = map[int]FederalReserveDistrict{
-		1:  FederalReserveDistricts.Boston,
-		2:  FederalReserveDistricts.NewYork,
-		3:  FederalReserveDistricts.Philadelphia,
-		4:  FederalReserveDistricts.Cleveland,
-		5:  FederalReserveDistricts.Richmond,
-		6:  FederalReserveDistricts.Atlanta,
-		7:  FederalReserveDistricts.Chicago,
-		8:  FederalReserveDistricts.StLouis,
-		9:  FederalReserveDistricts.Minneapolis,
-		10: FederalReserveDistricts.KansasCity,
-		11: FederalReserveDistricts.Dallas,
-		12: FederalReserveDistricts.SanFrancisco,
+	FederalReserveDistricts.Boston = FederalReserveDistrict{
+		Name:   "Federal Reserve Bank of Boston",
+		Number: 1,
+		Letter: "A",
 	}
 
-	FederalReserveDistrictInfo.order = map[string]FederalReserveDistrict{
-		"1st":  FederalReserveDistricts.Boston,
-		"2nd":  FederalReserveDistricts.NewYork,
-		"3rd":  FederalReserveDistricts.Philadelphia,
-		"4th":  FederalReserveDistricts.Cleveland,
-		"5th":  FederalReserveDistricts.Richmond,
-		"6th":  FederalReserveDistricts.Atlanta,
-		"7th":  FederalReserveDistricts.Chicago,
-		"8th":  FederalReserveDistricts.StLouis,
-		"9th":  FederalReserveDistricts.Minneapolis,
-		"10th": FederalReserveDistricts.KansasCity,
-		"11th": FederalReserveDistricts.Dallas,
-		"12th": FederalReserveDistricts.SanFrancisco,
+	FederalReserveDistricts.Boston = FederalReserveDistrict{
+		Name:   "Federal Reserve Bank of New York",
+		Number: 2,
+		Letter: "B",
 	}
-	FederalReserveDistrictInfo.letter = map[string]FederalReserveDistrict{
-		"A": FederalReserveDistricts.Boston,
-		"B": FederalReserveDistricts.NewYork,
-		"C": FederalReserveDistricts.Philadelphia,
-		"D": FederalReserveDistricts.Cleveland,
-		"E": FederalReserveDistricts.Richmond,
-		"F": FederalReserveDistricts.Atlanta,
-		"G": FederalReserveDistricts.Chicago,
-		"H": FederalReserveDistricts.StLouis,
-		"I": FederalReserveDistricts.Minneapolis,
-		"J": FederalReserveDistricts.KansasCity,
-		"K": FederalReserveDistricts.Dallas,
-		"L": FederalReserveDistricts.SanFrancisco,
+
+	FederalReserveDistricts.Boston = FederalReserveDistrict{
+		Name:   "Federal Reserve Bank of Philadelphia",
+		Number: 3,
+		Letter: "C",
+	}
+
+	FederalReserveDistricts.Boston = FederalReserveDistrict{
+		Name:   "Federal Reserve Bank of Clevland",
+		Number: 4,
+		Letter: "D",
+	}
+
+	FederalReserveDistricts.all = []FederalReserveDistrict{
+		FederalReserveDistricts.Boston,
+		FederalReserveDistricts.NewYork,
+		FederalReserveDistricts.Philadelphia,
+		FederalReserveDistricts.Cleveland,
+		FederalReserveDistricts.Richmond,
+		FederalReserveDistricts.Atlanta,
+		FederalReserveDistricts.Chicago,
+		FederalReserveDistricts.StLouis,
+		FederalReserveDistricts.Minneapolis,
+		FederalReserveDistricts.KansasCity,
+		FederalReserveDistricts.Dallas,
+		FederalReserveDistricts.SanFrancisco,
+	}
+
+	for _, district := range FederalReserveDistricts.all {
+		FederalReserveDistricts.number[district.Number] = district
+	}
+
+	for _, district := range FederalReserveDistricts.all {
+		FederalReserveDistricts.letter[district.Letter] = district
 	}
 }
