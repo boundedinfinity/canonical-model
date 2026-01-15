@@ -1,0 +1,42 @@
+[
+    {
+        "category": "ISO/TC 68 and other industry assignments",
+        "digit": "0"
+    },
+    {
+        "category": "Airlines",
+        "digit": "1"
+    },
+    {
+        "category": "Airlines, financial and other future industry assignments",
+        "digit": "2"
+    },
+    {
+        "category": "Travel and entertainment",
+        "digit": "3"
+    },
+    {
+        "category": "Banking and financial",
+        "digit": "4"
+    },
+    {
+        "category": "Banking and financial",
+        "digit": "5"
+    },
+    {
+        "category": "Merchandising and banking/financial",
+        "digit": "6"
+    },
+    {
+        "category": "Petroleum and other future industry assignments",
+        "digit": "7"
+    },
+    {
+        "category": "Healthcare, telecommunications and other future industry assignments",
+        "digit": "8"
+    },
+    {
+        "category": "For assignment by national standards bodies",
+        "digit": "9"
+    }
+]

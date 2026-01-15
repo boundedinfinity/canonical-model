@@ -1,0 +1,42 @@
+[
+	{
+		"meaning": "Reserved by ISO",
+		"code": "0"
+	},
+	{
+		"meaning": "Authorization",
+		"code": "1"
+	},
+	{
+		"meaning": "Financial",
+		"code": "2"
+	},
+	{
+		"meaning": "File actions",
+		"code": "3"
+	},
+	{
+		"meaning": "Reversal and charge-back",
+		"code": "4"
+	},
+	{
+		"meaning": "Reconciliation",
+		"code": "5"
+	},
+	{
+		"meaning": "Administrative",
+		"code": "6"
+	},
+	{
+		"meaning": "Fee collection",
+		"code": "7"
+	},
+	{
+		"meaning": "Network management",
+		"code": "8"
+	},
+	{
+		"meaning": "Reserved by ISO",
+		"code": "9"
+	}
+]

@@ -1,0 +1,34 @@
+[
+	{
+		"meaning": "Acquirer",
+		"code": "0"
+	},
+	{
+		"meaning": "Acquirer repeat",
+		"code": "1"
+	},
+	{
+		"meaning": "Issuer",
+		"code": "2"
+	},
+	{
+		"meaning": "Issuer repeat",
+		"code": "3"
+	},
+	{
+		"meaning": "Other",
+		"code": "4"
+	},
+	{
+		"meaning": "Reserved by ISO",
+		"code": "5"
+	},
+	{
+		"meaning": "Reserved by ISO",
+		"code": "6"
+	},
+	{
+		"meaning": "Reserved by ISO",
+		"code": "7"
+	}
+]

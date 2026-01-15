@@ -1,0 +1,42 @@
+[
+	{
+		"meaning": "Request",
+		"code": "0"
+	},
+	{
+		"meaning": "Request response",
+		"code": "1"
+	},
+	{
+		"meaning": "Advice",
+		"code": "2"
+	},
+	{
+		"meaning": "Advice response",
+		"code": "3"
+	},
+	{
+		"meaning": "Notification",
+		"code": "4"
+	},
+	{
+		"meaning": "Notification acknowledgement",
+		"code": "5"
+	},
+	{
+		"meaning": "Instruction",
+		"code": "6"
+	},
+	{
+		"meaning": "Instruction acknowledgement",
+		"code": "7"
+	},
+	{
+		"meaning": "Reserved by ISO",
+		"code": "8"
+	},
+	{
+		"meaning": "Reserved by ISO",
+		"code": "9"
+	}
+]
