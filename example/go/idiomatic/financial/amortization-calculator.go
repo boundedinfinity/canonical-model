@@ -44,13 +44,13 @@ func (this AmortizationCalculator) Calculate() ([]AmortizationItem, error) {
 		return items, err
 	}
 
-	ceil := func(v float64) float64 {
-		return math.Ceil(v*100) / 100
-	}
+	// ceil := func(v float64) float64 {
+	// 	return math.Ceil(v*100) / 100
+	// }
 
-	floor := func(v float64) float64 {
-		return math.Floor(v*100) / 100
-	}
+	// floor := func(v float64) float64 {
+	// 	return math.Floor(v*100) / 100
+	// }
 
 	if this.RoundUpPayment {
 		payment = ceil(payment)
