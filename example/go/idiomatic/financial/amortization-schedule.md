@@ -20,6 +20,11 @@ Steps to Calculate Manually (or in a Spreadsheet) 
     - Use the formula:
 
         $A=P\dfrac{r(1 + r)^n}{(1+r)^n -1}$
+
+        where:
+        - P = initial principle
+        - n = terms in months
+        - r = interest rate in months
         
     - Or, use Excel's =PMT(rate, nper, pv) function (e.g., =PMT(0.06/12, 360, -300000)) to get your constant payment.
 1. Build Your Schedule (Month by Month):
