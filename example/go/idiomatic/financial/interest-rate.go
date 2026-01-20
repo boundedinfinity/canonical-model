@@ -1,5 +1,6 @@
-package finanical
+package financial
 
+type InterestRateType string
 type InterestRateTerm string
 
 type InterestRate struct {
