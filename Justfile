@@ -23,9 +23,8 @@ tag:
 	git tag -a $(tag) -m "$(tag)"
 	git push origin $(tag)
 
-publish:
+push: commit
 	just commit m={{ m }}
-	just tag tag={{ m }}
 
 docs-dev:
 	cd $(justfile_dir)/docs && just dev

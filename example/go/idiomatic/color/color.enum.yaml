@@ -1,13 +1,15 @@
 values:
-    -   serialized: black
-    -   serialized: blue
-    -   serialized: brown
-    -   serialized: gold
-    -   serialized: gray
-    -   serialized: green
-    -   serialized: orange
-    -   serialized: red
-    -   serialized: silver
-    -   serialized: white
-    -   serialized: other
-    -   serialized: beige
+    - serialized: black
+    - serialized: blue
+    - serialized: brown
+    - serialized: gold
+    - serialized: gray
+    - serialized: green
+    - serialized: orange
+    - serialized: red
+    - serialized: silver
+    - serialized: white
+    - serialized: other
+    - serialized: beige
+
+# https://cs.stackexchange.com/questions/167739/color-conversions-formulas
