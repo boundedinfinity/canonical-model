@@ -24,7 +24,7 @@ tag:
 	git push origin $(tag)
 
 push: commit
-	just commit m={{ m }}
+	git push origin master
 
 docs-dev:
 	cd $(justfile_dir)/docs && just dev
