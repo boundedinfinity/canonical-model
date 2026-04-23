@@ -1,0 +1,7 @@
+overwrite: true
+serialize: 
+    values: pascal-to-kebab-lower
+values:
+    -   name: Metric
+    -   name: Imperial
+    -   name: Unitless

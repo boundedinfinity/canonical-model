@@ -1,6 +1,0 @@
-serialize: 
-    value: pascal-to-kebab-lower
-values:
-    -   name: NoSpace
-    -   name: SpaceAfter3
-    -   name: SpaceAfter4

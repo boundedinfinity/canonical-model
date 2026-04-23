@@ -1,0 +1,6 @@
+overwrite: true
+serialize:
+    type: pascal-to-kebab-lower
+values:
+    -   name: Clockwise
+    -   name: Counter Clockwise

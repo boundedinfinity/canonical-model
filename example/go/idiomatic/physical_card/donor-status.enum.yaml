@@ -1,5 +1,0 @@
-serialize: 
-    value: pascal-to-kebab-lower
-values:
-    -   name: IsDonor
-    -   name: NotDonor

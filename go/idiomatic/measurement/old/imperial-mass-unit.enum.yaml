@@ -1,0 +1,19 @@
+# https://www.legislation.gov.uk/uksi/1994/2867/schedule/made
+overwrite: true
+values:
+    -   name: Grain
+    -   name: Penny Weight
+    -   name: Scruple
+    -   name: Drachm
+    -   name: Ounce
+    -   name: Ounce Apothecaries
+    -   name: Pound
+    -   name: Dram
+    -   name: Stone
+    -   name: Quarter
+    -   name: Cental
+    -   name: Hundred Weight
+    -   name: Ton
+    -   name: Metric Ton
+    -   name: Quintal
+    -   name: Slug

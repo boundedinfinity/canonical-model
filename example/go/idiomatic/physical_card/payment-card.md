@@ -1,1 +1,0 @@
-- [Payment Card number](https://en.wikipedia.org/wiki/Payment_card_number)

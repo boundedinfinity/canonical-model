@@ -1,1 +1,0 @@
-- [Committee on Uniform Security Identification Procedures (CUSIP)](https://en.wikipedia.org/wiki/CUSIP)

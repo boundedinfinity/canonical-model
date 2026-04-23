@@ -1,0 +1,6 @@
+overwrite: true
+serialize: 
+    values: pascal-to-kebab-lower
+values:
+    -   name: Full
+    -   name: Abbreviation

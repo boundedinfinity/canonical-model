@@ -1,6 +1,0 @@
-serialize: 
-    value: pascal-to-kebab-lower
-values:
-    -   name: Active
-    -   name: Inactive
-    -   name: Discontinued
