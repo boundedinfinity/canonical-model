@@ -1,0 +1,6 @@
+serialize: 
+    value: pascal-to-kebab-lower
+values:
+    -   name: Male
+    -   name: Female
+    -   name: Other

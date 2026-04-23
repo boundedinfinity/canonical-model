@@ -1,0 +1,6 @@
+values:
+    -   serialized: 4-cylinder
+    -   serialized: 6-cylinder
+    -   serialized: 8-cylinder
+    -   serialized: other-cylinder
+    -   serialized: electric

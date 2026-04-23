@@ -1,0 +1,2 @@
+- [Luhn algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm)
+- [What is the Luhn algorithm and how does it work?](https://stripe.com/resources/more/how-to-use-the-luhn-algorithm-a-guide-in-applications-for-businesses)

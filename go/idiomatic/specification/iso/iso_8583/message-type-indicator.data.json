@@ -1,0 +1,42 @@
+[
+	{
+		"meaning": "ISO 8583:1987",
+		"code": "0"
+	},
+	{
+		"meaning": "ISO 8583:1993",
+		"code": "1"
+	},
+	{
+		"meaning": "ISO 8583:1987",
+		"code": "2"
+	},
+	{
+		"meaning": "Reserved by ISO",
+		"code": "3"
+	},
+	{
+		"meaning": "Reserved by ISO",
+		"code": "4"
+	},
+	{
+		"meaning": "Reserved by ISO",
+		"code": "5"
+	},
+	{
+		"meaning": "Reserved by ISO",
+		"code": "6"
+	},
+	{
+		"meaning": "Reserved by ISO",
+		"code": "7"
+	},
+	{
+		"meaning": "National use",
+		"code": "8"
+	},
+	{
+		"meaning": "ISO 8583:1987",
+		"code": "9"
+	}
+]

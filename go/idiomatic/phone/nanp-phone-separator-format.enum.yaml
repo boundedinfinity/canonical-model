@@ -1,0 +1,9 @@
+
+serialize: 
+    value: pascal-to-kebab-lower
+values:
+    -   name: DotSeparated
+    -   name: DashSeparated
+    -   name: ParenthesesAndDashes
+    -   name: None
+

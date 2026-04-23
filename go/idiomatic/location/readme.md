@@ -1,0 +1,15 @@
+
+Land Parcel Data:
+    -   [Regrid](https://app.regrid.com/)
+    -   [whitestar](https://whitestar.com/features/data/parcelshd)
+    -   [ReportAll](https://reportallusa.com/)
+    -   [United States Gelogical Survey](https://www.usgs.gov/)
+        -   [Do US Topos and The National Map have a layer that shows the Public Land Survey System (PLSS)?](https://www.usgs.gov/faqs/do-us-topos-and-national-map-have-a-layer-shows-public-land-survey-system-plss)
+    -   [Bureau of Land Management](https://www.blm.gov/)
+    -   [United States Census Bureau](https://www.census.gov/)
+        -   [Cartographic Boundary Files - Shapefile](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html)
+        -   [Cartographic Boundary Files](https://www.census.gov/geographies/mapping-files/time-series/geo/cartographic-boundary.html)
+    -   [Open Data Network](https://www.opendatanetwork.com/)
+        -   [Open Data Network : Parcels](https://www.opendatanetwork.com/search?q=Parcels)
+    -   [ArcGIS Hub](https://hub.arcgis.com/)
+        -   [ArcGIS Hub : Parcels](https://hub.arcgis.com/search?q=Parcels)

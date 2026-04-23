@@ -1,0 +1,4 @@
+values:
+    -   serialized: compact
+    -   serialized: mid-size
+    -   serialized: full-size

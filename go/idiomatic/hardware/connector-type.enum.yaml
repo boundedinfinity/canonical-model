@@ -1,0 +1,15 @@
+serialize:
+    type: phrase-to-pascal
+    value: phrase-to-kebab
+values:
+    -   name: USB A
+    -   name: USB Micro A
+    -   name: USB B
+    -   name: USB Micro B
+    -   name: USB Mini B 4-Pin
+    -   name: USB Mini B 5-Pin
+    -   name: USB Mini B
+    -   name: USB C
+    -   name: USB 3.0 A
+    -   name: USB 3.0 B
+    -   name: USB 3.0 Micro B

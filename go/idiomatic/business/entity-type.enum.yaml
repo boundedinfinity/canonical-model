@@ -1,0 +1,16 @@
+serialize: 
+    value: pascal-to-kebab-lower
+values:
+    -   name: SoleProprietor
+    -   name: Partnership
+    -   name: Corporation
+    -   name: PersonalServiceCorporation
+    -   name: ChurchOrChurchControlledOrganization
+    -   name: OtherNonprofitOrganization
+    -   name: Other
+    -   name: Estate
+    -   name: PlanAdministrator
+    -   name: Trust
+    -   name: NationalGuard
+    -   name: FarmersCooperative
+    -   name: RealEstateMortgageInvestmentConduit

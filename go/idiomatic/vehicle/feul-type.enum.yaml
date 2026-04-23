@@ -1,0 +1,7 @@
+values:
+    -   serialized: diesel
+    -   serialized: electric
+    -   serialized: gas
+    -   serialized: hybrid
+    -   serialized: other
+    -   serialized: plug-in-hibrid

@@ -1,0 +1,25 @@
+package inventory
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// https://papersizes.io
+
+type PaperSizeKind string
+
+type paperSizeKinds struct {
+	Unknown PaperSizeKind
+	Iso     PaperSizeKind
+	Us      PaperSizeKind
+}
+
+var PaperSizeKinds = paperSizeKinds{
+	Unknown: "unknown",
+	Iso:     "iso-216",
+	Us:      "us",
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+type PaperSize interface {
+	Kind() PaperSizeKind
+}
