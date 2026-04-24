@@ -3,7 +3,7 @@ package id_test
 // import (
 // 	"testing"
 
-// 	"github.com/boundedinfinity/canonical_model/idiomatic/id"
+// 	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 // 	"github.com/stretchr/testify/assert"
 // )
 

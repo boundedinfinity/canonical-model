@@ -1,9 +1,12 @@
 package phone
 
-import "github.com/boundedinfinity/canonical_model/idiomatic/id"
+import (
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/id"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+)
 
 type Fax struct {
-	Id     id.Id      `json:"id,omitempty"`
+	Id     ider.Id    `json:"id,omitempty"`
 	Number NanpNumber `json:"number,omitempty"`
 }
 

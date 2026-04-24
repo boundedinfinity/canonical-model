@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math/rand/v2"
 
-	"github.com/boundedinfinity/go-commoner/stringer"
+	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 
 type Generator struct {

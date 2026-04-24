@@ -1,10 +1,10 @@
 package book_keeping
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/business"
-	"github.com/boundedinfinity/canonical_model/idiomatic/contact"
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/idiomatic/label"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/business"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/contact"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/label"
 )
 
 type VendorModel struct {

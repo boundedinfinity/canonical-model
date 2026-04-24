@@ -2,7 +2,7 @@ package business_structure
 
 // https://www.irs.gov/businesses/small-businesses-self-employed/limited-liability-company-llc
 
-import "github.com/boundedinfinity/canonical_model/idiomatic/ider"
+import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 
 var _ BusinessStructure = &LimitedLiabilityCompany{}
 

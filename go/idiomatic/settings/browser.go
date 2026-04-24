@@ -1,18 +1,17 @@
 package settings
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/contact"
-	"github.com/boundedinfinity/canonical_model/idiomatic/id"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/contact"
 )
 
 type BrowserType struct {
-	Id     id.Id           `json:"id,omitempty"`
+	Id     ider.Id         `json:"id,omitempty"`
 	Name   string          `json:"name,omitempty"`
 	Vendor contact.Contact `json:"vendor,omitempty"`
 }
 
 type BrowserProfile struct {
-	Id              id.Id             `json:"id,omitempty"`
+	Id              ider.Id           `json:"id,omitempty"`
 	Name            string            `json:"name,omitempty"`
 	MachineId       id.MachineId      `json:"machine-id,omitempty"`
 	Type            BrowserType       `json:"browser-type,omitempty"`

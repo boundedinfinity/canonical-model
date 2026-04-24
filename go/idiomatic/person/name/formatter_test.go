@@ -3,7 +3,7 @@ package name_test
 import (
 	"testing"
 
-	"github.com/boundedinfinity/canonical_model/idiomatic/person/name"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/person/name"
 	"github.com/stretchr/testify/assert"
 )
 

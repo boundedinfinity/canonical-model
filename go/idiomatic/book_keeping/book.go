@@ -1,7 +1,7 @@
 package book_keeping
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 )
 
 type BookModel struct {

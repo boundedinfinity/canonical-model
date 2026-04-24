@@ -3,7 +3,7 @@
 // - https://retipster.com/find-your-vacant-land/
 package location
 
-import "github.com/boundedinfinity/canonical_model/idiomatic/ider"
+import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 
 type Parcel struct {
 	Id     ider.Id `json:"id,omitempty"`

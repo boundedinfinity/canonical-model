@@ -1,15 +1,15 @@
 package physical_card
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/contact"
-	"github.com/boundedinfinity/canonical_model/idiomatic/id"
-	"github.com/boundedinfinity/canonical_model/idiomatic/insurance"
-	"github.com/boundedinfinity/canonical_model/idiomatic/location"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/contact"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/id"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/insurance"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/location"
 	"github.com/boundedinfinity/rfc3339date"
 )
 
 type HealthInsuranceCard struct {
-	Id             id.Id                         `json:"id,omitempty"`
+	Id             ider.Id                       `json:"id,omitempty"`
 	State          location.State                `json:"state,omitempty"`
 	Insured        []contact.Contact             `json:"insured,omitempty"`
 	InsuranceId    string                        `json:"insurance-id,omitempty"`

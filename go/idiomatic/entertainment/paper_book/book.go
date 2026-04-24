@@ -3,11 +3,11 @@ package paper_book
 import (
 	"image"
 
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/idiomatic/model/currency"
-	"github.com/boundedinfinity/canonical_model/idiomatic/model/entertainment/fiction"
-	"github.com/boundedinfinity/canonical_model/idiomatic/model/entertainment/role"
-	"github.com/boundedinfinity/canonical_model/idiomatic/model/language"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/currency"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/entertainment/fiction"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/entertainment/role"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/language"
 	"github.com/boundedinfinity/rfc3339date"
 )
 

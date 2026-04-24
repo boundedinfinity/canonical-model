@@ -3,7 +3,7 @@ package marshal
 import (
 	"encoding/json"
 
-	"github.com/boundedinfinity/go-commoner/functional/stringer"
+	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 
 func UnmarshalJsonFromSlice[K ~string](bytes []byte, valids []K, errFn func(format string, a ...any) error) (K, error) {

@@ -1,8 +1,8 @@
 package credential
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
-	"github.com/labstack/gommon/email"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/value/email"
 )
 
 var _ Credential = &EmailPassword{}

@@ -1,9 +1,7 @@
 package hardware
 
-import "github.com/boundedinfinity/canonical_model/idiomatic/id"
-
 type CentralProcessingUnit struct {
-	Id                    id.Id                        `json:"id,omitempty"`
+	Id                    ider.Id                      `json:"id,omitempty"`
 	CoreCount             int                          `json:"core-count,omitempty"`
 	SocketType            string                       `json:"socket-type,omitempty"`
 	VirtualRealityReady   bool                         `json:"virtual-reality-ready,omitempty"`

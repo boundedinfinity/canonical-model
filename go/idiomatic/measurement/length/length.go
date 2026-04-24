@@ -4,7 +4,7 @@ import (
 	"strconv"
 
 	"github.com/boundedinfinity//model/measurement/imperial"
-	"github.com/boundedinfinity/canonical_model/idiomatic/measurement/metric"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/measurement/metric"
 	"github.com/boundedinfinity/go-commoner/idiomatic/errorer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )

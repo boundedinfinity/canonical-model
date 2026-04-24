@@ -1,8 +1,8 @@
 package multifactor_delivery
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/digital/phone"
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/phone"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 )
 
 var _ Delivery = &ShortMessageServiceModel{}

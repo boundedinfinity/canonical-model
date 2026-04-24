@@ -1,15 +1,14 @@
 package real_estate
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/id"
-	"github.com/boundedinfinity/canonical_model/idiomatic/location"
-	"github.com/boundedinfinity/canonical_model/idiomatic/mailing_address"
-	"github.com/boundedinfinity/canonical_model/idiomatic/website"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/location"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/mailing_address"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/website"
 	"github.com/boundedinfinity/rfc3339date"
 )
 
 type Property struct {
-	Id         id.Id                          `json:"id,omitempty"`
+	Id         ider.Id                        `json:"id,omitempty"`
 	Address    mailing_address.MailingAddress `json:"address,omitempty"`
 	Parcel     location.Parcel                `json:"parcel,omitempty"`
 	FloorPlan  FloorPlan                      `json:"floor-plan,omitempty"`
@@ -21,21 +20,21 @@ type Property struct {
 }
 
 type Parking struct {
-	Id id.Id `json:"id,omitempty"`
+	Id ider.Id `json:"id,omitempty"`
 }
 
 type Level struct {
-	Id    id.Id  `json:"id,omitempty"`
-	Name  id.Id  `json:"name,omitempty"`
-	Rooms []Room `json:"rooms,omitempty"`
+	Id    ider.Id `json:"id,omitempty"`
+	Name  ider.Id `json:"name,omitempty"`
+	Rooms []Room  `json:"rooms,omitempty"`
 }
 
 type Room struct {
-	Id   id.Id `json:"id,omitempty"`
-	Name id.Id `json:"name,omitempty"`
+	Id   ider.Id `json:"id,omitempty"`
+	Name ider.Id `json:"name,omitempty"`
 }
 
 type HomeOwnersAssociation struct {
-	Id   id.Id `json:"id,omitempty"`
-	Name id.Id `json:"name,omitempty"`
+	Id   ider.Id `json:"id,omitempty"`
+	Name ider.Id `json:"name,omitempty"`
 }

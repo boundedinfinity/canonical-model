@@ -1,8 +1,8 @@
 package number
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/util/errorer"
-	"github.com/boundedinfinity/canonical_model/idiomatic/util/marshal"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/util/errorer"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/util/marshal"
 )
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

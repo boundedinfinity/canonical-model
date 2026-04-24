@@ -3,8 +3,8 @@ package role
 import (
 	"image"
 
-	"github.com/boundedinfinity/canonical_model/idiomatic/business"
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/business"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 )
 
 type Studio struct {

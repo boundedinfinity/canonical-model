@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/boundedinfinity/canonical_model/idiomatic/id"
 	"github.com/stretchr/testify/assert"
 )
 

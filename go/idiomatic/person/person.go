@@ -1,10 +1,10 @@
 package person
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/idiomatic/location/country"
-	"github.com/boundedinfinity/canonical_model/idiomatic/person/name"
-	"github.com/boundedinfinity/canonical_model/idiomatic/professional"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/location/country"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/person/name"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/professional"
 	"github.com/boundedinfinity/rfc3339date"
 )
 

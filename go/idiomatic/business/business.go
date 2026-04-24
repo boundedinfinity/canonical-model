@@ -1,11 +1,12 @@
 package business
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/contact"
-	"github.com/boundedinfinity/canonical_model/idiomatic/email_address"
-	"github.com/boundedinfinity/canonical_model/idiomatic/location"
-	"github.com/boundedinfinity/canonical_model/idiomatic/mailing_address"
-	"github.com/boundedinfinity/canonical_model/idiomatic/phone"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/contact"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/email_address"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/location"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/mailing_address"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/phone"
 	"github.com/boundedinfinity/go-commoner/idiomatic/reflecter"
 	"github.com/boundedinfinity/rfc3339date"
 )
@@ -66,7 +67,7 @@ func (t Manager) Name() string {
 		return t.Business.LegalName
 	}
 
-	return "X"
+	return "<no name>"
 }
 
 type Executor interface {

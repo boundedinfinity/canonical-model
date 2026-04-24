@@ -3,7 +3,7 @@ package metric_test
 import (
 	"testing"
 
-	"github.com/boundedinfinity/canonical_model/idiomatic/measurement/metric"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/measurement/metric"
 	"github.com/stretchr/testify/assert"
 )
 

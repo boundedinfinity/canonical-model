@@ -1,9 +1,9 @@
 package inventory
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/business"
-	"github.com/boundedinfinity/canonical_model/idiomatic/digital/bookmark"
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/business"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/bookmark"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 	"github.com/boundedinfinity/rfc3339date"
 )
 

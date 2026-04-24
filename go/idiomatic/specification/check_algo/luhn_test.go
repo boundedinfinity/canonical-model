@@ -3,7 +3,7 @@ package check_algo_test
 import (
 	"testing"
 
-	"github.com/boundedinfinity/canonical_model/idiomatic/specification/check_algo"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/specification/check_algo"
 	"github.com/stretchr/testify/assert"
 )
 

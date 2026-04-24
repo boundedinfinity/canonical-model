@@ -3,7 +3,8 @@ package phone
 import (
 	"fmt"
 
-	"github.com/boundedinfinity/canonical_model/idiomatic/id"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/id"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
@@ -13,7 +14,7 @@ import (
 // https://en.wikipedia.org/wiki/North_American_Numbering_Plan#Alphabetic_mnemonic_system
 
 type NanpNumber struct {
-	Id              id.Id                    `json:"id,omitempty"`
+	Id              ider.Id                  `json:"id,omitempty"`
 	Title           string                   `json:"title,omitempty"`
 	CountryCode     []Digit                  `json:"country-code,omitempty"`
 	Npa             []Digit                  `json:"npa,omitempty"`

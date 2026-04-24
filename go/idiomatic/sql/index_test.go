@@ -3,7 +3,7 @@ package sql_test
 import (
 	"testing"
 
-	"github.com/boundedinfinity/canonical_model/idiomatic/sql"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/sql"
 	"github.com/stretchr/testify/assert"
 )
 

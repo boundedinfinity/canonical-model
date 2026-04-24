@@ -1,13 +1,12 @@
 package vehicle
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/color"
-	"github.com/boundedinfinity/canonical_model/idiomatic/id"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/color"
 	"github.com/boundedinfinity/rfc3339date"
 )
 
 type Vehicle struct {
-	Id             id.Id                   `json:"id,omitempty"`
+	Id             ider.Id                 `json:"id,omitempty"`
 	Vin            string                  `json:"vin,omitempty"`
 	Make           string                  `json:"make,omitempty"`
 	Model          string                  `json:"model,omitempty"`

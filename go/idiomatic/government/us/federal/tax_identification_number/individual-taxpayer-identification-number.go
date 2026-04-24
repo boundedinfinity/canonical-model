@@ -2,7 +2,7 @@ package tax_identification_number
 
 // https://www.irs.gov/tin/taxpayer-identification-numbers-tin#itin
 
-import "github.com/boundedinfinity/canonical_model/idiomatic/ider"
+import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 
 var _ TaxIdentificationNumber = &IndividualTaxpayerIdentificationNumber{}
 

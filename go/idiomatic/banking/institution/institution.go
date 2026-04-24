@@ -1,9 +1,9 @@
 package institution
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/banking/routing_transit_number"
-	"github.com/boundedinfinity/canonical_model/idiomatic/digital/bookmark"
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/banking/routing_transit_number"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/bookmark"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 )
 
 type InstitutionModel struct {

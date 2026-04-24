@@ -1,9 +1,9 @@
 package affix
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/idiomatic/util/slicer"
-	"github.com/boundedinfinity/canonical_model/idiomatic/util/stringer"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/util/slicer"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/util/stringer"
 )
 
 type Category struct {

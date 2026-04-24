@@ -1,7 +1,7 @@
 package person
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/certification"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/certification"
 	"github.com/boundedinfinity/rfc3339date"
 )
 

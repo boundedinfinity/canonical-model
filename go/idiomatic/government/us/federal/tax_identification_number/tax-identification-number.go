@@ -13,7 +13,7 @@ type TaxIdentificationNumber interface {
 // // ITIN
 
 // type IndividualTaxpayerIdenficationNumber struct {
-// 	Id     id.Id  `json:"id,omitempty"`
+// 	Id     ider.Id  `json:"id,omitempty"`
 // 	Number string `json:"number,omitempty"`
 // }
 
@@ -26,7 +26,7 @@ type TaxIdentificationNumber interface {
 // // EIN
 
 // type EmployerIdentificationNumber struct {
-// 	Id     id.Id  `json:"id,omitempty"`
+// 	Id     ider.Id  `json:"id,omitempty"`
 // 	Number string `json:"number,omitempty"`
 // }
 

@@ -3,8 +3,8 @@ package vcard
 import (
 	"bytes"
 
-	"github.com/boundedinfinity/canonical_model/idiomatic/contact"
-	"github.com/boundedinfinity/canonical_model/idiomatic/mailing_address"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/contact"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/mailing_address"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 

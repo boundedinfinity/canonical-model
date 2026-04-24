@@ -1,8 +1,8 @@
 package listing
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/idiomatic/real_estate/property"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/real_estate/property"
 )
 
 type Listing struct {

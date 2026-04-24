@@ -1,8 +1,8 @@
 package length
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/measurement/imperial"
-	"github.com/boundedinfinity/canonical_model/idiomatic/measurement/metric"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/measurement/imperial"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/measurement/metric"
 )
 
 type imperialLength struct {

@@ -1,8 +1,8 @@
 package zone_improvement_plan
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/idiomatic/location/postal_codes"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/location/postal_codes"
 )
 
 // https://en.wikipedia.org/wiki/ZIP_Code

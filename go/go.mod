@@ -1,4 +1,4 @@
-module github.com/boundedinfinity/canonical_model
+module github.com/boundedinfinity/canonical_model/go
 
 go 1.24.0
 

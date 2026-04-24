@@ -8,10 +8,9 @@ package insurance
 // https://www.thebalancemoney.com/insurance-services-office-iso-462706
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/business"
-	"github.com/boundedinfinity/canonical_model/idiomatic/contact"
-	"github.com/boundedinfinity/canonical_model/idiomatic/id"
-	"github.com/boundedinfinity/canonical_model/idiomatic/vehicle"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/business"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/contact"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/vehicle"
 	"github.com/boundedinfinity/rfc3339date"
 )
 
@@ -39,7 +38,7 @@ type InsureanceLimitValue struct {
 }
 
 type AutoInsurancePolicy struct {
-	Id             id.Id                   `json:"id,omitempty"`
+	Id             ider.Id                 `json:"id,omitempty"`
 	PolicyNumber   string                  `json:"policy-number,omitempty"`
 	Vechicle       vehicle.Vehicle         `json:"vehicle,omitempty"`
 	Class          string                  `json:"class,omitempty"`

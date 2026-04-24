@@ -1,13 +1,13 @@
 package business
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/id"
-	"github.com/boundedinfinity/canonical_model/idiomatic/people"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/people"
 	"github.com/boundedinfinity/rfc3339date"
 )
 
 type ForeignEntity struct {
-	Id               id.Id                   `json:"id,omitempty"`
+	Id               ider.Id                 `json:"id,omitempty"`
 	LegalName        string                  `json:"legal-name,omitempty"`
 	TradeName        string                  `json:"trade-name,omitempty"`
 	Purpose          string                  `json:"purpose,omitempty"`

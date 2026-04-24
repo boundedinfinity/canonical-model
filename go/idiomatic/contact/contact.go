@@ -3,14 +3,13 @@ package contact
 // https://en.wikipedia.org/wiki/VCard
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/id"
-	"github.com/boundedinfinity/canonical_model/idiomatic/mailing_address"
-	"github.com/boundedinfinity/canonical_model/idiomatic/people"
-	"github.com/boundedinfinity/canonical_model/idiomatic/phone"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/mailing_address"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/people"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/phone"
 )
 
 type Contact struct {
-	Id              id.Id                          `json:"id,omitempty"`
+	Id              ider.Id                        `json:"id,omitempty"`
 	Person          people.Person                  `json:"person,omitempty"`
 	Relationships   []RelationShip                 `json:"relationships,omitempty"`
 	Telephones      []phone.NanpNumber             `json:"telephones,omitempty"`

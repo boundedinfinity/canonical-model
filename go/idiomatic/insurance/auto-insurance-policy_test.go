@@ -2,11 +2,11 @@ package insurance_test
 
 // func Test_AutoInsureancePolicy(t *testing.T) {
 // 	p1 := insurance.AutoInsurancePolicy{
-// 		Id:           id.Ids.MustParse("AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE"),
+// 		Id:           ider.Ids.MustParse("AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE"),
 // 		PolicyNumber: "999 9999-X99-99X",
 // 		Class:        "XXXXXXXXXX",
 // 		Vechicle: vehicle.Vehicle{
-// 			Id:        id.Ids.MustParse("AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE"),
+// 			Id:        ider.Ids.MustParse("AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE"),
 // 			YearModel: 2018,
 // 			Make:      "Mercedes",
 // 			Model:     "GLA250",

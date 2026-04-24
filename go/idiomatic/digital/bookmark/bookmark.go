@@ -1,9 +1,9 @@
 package bookmark
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/digital/address/uri"
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/idiomatic/model/specifications/rfc/rfc3339date"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/address/uri"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/specifications/rfc/rfc3339date"
 )
 
 type Bookmark struct {

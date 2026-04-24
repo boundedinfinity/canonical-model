@@ -1,10 +1,10 @@
 package authentication
 
-import "github.com/boundedinfinity/canonical_model/idiomatic/id"
+import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 
 type UsernamePassword struct {
-	Id          id.Id  `json:"id,omitempty"`
-	Username    string `json:"username,omitempty"`
-	Password    string `json:"password,omitempty"`
-	Description string `json:"description,omitempty"`
+	Id          ider.Id `json:"id,omitempty"`
+	Username    string  `json:"username,omitempty"`
+	Password    string  `json:"password,omitempty"`
+	Description string  `json:"description,omitempty"`
 }

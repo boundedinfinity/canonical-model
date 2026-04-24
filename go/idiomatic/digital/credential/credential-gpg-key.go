@@ -3,9 +3,9 @@ package credential
 // https://www.gnupg.org/
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/digital/cryptography/algorithm"
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/idiomatic/model/specifications/rfc/rfc3339date"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/cryptography/algorithm"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/specifications/rfc/rfc3339date"
 )
 
 var _ Credential = &GpgKeyModel{}

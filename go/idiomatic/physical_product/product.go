@@ -1,12 +1,12 @@
 package physical_product
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/id"
-	"github.com/boundedinfinity/go-commoner/idiomatic/measurement"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/measurement"
 )
 
 type PhysicalProduct struct {
-	Id           id.Id                  `json:"id,omitempty"`
+	Id           ider.Id                `json:"id,omitempty"`
 	Name         string                 `json:"name,omitempty"`
 	Description  string                 `json:"description,omitempty"`
 	Manufacturer ManufacturerId         `json:"manufacturer,omitempty"`
@@ -15,15 +15,15 @@ type PhysicalProduct struct {
 }
 
 type ManufacturerId struct {
-	Model  id.ModelNumber  `json:"model-number,omitempty"`
-	Serial id.SerialNumber `json:"serial-number,omitempty"`
-	Part   id.PartNumber   `json:"part-number,omitempty"`
+	Model  string `json:"model-number,omitempty"`
+	Serial string `json:"serial-number,omitempty"`
+	Part   string `json:"part-number,omitempty"`
 }
 
 type VendorId struct {
-	Sku     id.StockKeepingUnit      `json:"sku,omitempty"`
-	Gtin    id.GlobalTradeItemNumber `json:"gtin,omitempty"`
-	Upc     id.UniveralProductCode   `json:"upc,omitempty"`
-	BarCode id.Barcode               `json:"bar-code,omitempty"`
-	QrCode  id.QrCode                `json:"qr-code,omitempty"`
+	Sku     string `json:"sku,omitempty"`
+	Gtin    string `json:"gtin,omitempty"`
+	Upc     string `json:"upc,omitempty"`
+	BarCode string `json:"bar-code,omitempty"`
+	QrCode  string `json:"qr-code,omitempty"`
 }

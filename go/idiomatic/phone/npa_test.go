@@ -3,7 +3,7 @@ package location_test
 import (
 	"testing"
 
-	"github.com/boundedinfinity/canonical_model/idiomatic/location"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/location"
 	"github.com/stretchr/testify/assert"
 )
 

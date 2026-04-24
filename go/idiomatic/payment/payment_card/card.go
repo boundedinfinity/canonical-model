@@ -1,9 +1,9 @@
 package payment_card
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/idiomatic/person/name"
-	"github.com/boundedinfinity/canonical_model/idiomatic/util/modeller"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/person/name"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/util/modeller"
 	"github.com/boundedinfinity/rfc3339date"
 )
 

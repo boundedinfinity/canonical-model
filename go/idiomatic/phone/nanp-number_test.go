@@ -3,7 +3,7 @@ package phone_test
 import (
 	"testing"
 
-	"github.com/boundedinfinity/canonical_model/idiomatic/phone"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/phone"
 	"github.com/stretchr/testify/assert"
 )
 

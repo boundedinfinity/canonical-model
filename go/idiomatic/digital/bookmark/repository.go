@@ -3,7 +3,7 @@ package bookmark
 import (
 	"strings"
 
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 )
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

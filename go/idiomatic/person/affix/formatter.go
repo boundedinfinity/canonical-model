@@ -3,8 +3,8 @@ package affix
 import (
 	"regexp"
 
-	"github.com/boundedinfinity/canonical_model/idiomatic/util/slicer"
-	"github.com/boundedinfinity/canonical_model/idiomatic/util/stringer"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/util/slicer"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/util/stringer"
 )
 
 var (

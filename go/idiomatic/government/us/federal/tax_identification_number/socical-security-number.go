@@ -2,7 +2,7 @@ package tax_identification_number
 
 // https://www.ssa.gov/
 
-import "github.com/boundedinfinity/canonical_model/idiomatic/ider"
+import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 
 var _ TaxIdentificationNumber = &SocialSecurityNumber{}
 
@@ -22,15 +22,15 @@ func (_ SocialSecurityNumber) GetKind() Kind {
 // import (
 // 	"fmt"
 
-// 	"github.com/boundedinfinity/canonical_model/idiomatic/id"
-// 	"github.com/boundedinfinity/canonical_model/idiomatic/people"
+// 	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+// 	"github.com/boundedinfinity/canonical_model/go/idiomatic/people"
 // )
 
 // // SSN,
 // // https://www.ssa.gov/number-card
 // // https://www.ssa.gov/policy/docs/ssb/v45n11/v45n11p29.pdf
 // type SocialSecurityNumber struct {
-// 	Id     id.Id `json:"id,omitempty"`
+// 	Id     ider.Id `json:"id,omitempty"`
 // 	Area   int   `json:"area,omitempty"`
 // 	Group  int   `json:"group,omitempty"`
 // 	Serial int   `json:"serial,omitempty"`
@@ -79,7 +79,7 @@ func (_ SocialSecurityNumber) GetKind() Kind {
 // ////////////////////////////////////////////////////////////
 
 // type SocialSecurityCard struct {
-// 	Id     id.Id                `json:"id,omitempty"`
+// 	Id     ider.Id                `json:"id,omitempty"`
 // 	Name   people.Name          `json:"name,omitempty"`
 // 	Number SocialSecurityNumber `json:"number,omitempty"`
 // }

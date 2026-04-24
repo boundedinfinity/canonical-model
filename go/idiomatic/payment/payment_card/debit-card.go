@@ -1,8 +1,8 @@
 package payment_card
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/banking/account"
-	"github.com/boundedinfinity/canonical_model/idiomatic/payment"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/banking/account"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/payment"
 )
 
 type DebitCard struct {

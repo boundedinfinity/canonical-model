@@ -1,13 +1,13 @@
 package bookkeeping
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/digital_document"
-	"github.com/boundedinfinity/canonical_model/idiomatic/id"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital_document"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 	"github.com/boundedinfinity/rfc3339date"
 )
 
 type Reconcile struct {
-	Id              id.Id                        `json:"id,omitempty"`
+	Id              ider.Id                      `json:"id,omitempty"`
 	StatementDate   rfc3339date.Rfc3339Date      `json:"statement-date,omitempty"`
 	StartingBalance float32                      `json:"starting-balance,omitempty"`
 	EndingBalance   float32                      `json:"ending-balance,omitempty"`

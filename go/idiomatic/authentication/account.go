@@ -1,9 +1,9 @@
 package authentication
 
-import "github.com/boundedinfinity/canonical_model/idiomatic/id"
+import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 
 type Account struct {
-	Id               id.Id                    `json:"id,omitempty"`
+	Id               ider.Id                  `json:"id,omitempty"`
 	UsernamePassword UsernamePassword         `json:"username-password,omitempty"`
 	Questionnaire    []ChallengeQuestionnaire `json:"security-questions,omitempty"`
 }

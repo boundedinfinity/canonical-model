@@ -1,11 +1,9 @@
 package mime_type
 
 import (
-	"slices"
-	"strings"
-
 	"github.com/boundedinfinity/go-commoner/errorer"
-	"github.com/boundedinfinity/go-commoner/stringer"
+	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
+	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 
 var (
@@ -14,7 +12,7 @@ var (
 )
 
 func contains(slice []string, term string) bool {
-	return slices.ContainsFunc(slice, stringer.EqualIgnoreCase[string, string](term))
+	return slicer.ContainsFunc(slice, stringer.EqualIgnoreCase[string, string](term))
 }
 
 func FindErr(terms ...string) ([]MimeTypeModel, error) {
@@ -23,7 +21,7 @@ func FindErr(terms ...string) ([]MimeTypeModel, error) {
 
 	for i, term := range terms {
 		for _, mt := range all {
-			if strings.EqualFold(term, mt.Name) {
+			if stringer.EqualIgnoreCase(term, mt.Name) {
 				found = append(found, mt)
 				continue
 			}
@@ -60,7 +58,7 @@ func Find(terms ...string) []MimeTypeModel {
 
 	for _, term := range terms {
 		for _, mt := range all {
-			if strings.EqualFold(term, mt.Name) {
+			if stringer.EqualIgnoreCase(term, mt.Name) {
 				found = append(found, mt)
 				continue
 			}

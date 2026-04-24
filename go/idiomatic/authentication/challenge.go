@@ -1,21 +1,21 @@
 package authentication
 
-import "github.com/boundedinfinity/canonical_model/idiomatic/id"
+import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 
 type ChallengeQuestion struct {
-	Id   id.Id  `json:"id,omitempty"`
-	Code string `json:"code,omitempty"`
-	Text string `json:"text,omitempty"`
+	Id   ider.Id `json:"id,omitempty"`
+	Code string  `json:"code,omitempty"`
+	Text string  `json:"text,omitempty"`
 }
 
 type ChallengeAnswer struct {
-	Id   id.Id  `json:"id,omitempty"`
-	Code string `json:"code,omitempty"`
-	Text string `json:"text,omitempty"`
+	Id   ider.Id `json:"id,omitempty"`
+	Code string  `json:"code,omitempty"`
+	Text string  `json:"text,omitempty"`
 }
 
 type ChallengeQuestionnaire struct {
-	Id        id.Id             `json:"id,omitempty"`
+	Id        ider.Id           `json:"id,omitempty"`
 	Question  ChallengeQuestion `json:"question,omitempty"`
 	Correct   ChallengeAnswer   `json:"correct,omitempty"`
 	Incorrect []ChallengeAnswer `json:"incorrect,omitempty"`

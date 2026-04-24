@@ -5,8 +5,8 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/boundedinfinity/canonical_model/idiomatic/util/errorer"
-	"github.com/boundedinfinity/canonical_model/idiomatic/util/stringer"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/util/errorer"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/util/stringer"
 )
 
 func Email1(address string, truncate int) *Formatter {

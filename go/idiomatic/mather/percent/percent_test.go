@@ -3,7 +3,7 @@ package percent_test
 import (
 	"testing"
 
-	"github.com/boundedinfinity/go-commoner/idiomatic/mather/percent"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/mather/percent"
 	"github.com/stretchr/testify/assert"
 )
 

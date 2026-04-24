@@ -1,6 +1,6 @@
 package professional
 
-import "github.com/boundedinfinity/canonical_model/idiomatic/ider"
+import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 
 type Profession struct {
 	Id          ider.Id `json:"id"`

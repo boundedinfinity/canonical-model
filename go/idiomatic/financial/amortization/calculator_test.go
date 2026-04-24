@@ -3,8 +3,8 @@ package amortization_test
 import (
 	"testing"
 
-	"github.com/boundedinfinity/canonical_model/idiomatic/financial/amortization"
-	"github.com/boundedinfinity/canonical_model/idiomatic/financial/loan"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/financial/amortization"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/financial/loan"
 	"github.com/stretchr/testify/assert"
 )
 

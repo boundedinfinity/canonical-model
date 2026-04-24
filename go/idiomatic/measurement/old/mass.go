@@ -1,6 +1,6 @@
 package measurement
 
-import "github.com/boundedinfinity/go-commoner/idiomatic/mather/rational"
+import "github.com/boundedinfinity/canonical_model/go/idiomatic/mather/rational"
 
 type Mass[T ~int] struct {
 	Value  rational.Rational[T]  `json:"value,omitempty"`

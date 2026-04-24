@@ -4,9 +4,9 @@ package derived_unit
 // 	"fmt"
 // 	"strings"
 
-// 	"github.com/boundedinfinity/canonical_model/idiomatic/measurement/metric/base_unit"
-// 	"github.com/boundedinfinity/canonical_model/idiomatic/measurement/metric/prefix"
-// 	"github.com/boundedinfinity/canonical_model/idiomatic/measurement/quantity"
+// 	"github.com/boundedinfinity/canonical_model/go/idiomatic/measurement/metric/base_unit"
+// 	"github.com/boundedinfinity/canonical_model/go/idiomatic/measurement/metric/prefix"
+// 	"github.com/boundedinfinity/canonical_model/go/idiomatic/measurement/quantity"
 // 	"github.com/boundedinfinity/go-commoner/idiomatic/errorer"
 // )
 

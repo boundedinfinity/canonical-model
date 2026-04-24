@@ -1,9 +1,9 @@
 package access_control_list
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/model/digital/access_management/permission"
-	"github.com/boundedinfinity/canonical_model/idiomatic/model/digital/access_management/resource"
-	"github.com/boundedinfinity/canonical_model/idiomatic/model/util/slicer"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/digital/access_management/permission"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/digital/access_management/resource"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/util/slicer"
 )
 
 func Memory() *Controller {

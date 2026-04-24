@@ -1,4 +1,4 @@
-package main
+package iso10383
 
 import (
 	"io"

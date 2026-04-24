@@ -1,8 +1,8 @@
 package todo
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/calendar/event"
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/calendar/event"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 )
 
 var _ event.Event = TodoEventModel{}

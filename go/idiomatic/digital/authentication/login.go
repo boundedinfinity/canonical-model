@@ -1,11 +1,11 @@
 package login
 
 import (
-	"github.com/boundedinfinity/canonical_model/idiomatic/digital/address/email"
-	"github.com/boundedinfinity/canonical_model/idiomatic/digital/address/uri"
-	"github.com/boundedinfinity/canonical_model/idiomatic/digital/credential"
-	"github.com/boundedinfinity/canonical_model/idiomatic/digital/phone"
-	"github.com/boundedinfinity/canonical_model/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/address/email"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/address/uri"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/credential"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/phone"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 )
 
 type Login struct {
