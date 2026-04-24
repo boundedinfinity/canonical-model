@@ -1,10 +1,10 @@
 package access_control_list
 
 import (
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/access_management/permission"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/access_management/resource"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/access_management/subject"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/digital/access_management/permission"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/digital/access_management/resource"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/digital/access_management/subject"
 )
 
 type AccessControlListModel struct {

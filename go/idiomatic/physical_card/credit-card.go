@@ -4,7 +4,8 @@ import (
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/banking"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/finanical"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/id"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/people"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/person"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/phone"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/website"
 	"github.com/boundedinfinity/rfc3339date"
@@ -22,7 +23,7 @@ type CreditCard struct {
 	Id             ider.Id                 `json:"id,omitempty"`
 	Number         CreditCardNumber        `json:"number,omitempty"`
 	Code           SecurityCode            `json:"code,omitempty"`
-	Name           people.Name             `json:"name,omitempty"`
+	Name           person.Name             `json:"name,omitempty"`
 	IssueDate      rfc3339date.Rfc3339Date `json:"issue-date,omitempty"`
 	ExpirationDate rfc3339date.Rfc3339Date `json:"expiration-date,omitempty"`
 	OriginDate     rfc3339date.Rfc3339Date `json:"origin-date,omitempty"`

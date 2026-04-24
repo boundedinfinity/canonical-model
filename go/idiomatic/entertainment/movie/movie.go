@@ -3,14 +3,14 @@ package movie
 import (
 	"image"
 
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/currency"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/entertainment/details"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/entertainment/fiction"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/entertainment/role"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/currency"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/entertainment/details"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/entertainment/fiction"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/entertainment/role"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/language"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/location/country"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/model/specifications/rfc/rfc3339date"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/language"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/location/country"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/specification/rfc/rfc3339date"
 )
 
 type Movie struct {

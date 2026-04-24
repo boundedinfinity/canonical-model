@@ -23,7 +23,7 @@ func (_ SocialSecurityNumber) GetKind() Kind {
 // 	"fmt"
 
 // 	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-// 	"github.com/boundedinfinity/canonical_model/go/idiomatic/people"
+// 	"github.com/boundedinfinity/canonical_model/go/idiomatic/person"
 // )
 
 // // SSN,

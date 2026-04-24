@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/model"
 	"github.com/boundedinfinity/go-commoner/idiomatic/reflecter"
 	"github.com/google/uuid"
 )

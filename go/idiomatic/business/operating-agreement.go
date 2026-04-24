@@ -1,7 +1,7 @@
 package business
 
-import "github.com/boundedinfinity/canonical_model/go/idiomatic/digital_document"
+import "github.com/boundedinfinity/canonical_model/go/idiomatic/digital/document"
 
 type OperatingAgreement struct {
-	Document digital_document.DocumentV1 `json:"document,omitempty"`
+	Document document.Document `json:"document,omitempty"`
 }

@@ -1,6 +1,8 @@
 package contact
 
-type RelationShip struct {
+import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+
+type Relationship struct {
 	Id      ider.Id          `json:"id,omitempty"`
 	Type    RelationshipType `json:"relationship-type,omitempty"`
 	Contact RelationshipType `json:"contact,omitempty"`

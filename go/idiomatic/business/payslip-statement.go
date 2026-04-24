@@ -1,7 +1,7 @@
 package business
 
 import (
-	"github.com/boundedinfinity/canonical_model/contact"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/contact"
 	"github.com/boundedinfinity/rfc3339date"
 )
 

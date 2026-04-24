@@ -2,7 +2,7 @@ package business
 
 import (
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/people"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/person"
 	"github.com/boundedinfinity/rfc3339date"
 )
 
@@ -13,7 +13,7 @@ type ForeignEntity struct {
 	Purpose          string                  `json:"purpose,omitempty"`
 	Business         Business                `json:"business,omitempty"`
 	RegisteredAgents []RegisteredAgent       `json:"registered-agents,omitempty"`
-	SignedBy         []people.Person         `json:"signed-by,omitempty"`
+	SignedBy         []person.Person         `json:"signed-by,omitempty"`
 	StartDate        rfc3339date.Rfc3339Date `json:"start-date,omitempty"`
 	EndDate          rfc3339date.Rfc3339Date `json:"end-date,omitempty"`
 }

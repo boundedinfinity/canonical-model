@@ -3,7 +3,6 @@ package account
 import (
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/banking/institution"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/modeller"
 )
 
 var _ modeller.Modeller = &AccountModel{}

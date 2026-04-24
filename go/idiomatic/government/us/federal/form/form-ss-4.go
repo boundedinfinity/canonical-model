@@ -6,8 +6,8 @@ import (
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/business"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/location"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/mailing_address"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/people"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/location/mailing_address"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/person"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 
@@ -35,18 +35,18 @@ func NewFormSs4RevDecember2019(business business.Business) (FormSs4RevDecember_2
 }
 
 type FormSs4RevDecember_2019 struct {
-	Id                  ider.Id                        `json:"id,omitempty"`
-	LegalName           string                         `json:"legal-name,omitempty"`
-	TradeName           string                         `json:"trade-name,omitempty"`
-	Executor            people.Person                  `json:"executor,omitempty"`
-	MailingAddress      mailing_address.MailingAddress `json:"mailing-address,omitempty"`
-	StreetAddress       mailing_address.MailingAddress `json:"street-address,omitempty"`
-	County              location.County                `json:"county,omitempty"`
-	ResponsibleParty    people.Person                  `json:"responsible-party,omitempty"`
-	ResponsiblePartyTin string                         `json:"responsible-party-tin,omitempty"`
-	IsLlc               bool                           `json:"is-llc,omitempty"`
-	LlcMemberCount      int                            `json:"llc-member-count,omitempty"`
-	LlcOrganizedInUs    bool                           `json:"llc-organized-in-us,omitempty"`
+	Id                  ider.Id                 `json:"id,omitempty"`
+	LegalName           string                  `json:"legal-name,omitempty"`
+	TradeName           string                  `json:"trade-name,omitempty"`
+	Executor            person.Person           `json:"executor,omitempty"`
+	MailingAddress      mailing_address.Address `json:"mailing-address,omitempty"`
+	StreetAddress       mailing_address.Address `json:"street-address,omitempty"`
+	County              location.County         `json:"county,omitempty"`
+	ResponsibleParty    person.Person           `json:"responsible-party,omitempty"`
+	ResponsiblePartyTin string                  `json:"responsible-party-tin,omitempty"`
+	IsLlc               bool                    `json:"is-llc,omitempty"`
+	LlcMemberCount      int                     `json:"llc-member-count,omitempty"`
+	LlcOrganizedInUs    bool                    `json:"llc-organized-in-us,omitempty"`
 }
 
 func (t FormSs4RevDecember_2019) F1() string {

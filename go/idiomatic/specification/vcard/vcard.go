@@ -4,7 +4,7 @@ import (
 	"bytes"
 
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/contact"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/mailing_address"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/location/mailing_address"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 
@@ -39,7 +39,7 @@ func (t *vCard40Builder) Contact(contact contact.Contact) *vCard40Builder {
 	return t
 }
 
-func (t *vCard40Builder) ADR(address mailing_address.MailingAddress) *vCard40Builder {
+func (t *vCard40Builder) ADR(address mailing_address.Address) *vCard40Builder {
 	t.address = address
 	return t
 }
