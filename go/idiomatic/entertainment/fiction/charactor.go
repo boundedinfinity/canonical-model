@@ -5,7 +5,7 @@ import (
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/person/name"
 )
 
-type Charactor struct {
+type Character struct {
 	Id      ider.Id     `json:"id"`
 	Name    name.Name   `json:"legal-name"`
 	Aliases []name.Name `json:"aliases"`

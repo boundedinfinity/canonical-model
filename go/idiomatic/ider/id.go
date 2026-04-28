@@ -8,6 +8,10 @@ var (
 
 type Id uuid.UUID
 
+func (this Id) String() string {
+	return this.String()
+}
+
 func (this Id) IsZero() bool {
 	return this == Zero
 }

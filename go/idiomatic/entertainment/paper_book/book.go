@@ -28,7 +28,7 @@ type Book struct {
 	Language                        language.Language               `json:"language"`
 	FrontCover                      []image.Image                   `json:"front-cover"`
 	BackCover                       []image.Image                   `json:"back-cover"`
-	Characters                      []fiction.Charactor             `json:"characters"`
+	Characters                      []fiction.Character             `json:"characters"`
 	Genres                          []fiction.Genre                 `json:"genres"`
 	Series                          fiction.Series                  `json:"series"`
 	Universe                        fiction.Universe                `json:"universe"`
