@@ -41,6 +41,6 @@ var (
 )
 
 func init() {
-	lowercase := slicer.Map(stringer.Lowercase, keywords...)
+	lowercase := slicer.Map(stringer.ToLower[string], keywords...)
 	keywords = append(keywords, lowercase...)
 }

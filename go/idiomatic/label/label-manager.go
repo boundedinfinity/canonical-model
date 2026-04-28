@@ -10,7 +10,7 @@ import (
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 
-func NewLabelManager(options LabelManagerOptions, labels ...Label) *LabelManager {
+func NewLabelManager(options LabelManagerOptions, labels ...LabelModel) *LabelManager {
 	manager := &LabelManager{options: options}
 	manager.Add(labels...)
 	return manager
@@ -22,30 +22,30 @@ type LabelManagerOptions struct {
 
 type LabelManager struct {
 	options  LabelManagerOptions
-	id2label map[ider.Id]Label
+	id2label map[ider.Id]LabelModel
 }
 
-func (this LabelManager) Labels() []Label {
+func (this LabelManager) Labels() []LabelModel {
 	return mapper.Values(this.id2label)
 }
 
 func (this LabelManager) Names() []string {
 	return slicer.Map(
-		func(_ int, label Label) string { return label.Name },
+		func(label LabelModel) string { return label.Name },
 		this.Labels()...,
 	)
 }
 
 var (
 	ErrLabelManagerDuplicate   = errors.New("duplicate label")
-	errLabelManagerDuplicatefn = func(label Label) error {
+	errLabelManagerDuplicatefn = func(label LabelModel) error {
 		return fmt.Errorf("%s : %w", label, ErrLabelManagerDuplicate)
 	}
 )
 
-func (this *LabelManager) Add(labels ...Label) error {
+func (this *LabelManager) Add(labels ...LabelModel) error {
 	if this.id2label == nil {
-		this.id2label = map[ider.Id]Label{}
+		this.id2label = map[ider.Id]LabelModel{}
 	}
 
 	for _, label := range labels {
@@ -61,14 +61,14 @@ func (this *LabelManager) Add(labels ...Label) error {
 	return nil
 }
 
-func (this *LabelManager) Remove(labels ...Label) {
+func (this *LabelManager) Remove(labels ...LabelModel) {
 	for _, label := range labels {
 		delete(this.id2label, label.Id)
 	}
 }
 
-func (this LabelManager) Find(term string) (Label, bool) {
-	fn := func(_ int, label Label) bool {
+func (this LabelManager) Find(term string) (LabelModel, bool) {
+	fn := func(label LabelModel) bool {
 		return stringer.EqualIgnoreCase(label.Name, term) ||
 			stringer.EqualIgnoreCase(label.Abbreviation, term)
 	}
@@ -76,7 +76,7 @@ func (this LabelManager) Find(term string) (Label, bool) {
 	return slicer.FindFn(fn, this.Labels()...)
 }
 
-func (this LabelManager) MustFind(name string) Label {
+func (this LabelManager) MustFind(name string) LabelModel {
 	label, ok := this.Find(name)
 
 	if !ok {

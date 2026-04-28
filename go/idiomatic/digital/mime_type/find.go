@@ -12,7 +12,8 @@ var (
 )
 
 func contains(slice []string, term string) bool {
-	return slicer.ContainsFunc(slice, stringer.EqualIgnoreCase[string, string](term))
+	fn := func(item string) bool { return stringer.EqualIgnoreCase(item, term) }
+	return slicer.ContainsFunc(fn, slice...)
 }
 
 func FindErr(terms ...string) ([]MimeTypeModel, error) {

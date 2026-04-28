@@ -38,7 +38,7 @@ func (this Generator) Generate(requirements RequirementsModel) string {
 		last = password[i]
 	}
 
-	return stringer.Join(password, "")
+	return stringer.Join("", password...)
 }
 
 func (this Generator) calculateAllowed(requirements RequirementsModel) []string {

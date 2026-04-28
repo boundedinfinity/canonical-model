@@ -1,5 +1,7 @@
 package physical_product
 
+import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+
 // https://en.wikipedia.org/wiki/Display_resolution
 
 type ScreenDimensions struct {

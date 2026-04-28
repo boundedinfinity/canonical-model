@@ -1,7 +1,6 @@
 package ratio
 
-import "github.com/boundedinfinity/go-commoner/idiomatic/mather/fraction"
+import "github.com/boundedinfinity/go-commoner/idiomatic/mather"
 
-type Ratio[T ~int] struct {
-	fraction.Fraction[T]
+type Ratio[T mather.Number] struct {
 }

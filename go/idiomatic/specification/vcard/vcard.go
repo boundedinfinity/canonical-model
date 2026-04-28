@@ -16,7 +16,7 @@ func BuildVCard() *vCard40Builder {
 
 type vCard40Builder struct {
 	contact contact.Contact
-	address mailing_address.MailingAddress
+	address mailing_address.Address
 }
 
 func (t *vCard40Builder) Build() (VCard40, error) {
@@ -25,9 +25,9 @@ func (t *vCard40Builder) Build() (VCard40, error) {
 	if !t.address.IsZero() {
 		items := []string{"ADR"}
 		items = append(items, t.address.Lines...)
-		items = append(items, t.address.City.String())
-		items = append(items, t.address.State.String())
-		items = append(items, t.address.Zip.String())
+		items = append(items, t.address.City)
+		items = append(items, t.address.State)
+		items = append(items, t.address.Zip)
 		card.ADR = stringer.Join(";", items...)
 	}
 

@@ -18,3 +18,7 @@ type Address struct {
 	State string             `json:"state"`
 	Zip   string             `json:"zip"`
 }
+
+func (t Address) IsZero() bool {
+	return t.Id.IsZero() && t.Kind == "" && len(t.Lines) == 0 && t.City == "" && t.State == "" && t.Zip == ""
+}

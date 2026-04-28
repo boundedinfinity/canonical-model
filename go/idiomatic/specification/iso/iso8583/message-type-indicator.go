@@ -15,7 +15,7 @@ type messageTypeIndicators struct {
 
 func (this messageTypeIndicators) Find(code string) (MessageTypeIndicator, bool) {
 	return slicer.FindFn(
-		func(_ int, item MessageTypeIndicator) bool { return item.Code == code },
+		func(item MessageTypeIndicator) bool { return item.Code == code },
 		this.all...,
 	)
 }

@@ -1,24 +1,24 @@
 package geometry
 
 import (
-	"github.com/boundedinfinity/go-commoner/idiomatic"
+	"github.com/boundedinfinity/go-commoner/idiomatic/mather"
 )
 
-func NewRectangle[T idiomatic.Number, A AngleNumber](topLeft CartesianCoordinate[T], dimensions Dimension2d[T]) Rectangle[T, A] {
+func NewRectangle[T mather.Number, A AngleNumber](topLeft CartesianCoordinate[T], dimensions Dimension2d[T]) Rectangle[T, A] {
 	return Rectangle[T, A]{
 		TopLeft:    topLeft,
 		Dimensions: dimensions,
 	}
 }
 
-func NewRectangleXYHW[T idiomatic.Number, A AngleNumber](x, y, height, width T) Rectangle[T, A] {
+func NewRectangleXYHW[T mather.Number, A AngleNumber](x, y, height, width T) Rectangle[T, A] {
 	return NewRectangle[T, A](
 		CartesianCoordinate[T]{X: x, Y: y},
 		Dimension2d[T]{Height: height, Width: width},
 	)
 }
 
-type Rectangle[T idiomatic.Number, A AngleNumber] struct {
+type Rectangle[T mather.Number, A AngleNumber] struct {
 	TopLeft    CartesianCoordinate[T]
 	Dimensions Dimension2d[T]
 }

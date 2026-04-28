@@ -1,13 +1,14 @@
 package label
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/util/slicer"
+	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
+	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 
 type Labels []LabelModel
 
 func (this Labels) Names() []string {
-	return slicer.Map(this, getName)
+	return slicer.Map(getName, this...)
 }
 
 func (this Labels) String() string {
@@ -15,21 +16,24 @@ func (this Labels) String() string {
 }
 
 func (this Labels) Has(label LabelModel) bool {
-	return slicer.ContainsFunc(this, equalsAny(label))
+	return slicer.ContainsFunc(equalsAny(label), this...)
 }
 
 func (this *Labels) Add(labels ...LabelModel) {
-	*this = this.Union(labels...)
+	// *this = this.Union(labels...)
 }
 
 func (this Labels) Intersection(labels ...LabelModel) []LabelModel {
-	return slicer.IntersectionFunc(this, labels, getId)
+	// return slicer.IntersectionFunc(this, labels, getId)
+	return nil
 }
 
 func (this Labels) Difference(labels ...LabelModel) []LabelModel {
-	return slicer.DifferenceFunc(this, labels, getId)
+	// return slicer.DifferenceFunc(this, labels, getId)
+	return nil
 }
 
 func (this Labels) Union(labels ...LabelModel) []LabelModel {
-	return slicer.UnionFunc(this, labels, getId)
+	// return slicer.UnionFunc(this, labels, getId)
+	return nil
 }

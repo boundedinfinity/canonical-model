@@ -1,8 +1,8 @@
 package geometry
 
-import "github.com/boundedinfinity/go-commoner/idiomatic"
+import "github.com/boundedinfinity/go-commoner/idiomatic/mather"
 
-type SlopeInterceptLine[T idiomatic.Number] struct {
+type SlopeInterceptLine[T mather.Number] struct {
 	M T
 	B T
 }

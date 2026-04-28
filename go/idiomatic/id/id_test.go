@@ -4,7 +4,8 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/boundedinfinity/canonical_model/test_utils"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical_model/go/test_utils"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -23,7 +24,7 @@ func Test_Id_Json(t *testing.T) {
 		},
 		{
 			name:     "case 3",
-			input:    ider.Ids.MustParse("E29FE45A-B1B6-4D9D-8084-2012E39F37AE"),
+			input:    ider.MustParse("E29FE45A-B1B6-4D9D-8084-2012E39F37AE"),
 			expected: `"E29FE45A-B1B6-4D9D-8084-2012E39F37AE"`,
 			err:      nil,
 		},
@@ -57,7 +58,7 @@ func Test_Id_Db(t *testing.T) {
 		},
 		{
 			name:     "case 2",
-			input:    ider.Ids.MustParse("E29FE45A-B1B6-4D9D-8084-2012E39F37AE"),
+			input:    ider.MustParse("E29FE45A-B1B6-4D9D-8084-2012E39F37AE"),
 			expected: `"E29FE45A-B1B6-4D9D-8084-2012E39F37AE"`,
 			err:      nil,
 		},

@@ -3,8 +3,8 @@ package affix
 import (
 	"regexp"
 
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/util/slicer"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/util/stringer"
+	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
+	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 
 var (
@@ -50,13 +50,13 @@ func (this Formatter) Format(prefixes, suffixes []Affix) string {
 	switch kind {
 	case "prefix":
 		if len(categoryNames) > 0 {
-			working = slicer.FilterFunc(prefixes, categoryMatches(categoryNames))
+			working = slicer.FilterFunc(categoryMatches(categoryNames), prefixes...)
 		}
 
 		working = prefixes
 	case "suffix":
 		if len(categoryNames) > 0 {
-			working = slicer.FilterFunc(suffixes, categoryMatches(categoryNames))
+			working = slicer.FilterFunc(categoryMatches(categoryNames), suffixes...)
 		}
 
 		working = suffixes
@@ -91,7 +91,7 @@ func processCategory(s string) []string {
 
 func categoryMatches(names []string) func(Affix) bool {
 	return func(affix Affix) bool {
-		return slicer.Contains(names, stringer.ToLower(affix.Category.Name))
+		return slicer.Contains(stringer.ToLower(affix.Category.Name), names...)
 	}
 }
 

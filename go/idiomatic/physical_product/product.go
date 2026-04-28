@@ -2,16 +2,15 @@ package physical_product
 
 import (
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/measurement"
 )
 
 type PhysicalProduct struct {
-	Id           ider.Id                `json:"id,omitempty"`
-	Name         string                 `json:"name,omitempty"`
-	Description  string                 `json:"description,omitempty"`
-	Manufacturer ManufacturerId         `json:"manufacturer,omitempty"`
-	Vendor       VendorId               `json:"vendor,omitempty"`
-	Dimensions   measurement.Dimensions `json:"dimensions,omitempty"`
+	Id           ider.Id        `json:"id,omitempty"`
+	Name         string         `json:"name,omitempty"`
+	Description  string         `json:"description,omitempty"`
+	Manufacturer ManufacturerId `json:"manufacturer,omitempty"`
+	Vendor       VendorId       `json:"vendor,omitempty"`
+	// Dimensions   measurement.Dimensions `json:"dimensions,omitempty"`
 }
 
 type ManufacturerId struct {

@@ -15,7 +15,7 @@ type messageClasss struct {
 
 func (this messageClasss) Find(code string) (MessageClass, bool) {
 	return slicer.FindFn(
-		func(_ int, item MessageClass) bool { return item.Code == code },
+		func(item MessageClass) bool { return item.Code == code },
 		this.all...,
 	)
 }

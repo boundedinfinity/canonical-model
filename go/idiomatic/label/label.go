@@ -18,7 +18,8 @@ func NewLabel(name, description string) LabelModel {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 type LabelModel struct {
-	Id          ider.Id `json:"id"`
-	Name        string  `json:"name"`
-	Description string  `json:"description"`
+	Id           ider.Id `json:"id"`
+	Name         string  `json:"name"`
+	Description  string  `json:"description"`
+	Abbreviation string  `json:"abbreviation,omitempty"`
 }

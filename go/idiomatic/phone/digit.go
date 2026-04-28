@@ -41,9 +41,9 @@ func (this digits) Parse(s string) (Digit, error) {
 	var err error
 
 	for _, d := range this.All() {
-		nlc := slicer.Map(func(_ int, s string) string { return stringer.Lowercase(s) }, d.Mnemonics...)
+		nlc := slicer.Map(func(s string) string { return stringer.ToLower(s) }, d.Mnemonics...)
 
-		if d.Key == s || stringer.ContainsAny(s, d.Mnemonics...) || stringer.ContainsAny(s, nlc...) {
+		if d.Key == s || stringer.ContainsAnySubString(s, d.Mnemonics...) || stringer.ContainsAnySubString(s, nlc...) {
 			digit = &d
 		}
 	}

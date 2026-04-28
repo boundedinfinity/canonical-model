@@ -9,9 +9,9 @@ import (
 )
 
 type Actor struct {
-	Id         ider.Id              `json:"id"`
-	Contact    contact.ContactModel `json:"contact"`
-	Image      []image.Image        `json:"image"`
-	Synopsis   string               `json:"synopsis"`
-	Characters []fiction.Character  `json:"characters"`
+	Id         ider.Id             `json:"id"`
+	Contact    contact.Contact     `json:"contact"`
+	Image      []image.Image       `json:"image"`
+	Synopsis   string              `json:"synopsis"`
+	Characters []fiction.Character `json:"characters"`
 }

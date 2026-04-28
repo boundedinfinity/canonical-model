@@ -10,7 +10,6 @@ import (
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/language"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/location/country"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/specification/rfc/rfc3339date"
 )
 
 type Movie struct {
@@ -35,9 +34,9 @@ type Movie struct {
 	CountryOfOrigin    country.Country                          `json:"country-of-origin"`
 	FilmingLocation    []details.FilmingLocation                `json:"filming-locatinon"`
 	Budget             currency.Amount                          `json:"budget"`
-	Runtime            rfc3339date.Rfc3339Duration              `json:"runtime"`
-	SoundMixes         []details.SoundMix                       `json:"sound-mixes"`
-	ColorMix           []details.ColorMix                       `json:"color-mixes"`
-	ContentWarnings    []details.ContentWarning                 `json:"content-warnings"`
-	Kind               Kind                                     `json:"kind"`
+	// Runtime            time.Duration                            `json:"runtime"`
+	SoundMixes      []details.SoundMix       `json:"sound-mixes"`
+	ColorMix        []details.ColorMix       `json:"color-mixes"`
+	ContentWarnings []details.ContentWarning `json:"content-warnings"`
+	Kind            Kind                     `json:"kind"`
 }

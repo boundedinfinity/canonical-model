@@ -1,8 +1,8 @@
 package geometry
 
-import "github.com/boundedinfinity/go-commoner/idiomatic"
+import "github.com/boundedinfinity/go-commoner/idiomatic/mather"
 
-type StandardLine[T idiomatic.Number] struct {
+type StandardLine[T mather.Number] struct {
 	A T
 	B T
 	C T

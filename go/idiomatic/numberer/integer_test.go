@@ -3,7 +3,7 @@ package numberer_test
 import (
 	"testing"
 
-	"github.com/boundedinfinity/go-commoner/idiomatic/numberer"
+	"github.com/boundedinfinity/go-commoner/idiomatic/mather"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -62,7 +62,7 @@ func Test_Integer_GreatestCommonFactor(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(tt *testing.T) {
-			actual := numberer.GreatestCommonFactor(tc.input[0], tc.input[1])
+			actual := mather.GreatestCommonFactor(tc.input[0], tc.input[1])
 			assert.Equal(tt, tc.expected, actual)
 		})
 	}
@@ -103,7 +103,7 @@ func Test_Integer_AllFactors(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(tt *testing.T) {
-			actual := numberer.EnumerateFactors(tc.input)
+			actual := mather.EnumerateFactors(tc.input)
 			assert.Equal(tt, tc.expected, actual)
 		})
 	}

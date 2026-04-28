@@ -1,6 +1,6 @@
 package number
 
-import "github.com/boundedinfinity/canonical_model/go/idiomatic/util/errorer"
+import "github.com/boundedinfinity/go-commoner/errorer"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

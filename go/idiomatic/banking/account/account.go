@@ -1,17 +1,16 @@
 package account
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/banking/institution"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 )
 
-var _ modeller.Modeller = &AccountModel{}
+// var _ modeller.Modeller = &AccountModel{}
 
 type AccountModel struct {
-	Id         ider.Id                      `json:"id"`
-	Name       string                       `json:"name"`
-	Number     string                       `json:"number"`
-	Insitution institution.InstitutionModel `json:"insitution"`
+	Id   ider.Id `json:"id"`
+	Name string  `json:"name"`
+	// Number     string                       `json:"number"`
+	// Insitution institution.InstitutionModel `json:"insitution"`
 }
 
 func (this *AccountModel) GetId() ider.Id {

@@ -1,12 +1,11 @@
 package geometry
 
 import (
-	"github.com/boundedinfinity/go-commoner/idiomatic"
 	"github.com/boundedinfinity/go-commoner/idiomatic/mather"
 	"github.com/boundedinfinity/go-commoner/idiomatic/mather/trigonometry"
 )
 
-type CartesianCoordinate[T idiomatic.Number] struct {
+type CartesianCoordinate[T mather.Number] struct {
 	X T
 	Y T
 }

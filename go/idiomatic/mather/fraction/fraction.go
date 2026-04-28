@@ -4,9 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/boundedinfinity/go-commoner/idiomatic"
 	"github.com/boundedinfinity/go-commoner/idiomatic/mather"
-	"github.com/boundedinfinity/go-commoner/idiomatic/numberer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 
@@ -22,7 +20,7 @@ func New[T ~int](numerator, denominator T) Fraction[T] {
 }
 
 // FromFloat creates a Fraction from a floating point number.
-func FromFloat[T ~int, F idiomatic.Float](n F) Fraction[T] {
+func FromFloat[T ~int, F mather.Float](n F) Fraction[T] {
 	denominator := mather.FractionalPartPlace(n)
 	numerator := n * F(denominator)
 
@@ -57,7 +55,7 @@ func (t Fraction[T]) Copy() Fraction[T] {
 }
 
 func (t Fraction[T]) Reduce() Fraction[T] {
-	gcd := numberer.GreatestCommonFactor(t.Numerator, t.Denominator)
+	gcd := mather.GreatestCommonFactor(t.Numerator, t.Denominator)
 
 	return Fraction[T]{
 		Numerator:   t.Numerator / gcd,
@@ -91,7 +89,7 @@ func IsZero[T ~int](elem Fraction[T]) bool {
 	return elem == zero
 }
 
-func Component[T idiomatic.Float](n T) int {
+func Component[T mather.Float](n T) int {
 	s := fmt.Sprintf("%v", n)
 	comps := stringer.Split(s, ".")
 	var i int
@@ -112,7 +110,7 @@ func Component[T idiomatic.Float](n T) int {
 	return i
 }
 
-func Magnitude[T idiomatic.Float](n T) int {
+func Magnitude[T mather.Float](n T) int {
 	s := fmt.Sprintf("%v", n)
 	comps := stringer.Split(s, ".")
 	var size int

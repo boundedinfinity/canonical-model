@@ -48,7 +48,7 @@ func (this Controller) Granted(resource resource.Resource, requested AccessContr
 
 func (this Controller) permissionsMatch(items []permission.PermissionModel, targets []permission.PermissionModel) bool {
 	for _, target := range targets {
-		if !slicer.Contains(items, target) {
+		if !slicer.Contains(target, items...) {
 			return false
 		}
 	}

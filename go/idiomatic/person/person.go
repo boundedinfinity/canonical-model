@@ -17,3 +17,7 @@ type PersonModel struct {
 	DateOfDeath             []rfc3339date.Rfc3339DateTime `json:"date-of-death"`
 	CountryOfBirth          country.Country               `json:"country-of-birth"`
 }
+
+func (p PersonModel) String() string {
+	return p.LegalName.String()
+}

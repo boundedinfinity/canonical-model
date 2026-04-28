@@ -22,6 +22,6 @@ func (this imperialLength) Metric(kind metric.Prefix) Length {
 	ammount := this.Amount
 	imperialConversionFactor := imperial.Lengths.Factor(this.Kind)
 	metricConversionFactor := metric.Prefixes.Factor(kind)
-	ammount *= imperialConversionFactor * inchToMillimeters * metricConversionFactor
+	ammount *= imperialConversionFactor * inchesToMillimeters * metricConversionFactor
 	return &metricLength{Amount: ammount, Prefix: kind}
 }

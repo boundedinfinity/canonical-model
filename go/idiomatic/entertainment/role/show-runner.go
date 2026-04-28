@@ -8,7 +8,7 @@ import (
 )
 
 type ShowRunner struct {
-	Id      ider.Id              `json:"id"`
-	Contact contact.ContactModel `json:"contact"`
-	Image   []image.Image        `json:"image"`
+	Id      ider.Id         `json:"id"`
+	Contact contact.Contact `json:"contact"`
+	Image   []image.Image   `json:"image"`
 }

@@ -5,7 +5,7 @@ import (
 
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/business"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/location"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/location/county"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/location/mailing_address"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/person"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
@@ -38,11 +38,11 @@ type FormSs4RevDecember_2019 struct {
 	Id                  ider.Id                 `json:"id,omitempty"`
 	LegalName           string                  `json:"legal-name,omitempty"`
 	TradeName           string                  `json:"trade-name,omitempty"`
-	Executor            person.Person           `json:"executor,omitempty"`
+	Executor            person.PersonModel      `json:"executor,omitempty"`
 	MailingAddress      mailing_address.Address `json:"mailing-address,omitempty"`
 	StreetAddress       mailing_address.Address `json:"street-address,omitempty"`
-	County              location.County         `json:"county,omitempty"`
-	ResponsibleParty    person.Person           `json:"responsible-party,omitempty"`
+	County              county.County           `json:"county,omitempty"`
+	ResponsibleParty    person.PersonModel      `json:"responsible-party,omitempty"`
 	ResponsiblePartyTin string                  `json:"responsible-party-tin,omitempty"`
 	IsLlc               bool                    `json:"is-llc,omitempty"`
 	LlcMemberCount      int                     `json:"llc-member-count,omitempty"`
@@ -58,7 +58,7 @@ func (t FormSs4RevDecember_2019) F2() string {
 }
 
 func (t FormSs4RevDecember_2019) F3() string {
-	return t.Executor.Name.String()
+	return t.Executor.String()
 }
 
 func (t FormSs4RevDecember_2019) F4a() string {
@@ -68,9 +68,9 @@ func (t FormSs4RevDecember_2019) F4a() string {
 func (t FormSs4RevDecember_2019) F4b() string {
 	return stringer.Join(
 		", ",
-		t.MailingAddress.City.String(),
-		t.MailingAddress.State.String(),
-		t.MailingAddress.Zip.String(),
+		t.MailingAddress.City,
+		t.MailingAddress.State,
+		t.MailingAddress.Zip,
 	)
 }
 

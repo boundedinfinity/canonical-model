@@ -5,8 +5,8 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/util/errorer"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/util/stringer"
+	"github.com/boundedinfinity/go-commoner/idiomatic/errorer"
+	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 
 func Email1(address string, truncate int) *Formatter {
@@ -123,14 +123,14 @@ func (this *Formatter) Parse() error {
 					}
 
 					context.fns = append(context.fns, func(s string) string {
-						return stringer.Truncate(s, counted.count)
+						return stringer.TruncateEnd(s, counted.count)
 					})
 				case "normalize":
 					if counted.count < 0 {
 						return errFormatPatternFn("%s : %s count must be positive number", context.replace, counted)
 					} else if counted.count > 0 {
 						context.fns = append(context.fns, func(s string) string {
-							return stringer.Truncate(s, counted.count)
+							return stringer.TruncateEnd(s, counted.count)
 						})
 					}
 
@@ -177,7 +177,7 @@ func (this Formatter) Format(name Name) string {
 			}
 		}
 
-		text := stringer.Join(names, " ")
+		text := stringer.Join(" ", names...)
 		output = stringer.ReplaceAll(output, context.replace, text)
 	}
 

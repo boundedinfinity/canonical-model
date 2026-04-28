@@ -1,11 +1,11 @@
 package percent
 
 import (
-	"github.com/boundedinfinity/go-commoner/idiomatic"
-	"github.com/boundedinfinity/go-commoner/idiomatic/mather/fraction"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/mather/fraction"
+	"github.com/boundedinfinity/go-commoner/idiomatic/mather"
 )
 
-func FromFloat[T ~int, F idiomatic.Float](v F) Percent[T] {
+func FromFloat[T ~int, F mather.Float](v F) Percent[T] {
 	return Percent[T]{
 		fraction: fraction.FromFloat[T](v),
 	}

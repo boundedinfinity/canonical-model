@@ -59,7 +59,7 @@ func (this FractionNumber) ToMixed() Number {
 }
 
 func (this FractionNumber) Reduce() FractionNumber {
-	gcd := GreatestCommonFactor(this.Numerator, this.Denominator)
+	gcd := mather.GreatestCommonFactor(this.Numerator, this.Denominator)
 
 	return FractionNumber{
 		Numerator:   this.Numerator / gcd,

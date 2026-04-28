@@ -27,7 +27,7 @@ type Business struct {
 	ResponsibleParty   ResponsibleParty          `json:"responsible-party,omitempty"`
 	ForiengEntities    []ForeignEntity           `json:"forieng-entities,omitempty"`
 	EmailAddresses     []email.Email             `json:"email-addresses,omitempty"`
-	PhoneNumbers       []phone.NanpNumber        `json:"phone-numbers,omitempty"`
+	PhoneNumbers       []phone.PhoneModel        `json:"phone-numbers,omitempty"`
 	Units              int                       `json:"units,omitempty"`
 	FormationDate      rfc3339date.Rfc3339Date   `json:"formation-date,omitempty"`
 	DissolutionDate    rfc3339date.Rfc3339Date   `json:"dissolution-date,omitempty"`

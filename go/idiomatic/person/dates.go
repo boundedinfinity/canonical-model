@@ -13,7 +13,7 @@ type Dates struct {
 }
 
 type MarriageDates struct {
-	Person Person                  `json:"person,omitempty"`
+	Person PersonModel             `json:"person,omitempty"`
 	Start  rfc3339date.Rfc3339Date `json:"start,omitempty"`
 	End    rfc3339date.Rfc3339Date `json:"end,omitempty"`
 }

@@ -8,8 +8,8 @@ import (
 )
 
 type Narrator struct {
-	Id       ider.Id              `json:"id"`
-	Contact  contact.ContactModel `json:"contact"`
-	Image    []image.Image        `json:"image"`
-	Synopsis string               `json:"synopsis"`
+	Id       ider.Id         `json:"id"`
+	Contact  contact.Contact `json:"contact"`
+	Image    []image.Image   `json:"image"`
+	Synopsis string          `json:"synopsis"`
 }

@@ -15,7 +15,7 @@ type mssageOrigins struct {
 
 func (this mssageOrigins) Find(code string) (MessageOrigin, bool) {
 	return slicer.FindFn(
-		func(_ int, item MessageOrigin) bool { return item.Code == code },
+		func(item MessageOrigin) bool { return item.Code == code },
 		this.all...,
 	)
 }

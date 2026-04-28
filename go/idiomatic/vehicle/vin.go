@@ -17,6 +17,8 @@ type WorldManufacturerIdentifier struct {
 	Other  string    `json:"other,omitempty"`
 }
 
+type WmiRegion string
+
 type VehicleDescriptorSection struct {
 	Code string `json:"code,omitempty"`
 }

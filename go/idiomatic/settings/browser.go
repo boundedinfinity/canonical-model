@@ -2,6 +2,7 @@ package settings
 
 import (
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/contact"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 )
 
 type BrowserType struct {
@@ -11,9 +12,9 @@ type BrowserType struct {
 }
 
 type BrowserProfile struct {
-	Id              ider.Id           `json:"id,omitempty"`
-	Name            string            `json:"name,omitempty"`
-	MachineId       id.MachineId      `json:"machine-id,omitempty"`
+	Id   ider.Id `json:"id,omitempty"`
+	Name string  `json:"name,omitempty"`
+	// MachineId       id.MachineId      `json:"machine-id,omitempty"`
 	Type            BrowserType       `json:"browser-type,omitempty"`
 	Appearance      BrowserAppearance `json:"appearance,omitempty"`
 	Security        BrowserSecurity   `json:"security,omitempty"`

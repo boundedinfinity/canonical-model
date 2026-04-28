@@ -11,12 +11,12 @@ type Extention struct {
 }
 
 func (t *Extention) Digit(digit int) {
-	d, _ := NewDigit(digit)
-	t.Items = append(t.Items, d)
+	// d, _ := NewDigit(digit)
+	// t.Items = append(t.Items, d)
 }
 
 func (t *Extention) Pause2Seconds() {
-	t.Items = append(t.Items, AtCommands.Pause2Seconds)
+	// t.Items = append(t.Items, AtCommands.Pause2Seconds)
 }
 
 func (t Extention) Has() bool {

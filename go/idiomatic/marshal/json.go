@@ -26,7 +26,7 @@ func UnmarshalJsonFromSlice[K ~string](bytes []byte, valids []K, errFn func(form
 	}
 
 	if !ok {
-		valid := stringer.Join(valids, ", ")
+		valid := stringer.Join(", ", valids...)
 		return found, errFn("unknown: %s : must be one of %s", s, valid)
 	}
 

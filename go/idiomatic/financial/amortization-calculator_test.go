@@ -11,8 +11,8 @@ func Test_amortization_1(t *testing.T) {
 	loan := financial.Loan{
 		Principle:   100000,
 		DownPayment: 0,
-		Rate:        financial.FinancialRate{Amount: 5, Period: financial.Annual},
-		Term:        financial.FinancialTerm{Amount: 30, Period: financial.Yearly},
+		Rate:        financial.FinancialRate{Amount: 5, Period: financial.FinancialPeriods.Annual},
+		Term:        financial.FinancialTerm{Amount: 30, Period: financial.FinancialPeriods.Yearly},
 	}
 
 	calculator := financial.AmortizationCalculator{
@@ -36,8 +36,8 @@ func Test_amortization_2(t *testing.T) {
 	loan := financial.Loan{
 		Principle:   130000,
 		DownPayment: 32500,
-		Rate:        financial.FinancialRate{Amount: 4.125, Period: financial.Annual},
-		Term:        financial.FinancialTerm{Amount: 30, Period: financial.Yearly},
+		Rate:        financial.FinancialRate{Amount: 4.125, Period: financial.FinancialPeriods.Annual},
+		Term:        financial.FinancialTerm{Amount: 30, Period: financial.FinancialPeriods.Yearly},
 	}
 
 	calculator := financial.AmortizationCalculator{
@@ -63,8 +63,8 @@ func Test_amortization_3(t *testing.T) {
 	loan := financial.Loan{
 		Principle:   48000,
 		DownPayment: 0,
-		Rate:        financial.FinancialRate{Amount: 6.125, Period: financial.Annual},
-		Term:        financial.FinancialTerm{Amount: 30, Period: financial.Yearly},
+		Rate:        financial.FinancialRate{Amount: 6.125, Period: financial.FinancialPeriods.Annual},
+		Term:        financial.FinancialTerm{Amount: 30, Period: financial.FinancialPeriods.Yearly},
 	}
 
 	calculator := financial.AmortizationCalculator{

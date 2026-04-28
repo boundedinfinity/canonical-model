@@ -20,10 +20,10 @@ type PhysicalItem struct {
 	ProduceCode                   string                  `json:"produce-code"`
 	ManufactureDate               rfc3339date.Rfc3339Date `json:"manufacture-date"`
 	PurchaseDate                  rfc3339date.Rfc3339Date `json:"purchase-date"`
-	Vendor                        business.BusinessModel  `json:"vendor"`
+	Vendor                        business.Business       `json:"vendor"`
 	ProducatPage                  bookmark.Bookmark       `json:"producat-page"`
 	SupportPage                   bookmark.Bookmark       `json:"support-page"`
-	OriginalEquipmentManufacturer business.BusinessModel  `json:"original-equipment-manufacturer"`
+	OriginalEquipmentManufacturer business.Business       `json:"original-equipment-manufacturer"`
 }
 
 func (this PhysicalItem) GetName() string {

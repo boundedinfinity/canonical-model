@@ -16,7 +16,7 @@ var (
 func DbName(name string) string {
 	dbname := name
 	dbname = stringer.Replace(dbname, "_", " ", "-")
-	dbname = stringer.Lowercase(dbname)
+	dbname = stringer.ToLower(dbname)
 	return dbname
 }
 

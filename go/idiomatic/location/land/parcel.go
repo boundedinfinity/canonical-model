@@ -1,7 +1,7 @@
 // Reference
 // - https://id.land/
 // - https://retipster.com/find-your-vacant-land/
-package location
+package land
 
 import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 

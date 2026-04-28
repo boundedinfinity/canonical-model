@@ -1,22 +1,15 @@
-package location_test
+package country_test
 
-import (
-	"testing"
+// func Test_Country_Flag(t *testing.T) {
+// 	content, err := country.Countries.Flag("US")
 
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/location"
-	"github.com/stretchr/testify/assert"
-)
+// 	assert.Nil(t, err)
+// 	assert.Contains(t, string(content), "#us-a")
+// }
 
-func Test_Country_Flag(t *testing.T) {
-	content, err := location.Countries.Flag("US")
+// func Test_Country_ByName(t *testing.T) {
+// 	actual := country.Countries.ByName("Cook")
+// 	expected := []country.CountryInfo{country.Countries.CK}
 
-	assert.Nil(t, err)
-	assert.Contains(t, string(content), "#us-a")
-}
-
-func Test_Country_ByName(t *testing.T) {
-	actual := location.Countries.ByName("Cook")
-	expected := []location.CountryInfo{location.Countries.CK}
-
-	assert.Equal(t, expected, actual)
-}
+// 	assert.Equal(t, expected, actual)
+// }

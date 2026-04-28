@@ -3,7 +3,7 @@ package length
 import (
 	"strconv"
 
-	"github.com/boundedinfinity//model/measurement/imperial"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/measurement/imperial"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/measurement/metric"
 	"github.com/boundedinfinity/go-commoner/idiomatic/errorer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
@@ -54,6 +54,6 @@ func Parse(s string) (Length, error) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const (
-	inchToMillimeters   = 25.4
-	millimetersToInches = 1 / inchToMillimeters
+	inchesToMillimeters = 25.4
+	millimetersToInches = 1 / inchesToMillimeters
 )

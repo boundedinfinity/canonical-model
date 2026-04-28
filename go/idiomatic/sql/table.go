@@ -100,14 +100,14 @@ func (this TableSchema) ensureId() {
 }
 
 func (this TableSchema) primaryKeyColumns() []*ColumnSchema {
-	return slicer.Filter(
-		func(_ int, column *ColumnSchema) bool { return column.PrimaryKey },
+	return slicer.FilterFunc(
+		func(column *ColumnSchema) bool { return column.PrimaryKey },
 		this.Columns...)
 }
 
 func (this TableSchema) indexedColumns() []*ColumnSchema {
-	return slicer.Filter(
-		func(_ int, column *ColumnSchema) bool { return column.Indexed },
+	return slicer.FilterFunc(
+		func(column *ColumnSchema) bool { return column.Indexed },
 		this.Columns...)
 }
 

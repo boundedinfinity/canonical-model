@@ -16,7 +16,7 @@ type PerscriptionModel struct {
 	PerscriptionId string                             `json:"perscription-id"`
 	Patient        person.PersonModel                 `json:"patient"`
 	Physician      person.PersonModel                 `json:"physician"`
-	Pharmachy      business.BusinessModel             `json:"pharmachy"`
+	Pharmachy      business.Business                  `json:"pharmachy"`
 	Directions     string                             `json:"directions"`
 	Phramaceutical pharmaceutical.PhramaceuticalModel `json:"phramaceutical"`
 	Count          int                                `json:"count"`

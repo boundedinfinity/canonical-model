@@ -3,7 +3,7 @@ package rfc5322
 import (
 	"regexp"
 
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/util/errorer"
+	"github.com/boundedinfinity/go-commoner/idiomatic/errorer"
 )
 
 // https://datatracker.ietf.org/doc/html/rfc5322#section-3.4.1

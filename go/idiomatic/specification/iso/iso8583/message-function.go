@@ -15,7 +15,7 @@ type messageFunctions struct {
 
 func (this messageFunctions) Find(code string) (MessageFunction, bool) {
 	return slicer.FindFn(
-		func(_ int, item MessageFunction) bool { return item.Code == code },
+		func(item MessageFunction) bool { return item.Code == code },
 		this.all...,
 	)
 }

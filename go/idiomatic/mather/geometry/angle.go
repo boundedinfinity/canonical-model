@@ -3,7 +3,7 @@ package geometry
 import (
 	gomath "math"
 
-	"github.com/boundedinfinity/go-commoner/idiomatic"
+	"github.com/boundedinfinity/go-commoner/idiomatic/mather"
 )
 
 type AngleNumber interface {
@@ -42,10 +42,10 @@ func (t Angle[T]) ToDegree() Angle[T] {
 	}
 }
 
-func DegreeToRadian[T idiomatic.Number](angle T) T {
+func DegreeToRadian[T mather.Number](angle T) T {
 	return T(float64(angle) * gomath.Pi / 180)
 }
 
-func RadianToDegree[T idiomatic.Number](angle T) T {
+func RadianToDegree[T mather.Number](angle T) T {
 	return T(float64(angle) * 180 / gomath.Pi)
 }

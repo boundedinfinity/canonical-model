@@ -2,8 +2,8 @@ package affix
 
 import (
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/util/slicer"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/util/stringer"
+	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
+	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 
 type Category struct {
@@ -18,5 +18,5 @@ func (this Category) String() string {
 
 func (this Category) Matches(names []string) bool {
 	names = stringer.SliceToLower(names)
-	return slicer.Contains(names, stringer.ToLower(this.Name))
+	return slicer.Contains(stringer.ToLower(this.Name), names...)
 }

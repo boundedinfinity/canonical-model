@@ -8,7 +8,7 @@ import (
 )
 
 type Publisher struct {
-	Id       ider.Id                `json:"id"`
-	Business business.BusinessModel `json:"business"`
-	Image    []image.Image          `json:"image"`
+	Id       ider.Id           `json:"id"`
+	Business business.Business `json:"business"`
+	Image    []image.Image     `json:"image"`
 }

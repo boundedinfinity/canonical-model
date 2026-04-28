@@ -10,6 +10,7 @@ package insurance
 import (
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/business"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/contact"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/vehicle"
 	"github.com/boundedinfinity/rfc3339date"
 )

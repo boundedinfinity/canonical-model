@@ -1,66 +1,58 @@
 package id
 
-import (
-	"encoding/json"
-	"errors"
+// var (
+// 	ErrIdInvalid = errors.New("invalid id")
+// )
 
-	"github.com/boundedinfinity/go-commoner/idiomatic/reflecter"
-	"github.com/google/uuid"
-)
+// var _ validater.Validator = &Id{}
 
-var (
-	ErrIdInvalid = errors.New("invalid id")
-)
+// type Id struct {
+// 	uuid.UUID
+// }
 
-var _ model.Validator = &Id{}
+// func (this Id) String() string {
+// 	return this.UUID.String()
+// }
 
-type Id struct {
-	uuid.UUID
-}
+// func (this Id) Validate() error {
+// 	return nil
+// }
 
-func (this Id) String() string {
-	return this.UUID.String()
-}
+// func (this Id) IsZero() bool {
+// 	return reflecter.IsZero[Id](this)
+// }
 
-func (this Id) Validate() error {
-	return nil
-}
+// func (this Id) MarshalJSON() ([]byte, error) {
+// 	if this.IsZero() {
+// 		return json.Marshal(nil)
+// 	}
 
-func (this Id) IsZero() bool {
-	return reflecter.IsZero[Id](this)
-}
+// 	return json.Marshal(this.String())
+// }
 
-func (this Id) MarshalJSON() ([]byte, error) {
-	if this.IsZero() {
-		return json.Marshal(nil)
-	}
+// var Ids = ids{}
 
-	return json.Marshal(this.String())
-}
+// type ids struct {
+// 	zero Id
+// }
 
-var Ids = ids{}
+// func (this ids) New() Id {
+// 	return Id{
+// 		UUID: uuid.New(),
+// 	}
+// }
 
-type ids struct {
-	zero Id
-}
+// func (this ids) MustParse(s string) Id {
+// 	return Id{
+// 		UUID: uuid.MustParse(s),
+// 	}
+// }
 
-func (this ids) New() Id {
-	return Id{
-		UUID: uuid.New(),
-	}
-}
+// func (this ids) Parse(s string) (Id, error) {
+// 	id, err := uuid.Parse(s)
+// 	return Id{UUID: id}, err
+// }
 
-func (this ids) MustParse(s string) Id {
-	return Id{
-		UUID: uuid.MustParse(s),
-	}
-}
-
-func (this ids) Parse(s string) (Id, error) {
-	id, err := uuid.Parse(s)
-	return Id{UUID: id}, err
-}
-
-func (this ids) IsEmpty(id Id) bool {
-	return id == this.zero
-}
+// func (this ids) IsEmpty(id Id) bool {
+// 	return id == this.zero
+// }

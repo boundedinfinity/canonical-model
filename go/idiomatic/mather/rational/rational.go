@@ -3,8 +3,8 @@ package rational
 import (
 	"strconv"
 
-	"github.com/boundedinfinity/go-commoner/idiomatic"
-	"github.com/boundedinfinity/go-commoner/idiomatic/mather/fraction"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/mather/fraction"
+	"github.com/boundedinfinity/go-commoner/idiomatic/mather"
 )
 
 // ----------------------------------------------------------------------------------------------------
@@ -123,21 +123,21 @@ func MustString[T ~int, S ~string](s S) Rational[T] {
 	return FromFloat[T](n)
 }
 
-func FromFloat[T ~int, F idiomatic.Float](n F) Rational[T] {
+func FromFloat[T ~int, F mather.Float](n F) Rational[T] {
 	return Rational[T]{
 		Whole:    T(n),
 		Fraction: fraction.FromFloat[T](n),
 	}
 }
 
-func Whole[T idiomatic.Float](x T) int {
+func Whole[T mather.Float](x T) int {
 	return int(x)
 }
 
-func FractionComponent[T idiomatic.Float](x T) int {
+func FractionComponent[T mather.Float](x T) int {
 	return fraction.Component(x)
 }
 
-func Fraction[T ~int, F idiomatic.Float](x F) fraction.Fraction[T] {
+func Fraction[T ~int, F mather.Float](x F) fraction.Fraction[T] {
 	return fraction.FromFloat[T](x)
 }

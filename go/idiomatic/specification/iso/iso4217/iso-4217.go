@@ -47,7 +47,7 @@ var (
 func (this iso4217s) FindRecordsErr(term string) ([]Iso4217, error) {
 	var items []Iso4217
 	var err error
-	lc := stringer.Lowercase(term)
+	lc := stringer.ToLower(term)
 
 	for i, item := range this.lc {
 		if item.Code == lc || item.Name == lc || item.Numeric == lc || item.Country == lc {

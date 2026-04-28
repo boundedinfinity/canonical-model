@@ -15,7 +15,7 @@ type Purchase struct {
 	Cart               Cart                    `json:"cart"`
 	BillingAddress     mailing_address.Address `json:"billing-address"`
 	ShippingAddress    mailing_address.Address `json:"shipping-address"`
-	Vendor             business.BusinessModel  `json:"vendor"`
+	Vendor             business.Business       `json:"vendor"`
 }
 
 type Cart struct {

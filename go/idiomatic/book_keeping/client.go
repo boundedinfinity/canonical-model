@@ -7,9 +7,9 @@ import (
 )
 
 type ClientModel struct {
-	Id          ider.Id                `json:"id"`
-	Name        string                 `json:"name"`
-	Description string                 `json:"description"`
-	Contacts    contact.ContactModel   `json:"contacts"`
-	Business    business.BusinessModel `json:"business"`
+	Id          ider.Id           `json:"id"`
+	Name        string            `json:"name"`
+	Description string            `json:"description"`
+	Contacts    contact.Contact   `json:"contacts"`
+	Business    business.Business `json:"business"`
 }

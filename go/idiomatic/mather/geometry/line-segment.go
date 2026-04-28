@@ -1,26 +1,24 @@
 package geometry
 
 import (
-	"github.com/boundedinfinity/go-commoner/idiomatic"
-
 	"github.com/boundedinfinity/go-commoner/idiomatic/mather"
 )
 
-func NewLineSegmentXY[T idiomatic.Number](x1, y1, x2, y2 T) LineSegment[T] {
+func NewLineSegmentXY[T mather.Number](x1, y1, x2, y2 T) LineSegment[T] {
 	return NewLineSegmentCoords[T](
 		CartesianCoordinate[T]{X: x1, Y: y2},
 		CartesianCoordinate[T]{X: x2, Y: y2},
 	)
 }
 
-func NewLineSegmentCoords[T idiomatic.Number](start, end CartesianCoordinate[T]) LineSegment[T] {
+func NewLineSegmentCoords[T mather.Number](start, end CartesianCoordinate[T]) LineSegment[T] {
 	return LineSegment[T]{
 		Start: start,
 		End:   end,
 	}
 }
 
-type LineSegment[T idiomatic.Number] struct {
+type LineSegment[T mather.Number] struct {
 	Start CartesianCoordinate[T]
 	End   CartesianCoordinate[T]
 }

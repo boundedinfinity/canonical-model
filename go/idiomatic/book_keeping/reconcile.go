@@ -1,4 +1,4 @@
-package bookkeeping
+package book_keeping
 
 import (
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/document"

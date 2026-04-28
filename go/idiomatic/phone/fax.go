@@ -6,8 +6,8 @@ import (
 )
 
 type Fax struct {
-	Id     ider.Id    `json:"id,omitempty"`
-	Number NanpNumber `json:"number,omitempty"`
+	Id ider.Id `json:"id,omitempty"`
+	// Number NanpNumber `json:"number,omitempty"`
 }
 
 var _ id.TypeNamer = &Fax{}
@@ -17,5 +17,6 @@ func (t Fax) TypeName() string {
 }
 
 func (t Fax) String() string {
-	return t.Number.String()
+	return ""
+	// return t.Number.String()
 }

@@ -1,8 +1,8 @@
 package phone
 
 import (
-	"github.com/boundedinfinity/idiomatic/errorer"
-	"github.com/boundedinfinity/idiomatic/marshal"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/marshal"
+	"github.com/boundedinfinity/go-commoner/idiomatic/errorer"
 )
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

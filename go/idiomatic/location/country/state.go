@@ -1,5 +1,10 @@
 package country
 
+import (
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/id"
+	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+)
+
 type State struct {
 	Id   ider.Id `json:"id,omitempty"`
 	Name string  `json:"name,omitempty"`

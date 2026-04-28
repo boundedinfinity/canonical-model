@@ -5,7 +5,7 @@ import (
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/label"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/phone/carrier"
 	"github.com/boundedinfinity/canonical_model/go/idiomatic/phone/number"
-	"github.com/boundedinfinity/idiomatic/errorer"
+	"github.com/boundedinfinity/go-commoner/errorer"
 )
 
 var (
