@@ -1,7 +1,7 @@
 package number
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/marshal"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/marshal"
 	"github.com/boundedinfinity/go-commoner/idiomatic/errorer"
 )
 

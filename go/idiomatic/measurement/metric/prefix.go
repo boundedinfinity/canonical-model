@@ -91,6 +91,10 @@ func (this prefixes) All() []Prefix {
 	}
 }
 
+func (this prefixes) Convert(amount float64, from Prefix, to Prefix) float64 {
+	return amount * this.Factor(from) / this.Factor(to)
+}
+
 func (this prefixes) Factor(kind Prefix) float64 {
 	var factor float64
 

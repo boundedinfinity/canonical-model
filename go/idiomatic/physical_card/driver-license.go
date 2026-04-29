@@ -1,10 +1,10 @@
 package physical_card
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/contact"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/id"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/location/state"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/contact"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/id"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/location/state"
 	"github.com/boundedinfinity/rfc3339date"
 )
 

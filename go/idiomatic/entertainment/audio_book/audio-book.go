@@ -1,9 +1,9 @@
 package audio_book
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/entertainment/paper_book"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/entertainment/role"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/entertainment/paper_book"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/entertainment/role"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 )
 
 type Book struct {

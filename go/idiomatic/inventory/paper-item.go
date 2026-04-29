@@ -1,7 +1,7 @@
 package inventory
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 )
 
 var _ Item = &PaperItem{}

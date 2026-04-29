@@ -1,10 +1,10 @@
 package inventory
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/business"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/currency"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/location/mailing_address"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/business"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/currency"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/location/mailing_address"
 )
 
 type Purchase struct {

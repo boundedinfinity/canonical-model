@@ -1,8 +1,8 @@
 package role_based_access_control
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/access_management/subject"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/digital/access_management/subject"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 )
 
 type RoleModel struct {

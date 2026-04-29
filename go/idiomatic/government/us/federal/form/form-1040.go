@@ -1,7 +1,7 @@
 package form
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 )
 
 // https://www.irs.gov/pub/irs-pdf/f1040.pdf

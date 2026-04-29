@@ -1,8 +1,20 @@
 package imperial
 
-import "github.com/boundedinfinity/go-commoner/idiomatic/stringer"
+import (
+	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
+)
 
 type Length string
+
+func (this Length) Name() string {
+	return Lengths.Name(this)
+}
+
+func (this Length) Symbol() string {
+	return Lengths.Symbol(this)
+}
+
+// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var Lengths = lengths{
 	Unknown:      "measurement.imperial.length.unknown",
@@ -44,8 +56,6 @@ type lengths struct {
 	Rod          Length
 }
 
-// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 func (this lengths) All() []Length {
 	return []Length{
 		this.Inch,
@@ -67,6 +77,19 @@ func (this lengths) All() []Length {
 	}
 }
 
+func (this lengths) Convert(amount float64, from Length, to Length) float64 {
+	return amount * this.Factor(from) / this.Factor(to)
+}
+
+const (
+	thoFactor        = 1.0 / 17280
+	barleycornFactor = 1.0 / 36
+	incheFactor      = 1.0 / 12
+	handFactor       = 1.0 / 3
+	linkFactor       = 66.0 / 100
+	rodFactor        = 66.0 / 4
+)
+
 func (this lengths) Factor(kind Length) float64 {
 	var factor float64
 
@@ -74,13 +97,13 @@ func (this lengths) Factor(kind Length) float64 {
 	case Lengths.Foot:
 		factor = 1
 	case Lengths.Thou:
-		factor = 1.0 / 17280
+		factor = thoFactor
 	case Lengths.Barleycorn:
-		factor = 1.0 / 36
+		factor = barleycornFactor
 	case Lengths.Inch:
-		factor = 1.0 / 12
+		factor = incheFactor
 	case Lengths.Hand:
-		factor = 1.0 / 3
+		factor = handFactor
 	case Lengths.Yard:
 		factor = 3
 	case Lengths.Chain:
@@ -98,9 +121,9 @@ func (this lengths) Factor(kind Length) float64 {
 	case Lengths.NauticalMile:
 		factor = 6076.1
 	case Lengths.Link:
-		factor = 66.0 / 100
+		factor = linkFactor
 	case Lengths.Rod:
-		factor = 66.0 / 4
+		factor = rodFactor
 	default:
 		return 0
 	}
@@ -190,15 +213,18 @@ func (this lengths) Symbol(kind Length) string {
 	return symbol
 }
 
-func (this lengths) IsSymbol(s string) (Length, bool) {
+func (this lengths) ParseOk(s string) (Length, bool) {
 	kind := Lengths.Unknown
 	var ok bool
-
-	s = stringer.TrimSpace(s)
-	s = stringer.ToLower(s)
+	s = stringer.Chain(s, stringer.TrimSpace, stringer.CompactSpace, stringer.ToLower)
 
 	for _, kind = range Lengths.All() {
 		if s == stringer.ToLower(Lengths.Symbol(kind)) {
+			ok = true
+			break
+		}
+
+		if s == stringer.ToLower(Lengths.Name(kind)) {
 			ok = true
 			break
 		}

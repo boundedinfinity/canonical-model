@@ -1,8 +1,8 @@
 package fiction
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/person/name"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/person/name"
 )
 
 type Character struct {

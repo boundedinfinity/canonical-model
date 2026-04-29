@@ -3,10 +3,10 @@ package contact
 // https://en.wikipedia.org/wiki/VCard
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/location/mailing_address"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/person"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/phone"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/location/mailing_address"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/person"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/phone"
 )
 
 type Contact struct {

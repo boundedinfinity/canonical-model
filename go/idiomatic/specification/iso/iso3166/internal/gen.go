@@ -20,7 +20,7 @@ package main
 // 	"time"
 
 // 	"github.com/PuerkitoBio/goquery"
-// 	"github.com/boundedinfinity/canonical_model/go/idiomatic/specification/iso/iso3166"
+// 	"github.com/boundedinfinity/canonical-model/go/idiomatic/specification/iso/iso3166"
 // 	"github.com/boundedinfinity/rfc3339date"
 // )
 

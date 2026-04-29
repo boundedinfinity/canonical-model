@@ -1,7 +1,7 @@
 package form
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 )
 
 // https://www.irs.gov/forms-pubs/about-form-w-4

@@ -1,6 +1,6 @@
 package metric
 
-import "github.com/boundedinfinity/canonical_model/go/idiomatic/measurement/quantity"
+import "github.com/boundedinfinity/canonical-model/go/idiomatic/measurement/quantity"
 
 type Unit struct {
 	Name     string

@@ -3,7 +3,7 @@ package rational_test
 import (
 	"testing"
 
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/mather/rational"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/mather/rational"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -1,8 +1,8 @@
 package email
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/specification/rfc/rfc5322"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/specification/rfc/rfc5322"
 )
 
 type Email struct {

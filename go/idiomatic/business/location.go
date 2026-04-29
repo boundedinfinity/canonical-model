@@ -1,10 +1,10 @@
 package business
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/address/email"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/location"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/phone"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/digital/address/email"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/location"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/phone"
 )
 
 type Location struct {

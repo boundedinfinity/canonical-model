@@ -1,7 +1,7 @@
 package movie
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/location/country"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/location/country"
 )
 
 type TheatricalRelease struct {

@@ -1,27 +1,31 @@
 package length
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/measurement/imperial"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/measurement/metric"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/measurement/imperial"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/measurement/metric"
 )
 
-type imperialLength struct {
+type ImperialLength struct {
 	Kind   imperial.Length
 	Amount float64
 }
 
-func (this imperialLength) GetAmount() float64 {
+func (this ImperialLength) GetAmount() float64 {
 	return this.Amount
 }
 
-func (this imperialLength) Imperial(kind imperial.Length) Length {
-	return this
+func (this ImperialLength) Imperial(kind imperial.Length) Length {
+	return &ImperialLength{
+		Kind:   kind,
+		Amount: imperial.Lengths.Convert(this.Amount, this.Kind, kind),
+	}
 }
 
-func (this imperialLength) Metric(kind metric.Prefix) Length {
-	ammount := this.Amount
-	imperialConversionFactor := imperial.Lengths.Factor(this.Kind)
-	metricConversionFactor := metric.Prefixes.Factor(kind)
-	ammount *= imperialConversionFactor * inchesToMillimeters * metricConversionFactor
-	return &metricLength{Amount: ammount, Prefix: kind}
+func (this ImperialLength) Metric(prefix metric.Prefix) Length {
+	ammount := imperial.Lengths.Convert(this.Amount, this.Kind, imperial.Lengths.Inch)
+	ammount *= inchesToMillimeters
+	return &metricLength{
+		Prefix: prefix,
+		Amount: ammount,
+	}
 }

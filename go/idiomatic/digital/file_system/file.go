@@ -3,7 +3,7 @@ package file_system
 import (
 	"path/filepath"
 
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/mime_type"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/digital/mime_type"
 )
 
 var _ PathDescriptor = &FileDescriptor{}

@@ -3,7 +3,7 @@ package rational
 import (
 	"strconv"
 
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/mather/fraction"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/mather/fraction"
 	"github.com/boundedinfinity/go-commoner/idiomatic/mather"
 )
 

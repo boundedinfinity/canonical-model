@@ -1,10 +1,10 @@
 package real_estate
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/bookmark"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/location/land"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/location/mailing_address"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/digital/bookmark"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/location/land"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/location/mailing_address"
 	"github.com/boundedinfinity/rfc3339date"
 )
 

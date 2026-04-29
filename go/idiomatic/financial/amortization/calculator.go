@@ -3,7 +3,7 @@ package amortization
 import (
 	"math"
 
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/financial/loan"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/financial/loan"
 )
 
 type Item struct {

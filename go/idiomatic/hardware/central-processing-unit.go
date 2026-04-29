@@ -1,6 +1,6 @@
 package hardware
 
-import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+import "github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 
 type CentralProcessingUnit struct {
 	Id                    ider.Id                      `json:"id,omitempty"`

@@ -1,8 +1,8 @@
 package access_control_list
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/access_management/permission"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/access_management/resource"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/digital/access_management/permission"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/digital/access_management/resource"
 	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
 )
 

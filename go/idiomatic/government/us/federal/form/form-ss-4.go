@@ -3,11 +3,11 @@ package form
 import (
 	"errors"
 
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/business"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/location/county"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/location/mailing_address"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/person"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/business"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/location/county"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/location/mailing_address"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/person"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 

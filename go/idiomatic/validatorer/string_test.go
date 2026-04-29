@@ -3,7 +3,7 @@ package validatorer_test
 import (
 	"testing"
 
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/validatorer"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/validatorer"
 	"github.com/stretchr/testify/assert"
 )
 

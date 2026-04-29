@@ -1,6 +1,6 @@
 package authentication
 
-import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+import "github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 
 // https://www.ssh.com/academy
 

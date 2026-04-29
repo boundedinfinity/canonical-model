@@ -1,7 +1,7 @@
 package business
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 	"github.com/boundedinfinity/rfc3339date"
 )
 

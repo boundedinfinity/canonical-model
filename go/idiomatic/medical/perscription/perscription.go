@@ -1,13 +1,13 @@
 package perscription
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/business"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/currency"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/medical/amount"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/medical/pharmaceutical"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/person"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/phone"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/business"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/currency"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/medical/amount"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/medical/pharmaceutical"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/person"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/phone"
 	"github.com/boundedinfinity/rfc3339date"
 )
 

@@ -1,8 +1,8 @@
 package bookmark
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/address/uri"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/digital/address/uri"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 )
 
 type Bookmark struct {

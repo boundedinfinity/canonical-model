@@ -1,10 +1,10 @@
 package property
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/image"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/location/mailing_address"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/real_estate/taxes"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/digital/image"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/location/mailing_address"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/real_estate/taxes"
 	"github.com/boundedinfinity/rfc3339date"
 )
 

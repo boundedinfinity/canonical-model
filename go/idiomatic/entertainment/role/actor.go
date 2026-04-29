@@ -3,9 +3,9 @@ package role
 import (
 	"image"
 
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/contact"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/entertainment/fiction"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/contact"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/entertainment/fiction"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 )
 
 type Actor struct {

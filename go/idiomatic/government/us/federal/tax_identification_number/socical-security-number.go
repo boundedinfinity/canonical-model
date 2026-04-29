@@ -2,7 +2,7 @@ package tax_identification_number
 
 // https://www.ssa.gov/
 
-import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+import "github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 
 var _ TaxIdentificationNumber = &SocialSecurityNumber{}
 
@@ -22,8 +22,8 @@ func (_ SocialSecurityNumber) GetKind() Kind {
 // import (
 // 	"fmt"
 
-// 	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-// 	"github.com/boundedinfinity/canonical_model/go/idiomatic/person"
+// 	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
+// 	"github.com/boundedinfinity/canonical-model/go/idiomatic/person"
 // )
 
 // // SSN,

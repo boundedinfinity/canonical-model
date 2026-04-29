@@ -1,8 +1,8 @@
 package authenticator_application
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/bookmark"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/phone"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/digital/bookmark"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/phone"
 )
 
 type Entry struct {

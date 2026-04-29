@@ -1,6 +1,6 @@
 package listing_site
 
-import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+import "github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 
 type ListingSite struct {
 	Id   ider.Id `json:"id"`

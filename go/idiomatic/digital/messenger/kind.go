@@ -6,7 +6,7 @@ type kinds struct {
 	Unknown                         Kind
 	AmeraiconOnlineInstantMessaging Kind
 	AppleIMessage                   Kind
-	// github.com/boundedinfinity/canonical_model/go/idiomatic                              Kind
+	// github.com/boundedinfinity/canonical-model/go/idiomatic                              Kind
 	BlackBerryMessenger                 Kind
 	Discord                             Kind
 	ExtensibleMessagingPresenceProtocol Kind
@@ -35,7 +35,7 @@ var Kinds = kinds{
 	Unknown:                         "digital.messenger.unknown",
 	AmeraiconOnlineInstantMessaging: "digital.messenger.america-online-instant-messaging",
 	AppleIMessage:                   "digital.messenger.apple-imessage",
-	// github.com/boundedinfinity/canonical_model/go/idiomatic:                              "digital.messenger.github.com/boundedinfinity/canonical_model/go/idiomatic",
+	// github.com/boundedinfinity/canonical-model/go/idiomatic:                              "digital.messenger.github.com/boundedinfinity/canonical-model/go/idiomatic",
 	BlackBerryMessenger:                 "digital.messenger.blackberry-messenger",
 	Discord:                             "digital.messenger.discord",
 	ExtensibleMessagingPresenceProtocol: "digital.messenger.extensible-messaging-presence-protocol",

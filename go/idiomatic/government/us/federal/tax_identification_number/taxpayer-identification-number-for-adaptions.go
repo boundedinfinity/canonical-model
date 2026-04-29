@@ -2,7 +2,7 @@ package tax_identification_number
 
 // https://www.irs.gov/individuals/adoption-taxpayer-identification-number
 
-import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+import "github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 
 var _ TaxIdentificationNumber = &TaxpayerIdentificationNumberForAdaptions{}
 

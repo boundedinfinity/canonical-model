@@ -1,8 +1,8 @@
 package credential
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/address/email"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/digital/address/email"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 )
 
 var _ Credential = &EmailPassword{}

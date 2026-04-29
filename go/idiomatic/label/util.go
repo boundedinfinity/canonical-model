@@ -3,7 +3,7 @@ package label
 import (
 	"strings"
 
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 )
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

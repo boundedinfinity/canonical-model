@@ -3,8 +3,8 @@ package role
 import (
 	"image"
 
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/contact"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/contact"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 )
 
 type Narrator struct {

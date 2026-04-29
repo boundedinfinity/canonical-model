@@ -3,7 +3,7 @@ package ider_test
 import (
 	"testing"
 
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -8,10 +8,10 @@ package insurance
 // https://www.thebalancemoney.com/insurance-services-office-iso-462706
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/business"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/contact"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/vehicle"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/business"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/contact"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/vehicle"
 	"github.com/boundedinfinity/rfc3339date"
 )
 

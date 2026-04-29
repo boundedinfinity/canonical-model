@@ -1,8 +1,8 @@
 package name
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/person/affix"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/person/affix"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 

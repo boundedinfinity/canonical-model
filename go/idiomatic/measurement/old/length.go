@@ -1,6 +1,6 @@
 package measurement
 
-// import "github.com/boundedinfinity/canonical_model/go/idiomatic/mather/rational"
+// import "github.com/boundedinfinity/canonical-model/go/idiomatic/mather/rational"
 
 // func Parse[T ~int](s string) (Length[T], error) {
 // 	var length Length[T]

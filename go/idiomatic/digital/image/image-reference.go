@@ -1,8 +1,8 @@
 package image
 
 import (
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/digital/mime_type"
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/specification/rfc/rfc2396"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/digital/mime_type"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/specification/rfc/rfc2396"
 )
 
 var _ Image = &ImageReference{}

@@ -1,6 +1,6 @@
 package vcard
 
-import "github.com/boundedinfinity/canonical_model/go/idiomatic/label"
+import "github.com/boundedinfinity/canonical-model/go/idiomatic/label"
 
 var VCardType = vCardType{}
 

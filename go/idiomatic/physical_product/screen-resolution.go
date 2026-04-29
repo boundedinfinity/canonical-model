@@ -1,6 +1,6 @@
 package physical_product
 
-import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+import "github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 
 // https://en.wikipedia.org/wiki/Display_resolution
 

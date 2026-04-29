@@ -1,6 +1,6 @@
 package password
 
-import "github.com/boundedinfinity/canonical_model/go/idiomatic/ider"
+import "github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 
 type RequirementsModel struct {
 	Id                ider.Id  `json:"id"`

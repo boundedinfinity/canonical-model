@@ -3,7 +3,7 @@ package financial_test
 import (
 	"testing"
 
-	"github.com/boundedinfinity/canonical_model/go/idiomatic/financial"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/financial"
 	"github.com/stretchr/testify/assert"
 )
 
