@@ -20,13 +20,12 @@ type FractionNumber struct {
 	Denominator int
 }
 
-// ToFloat implements [Number].
-func (this *FractionNumber) ToFloat() Number {
-	panic("unimplemented")
-}
-
 func (this FractionNumber) String() string {
 	return fmt.Sprintf("%d/%d", this.Numerator, this.Denominator)
+}
+
+func (this *FractionNumber) ToFloat() Number {
+	return &FloatNumber{value: float64(this.Numerator) / float64(this.Denominator)}
 }
 
 func (this FractionNumber) Copy() FractionNumber {

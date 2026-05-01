@@ -24,7 +24,7 @@ func (this MixedNumber) String() string {
 		return this.Fraction.String()
 	}
 
-	return fmt.Sprintf("%d %v", this.Whole, this.Fraction)
+	return fmt.Sprintf("%d %s", this.Whole, this.Fraction)
 }
 
 func (this MixedNumber) IsZero() bool {

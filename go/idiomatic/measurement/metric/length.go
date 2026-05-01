@@ -17,7 +17,7 @@ func (this lengths) ParseOk(s string) (Prefix, bool) {
 	s = stringer.Chain(s, stringer.TrimSpace, stringer.CompactSpace, stringer.ToLower)
 
 	for _, prefix = range Prefixes.All() {
-		target := stringer.ToLower(prefix) + m
+		target := stringer.ToLower(Prefixes.Symbol(prefix)) + m
 
 		if s == target {
 			ok = true

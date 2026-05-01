@@ -17,7 +17,10 @@ func (this *FloatNumber) ToFloat() Number {
 }
 
 func (this *FloatNumber) ToFraction() Number {
-	panic("unimplemented")
+	return &FractionNumber{
+		Numerator:   int(this.value * 1000000),
+		Denominator: 1000000,
+	}
 }
 
 func (this *FloatNumber) IsZero() bool {
@@ -41,9 +44,18 @@ func (this *FloatNumber) Reciprocal() Number {
 }
 
 func (this *FloatNumber) ToMixed() Number {
-	panic("unimplemented")
+	return &MixedNumber{
+		Whole: int(this.value),
+		Fraction: FractionNumber{
+			Numerator:   int((this.value - float64(int(this.value))) * 1000000),
+			Denominator: 1000000,
+		},
+	}
 }
 
 func (this *FloatNumber) ToImproper() Number {
-	panic("unimplemented")
+	return &FractionNumber{
+		Numerator:   int(this.value * 1000000),
+		Denominator: 1000000,
+	}
 }
