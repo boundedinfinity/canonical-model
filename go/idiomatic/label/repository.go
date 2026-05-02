@@ -9,16 +9,16 @@ import (
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 type LabelRepository interface {
-	Add(label LabelModel)
-	Get(id ider.Id) (*LabelModel, bool)
-	Find(term string) ([]*LabelModel, bool)
+	Add(label Label)
+	Get(id ider.Id) (*Label, bool)
+	Find(term string) ([]*Label, bool)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var _ LabelRepository = &memoryRepository{}
 
-func NewMemoryRepository(labels []LabelModel) LabelRepository {
+func NewMemoryRepository(labels []Label) LabelRepository {
 	r := &memoryRepository{}
 
 	for _, label := range labels {
@@ -29,11 +29,11 @@ func NewMemoryRepository(labels []LabelModel) LabelRepository {
 }
 
 type memoryRepository struct {
-	idMap   map[ider.Id]*LabelModel
-	nameMap map[string]*LabelModel
+	idMap   map[ider.Id]*Label
+	nameMap map[string]*Label
 }
 
-func (this *memoryRepository) Add(label LabelModel) {
+func (this *memoryRepository) Add(label Label) {
 	if _, ok := this.idMap[label.Id]; !ok {
 		this.idMap[label.Id] = &label
 	}
@@ -43,8 +43,8 @@ func (this *memoryRepository) Add(label LabelModel) {
 	}
 }
 
-func (this memoryRepository) Find(term string) ([]*LabelModel, bool) {
-	var found []*LabelModel
+func (this memoryRepository) Find(term string) ([]*Label, bool) {
+	var found []*Label
 
 	if label, ok := this.nameMap[term]; ok {
 		found = append(found, label)
@@ -67,7 +67,7 @@ func (this memoryRepository) Find(term string) ([]*LabelModel, bool) {
 	return found, len(found) > 0
 }
 
-func (this memoryRepository) Get(id ider.Id) (*LabelModel, bool) {
+func (this memoryRepository) Get(id ider.Id) (*Label, bool) {
 	label, ok := this.idMap[id]
 	return label, ok
 }

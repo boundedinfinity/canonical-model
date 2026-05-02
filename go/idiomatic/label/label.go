@@ -6,8 +6,8 @@ import (
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-func NewLabel(name, description string) LabelModel {
-	m := LabelModel{
+func NewLabel(name, description string) Label {
+	m := Label{
 		Name:        name,
 		Description: description,
 	}
@@ -17,7 +17,7 @@ func NewLabel(name, description string) LabelModel {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-type LabelModel struct {
+type Label struct {
 	Id           ider.Id `json:"id"`
 	Name         string  `json:"name"`
 	Description  string  `json:"description"`

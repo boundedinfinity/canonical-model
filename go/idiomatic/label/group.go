@@ -1,15 +1,13 @@
 package label
 
 import (
-	"fmt"
-
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 )
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-func NewGroup(name, description string, labels ...LabelModel) LabelGroupModel {
-	m := LabelGroupModel{
+func NewGroup(name, description string, labels ...Label) Group {
+	m := Group{
 		Name:        name,
 		Description: description,
 	}
@@ -21,31 +19,17 @@ func NewGroup(name, description string, labels ...LabelModel) LabelGroupModel {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-type LabelGroupModel struct {
+type Group struct {
 	Id          ider.Id `json:"id"`
 	Name        string  `json:"name"`
 	Description string  `json:"description"`
 	Labels      Labels  `json:"labels"`
 }
 
-func (this *LabelGroupModel) Add(labels ...LabelModel) {
+func (this *Group) Add(labels ...Label) {
 	this.Labels.Add(labels...)
 }
 
-func (this LabelGroupModel) Has(label LabelModel) bool {
+func (this Group) Has(label Label) bool {
 	return this.Labels.Has(label)
-}
-
-func (this LabelGroupModel) Intersection(group LabelGroupModel) LabelGroupModel {
-	return LabelGroupModel{
-		Name:   fmt.Sprintf("%s intersects with %s", this.Name, group.Name),
-		Labels: this.Labels.Intersection(group.Labels...),
-	}
-}
-
-func (this LabelGroupModel) Union(group LabelGroupModel) LabelGroupModel {
-	return LabelGroupModel{
-		Name:   fmt.Sprintf("%s unions with %s", this.Name, group.Name),
-		Labels: this.Labels.Union(group.Labels...),
-	}
 }

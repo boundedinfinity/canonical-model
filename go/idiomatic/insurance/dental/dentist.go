@@ -6,7 +6,7 @@ import (
 )
 
 type Dentist struct {
-	Id        ider.Id            `json:"id,omitempty"`
-	Dentist   person.PersonModel `json:"dentist,omitempty"`
-	DentistId string             `json:"dentist-id,omitempty"`
+	Id        ider.Id       `json:"id,omitempty"`
+	Dentist   person.Person `json:"dentist,omitempty"`
+	DentistId string        `json:"dentist-id,omitempty"`
 }

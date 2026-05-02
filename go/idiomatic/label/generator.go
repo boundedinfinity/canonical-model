@@ -10,7 +10,7 @@ func (_ generator) Months() Labels {
 	labels := make(Labels, 12)
 
 	for i := 1; i <= 12; i++ {
-		labels[i] = LabelModel{
+		labels[i] = Label{
 			Name: fmt.Sprintf("%02d", i),
 		}
 	}
@@ -22,7 +22,7 @@ func (_ generator) Years(start, end int) Labels {
 	labels := make(Labels, end-start)
 
 	for year := start; year <= end; year++ {
-		labels[year] = LabelModel{
+		labels[year] = Label{
 			Name: fmt.Sprintf("%04d", year),
 		}
 	}
@@ -34,7 +34,7 @@ func (_ generator) YearMonths(year int) Labels {
 	labels := make(Labels, 12)
 
 	for i := 1; i <= 12; i++ {
-		labels[i] = LabelModel{
+		labels[i] = Label{
 			Name: fmt.Sprintf("%04d.%02d", year, i),
 		}
 	}

@@ -11,6 +11,8 @@ type kinds struct {
 	Todo        Kind
 	Appointment Kind
 	Maintenance Kind
+	Personal    Kind
+	Free        Kind
 }
 
 var Kinds = kinds{
@@ -22,4 +24,6 @@ var Kinds = kinds{
 	Todo:        "calendar.event.todo",
 	Appointment: "calendar.event.appointment",
 	Maintenance: "calendar.event.maintenance",
+	Free:        "calendar.event.free",
+	Personal:    "calendar.event.personal",
 }

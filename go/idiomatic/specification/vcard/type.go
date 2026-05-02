@@ -6,7 +6,7 @@ var VCardType = vCardType{}
 
 type vCardType struct{}
 
-func (t vCardType) FromLabel(labels ...label.LabelModel) VCardTypeList {
+func (t vCardType) FromLabel(labels ...label.Label) VCardTypeList {
 	var list VCardTypeList
 
 	// for _, item := range labels {

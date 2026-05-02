@@ -14,8 +14,8 @@ import (
 type PerscriptionModel struct {
 	Id             ider.Id                            `json:"id"`
 	PerscriptionId string                             `json:"perscription-id"`
-	Patient        person.PersonModel                 `json:"patient"`
-	Physician      person.PersonModel                 `json:"physician"`
+	Patient        person.Person                      `json:"patient"`
+	Physician      person.Person                      `json:"physician"`
 	Pharmachy      business.Business                  `json:"pharmachy"`
 	Directions     string                             `json:"directions"`
 	Phramaceutical pharmaceutical.PhramaceuticalModel `json:"phramaceutical"`

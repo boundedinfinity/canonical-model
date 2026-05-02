@@ -8,33 +8,33 @@ import (
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-func getName(model LabelModel) string {
+func getName(model Label) string {
 	return model.Name
 }
 
-func getId(model LabelModel) ider.Id {
+func getId(model Label) ider.Id {
 	return model.Id
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-func equalsAny(target LabelModel) func(LabelModel) bool {
+func equalsAny(target Label) func(Label) bool {
 	id := equalsId(target)
 	name := equalsName(target)
 
-	return func(model LabelModel) bool {
+	return func(model Label) bool {
 		return id(model) || name(model)
 	}
 }
 
-func equalsName(target LabelModel) func(LabelModel) bool {
-	return func(model LabelModel) bool {
+func equalsName(target Label) func(Label) bool {
+	return func(model Label) bool {
 		return strings.EqualFold(target.Name, model.Name)
 	}
 }
 
-func equalsId(target LabelModel) func(LabelModel) bool {
-	return func(model LabelModel) bool {
+func equalsId(target Label) func(Label) bool {
+	return func(model Label) bool {
 		return target.Id == model.Id &&
 			!target.Id.IsZero() &&
 			!model.Id.IsZero()

@@ -8,10 +8,10 @@ import (
 )
 
 type VendorModel struct {
-	Id          ider.Id            `json:"id"`
-	Name        string             `json:"name"`
-	Description string             `json:"description"`
-	Contacts    contact.Contact    `json:"contacts"`
-	Business    business.Business  `json:"business"`
-	Labels      []label.LabelModel `json:"labels"`
+	Id          ider.Id           `json:"id"`
+	Name        string            `json:"name"`
+	Description string            `json:"description"`
+	Contacts    contact.Contact   `json:"contacts"`
+	Business    business.Business `json:"business"`
+	Labels      []label.Label     `json:"labels"`
 }

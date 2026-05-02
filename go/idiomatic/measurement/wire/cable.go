@@ -2,6 +2,7 @@ package wire
 
 // https://www.systoncable.com/nm-cable-vs-bx-cable/
 // https://aerosusa.com/wires-vs-cables/
+// https://nassaunationalcable.com/blogs/blog/a-complete-guide-to-nec-article-334-on-nm-b-nonmetallic-sheathed-cable
 
 type NonMetallicCable struct {
 	Name           string `json:"name"`

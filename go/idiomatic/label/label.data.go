@@ -56,7 +56,7 @@ var (
 )
 
 func init() {
-	var labels []LabelModel
+	var labels []Label
 
 	if err := json.Unmarshal([]byte(labelJson), &labels); err != nil {
 		panic(err)

@@ -8,7 +8,7 @@ import (
 var _ Subject = &Person{}
 
 type Person struct {
-	Person person.PersonModel
+	Person person.Person
 }
 
 func (this Person) GetId() ider.Id {

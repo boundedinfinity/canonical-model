@@ -13,7 +13,7 @@ type ForeignEntity struct {
 	Purpose          string                  `json:"purpose,omitempty"`
 	Business         Business                `json:"business,omitempty"`
 	RegisteredAgents []RegisteredAgent       `json:"registered-agents,omitempty"`
-	SignedBy         []person.PersonModel    `json:"signed-by,omitempty"`
+	SignedBy         []person.Person         `json:"signed-by,omitempty"`
 	StartDate        rfc3339date.Rfc3339Date `json:"start-date,omitempty"`
 	EndDate          rfc3339date.Rfc3339Date `json:"end-date,omitempty"`
 }

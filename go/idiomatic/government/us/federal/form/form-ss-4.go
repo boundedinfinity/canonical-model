@@ -38,11 +38,11 @@ type FormSs4RevDecember_2019 struct {
 	Id                  ider.Id                 `json:"id,omitempty"`
 	LegalName           string                  `json:"legal-name,omitempty"`
 	TradeName           string                  `json:"trade-name,omitempty"`
-	Executor            person.PersonModel      `json:"executor,omitempty"`
+	Executor            person.Person           `json:"executor,omitempty"`
 	MailingAddress      mailing_address.Address `json:"mailing-address,omitempty"`
 	StreetAddress       mailing_address.Address `json:"street-address,omitempty"`
 	County              county.County           `json:"county,omitempty"`
-	ResponsibleParty    person.PersonModel      `json:"responsible-party,omitempty"`
+	ResponsibleParty    person.Person           `json:"responsible-party,omitempty"`
 	ResponsiblePartyTin string                  `json:"responsible-party-tin,omitempty"`
 	IsLlc               bool                    `json:"is-llc,omitempty"`
 	LlcMemberCount      int                     `json:"llc-member-count,omitempty"`

@@ -10,7 +10,7 @@ type TrialModel struct {
 	Name         string             `json:"name"`
 	Description  string             `json:"description"`
 	Transactions []TransactionModel `json:"transactions"`
-	Labels       []label.LabelModel `json:"labels"`
+	Labels       []label.Label      `json:"labels"`
 	debitNormal  []TransactionModel
 	creditNormal []TransactionModel
 }

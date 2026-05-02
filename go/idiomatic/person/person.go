@@ -8,7 +8,7 @@ import (
 	"github.com/boundedinfinity/rfc3339date"
 )
 
-type PersonModel struct {
+type Person struct {
 	Id                      ider.Id                       `json:"id"`
 	LegalName               name.Name                     `json:"legal-name"`
 	Aliases                 []name.Name                   `json:"aliases"`
@@ -18,6 +18,6 @@ type PersonModel struct {
 	CountryOfBirth          country.Country               `json:"country-of-birth"`
 }
 
-func (p PersonModel) String() string {
+func (p Person) String() string {
 	return p.LegalName.String()
 }

@@ -31,8 +31,8 @@ type PaymentSummary struct {
 	AnnualOrthodonticUsedToDate     currency.Amount         `json:"annual-orthodontic-used-to-date"`
 	GroupId                         string                  `json:"group-id"`
 	GroupName                       string                  `json:"group-name"`
-	Member                          person.PersonModel      `json:"member"`
-	Patient                         person.PersonModel      `json:"patient"`
+	Member                          person.Person           `json:"member"`
+	Patient                         person.Person           `json:"patient"`
 	Relationship                    string                  `json:"relationship"`
 	PlanType                        string                  `json:"plan-type"`
 	ToothNoOrLetter                 string                  `json:"tooth-no-or-letter"`
