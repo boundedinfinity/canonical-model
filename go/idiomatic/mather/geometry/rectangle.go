@@ -1,81 +1,81 @@
 package geometry
 
 import (
-	"github.com/boundedinfinity/go-commoner/idiomatic/mather"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/numberer"
 )
 
-func NewRectangle[T mather.Number, A AngleNumber](topLeft CartesianCoordinate[T], dimensions Dimension2d[T]) Rectangle[T, A] {
-	return Rectangle[T, A]{
+func NewRectangle(topLeft CartesianCoordinate, dimensions Dimension2d) Rectangle {
+	return Rectangle{
 		TopLeft:    topLeft,
 		Dimensions: dimensions,
 	}
 }
 
-func NewRectangleXYHW[T mather.Number, A AngleNumber](x, y, height, width T) Rectangle[T, A] {
-	return NewRectangle[T, A](
-		CartesianCoordinate[T]{X: x, Y: y},
-		Dimension2d[T]{Height: height, Width: width},
+func NewRectangleXYHW(x, y, height, width numberer.Number) Rectangle {
+	return NewRectangle(
+		CartesianCoordinate{X: x, Y: y},
+		Dimension2d{Height: height, Width: width},
 	)
 }
 
-type Rectangle[T mather.Number, A AngleNumber] struct {
-	TopLeft    CartesianCoordinate[T]
-	Dimensions Dimension2d[T]
+type Rectangle struct {
+	TopLeft    CartesianCoordinate
+	Dimensions Dimension2d
 }
 
-func (t Rectangle[T, A]) Area() T {
-	return t.Dimensions.Height * t.Dimensions.Width
+func (t Rectangle) Area() numberer.Number {
+	return numberer.Float(t.Dimensions.Height.Float() * t.Dimensions.Width.Float())
 }
 
-func (t Rectangle[T, A]) Perimeter() T {
-	return 2 * (t.Dimensions.Height + t.Dimensions.Width)
+func (t Rectangle) Perimeter() numberer.Number {
+	return numberer.Float(2 * (t.Dimensions.Height.Float() + t.Dimensions.Width.Float()))
 }
 
-func (t Rectangle[T, A]) BottomLeft() CartesianCoordinate[T] {
-	return CartesianCoordinate[T]{
+func (t Rectangle) BottomLeft() CartesianCoordinate {
+	return CartesianCoordinate{
 		X: t.TopLeft.X,
-		Y: t.TopLeft.Y + t.Dimensions.Height,
+		Y: numberer.Float(t.TopLeft.Y.Float() + t.Dimensions.Height.Float()),
 	}
 }
 
-func (t Rectangle[T, A]) TopRight() CartesianCoordinate[T] {
-	return CartesianCoordinate[T]{
-		X: t.TopLeft.X + t.Dimensions.Width,
+func (t Rectangle) TopRight() CartesianCoordinate {
+	return CartesianCoordinate{
+		X: numberer.Float(t.TopLeft.X.Float() + t.Dimensions.Width.Float()),
 		Y: t.TopLeft.Y,
 	}
 }
 
-func (t Rectangle[T, A]) BottomRight() CartesianCoordinate[T] {
-	return CartesianCoordinate[T]{
-		X: t.TopLeft.X + t.Dimensions.Width,
-		Y: t.TopLeft.Y + t.Dimensions.Height,
+func (t Rectangle) BottomRight() CartesianCoordinate {
+	return CartesianCoordinate{
+		X: numberer.Float(t.TopLeft.X.Float() + t.Dimensions.Width.Float()),
+		Y: numberer.Float(t.TopLeft.Y.Float() + t.Dimensions.Height.Float()),
 	}
 }
 
-func (t Rectangle[T, A]) TopMidpoint() CartesianCoordinate[T] {
+func (t Rectangle) TopMidpoint() CartesianCoordinate {
 	return NewLineSegmentCoords(t.TopLeft, t.BottomRight()).Midpoint()
 }
 
-func (t Rectangle[T, A]) RightMidpoint() CartesianCoordinate[T] {
+func (t Rectangle) RightMidpoint() CartesianCoordinate {
 	return NewLineSegmentCoords(t.TopRight(), t.BottomRight()).Midpoint()
 }
 
-func (t Rectangle[T, A]) BottomMidpoint() CartesianCoordinate[T] {
+func (t Rectangle) BottomMidpoint() CartesianCoordinate {
 	return NewLineSegmentCoords(t.BottomLeft(), t.BottomRight()).Midpoint()
 }
 
-func (t Rectangle[T, A]) LeftMidpoint() CartesianCoordinate[T] {
+func (t Rectangle) LeftMidpoint() CartesianCoordinate {
 	return NewLineSegmentCoords(t.TopLeft, t.BottomLeft()).Midpoint()
 }
 
-func (t Rectangle[T, A]) Center() CartesianCoordinate[T] {
+func (t Rectangle) Center() CartesianCoordinate {
 	return NewLineSegmentCoords(t.TopMidpoint(), t.BottomMidpoint()).Midpoint()
 }
 
-// func (t Rectangle[T, A]) PointOnPeremiter(angle Angle[A]) CartesianCoordinate[T] {
+// func (t Rectangle) PointOnPeremiter(angle Angle[A]) CartesianCoordinate {
 // 	center := t.Center()
 // 	centerToTopLeft := NewLineSegmentCoords(center, t.TopLeft)
-// 	circle := NewCircle[T, A](center, centerToTopLeft.Length())
+// 	circle := NewCircle(center, centerToTopLeft.Length())
 // 	circlePoint := circle.PointOnCircumference[A](angle)
 // 	circleLine := NewLineSegmentCoords(center, circlePoint)
 // 	topLine := NewLineSegmentCoords(t.TopLeft, t.TopRight())

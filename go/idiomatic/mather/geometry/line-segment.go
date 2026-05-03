@@ -1,77 +1,84 @@
 package geometry
 
 import (
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/numberer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/mather"
 )
 
-func NewLineSegmentXY[T mather.Number](x1, y1, x2, y2 T) LineSegment[T] {
-	return NewLineSegmentCoords[T](
-		CartesianCoordinate[T]{X: x1, Y: y2},
-		CartesianCoordinate[T]{X: x2, Y: y2},
+func NewLineSegmentXY(x1, y1, x2, y2 numberer.Number) LineSegment {
+	return NewLineSegmentCoords(
+		CartesianCoordinate{X: x1, Y: y2},
+		CartesianCoordinate{X: x2, Y: y2},
 	)
 }
 
-func NewLineSegmentCoords[T mather.Number](start, end CartesianCoordinate[T]) LineSegment[T] {
-	return LineSegment[T]{
+func NewLineSegmentCoords(start, end CartesianCoordinate) LineSegment {
+	return LineSegment{
 		Start: start,
 		End:   end,
 	}
 }
 
-type LineSegment[T mather.Number] struct {
-	Start CartesianCoordinate[T]
-	End   CartesianCoordinate[T]
+type LineSegment struct {
+	Start CartesianCoordinate
+	End   CartesianCoordinate
 }
 
-func (t LineSegment[T]) Length() T {
-	xSqrd := mather.Square(t.End.X - t.Start.X)
-	ySqrd := mather.Square(t.End.Y - t.Start.Y)
-
-	return mather.Sqrt(xSqrd + ySqrd)
+func (this LineSegment) Length() numberer.Number {
+	xSqrd := mather.Square(this.End.X.Float() - this.Start.X.Float())
+	ySqrd := mather.Square(this.End.Y.Float() - this.Start.Y.Float())
+	return numberer.Float(mather.Sqrt(xSqrd + ySqrd))
 }
 
-func (t LineSegment[T]) PointAtPercent(percentage T) CartesianCoordinate[T] {
-	return CartesianCoordinate[T]{
-		X: t.Start.X + t.End.X*percentage/100,
-		Y: t.Start.Y + t.End.Y*percentage/100,
+func (this LineSegment) PointAtPercent(percentage numberer.Number) CartesianCoordinate {
+	p := percentage.Float()
+	return CartesianCoordinate{
+		X: numberer.Float(this.Start.X.Float() + this.End.X.Float()*p/100),
+		Y: numberer.Float(this.Start.Y.Float() + this.End.Y.Float()*p/100),
 	}
 }
 
-func (t LineSegment[T]) Midpoint() CartesianCoordinate[T] {
-	return t.PointAtPercent(50)
+func (this LineSegment) Midpoint() CartesianCoordinate {
+	return this.PointAtPercent(numberer.Float(50))
 }
 
-func (t LineSegment[T]) Slope() T {
-	return (t.Start.X - t.Start.Y) / (t.End.X - t.End.Y)
+func (this LineSegment) Slope() numberer.Number {
+	return numberer.Float((this.Start.X.Float() - this.Start.Y.Float()) / (this.End.X.Float() - this.End.Y.Float()))
 }
 
-func (t LineSegment[T]) SlopeIntercept() SlopeInterceptLine[T] {
-	slope := t.Slope()
+func (this LineSegment) SlopeIntercept() SlopeInterceptLine {
+	slope := this.Slope()
 
-	return SlopeInterceptLine[T]{
+	return SlopeInterceptLine{
 		M: slope,
-		B: t.Start.Y / slope * t.Start.X,
+		B: numberer.Float(this.Start.Y.Float() / slope.Float() * this.Start.X.Float()),
 	}
 }
 
-func (t LineSegment[T]) Standard() StandardLine[T] {
-	sif := t.SlopeIntercept()
+func (this LineSegment) Standard() StandardLine {
+	sif := this.SlopeIntercept()
 
-	return StandardLine[T]{
-		A: -sif.M,
-		B: 1,
-		C: -sif.B,
+	return StandardLine{
+		A: numberer.Float(-sif.M.Float()),
+		B: numberer.Float(1),
+		C: numberer.Float(-sif.B.Float()),
 	}
 }
 
 // https://www.cuemath.com/geometry/intersection-of-two-lines/
 // https://www.cuemath.com/algebra/cross-multiplication-method/
-func (t LineSegment[T]) IntersectAt(segment LineSegment[T]) CartesianCoordinate[T] {
-	l1 := t.Standard()
+func (this LineSegment) IntersectAt(segment LineSegment) CartesianCoordinate {
+	l1 := this.Standard()
 	l2 := segment.Standard()
+	l1a := l1.A.Float()
+	l1b := l1.B.Float()
+	l1c := l1.C.Float()
+	l2a := l1.A.Float()
+	l2b := l2.B.Float()
+	l2c := l2.C.Float()
 
-	return CartesianCoordinate[T]{
-		X: (l1.B*l2.C - l2.B*l1.C) / (l1.A*l2.B - l2.A*l1.B),
-		Y: (l1.C*l2.A - l2.A*l1.A) / (l1.A*l2.B - l2.A*l1.B),
+	return CartesianCoordinate{
+		X: numberer.Float((l1b*l2c - l2b*l1c) / (l1a*l2b - l2a*l1b)),
+		Y: numberer.Float((l1c*l2a - l2a*l1a) / (l1a*l2b - l2a*l1b)),
 	}
 }

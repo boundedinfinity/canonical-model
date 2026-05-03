@@ -36,6 +36,13 @@ var (
 	digitMap = map[string]Digit{}
 )
 
+type digits struct {
+}
+
+func (this digits) All() []Digit {
+	return []Digit{}
+}
+
 func (this digits) Parse(s string) (Digit, error) {
 	var digit *Digit
 	var err error

@@ -1,16 +1,18 @@
 package geometry
 
-import "github.com/boundedinfinity/go-commoner/idiomatic/mather"
+import (
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/numberer"
+)
 
-type SlopeInterceptLine[T mather.Number] struct {
-	M T
-	B T
+type SlopeInterceptLine struct {
+	M numberer.Number
+	B numberer.Number
 }
 
-func (t SlopeInterceptLine[T]) Y(x T) T {
-	return t.M*x + t.B
+func (t SlopeInterceptLine) Y(x numberer.Number) numberer.Number {
+	return numberer.Float(t.M.Float()*x.Float() + t.B.Float())
 }
 
-func (t SlopeInterceptLine[T]) Segment(x1, x2 T) LineSegment[T] {
+func (t SlopeInterceptLine) Segment(x1, x2 numberer.Number) LineSegment {
 	return NewLineSegmentXY(x1, t.Y(x1), x2, t.Y(x2))
 }

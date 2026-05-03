@@ -1,16 +1,16 @@
 package geometry
 
 import (
-	"github.com/boundedinfinity/go-commoner/idiomatic/mather"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/numberer"
 )
 
-type Dimension2d[T mather.Number] struct {
-	Height T
-	Width  T
+type Dimension2d struct {
+	Height numberer.Number
+	Width  numberer.Number
 }
 
-func NewDimension2d[T mather.Number](height, width T) Dimension2d[T] {
-	return Dimension2d[T]{
+func NewDimension2d(height, width numberer.Number) Dimension2d {
+	return Dimension2d{
 		Height: height,
 		Width:  width,
 	}

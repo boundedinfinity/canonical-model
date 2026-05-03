@@ -1,36 +1,42 @@
 package geometry
 
 import (
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/measurement/angle"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/numberer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/mather"
 	"github.com/boundedinfinity/go-commoner/idiomatic/mather/trigonometry"
 )
 
-type CartesianCoordinate[T mather.Number] struct {
-	X T
-	Y T
+type CartesianCoordinate struct {
+	X numberer.Number
+	Y numberer.Number
 }
 
-type PolarCoordinate[T AngleNumber] struct {
-	Radius T
-	Angle  Angle[T]
+type PolarCoordinate struct {
+	Radius numberer.Number
+	Angle  angle.Angle
 }
 
-func CartesianToPolar[T AngleNumber](coordinate CartesianCoordinate[T]) PolarCoordinate[T] {
-	return PolarCoordinate[T]{
-		Radius: mather.Sqrt(mather.Pow(coordinate.X, 2) + mather.Pow(coordinate.Y, 2)),
-		Angle: Angle[T]{
-			Magnitude: trigonometry.ArcTangent(coordinate.Y / coordinate.X),
-			Type:      AngleTypes.Radians,
-			Direction: AngleDirections.CounterClockwise,
+func CartesianToPolar(coordinate CartesianCoordinate) PolarCoordinate {
+	x := coordinate.X.Float()
+	y := coordinate.Y.Float()
+	return PolarCoordinate{
+		Radius: numberer.Float(mather.Sqrt(mather.Pow(x, 2) + mather.Pow(y, 2))),
+		Angle: angle.Angle{
+			Magnitude: numberer.Float(trigonometry.ArcTangent(y / x)),
+			Kind:      angle.Kinds.Radian,
+			Direction: angle.Directions.CounterClockwise,
 		},
 	}
 }
 
-func PolarToCartesian[T AngleNumber](coordinate PolarCoordinate[T]) CartesianCoordinate[T] {
+func PolarToCartesian(coordinate PolarCoordinate) CartesianCoordinate {
 	angle := coordinate.Angle.ToRadian()
+	radius := coordinate.Radius.Float()
+	magnitude := angle.Magnitude.Float()
 
-	return CartesianCoordinate[T]{
-		X: coordinate.Radius * trigonometry.Cosine(angle.Magnitude),
-		Y: coordinate.Radius * trigonometry.Sine(angle.Magnitude),
+	return CartesianCoordinate{
+		X: numberer.Float(radius * trigonometry.Cosine(magnitude)),
+		Y: numberer.Float(radius * trigonometry.Sine(magnitude)),
 	}
 }

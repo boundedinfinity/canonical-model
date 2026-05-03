@@ -4,11 +4,9 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/boundedinfinity/go-commoner/idiomatic/slicer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
-
-type Iso4217Code string
-type Iso4217Numeric string
 
 type Iso4217 struct {
 	Country string `json:"country"`
@@ -20,21 +18,23 @@ type Iso4217 struct {
 
 var Iso4217s = iso4217s{}
 
+type iso4217s struct {
+	records []Iso4217
+}
+
 func (this iso4217s) Records() []Iso4217 {
 	return this.records
 }
+func (this iso4217s) FindOk(term string) ([]Iso4217, bool) {
+	lc := stringer.ToLower(term)
+	match := func(item Iso4217) bool {
+		return stringer.Contains(item.Name, lc) ||
+			stringer.Contains(item.Numeric, lc) ||
+			stringer.Contains(item.Country, lc)
+	}
 
-func (this iso4217s) Codes() []Iso4217Code {
-	return this.codes
-}
-
-func (this iso4217s) Numerics() []Iso4217Numeric {
-	return this.numerics
-}
-
-func (this iso4217s) FindRecords(term string) []Iso4217 {
-	items, _ := this.FindRecordsErr(term)
-	return items
+	found := slicer.FilterFunc(match, this.records...)
+	return found, len(found) > 0
 }
 
 var (
@@ -44,20 +44,13 @@ var (
 	}
 )
 
-func (this iso4217s) FindRecordsErr(term string) ([]Iso4217, error) {
-	var items []Iso4217
+func (this iso4217s) FindErr(term string) ([]Iso4217, error) {
+	found, ok := this.FindOk(term)
 	var err error
-	lc := stringer.ToLower(term)
 
-	for i, item := range this.lc {
-		if item.Code == lc || item.Name == lc || item.Numeric == lc || item.Country == lc {
-			items = append(items, this.records[i])
-		}
-	}
-
-	if len(items) == 0 {
+	if !ok {
 		err = errIso4217InvalidFn(term)
 	}
 
-	return items, err
+	return found, err
 }

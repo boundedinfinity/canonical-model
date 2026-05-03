@@ -1,9 +1,9 @@
 package geometry
 
-import "github.com/boundedinfinity/go-commoner/idiomatic/mather"
+import "github.com/boundedinfinity/canonical-model/go/idiomatic/numberer"
 
-type StandardLine[T mather.Number] struct {
-	A T
-	B T
-	C T
+type StandardLine struct {
+	A numberer.Number
+	B numberer.Number
+	C numberer.Number
 }
