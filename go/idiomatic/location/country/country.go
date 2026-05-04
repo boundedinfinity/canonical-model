@@ -5,5 +5,16 @@ import (
 )
 
 type Country struct {
-	Iso iso3166.Country `json:"iso"`
+	Name string          `json:"name"`
+	Iso  iso3166.Country `json:"iso"`
+}
+
+type countries struct {
+	all   []Country
+	toIso map[string]*Country
+}
+
+func (this countries) FindOk(term string) ([]Country, bool) {
+
+	return nil, false
 }

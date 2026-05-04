@@ -1,8 +1,12 @@
 package country
 
-var Countries = countries{}
-
-type countries struct {
+var Countries = countries{
+	all: []Country{
+		{
+			Name: "Afghanistan",
+			Iso:  iso3166.Afghanistan,
+		},
+	},
 }
 
 // func (t countries) ByAlpha2(code string) (CountryInfo, bool) {
