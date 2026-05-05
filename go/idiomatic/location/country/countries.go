@@ -757,20 +757,23 @@ var Countries = countries{
 		Iso:  iso3166.Countries.SaintHelena,
 	},
 	SaintKittsAndNevis: Country{
-		Name: "Saint Kitts and Nevis",
-		Iso:  iso3166.Countries.SaintKittsAndNevis,
+		Name:    "Saint Kitts and Nevis",
+		Aliases: []string{"Saint Kitts", "Nevis"},
+		Iso:     iso3166.Countries.SaintKittsAndNevis,
 	},
 	SaintLucia: Country{
 		Name: "Saint Lucia",
 		Iso:  iso3166.Countries.SaintLucia,
 	},
 	SaintMartin: Country{
-		Name: "Saint Martin (French part)",
-		Iso:  iso3166.Countries.SaintMartin,
+		Name:    "Saint Martin (French part)",
+		Aliases: []string{"Saint Martin"},
+		Iso:     iso3166.Countries.SaintMartin,
 	},
 	SaintPierreAndMiquelon: Country{
-		Name: "Saint Pierre and Miquelon",
-		Iso:  iso3166.Countries.SaintPierreAndMiquelon,
+		Name:    "Saint Pierre and Miquelon",
+		Aliases: []string{"Saint Pierre", "Miquelon"},
+		Iso:     iso3166.Countries.SaintPierreAndMiquelon,
 	},
 	SaintVincentAndTheGrenadines: Country{
 		Name: "Saint Vincent and the Grenadines",
@@ -877,16 +880,18 @@ var Countries = countries{
 		Iso:  iso3166.Countries.Syria,
 	},
 	Taiwan: Country{
-		Name: "Taiwan, Province of China",
-		Iso:  iso3166.Countries.Taiwan,
+		Name:    "Taiwan, Province of China",
+		Aliases: []string{"Taiwan"},
+		Iso:     iso3166.Countries.Taiwan,
 	},
 	Tajikistan: Country{
 		Name: "Tajikistan",
 		Iso:  iso3166.Countries.Tajikistan,
 	},
 	Tanzania: Country{
-		Name: "Tanzania, United Republic of",
-		Iso:  iso3166.Countries.Tanzania,
+		Name:    "United Republic of Tanzania",
+		Aliases: []string{"Tanzania"},
+		Iso:     iso3166.Countries.Tanzania,
 	},
 	Thailand: Country{
 		Name: "Thailand",
@@ -909,24 +914,27 @@ var Countries = countries{
 		Iso:  iso3166.Countries.Tonga,
 	},
 	TrinidadAndTobago: Country{
-		Name: "Trinidad and Tobago",
-		Iso:  iso3166.Countries.TrinidadAndTobago,
+		Name:    "Trinidad and Tobago",
+		Aliases: []string{"Trinidad", "Tabago"},
+		Iso:     iso3166.Countries.TrinidadAndTobago,
 	},
 	Tunisia: Country{
 		Name: "Tunisia",
 		Iso:  iso3166.Countries.Tunisia,
 	},
 	Turkey: Country{
-		Name: "Turkiye",
-		Iso:  iso3166.Countries.Turkey,
+		Name:    "Turkiye",
+		Aliases: []string{"Turkey"},
+		Iso:     iso3166.Countries.Turkey,
 	},
 	Turkmenistan: Country{
 		Name: "Turkmenistan",
 		Iso:  iso3166.Countries.Turkmenistan,
 	},
 	TurksAndCaicosIslands: Country{
-		Name: "Turks and Caicos Islands",
-		Iso:  iso3166.Countries.TurksAndCaicosIslands,
+		Name:    "Turks and Caicos Islands",
+		Aliases: []string{"Turks", "Caicos Islands"},
+		Iso:     iso3166.Countries.TurksAndCaicosIslands,
 	},
 	Tuvalu: Country{
 		Name: "Tuvalu",
@@ -941,16 +949,19 @@ var Countries = countries{
 		Iso:  iso3166.Countries.Ukraine,
 	},
 	UnitedArabEmirates: Country{
-		Name: "United Arab Emirates",
-		Iso:  iso3166.Countries.UnitedArabEmirates,
+		Name:    "United Arab Emirates",
+		Aliases: []string{"UAE"},
+		Iso:     iso3166.Countries.UnitedArabEmirates,
 	},
 	UnitedKingdom: Country{
-		Name: "United Kingdom of Great Britain and Northern Ireland",
-		Iso:  iso3166.Countries.UnitedKingdom,
+		Name:    "United Kingdom of Great Britain and Northern Ireland",
+		Aliases: []string{"UK"},
+		Iso:     iso3166.Countries.UnitedKingdom,
 	},
 	UnitedStates: Country{
-		Name: "United States of America",
-		Iso:  iso3166.Countries.UnitedStates,
+		Name:    "United States of America",
+		Aliases: []string{"US", "USA", "America"},
+		Iso:     iso3166.Countries.UnitedStates,
 	},
 	UnitedStatesMinorOutlyingIslands: Country{
 		Name: "United States Minor Outlying Islands",
@@ -969,8 +980,9 @@ var Countries = countries{
 		Iso:  iso3166.Countries.Vanuatu,
 	},
 	Venezuela: Country{
-		Name: "Venezuela, Bolivarian Republic of",
-		Iso:  iso3166.Countries.Venezuela,
+		Name:    "Bolivarian Republic of Venezuela",
+		Aliases: []string{"Venezuela"},
+		Iso:     iso3166.Countries.Venezuela,
 	},
 	Vietnam: Country{
 		Name: "Viet Nam",
@@ -982,8 +994,9 @@ var Countries = countries{
 		Iso:     iso3166.Countries.BritishVirginIslands,
 	},
 	UnitedStatesVirginIslands: Country{
-		Name: "Virgin Islands (U.S.)",
-		Iso:  iso3166.Countries.UnitedStatesVirginIslands,
+		Name:    "United States Virgin Islands",
+		Aliases: []string{"US Virgin Islands"},
+		Iso:     iso3166.Countries.UnitedStatesVirginIslands,
 	},
 	WallisAndFutuna: Country{
 		Name: "Wallis and Futuna",
@@ -1262,15 +1275,25 @@ func init() {
 
 	Countries.names = make(map[string]*Country)
 
-	for _, country := range Countries.all {
-		name := stringer.ToLower(country.Name)
-		Countries.names[name] = &country
+	chain := []func(string) string{
+		stringer.RemoveDiacritics[string],
+		stringer.ToLower[string],
+	}
 
-		for _, alias := range country.Aliases {
-			alias = stringer.ToLower(alias)
-			if name != alias {
-				Countries.names[alias] = &country
+	for _, country := range Countries.all {
+		add := func(strs ...string) {
+			for _, str := range strs {
+				str = stringer.Chain(str, chain...)
+				if _, ok := Countries.names[str]; !ok {
+					Countries.names[str] = &country
+				}
 			}
 		}
+
+		add(country.Name)
+		add(country.Aliases...)
+		add(country.Iso.Name, country.Iso.Alpha2, country.Iso.Alpha3, country.Iso.Numeric)
+		add(stringer.TrimPrefix(country.Iso.Numeric, "0"))
+		add(stringer.TrimPrefix(country.Iso.Numeric, "00"))
 	}
 }

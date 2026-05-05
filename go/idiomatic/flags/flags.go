@@ -2,5 +2,5 @@ package flag
 
 import "embed"
 
-//go:embed countries/*
+//go:embed img/*
 var flagsFS embed.FS

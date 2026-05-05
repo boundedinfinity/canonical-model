@@ -272,12 +272,21 @@ func (this countries) All() []Country {
 }
 
 func (this countries) FindOk(term string) ([]Country, bool) {
-	lc := stringer.ToLower(term)
+	term = stringer.Chain(term, stringer.RemoveDiacritics, stringer.ToLower)
 	var found []Country
+	var country *Country
 	var ok bool
 
-	if country, ok := this.names[lc]; ok {
+	if country, ok = this.names[term]; ok {
 		found = append(found, *country)
+	}
+
+	if !ok {
+		for name, country := range this.names {
+			if stringer.Contains(name, term) {
+				found = append(found, *country)
+			}
+		}
 	}
 
 	return found, ok
