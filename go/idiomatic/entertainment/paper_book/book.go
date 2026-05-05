@@ -8,7 +8,7 @@ import (
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/entertainment/role"
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/language"
-	"github.com/boundedinfinity/rfc3339date"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/measurement/time"
 )
 
 type Book struct {
@@ -21,7 +21,7 @@ type Book struct {
 	Edition                         int                             `json:"edition"`
 	ListPrice                       currency.Amount                 `json:"list-price"`
 	Publisher                       role.Publisher                  `json:"publisher"`
-	PublishDate                     rfc3339date.Rfc3339Date         `json:"publish-date"`
+	PublishDate                     time.Date                       `json:"publish-date"`
 	PageCount                       int                             `json:"page-count"`
 	WordCount                       int                             `json:"word-count"`
 	Synopsis                        string                          `json:"synopsis"`
