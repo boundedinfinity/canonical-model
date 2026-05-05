@@ -56,6 +56,5 @@ func Test_Country_ByName(t *testing.T) {
 			"expected one with name %s, ISO name %s", entry.Name, entry.Iso.Name)
 		assert.Equal(t, entry.Name, found[0].Name,
 			"expected `name %s, but found %s", entry.Name, found[0].Name)
-
 	}
 }
