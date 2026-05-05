@@ -2,7 +2,7 @@ package physical_card
 
 import (
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/contact"
-	"github.com/boundedinfinity/canonical-model/go/idiomatic/id"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/identifier"
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/location/state"
 	"github.com/boundedinfinity/rfc3339date"
@@ -19,8 +19,8 @@ type DriverLicense struct {
 	ExpirationDate rfc3339date.Rfc3339Date `json:"expiration-date,omitempty"`
 }
 
-var _ id.TypeNamer = &DriverLicense{}
+var _ identifier.TypeNamer = &DriverLicense{}
 
 func (t DriverLicense) TypeName() string {
-	return id.TypeNamers.Dotted(DriverLicense{})
+	return identifier.TypeNamers.Dotted(DriverLicense{})
 }

@@ -2,17 +2,19 @@ package payment_card
 
 import (
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/location/postal_code"
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/modeller"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/person"
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/person/name"
 	"github.com/boundedinfinity/rfc3339date"
 )
 
-var _ modeller.Modeller = &CardModel{}
+var _ modeller.Modeller = &Card{}
 
-type CardModel struct {
+type Card struct {
 	Id               ider.Id                 `json:"id"`
 	Name             string                  `json:"name"`
-	NameOnCard       name.Name               `json:"name-on-card"`
+	Person           person.Person           `json:"name-on-card"`
 	NameFormatter    name.Formatter          `json:"name-formatter"`
 	Kind             Kind                    `json:"kind"`
 	Number           Number                  `json:"number"`
@@ -21,36 +23,37 @@ type CardModel struct {
 	ExpirationDate   rfc3339date.Rfc3339Date `json:"expiration-date"`
 	CardSecurityCode CardVerificationValue   `json:"card-security-code"`
 	PersonalIdNumber string                  `json:"personal-id-number"`
+	PostalCode       postal_code.PostalCode  `json:"postal-code"`
 }
 
-func (this CardModel) GetId() ider.Id {
+func (this Card) GetId() ider.Id {
 	return this.Id
 }
 
-func (this CardModel) GetName() string {
+func (this Card) GetName() string {
 	return this.Name
 }
 
-func (this CardModel) SecurityCode() CardVerificationValue {
+func (this Card) SecurityCode() CardVerificationValue {
 	return this.CardSecurityCode
 }
 
-func (this CardModel) Ccv() CardVerificationValue {
+func (this Card) Ccv() CardVerificationValue {
 	return this.CardSecurityCode
 }
 
-func (this CardModel) Csc() CardVerificationValue {
+func (this Card) Csc() CardVerificationValue {
 	return this.CardSecurityCode
 }
 
-func (this CardModel) Cvc() CardVerificationValue {
+func (this Card) Cvc() CardVerificationValue {
 	return this.CardSecurityCode
 }
 
-func (this CardModel) Cid() CardVerificationValue {
+func (this Card) Cid() CardVerificationValue {
 	return this.CardSecurityCode
 }
 
-func (this CardModel) Pin() string {
+func (this Card) Pin() string {
 	return this.PersonalIdNumber
 }

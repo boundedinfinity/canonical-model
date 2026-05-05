@@ -5,7 +5,7 @@ import (
 )
 
 type CreditCard struct {
-	CardModel
+	Card
 }
 
 var _ payment.Payment = &CreditCard{}

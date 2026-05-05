@@ -2,7 +2,7 @@ package physical_card
 
 import (
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/contact"
-	"github.com/boundedinfinity/canonical-model/go/idiomatic/id"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/identifier"
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/insurance"
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/location/state"
@@ -20,8 +20,8 @@ type HealthInsuranceCard struct {
 	ExpirationDate rfc3339date.Rfc3339Date       `json:"expiration-date,omitempty"`
 }
 
-var _ id.TypeNamer = &HealthInsuranceCard{}
+var _ identifier.TypeNamer = &HealthInsuranceCard{}
 
 func (t HealthInsuranceCard) TypeName() string {
-	return id.TypeNamers.Dotted(HealthInsuranceCard{})
+	return identifier.TypeNamers.Dotted(HealthInsuranceCard{})
 }

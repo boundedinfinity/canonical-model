@@ -1,7 +1,7 @@
 package country
 
 import (
-	"github.com/boundedinfinity/canonical-model/go/idiomatic/id"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/identifier"
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 )
 
@@ -11,10 +11,10 @@ type State struct {
 	Code string  `json:"code,omitempty"`
 }
 
-var _ id.TypeNamer = &State{}
+var _ identifier.TypeNamer = &State{}
 
 func (t State) TypeName() string {
-	return id.TypeNamers.Dotted(State{})
+	return identifier.TypeNamers.Dotted(State{})
 }
 
 func (t State) String() string {

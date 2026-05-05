@@ -1,7 +1,7 @@
 package physical_card
 
 import (
-	"github.com/boundedinfinity/canonical-model/go/idiomatic/id"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/identifier"
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/person/name"
 	"github.com/boundedinfinity/rfc3339date"
@@ -29,8 +29,8 @@ type CreditCard struct {
 	// Site bookmark.Bookmark `json:"site,omitempty"`
 }
 
-var _ id.TypeNamer = &CreditCard{}
+var _ identifier.TypeNamer = &CreditCard{}
 
 func (t CreditCard) TypeName() string {
-	return id.TypeNamers.Dotted(CreditCard{})
+	return identifier.TypeNamers.Dotted(CreditCard{})
 }
