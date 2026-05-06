@@ -1,75 +1,47 @@
-package country
+package fifa
 
-import (
-	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
-)
+import "github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 
 // https://en.wikipedia.org/wiki/List_of_FIFA_country_codes
 
-type FifaCountryCode struct {
-	Name string `json:"name,omitempty"`
-	Code string `json:"code,omitempty"`
+var Countries = countries{
+	Afghanistan: Country{
+		Name: "Afghanistan",
+		Code: "AFG",
+	},
+	Albania: Country{
+		Name: "Albania",
+		Code: "ALB",
+	},
 }
 
 func init() {
-	// for _, line := range stringer.Split(fifaData, "\n") {
-	// 	line = stringer.TrimSpace(line)
-
-	// 	if stringer.IsEmpty(line) {
-	// 		continue
-	// 	}
-
-	// 	fields := slicer.Map(func(s string) string {
-	// 		return stringer.Trim(s, `"`)
-	// 	}, stringer.Split(line, "|")...)
-
-	// 	if len(fields) != 2 {
-	// 		continue
-	// 	}
-
-	// 	country := FifaCountryCode{
-	// 		Name: fields[0],
-	// 		Code: fields[1],
-	// 	}
-
-	// 	FifaCountryCodes.codeToCountry[country.Code] = country
-	// 	FifaCountryCodes.nameToCountry[country.Name] = country
-	// 	FifaCountryCodes.Values = append(FifaCountryCodes.Values, country)
-	// }
-}
-
-type fifaCountryCodes struct {
-	Values        []FifaCountryCode
-	nameToCountry map[string]FifaCountryCode
-	codeToCountry map[string]FifaCountryCode
-}
-
-func (t fifaCountryCodes) Lookup(s string) (FifaCountryCode, bool) {
-	var country FifaCountryCode
-	var found bool
-
-	country, found = t.ByName(s)
-
-	if !found {
-		country, found = t.ByCode(s)
+	Countries.all = []Country{
+		Countries.Afghanistan,
+		Countries.Albania,
 	}
 
-	return country, found
-}
+	chain := []func(string) string{
+		stringer.RemoveDiacritics[string],
+		stringer.ToLower[string],
+	}
 
-func (t fifaCountryCodes) ByName(s string) (FifaCountryCode, bool) {
-	country, ok := t.nameToCountry[stringer.ToLower(s)]
-	return country, ok
-}
+	for _, country := range Countries.all {
+		add := func(strs ...string) {
+			for _, str := range strs {
+				str = stringer.Chain(str, chain...)
+				if _, ok := Countries.names[str]; !ok {
+					Countries.names[str] = &country
+				}
+			}
+		}
 
-func (t fifaCountryCodes) ByCode(s string) (FifaCountryCode, bool) {
-	country, ok := t.codeToCountry[stringer.ToLower(s)]
-	return country, ok
+		add(country.Name, country.Code)
+	}
 }
 
 var (
-	FifaCountryCodes = fifaCountryCodes{}
-	fifaData         = `
+	fifaData = `
         Afghanistan|AFG
         Albania|ALB
         Algeria|ALG

@@ -1,6 +1,8 @@
 package country
 
 import (
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/specification/fifa"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/specification/ioc"
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/specification/iso/iso3166"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
@@ -9,22 +11,28 @@ var Countries = countries{
 	Afghanistan: Country{
 		Name: "Afghanistan",
 		Iso:  iso3166.Countries.Afghanistan,
+		Fifa: fifa.Countries.Afghanistan,
+		Ioc:  ioc.Countries.Afghanistan,
 	},
 	AlandIslands: Country{
 		Name: "Åland Islands",
 		Iso:  iso3166.Countries.AlandIslands,
+		Fifa: fifa.Countries.AlandIslands,
+		Ioc:  ioc.Countries.AlandIslands,
 	},
 	Albania: Country{
 		Name: "Albania",
 		Iso:  iso3166.Countries.Albania,
+		Fifa: fifa.Countries.Albania,
 	},
 	Algeria: Country{
 		Name: "Algeria",
 		Iso:  iso3166.Countries.Algeria,
 	},
 	AmericanSamoa: Country{
-		Name: "American Samoa",
-		Iso:  iso3166.Countries.AmericanSamoa,
+		Name:    "American Samoa",
+		Aliases: []string{"Samoa"},
+		Iso:     iso3166.Countries.AmericanSamoa,
 	},
 	Andorra: Country{
 		Name: "Andorra",
@@ -43,8 +51,9 @@ var Countries = countries{
 		Iso:  iso3166.Countries.Antarctica,
 	},
 	AntiguaAndBarbuda: Country{
-		Name: "Antigua and Barbuda",
-		Iso:  iso3166.Countries.AntiguaAndBarbuda,
+		Name:    "Antigua and Barbuda",
+		Aliases: []string{"Antigua", "Barbuda"},
+		Iso:     iso3166.Countries.AntiguaAndBarbuda,
 	},
 	Argentina: Country{
 		Name: "Argentina",
@@ -111,16 +120,18 @@ var Countries = countries{
 		Iso:  iso3166.Countries.Bhutan,
 	},
 	Bolivia: Country{
-		Name: "Bolivia, Plurinational State of",
-		Iso:  iso3166.Countries.Bolivia,
+		Name:    "Plurinational State of Bolivia",
+		Aliases: []string{"Bolivia"},
+		Iso:     iso3166.Countries.Bolivia,
 	},
 	Bonaire: Country{
-		Name: "Bonaire, Sint Eustatius and Saba",
+		Name: "Sint Eustatius and Saba Bonaire",
 		Iso:  iso3166.Countries.Bonaire,
 	},
 	BosniaAndHerzegovina: Country{
-		Name: "Bosnia and Herzegovina",
-		Iso:  iso3166.Countries.BosniaAndHerzegovina,
+		Name:    "Bosnia and Herzegovina",
+		Aliases: []string{"Bosnia", "Herzegovina"},
+		Iso:     iso3166.Countries.BosniaAndHerzegovina,
 	},
 	Botswana: Country{
 		Name: "Botswana",
@@ -171,8 +182,9 @@ var Countries = countries{
 		Iso:  iso3166.Countries.Canada,
 	},
 	CaymanIslands: Country{
-		Name: "Cayman Islands",
-		Iso:  iso3166.Countries.CaymanIslands,
+		Name:    "Cayman Islands",
+		Aliases: []string{"Caymans"},
+		Iso:     iso3166.Countries.CaymanIslands,
 	},
 	CentralAfricanRepublic: Country{
 		Name: "Central African Republic",
@@ -195,8 +207,9 @@ var Countries = countries{
 		Iso:  iso3166.Countries.ChristmasIsland,
 	},
 	CocosIslands: Country{
-		Name: "Cocos (Keeling) Islands",
-		Iso:  iso3166.Countries.CocosIslands,
+		Name:    "Cocos (Keeling) Islands",
+		Aliases: []string{"Coco Islands", "Keeling Islands"},
+		Iso:     iso3166.Countries.CocosIslands,
 	},
 	Columbia: Country{
 		Name: "Colombia",
@@ -211,8 +224,9 @@ var Countries = countries{
 		Iso:  iso3166.Countries.Congo,
 	},
 	DemocraticRepublicOfTheCongo: Country{
-		Name: "Democratic Republic of the Congo",
-		Iso:  iso3166.Countries.DemocraticRepublicOfTheCongo,
+		Name:    "Democratic Republic of the Congo",
+		Aliases: []string{"Congo"},
+		Iso:     iso3166.Countries.DemocraticRepublicOfTheCongo,
 	},
 	CookIslands: Country{
 		Name: "Cook Islands",
@@ -295,8 +309,9 @@ var Countries = countries{
 		Iso:  iso3166.Countries.Ethiopia,
 	},
 	FalklandIslands: Country{
-		Name: "Falkland Islands (Malvinas)",
-		Iso:  iso3166.Countries.FalklandIslands,
+		Name:    "Falkland Islands (Malvinas)",
+		Aliases: []string{"Falkland Islands"},
+		Iso:     iso3166.Countries.FalklandIslands,
 	},
 	FaroeIslands: Country{
 		Name: "Faroe Islands",
@@ -395,12 +410,14 @@ var Countries = countries{
 		Iso:  iso3166.Countries.Haiti,
 	},
 	HeardIslandAndMcDonaldIslands: Country{
-		Name: "Heard Island and McDonald Islands",
-		Iso:  iso3166.Countries.HeardIslandAndMcDonaldIslands,
+		Name:    "Heard Island and McDonald Islands",
+		Aliases: []string{"Heard Island", "McDonald Islands"},
+		Iso:     iso3166.Countries.HeardIslandAndMcDonaldIslands,
 	},
 	HolySee: Country{
-		Name: "Holy See",
-		Iso:  iso3166.Countries.HolySee,
+		Name:    "Holy See",
+		Aliases: []string{"Vatican"},
+		Iso:     iso3166.Countries.HolySee,
 	},
 	Honduras: Country{
 		Name: "Honduras",
@@ -427,8 +444,9 @@ var Countries = countries{
 		Iso:  iso3166.Countries.Indonesia,
 	},
 	Iran: Country{
-		Name: "Iran, Islamic Republic of",
-		Iso:  iso3166.Countries.Iran,
+		Name:    "Islamic Republic of Iran",
+		Aliases: []string{"Iran"},
+		Iso:     iso3166.Countries.Iran,
 	},
 	Iraq: Country{
 		Name: "Iraq",
@@ -479,12 +497,12 @@ var Countries = countries{
 		Iso:  iso3166.Countries.Kiribati,
 	},
 	DemocraticPeoplesRepublicOfKorea: Country{
-		Name:    "Korea, Democratic People's Republic of",
+		Name:    "Democratic People's Republic of Korea",
 		Aliases: []string{"North Korea"},
 		Iso:     iso3166.Countries.DemocraticPeoplesRepublicOfKorea,
 	},
 	RepublicOfKorea: Country{
-		Name:    "Korea, Republic of",
+		Name:    "Republic of Korea",
 		Aliases: []string{"South Korea"},
 		Iso:     iso3166.Countries.RepublicOfKorea,
 	},
@@ -497,8 +515,9 @@ var Countries = countries{
 		Iso:  iso3166.Countries.Kyrgyzstan,
 	},
 	LaoPeoplesDemocraticRepublic: Country{
-		Name: "Lao People's Democratic Republic",
-		Iso:  iso3166.Countries.LaoPeoplesDemocraticRepublic,
+		Name:    "Lao People's Democratic Republic",
+		Aliases: []string{"Lao"},
+		Iso:     iso3166.Countries.LaoPeoplesDemocraticRepublic,
 	},
 	Latvia: Country{
 		Name: "Latvia",
@@ -1295,5 +1314,9 @@ func init() {
 		add(country.Iso.Name, country.Iso.Alpha2, country.Iso.Alpha3, country.Iso.Numeric)
 		add(stringer.TrimPrefix(country.Iso.Numeric, "0"))
 		add(stringer.TrimPrefix(country.Iso.Numeric, "00"))
+		add(country.Fifa.Name, country.Fifa.Code)
+		add(country.Ioc.Name, country.Ioc.Code)
+		add(country.Fips.Name, country.Fips.Code)
+		add(country.Genc.Name, country.Genc.Code)
 	}
 }

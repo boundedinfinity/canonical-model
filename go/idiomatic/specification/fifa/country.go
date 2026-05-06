@@ -1,22 +1,8 @@
-package country
-
-import (
-	"github.com/boundedinfinity/canonical-model/go/idiomatic/specification/fifa"
-	"github.com/boundedinfinity/canonical-model/go/idiomatic/specification/fips"
-	"github.com/boundedinfinity/canonical-model/go/idiomatic/specification/genc"
-	"github.com/boundedinfinity/canonical-model/go/idiomatic/specification/ioc"
-	"github.com/boundedinfinity/canonical-model/go/idiomatic/specification/iso/iso3166"
-	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
-)
+package fifa
 
 type Country struct {
-	Name    string          `json:"name"`
-	Aliases []string        `json:"aliases"`
-	Iso     iso3166.Country `json:"iso"`
-	Fifa    fifa.Country    `json:"fifa"`
-	Ioc     ioc.Country     `json:"ioc"`
-	Fips    fips.Country    `json:"fips"`
-	Genc    genc.Country    `json:"genc"`
+	Name string `json:"name,omitempty,omitzero"`
+	Code string `json:"code,omitempty,omitzero"`
 }
 
 type countries struct {
@@ -277,25 +263,4 @@ type countries struct {
 
 func (this countries) All() []Country {
 	return this.all[:]
-}
-
-func (this countries) FindOk(term string) ([]Country, bool) {
-	term = stringer.Chain(term, stringer.RemoveDiacritics, stringer.ToLower)
-	var found []Country
-	var country *Country
-	var ok bool
-
-	if country, ok = this.names[term]; ok {
-		found = append(found, *country)
-	}
-
-	if !ok {
-		for name, country := range this.names {
-			if stringer.Contains(name, term) {
-				found = append(found, *country)
-			}
-		}
-	}
-
-	return found, ok
 }
