@@ -1,4 +1,4 @@
-package measurement
+package electrical
 
 type Electrical struct {
 	Capacity string `json:"capacity,omitempty"`

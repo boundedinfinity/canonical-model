@@ -1,3 +1,3 @@
-package measurement
+package mass
 
 // https://en.wikipedia.org/wiki/Apothecaries%27_system
