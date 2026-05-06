@@ -5,6 +5,10 @@ type DateRange struct {
 	End   Date `json:"end"`
 }
 
+func (this DateRange) String() string {
+	return this.Start.String() + " - " + this.End.String()
+}
+
 func (this DateRange) IsZero() bool {
 	return this.Start.IsZero() && this.End.IsZero()
 }

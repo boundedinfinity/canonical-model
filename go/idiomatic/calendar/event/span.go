@@ -2,13 +2,29 @@ package event
 
 import (
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/measurement/time"
 )
 
-// SpanEventModel represents a span of time.  Typically used for things like a vacation or a trip which spans
-// multiple days or even weeks.
-func Span(name string, abbreviations []string, description string) Event {
-	return Event{
-		Id:   ider.New(),
-		Kind: Kinds.Span,
+var _ Event = &SpanEvent{}
+
+func Span(r time.DateRange) Event {
+	return &SpanEvent{
+		Id:    ider.New(),
+		Range: r,
 	}
+}
+
+type SpanEvent struct {
+	Id          ider.Id
+	Range       time.DateRange
+	Description string
+	Internal    time.Interval
+}
+
+func (this SpanEvent) Kind() Kind {
+	return Kinds.Span
+}
+
+func (this SpanEvent) String() string {
+	return "Span Event: " + this.Description + " (" + this.Range.String() + ")"
 }

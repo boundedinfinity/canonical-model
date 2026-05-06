@@ -2,6 +2,10 @@ package time
 
 type Date struct{}
 
+func (this Date) String() string {
+	return "Date"
+}
+
 func (this Date) IsZero() bool {
 	return true
 }

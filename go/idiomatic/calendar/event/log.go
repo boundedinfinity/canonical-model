@@ -2,19 +2,43 @@ package event
 
 import (
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
+	"github.com/boundedinfinity/canonical-model/go/idiomatic/measurement/time"
 )
 
-// Log represents an event that happened which needs to be tracked or remembered.  Typically used for things
-// like the last time an air filter was changed or when you spoke with someome on the phone last.
-func Log(title string, abbreviations []string, description string) Event {
-	return Event{
+var _ Event = &LogEvent{}
+
+func LoggerNow(title string) func() Event {
+	return func() Event {
+		return LogNow(title)
+	}
+}
+
+func LogNow(title string) Event {
+	return &LogEvent{
 		Id:    ider.New(),
-		Kind:  Kinds.Log,
+		Range: time.DateRange{}, // Assuming LogNow uses the current date range
 		Title: title,
 	}
 }
 
-// TODO: Want a way to track a thread of related log events.  Like when you're logging
-// a process over time, and want to track how long it took.  This may be things like
-// a home repair project with where you need to speak with mulitple contractors and need
-// to track when and who you spoke with and maybe what was discussed.
+func Log(title string, r time.DateRange) Event {
+	return &LogEvent{
+		Id:    ider.New(),
+		Range: r,
+		Title: title,
+	}
+}
+
+type LogEvent struct {
+	Id    ider.Id
+	Title string
+	Range time.DateRange
+}
+
+func (this LogEvent) Kind() Kind {
+	return Kinds.Log
+}
+
+func (this LogEvent) String() string {
+	return "Log Event: " + this.Title + " (" + this.Range.String() + ")"
+}
