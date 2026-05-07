@@ -8,7 +8,6 @@ git-push:
     git commit -m "{{ m }}" || true
     git push origin master
 
-
 test:
 	cd example/go && just test
 
