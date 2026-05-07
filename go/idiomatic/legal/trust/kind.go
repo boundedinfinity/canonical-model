@@ -17,3 +17,15 @@ type kinds struct {
 	Community    Kind
 	Living       Kind
 }
+
+type Type string
+
+var Types = types{
+	Revocable:   "legal.type.revocable",
+	Irrevocable: "legal.type.irrevocable",
+}
+
+type types struct {
+	Revocable   Type
+	Irrevocable Type
+}

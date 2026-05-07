@@ -11,4 +11,5 @@ type Trust struct {
 	Grantor     grantor.Grantor
 	Trustee     trustee.Trustee
 	Beneficiary benificiary.Benificiary
+	Type        Type
 }

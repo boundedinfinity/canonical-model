@@ -1,0 +1,36 @@
+- https://trustandwill.com/learn/certificate-of-trust
+    - state code:
+        - Alabama - Ala. Code §§ 19-38-1013
+        - Arizona - Ariz. Rev Stat. s § 14-11013
+        - Arkansas - Ark. Rev. Stat. § 28-73-1013
+        - California - Cal. Prob. Code § 18100.5
+        - Delaware - 12 Del. Code Ann. § 3591
+        - District of Columbia - D.C. Code Ann. § 19-1310.13
+        - Florida - Fla. Stat. Ann. § 736.1017
+        - Idaho - Idaho Code § 68-115
+        - Iowa - Iowa Code § 633A.4604
+        - Indiana - Ind. Code § 30-4-4-5
+        - Kansas - Kan. Stat. Ann. § 58a-1013
+        - Maine - Me. Rev. Stat. tit. 18-B, § 1013
+        - Michigan - Mich. Comp. Laws Ann. § 565.432
+        - Minnesota - Minn. Stat. § 501B.56
+        - Mississippi - Miss. Code Ann. § 91-9-7
+        - Missouri - Mo. Rev. Stat. § 456.10-1013
+        - Nebraska - Neb. Rev. Stat. § 30-38,102 and following
+        - Nevada - Nev. Rev. Stat. § 164.410
+        - New Hampshire - N.H. Rev. Stat. Ann. § 564-B:10-1013
+        - New Mexico - N.M. Stat. Ann. § 46A-10-1013
+        - North Carolina - N.C. Gen. Stat. § 36C-10-1013
+        - North Dakota - N.D. Cent. Code § 59-18-13
+        - Ohio - Ohio Rev. Code § 5810.13
+        - Oregon - Or. Rev. Stat. § 130.860
+        - Pennsylvania - 20 Pa. Cons. Stat. Ann. § 7790.3
+        - Rhode Island - R.I. Gen. Laws § 34-4-27
+        - South Carolina - S.C. Code Ann. § 62-7-1013
+        - South Dakota - S.D. Cod. Laws Ann. § 55-4-42
+        - Tennessee - Tenn. Code Ann. § 35-15-1013
+        - Texas - Tex. Prop. Code § 114-086
+        - Utah - Utah Code Ann. § 75-7-1013
+        - Virginia - Va. Code § 55-550.13
+        - West Virginia - W.Va. Code § 36-1-4a
+        - Wyoming - Wyo. Stat. § 4-10-1014
