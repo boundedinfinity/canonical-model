@@ -33,6 +33,7 @@ type Business struct {
 	DissolutionDate    rfc3339date.Rfc3339Date   `json:"dissolution-date,omitempty"`
 	OperatingAgreement OperatingAgreement        `json:"operating-agreement,omitempty"`
 	EntityType         EntityType                `json:"entity-type,omitempty"`
+	RegisteredAgent    RegisteredAgent           `json:"registered-agent,omitempty"`
 }
 
 type Member struct {
