@@ -1,0 +1,89 @@
+package vehicle
+
+type Make string
+
+var Makes = makes{
+	Acura:              "vehical.make.acura",
+	AlfaRomeo:          "vehical.make.alfa-romeo",
+	Audi:               "vehical.make.audi",
+	BavarianMotorWorks: "vehical.make.bavarian-motor-works",
+	Buick:              "vehical.make.buick",
+	Cadillac:           "vehical.make.cadillac",
+	Chevrolet:          "vehical.make.chevrolet",
+	Chrysler:           "vehical.make.chrysler",
+	Dodge:              "vehical.make.dodge",
+	Fiat:               "vehical.make.fiat",
+	Ford:               "vehical.make.ford",
+	Genesis:            "vehical.make.genesis",
+	GMC:                "vehical.make.gmc",
+	Honda:              "vehical.make.honda",
+	Hyundai:            "vehical.make.hyundai",
+	Infinity:           "vehical.make.infinity",
+	Jaguar:             "vehical.make.jaguar",
+	Jeep:               "vehical.make.jeep",
+	Kia:                "vehical.make.kia",
+	LandRover:          "vehical.make.land-rover",
+	Lexus:              "vehical.make.lexus",
+	Lincoln:            "vehical.make.lincoln",
+	Lucid:              "vehical.make.lucid",
+	Maserati:           "vehical.make.maserati",
+	Mazda:              "vehical.make.mazda",
+	MercedesBenz:       "vehical.make.mercedes-benz",
+	Mini:               "vehical.make.mini",
+	Mitsubishi:         "vehical.make.mitsubishi",
+	Nissan:             "vehical.make.nissan",
+	Polestar:           "vehical.make.polestar",
+	Porsche:            "vehical.make.porsche",
+	Ram:                "vehical.make.ram",
+	Rivian:             "vehical.make.rivian",
+	Scion:              "vehical.make.scion",
+	Smart:              "vehical.make.smart",
+	Subaru:             "vehical.make.subaru",
+	Tesla:              "vehical.make.tesla",
+	Toyota:             "vehical.make.toyota",
+	Volkswagen:         "vehical.make.volkswagen",
+	Volvo:              "vehical.make.volvo",
+}
+
+type makes struct {
+	Acura              Make
+	AlfaRomeo          Make
+	Audi               Make
+	BavarianMotorWorks Make
+	Buick              Make
+	Cadillac           Make
+	Chevrolet          Make
+	Chrysler           Make
+	Dodge              Make
+	Fiat               Make
+	Ford               Make
+	Genesis            Make
+	GMC                Make
+	Honda              Make
+	Hyundai            Make
+	Infinity           Make
+	Jaguar             Make
+	Jeep               Make
+	Kia                Make
+	LandRover          Make
+	Lexus              Make
+	Lincoln            Make
+	Lucid              Make
+	Maserati           Make
+	Mazda              Make
+	MercedesBenz       Make
+	Mini               Make
+	Mitsubishi         Make
+	Nissan             Make
+	Polestar           Make
+	Porsche            Make
+	Ram                Make
+	Rivian             Make
+	Scion              Make
+	Smart              Make
+	Subaru             Make
+	Tesla              Make
+	Toyota             Make
+	Volkswagen         Make
+	Volvo              Make
+}

@@ -1,0 +1,97 @@
+package vehicle
+
+type Feature string
+
+var Feactures = features{
+	Camera360:                     "vehicle.feature.360-camera",
+	ActiveLaneKeepAssistance:      "vehicle.feature.active-lane-keep-assistance",
+	AdaptiveCruiseControl:         "vehicle.feature.adaptive-cruise-control",
+	AlloyWheels:                   "vehicle.feature.alloy-wheels",
+	AndroidAuto:                   "vehicle.feature.android-auto",
+	AppleCarplay:                  "vehicle.feature.apple-carplay",
+	AutomaticEmergencyBraking:     "vehicle.feature.automatic-emergency-braking",
+	AutomaticSelfParking:          "vehicle.feature.automatic-self-parking",
+	BlindspotSensors:              "vehicle.feature.blindspot-sensors",
+	BluetoothMusic:                "vehicle.feature.bluetooth-music",
+	CooledSeats:                   "vehicle.feature.cooled-seats",
+	DvdVideo:                      "vehicle.feature.dvd-video",
+	FoldDownRearSeats:             "vehicle.feature.fold-down-rear-seats",
+	GpsNavigation:                 "vehicle.feature.gps-navigation",
+	HandsFreeCalling:              "vehicle.feature.hands-free-calling",
+	HeadsUpDisplay:                "vehicle.feature.heads-up-display",
+	HeatedMirrors:                 "vehicle.feature.heated-mirrors",
+	HeatedSeats:                   "vehicle.feature.heated-seats",
+	HeatedSteeringWheel:           "vehicle.feature.heated-steering-wheel",
+	HomeLink:                      "vehicle.feature.home-link",
+	KeylessIgnition:               "vehicle.feature.keyless-ignition",
+	LaneDepartureWarning:          "vehicle.feature.lane-departure-warning",
+	LeatherInterior:               "vehicle.feature.leather-interior",
+	ParkAssist:                    "vehicle.feature.park-assist",
+	PowerAdjustablePedals:         "vehicle.feature.power-adjustable-pedals",
+	PowerDriverSeat:               "vehicle.feature.power-driver-seat",
+	PowerMirrors:                  "vehicle.feature.power-mirrors",
+	PowerPassengerSeat:            "vehicle.feature.power-passenger-seat",
+	PowerSlidingDoors:             "vehicle.feature.power-sliding-doors",
+	PowerTailgateHatch:            "vehicle.feature.power-tailgate-hatch",
+	PremiumSound:                  "vehicle.feature.premium-sound",
+	RearSeatEntertainment:         "vehicle.feature.rear-seat-entertainment",
+	RearViewCamera:                "vehicle.feature.rear-view-camera",
+	RemoteStart:                   "vehicle.feature.remote-start",
+	SatelliteRadio:                "vehicle.feature.satellite-radio",
+	Sunroof:                       "vehicle.feature.sunroof",
+	ThirdRowSeat:                  "vehicle.feature.third-row-seat",
+	TiltWheel:                     "vehicle.feature.tilt-wheel",
+	TowHitch:                      "vehicle.feature.tow-hitch",
+	TrailerBrakeController:        "vehicle.feature.trailer-brake-controller",
+	TrailerTowingConnector:        "vehicle.feature.trailer-towing-connector",
+	UsbInput:                      "vehicle.feature.usb-input",
+	WiFiHotSpot:                   "vehicle.feature.wifi-hot-spot",
+	XenonHidLedHeadlampsTaillamps: "vehicle.feature.xenon-hid-led-headlamps-taillamps",
+}
+
+type features struct {
+	Camera360                     Feature
+	ActiveLaneKeepAssistance      Feature
+	AdaptiveCruiseControl         Feature
+	AlloyWheels                   Feature
+	AndroidAuto                   Feature
+	AppleCarplay                  Feature
+	AutomaticEmergencyBraking     Feature
+	AutomaticSelfParking          Feature
+	BlindspotSensors              Feature
+	BluetoothMusic                Feature
+	CooledSeats                   Feature
+	DvdVideo                      Feature
+	FoldDownRearSeats             Feature
+	GpsNavigation                 Feature
+	HandsFreeCalling              Feature
+	HeadsUpDisplay                Feature
+	HeatedMirrors                 Feature
+	HeatedSeats                   Feature
+	HeatedSteeringWheel           Feature
+	HomeLink                      Feature
+	KeylessIgnition               Feature
+	LaneDepartureWarning          Feature
+	LeatherInterior               Feature
+	ParkAssist                    Feature
+	PowerAdjustablePedals         Feature
+	PowerDriverSeat               Feature
+	PowerMirrors                  Feature
+	PowerPassengerSeat            Feature
+	PowerSlidingDoors             Feature
+	PowerTailgateHatch            Feature
+	PremiumSound                  Feature
+	RearSeatEntertainment         Feature
+	RearViewCamera                Feature
+	RemoteStart                   Feature
+	SatelliteRadio                Feature
+	Sunroof                       Feature
+	ThirdRowSeat                  Feature
+	TiltWheel                     Feature
+	TowHitch                      Feature
+	TrailerBrakeController        Feature
+	TrailerTowingConnector        Feature
+	UsbInput                      Feature
+	WiFiHotSpot                   Feature
+	XenonHidLedHeadlampsTaillamps Feature
+}
