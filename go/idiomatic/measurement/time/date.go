@@ -1,6 +1,10 @@
 package time
 
-type Date struct{}
+type Date struct {
+	Year  Year
+	Month Month
+	Day   DayOfMonth
+}
 
 func (this Date) String() string {
 	return "Date"

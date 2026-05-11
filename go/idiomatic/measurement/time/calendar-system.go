@@ -11,23 +11,26 @@ package time
 type CalendarSystem string
 
 type calendarSystems struct {
-	Unknown    CalendarSystem
-	Gregorian  CalendarSystem
-	Julian     CalendarSystem
-	Islamic    CalendarSystem
-	Hebrew     CalendarSystem
-	Coptic     CalendarSystem
-	SolarHijri CalendarSystem
-	Bengali    CalendarSystem
+	Unknown      CalendarSystem
+	Gregorian    CalendarSystem
+	Julian       CalendarSystem
+	Islamic      CalendarSystem
+	Hebrew       CalendarSystem
+	Coptic       CalendarSystem
+	SolarHijri   CalendarSystem
+	VikramSamvat CalendarSystem
+	Bengali      CalendarSystem
+	UnixEpoch    CalendarSystem
 }
 
 var CalendarSystems = calendarSystems{
-	Unknown:    "time.calendar-system.unknown",
-	Gregorian:  "time.calendar-system.gregorian",
-	Julian:     "time.calendar-system.julian",
-	Islamic:    "time.calendar-system.islamic",
-	Hebrew:     "time.calendar-system.hebrew",
-	Coptic:     "time.calendar-system.coptic",
-	SolarHijri: "time.calendar-system.solar_hijri",
-	Bengali:    "time.calendar-system.bengali",
+	Unknown:      "measurement.time.calendar-system.unknown",
+	Gregorian:    "measurement.time.calendar-system.gregorian",
+	Julian:       "measurement.time.calendar-system.julian",
+	Islamic:      "measurement.time.calendar-system.islamic",
+	Hebrew:       "measurement.time.calendar-system.hebrew",
+	Coptic:       "measurement.time.calendar-system.coptic",
+	SolarHijri:   "measurement.time.calendar-system.solar-hijri",
+	VikramSamvat: "measurement.time.calendar-system.vikram-samvat",
+	Bengali:      "measurement.time.calendar-system.bengali",
 }

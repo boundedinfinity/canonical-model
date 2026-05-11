@@ -1,4 +1,4 @@
-package model
+package modeller
 
 type jsonInterface interface {
 	MarshalJSON() ([]byte, error)
