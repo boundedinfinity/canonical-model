@@ -20,22 +20,24 @@ type kinds struct {
 	WireTransfer            Kind
 	BitCoin                 Kind
 	WesternUnion            Kind
+	Cash                    Kind
 }
 
 var Kinds = kinds{
-	Unknown:                 "unknown",
-	ApplePay:                "apple-pay",
-	CreditCard:              "credit-card",
-	DebitCard:               "debit-card",
-	GooglePay:               "google-pay",
-	Venmo:                   "venmo",
-	PayPal:                  "paypal",
-	Phone:                   "phone",
-	Mail:                    "mail",
-	PrivacyCom:              "privacy.com",
-	AutomatedClearningHouse: "ach",
-	Zelle:                   "zelle",
-	WireTransfer:            "wire-transfer",
-	BitCoin:                 "bitcoin",
-	WesternUnion:            "western-union",
+	Unknown:                 "payment.unknown",
+	ApplePay:                "payment.apple-pay",
+	CreditCard:              "payment.credit-card",
+	DebitCard:               "payment.debit-card",
+	GooglePay:               "payment.google-pay",
+	Venmo:                   "payment.venmo",
+	PayPal:                  "payment.paypal",
+	Phone:                   "payment.phone",
+	Mail:                    "payment.mail",
+	PrivacyCom:              "payment.privacy-com",
+	AutomatedClearningHouse: "payment.ach",
+	Zelle:                   "payment.zelle",
+	WireTransfer:            "payment.wire-transfer",
+	BitCoin:                 "payment.bitcoin",
+	WesternUnion:            "payment.western-union",
+	Cash:                    "payment.cash",
 }
