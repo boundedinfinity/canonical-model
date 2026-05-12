@@ -14,8 +14,8 @@ type Authenticator struct {
 }
 
 type TwoFactorMethod struct {
-	Id            ider.Id            `json:"id"`
-	Authenticator Authenticator      `json:"authenticator"`
-	Phone         []phone.PhoneModel `json:"phone"`
-	Email         []email.Email      `json:"email"`
+	Id            ider.Id       `json:"id"`
+	Authenticator Authenticator `json:"authenticator"`
+	Phone         []phone.Phone `json:"phone"`
+	Email         []email.Email `json:"email"`
 }

@@ -8,9 +8,9 @@ import (
 var _ Delivery = &VoiceModel{}
 
 type VoiceModel struct {
-	Id    ider.Id          `json:"id"`
-	Name  string           `json:"name"`
-	Phone phone.PhoneModel `json:"phone"`
+	Id    ider.Id     `json:"id"`
+	Name  string      `json:"name"`
+	Phone phone.Phone `json:"phone"`
 }
 
 func (this VoiceModel) GetName() string {

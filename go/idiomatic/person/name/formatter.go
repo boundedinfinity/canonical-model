@@ -89,10 +89,7 @@ func (this *Formatter) Parse() error {
 	matches := regex1.FindAllStringSubmatch(this.Pattern, -1)
 
 	for _, match := range matches {
-		context := formatterContext{
-			replace: match[0],
-		}
-
+		context := formatterContext{replace: match[0]}
 		components := stringer.Split(match[1], ":")
 
 		if counted, err := getCounted(components[0]); err != nil {
@@ -123,14 +120,14 @@ func (this *Formatter) Parse() error {
 					}
 
 					context.fns = append(context.fns, func(s string) string {
-						return stringer.TruncateEnd(s, counted.count)
+						return stringer.TruncateEnd(s, counted.count, "")
 					})
 				case "normalize":
 					if counted.count < 0 {
 						return errFormatPatternFn("%s : %s count must be positive number", context.replace, counted)
 					} else if counted.count > 0 {
 						context.fns = append(context.fns, func(s string) string {
-							return stringer.TruncateEnd(s, counted.count)
+							return stringer.TruncateEnd(s, counted.count, "")
 						})
 					}
 

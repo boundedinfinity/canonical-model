@@ -20,7 +20,7 @@ type PerscriptionModel struct {
 	Directions     string                             `json:"directions"`
 	Phramaceutical pharmaceutical.PhramaceuticalModel `json:"phramaceutical"`
 	Count          int                                `json:"count"`
-	Phone          phone.PhoneModel                   `json:"phone"`
+	Phone          phone.Phone                        `json:"phone"`
 	PickedUpDate   rfc3339date.Rfc3339Date            `json:"picked-up-date"`
 	PromisedDate   rfc3339date.Rfc3339Date            `json:"promised-date"`
 	RefillCount    int                                `json:"refill-count"`

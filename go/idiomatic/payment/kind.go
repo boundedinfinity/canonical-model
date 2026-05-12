@@ -21,6 +21,8 @@ type kinds struct {
 	BitCoin                 Kind
 	WesternUnion            Kind
 	Cash                    Kind
+	Check                   Kind
+	CashiersCheck           Kind
 }
 
 var Kinds = kinds{
@@ -40,4 +42,6 @@ var Kinds = kinds{
 	BitCoin:                 "payment.bitcoin",
 	WesternUnion:            "payment.western-union",
 	Cash:                    "payment.cash",
+	Check:                   "payment.check",
+	CashiersCheck:           "payment.cashiers-check",
 }

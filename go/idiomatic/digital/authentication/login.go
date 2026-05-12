@@ -16,6 +16,6 @@ type Login struct {
 	SecurityQuestions []SecurityQuestion    `json:"security-questions"`
 	LoginLocation     uri.Url               `json:"login-location"`
 	AccountEmail      email.Email           `json:"account-email"`
-	AccountPhone      phone.PhoneModel      `json:"account-phone"`
+	AccountPhone      phone.Phone           `json:"account-phone"`
 	TwoFactorMethod   TwoFactorMethod       `json:"two-factor-method"`
 }

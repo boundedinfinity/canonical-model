@@ -12,11 +12,11 @@ var (
 	ErrPhone = errorer.New("phone")
 )
 
-type PhoneModel struct {
+type Phone struct {
 	Id      ider.Id         `json:"id"`
 	Name    string          `json:"name"`
 	Number  number.Number   `json:"number"`
 	Carrier carrier.Carrier `json:"carrier"`
 	Kind    Kind            `json:"kind"`
-	Labels  []label.Labels  `json:"labels"`
+	Labels  []label.Label   `json:"labels"`
 }

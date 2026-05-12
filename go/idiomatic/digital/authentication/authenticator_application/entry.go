@@ -8,7 +8,7 @@ import (
 type Entry struct {
 	Application Application         `json:"application"`
 	BackupCodes []BackupCode        `json:"backup-codes"`
-	Phone       phone.PhoneModel    `json:"phone"`
+	Phone       phone.Phone         `json:"phone"`
 	Bookmarks   []bookmark.Bookmark `json:"bookmarks"`
 	// CreatedDate time.Date           `json:"created-date"`
 }

@@ -1,6 +1,9 @@
 package number
 
-import "github.com/boundedinfinity/go-commoner/errorer"
+import (
+	"github.com/boundedinfinity/go-commoner/errorer"
+	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
+)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -59,4 +62,8 @@ func (this NorthAmericanNumberingPlan) Ln() string {
 
 func (this NorthAmericanNumberingPlan) Sn() string {
 	return this.SubscriberNumber
+}
+
+func (this NorthAmericanNumberingPlan) Last4Digits() string {
+	return stringer.TruncateEnd(this.SubscriberNumber, 4, "")
 }

@@ -13,3 +13,7 @@ var _ payment.Payment = &CreditCard{}
 func (_ CreditCard) Kind() payment.Kind {
 	return payment.Kinds.CreditCard
 }
+
+func (this CreditCard) String() string {
+	return "credit card: " + this.Card.Number.Last4Digits()
+}

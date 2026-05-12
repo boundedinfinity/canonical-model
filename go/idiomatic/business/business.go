@@ -25,15 +25,23 @@ type Business struct {
 	County             county.County             `json:"county,omitempty"`
 	State              state.State               `json:"state,omitempty"`
 	ResponsibleParty   ResponsibleParty          `json:"responsible-party,omitempty"`
-	ForiengEntities    []ForeignEntity           `json:"forieng-entities,omitempty"`
+	ForeignEntities    []ForeignEntity           `json:"foreign-entities,omitempty"`
 	EmailAddresses     []email.Email             `json:"email-addresses,omitempty"`
-	PhoneNumbers       []phone.PhoneModel        `json:"phone-numbers,omitempty"`
+	PhoneNumbers       []phone.Phone             `json:"phone-numbers,omitempty"`
 	Units              int                       `json:"units,omitempty"`
 	FormationDate      rfc3339date.Rfc3339Date   `json:"formation-date,omitempty"`
 	DissolutionDate    rfc3339date.Rfc3339Date   `json:"dissolution-date,omitempty"`
 	OperatingAgreement OperatingAgreement        `json:"operating-agreement,omitempty"`
 	EntityType         EntityType                `json:"entity-type,omitempty"`
 	RegisteredAgent    RegisteredAgent           `json:"registered-agent,omitempty"`
+}
+
+func (this Business) String() string {
+	if this.TradeName != "" {
+		return this.TradeName
+	}
+
+	return this.LegalName
 }
 
 type Member struct {

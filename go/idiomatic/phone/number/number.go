@@ -8,4 +8,5 @@ var (
 
 type Number interface {
 	GetKind() Kind
+	Last4Digits() string
 }

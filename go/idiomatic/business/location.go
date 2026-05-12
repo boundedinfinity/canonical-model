@@ -8,9 +8,9 @@ import (
 )
 
 type Location struct {
-	Id       ider.Id            `json:"id"`
-	Location location.Location  `json:"location"`
-	Roles    []RoleModel        `json:"roles"`
-	Emails   []email.Email      `json:"emails"`
-	Phones   []phone.PhoneModel `json:"phones"`
+	Id       ider.Id           `json:"id"`
+	Location location.Location `json:"location"`
+	Roles    []RoleModel       `json:"roles"`
+	Emails   []email.Email     `json:"emails"`
+	Phones   []phone.Phone     `json:"phones"`
 }
