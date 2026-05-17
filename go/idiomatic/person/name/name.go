@@ -3,7 +3,6 @@ package name
 import (
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/ider"
 	"github.com/boundedinfinity/canonical-model/go/idiomatic/person/affix"
-	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 
 type NameKind string
@@ -36,18 +35,10 @@ func (this Name) Last() []string {
 	return this.Family
 }
 
+var (
+	defaultFormatter = WesternFormatter()
+)
+
 func (this Name) String() string {
-	var names []string
-
-	names = append(names, this.Given...)
-	names = append(names, this.Middle...)
-	names = append(names, this.Family...)
-
-	return stringer.Join(" ", names)
+	return defaultFormatter.Format(this)
 }
-
-// var zeroName = Name{}
-
-// func (this Name) Zero() bool {
-// 	return this == zeroName
-// }
