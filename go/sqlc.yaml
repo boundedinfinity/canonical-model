@@ -1,0 +1,15 @@
+# https://docs.sqlc.dev/en/latest/reference/config.html#version-2
+version: "2"
+sql:
+  - engine: "sqlite"
+    queries: query.sql
+    schema: schema.sql
+    database:
+      managed: true
+    gen:
+      go:
+        package: affix
+        out: idiomatic/person/affix
+        overrides:
+          - column: affix_category.id
+            go_type: github.com/boundedinfinity/canonical-model/go/idiomatic/ider.Id

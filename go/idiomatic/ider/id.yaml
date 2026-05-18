@@ -1,0 +1,12 @@
+kind: uuid
+name: id
+description:
+  public: An univerally unique identifier
+lang:
+  go:
+    package: github.com/google/uuid
+    type: UUID
+  typescript:
+    package: uuid
+    type: v4
+    alias: uuid

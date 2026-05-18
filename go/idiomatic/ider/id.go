@@ -9,7 +9,7 @@ var (
 type Id uuid.UUID
 
 func (this Id) String() string {
-	return this.String()
+	return uuid.UUID(this).String()
 }
 
 func (this Id) IsZero() bool {
@@ -26,11 +26,5 @@ func Parse(s string) (Id, error) {
 }
 
 func MustParse(s string) Id {
-	id, err := Parse(s)
-
-	if err != nil {
-		panic(err)
-	}
-
-	return id
+	return Id(uuid.MustParse(s))
 }
