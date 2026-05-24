@@ -1,0 +1,2390 @@
+[
+    {
+        "name": "Afghanistan",
+        "alpha2": "AF",
+        "alpha3": "AFG",
+        "numeric": "004",
+        "subdivisions": [
+            {
+                "code": "AF-BDS",
+                "name": "Badakhshan",
+                "type": "province"
+            },
+            {
+                "code": "AF-BDG",
+                "name": "Badghis",
+                "type": "province"
+            },
+            {
+                "code": "AF-BGL",
+                "name": "Baghlan",
+                "type": "province"
+            },
+            {
+                "code": "AF-BAL",
+                "name": "Balkh",
+                "type": "province"
+            },
+            {
+                "code": "AF-BAM",
+                "name": "Bamyan",
+                "type": "province"
+            },
+            {
+                "code": "AF-DAY",
+                "name": "Daykundi",
+                "type": "province"
+            },
+            {
+                "code": "AF-FRA",
+                "name": "Farah",
+                "type": "province"
+            },
+            {
+                "code": "AF-FYB",
+                "name": "Faryab",
+                "type": "province"
+            },
+            {
+                "code": "AF-GHA",
+                "name": "Ghazni",
+                "type": "province"
+            },
+            {
+                "code": "AF-GHO",
+                "name": "Ghor",
+                "type": "province"
+            },
+            {
+                "code": "AF-HEL",
+                "name": "Helmand",
+                "type": "province"
+            },
+            {
+                "code": "AF-HER",
+                "name": "Herat",
+                "type": "province"
+            },
+            {
+                "code": "AF-JOW",
+                "name": "Jowzjan",
+                "type": "province"
+            },
+            {
+                "code": "AF-KAB",
+                "name": "Kabul",
+                "type": "province"
+            },
+            {
+                "code": "AF-KAN",
+                "name": "Kandahar",
+                "type": "province"
+            },
+            {
+                "code": "AF-KAP",
+                "name": "Kapisa",
+                "type": "province"
+            },
+            {
+                "code": "AF-KHO",
+                "name": "Khost",
+                "type": "province"
+            },
+            {
+                "code": "AF-KNR",
+                "name": "Kunar",
+                "type": "province"
+            },
+            {
+                "code": "AF-KDZ",
+                "name": "Kunduz",
+                "type": "province"
+            },
+            {
+                "code": "AF-LAG",
+                "name": "Laghman",
+                "type": "province"
+            },
+            {
+                "code": "AF-LOG",
+                "name": "Logar",
+                "type": "province"
+            },
+            {
+                "code": "AF-NAN",
+                "name": "Nangarhar",
+                "type": "province"
+            },
+            {
+                "code": "AF-NIM",
+                "name": "Nimroz",
+                "type": "province"
+            },
+            {
+                "code": "AF-NUR",
+                "name": "Nuristan",
+                "type": "province"
+            },
+            {
+                "code": "AF-PIA",
+                "name": "Paktia",
+                "type": "province"
+            },
+            {
+                "code": "AF-PKA",
+                "name": "Paktika",
+                "type": "province"
+            },
+            {
+                "code": "AF-PAN",
+                "name": "Panjshir",
+                "type": "province"
+            },
+            {
+                "code": "AF-PAR",
+                "name": "Parwan",
+                "type": "province"
+            },
+            {
+                "code": "AF-SAM",
+                "name": "Samangan",
+                "type": "province"
+            },
+            {
+                "code": "AF-SAR",
+                "name": "Sar-e Pol",
+                "type": "province"
+            },
+            {
+                "code": "AF-TAK",
+                "name": "Takhar",
+                "type": "province"
+            },
+            {
+                "code": "AF-URU",
+                "name": "Uruzgan",
+                "type": "province"
+            },
+            {
+                "code": "AF-WAR",
+                "name": "Wardak",
+                "type": "province"
+            },
+            {
+                "code": "AF-ZAB",
+                "name": "Zabul",
+                "type": "province"
+            }
+        ]
+    },
+    {
+        "name": "Albania",
+        "alpha2": "AL",
+        "alpha3": "ALB",
+        "numeric": "008",
+        "subdivisions": [
+            {
+                "code": "AL-01",
+                "name": "Berat",
+                "type": "county"
+            },
+            {
+                "code": "AL-02",
+                "name": "Dibër",
+                "type": "county"
+            },
+            {
+                "code": "AL-03",
+                "name": "Durrës",
+                "type": "county"
+            },
+            {
+                "code": "AL-04",
+                "name": "Elbasan",
+                "type": "county"
+            },
+            {
+                "code": "AL-05",
+                "name": "Fier",
+                "type": "county"
+            },
+            {
+                "code": "AL-06",
+                "name": "Gjirokastër",
+                "type": "county"
+            },
+            {
+                "code": "AL-07",
+                "name": "Korçë",
+                "type": "county"
+            },
+            {
+                "code": "AL-08",
+                "name": "Kukës",
+                "type": "county"
+            },
+            {
+                "code": "AL-09",
+                "name": "Lezhë",
+                "type": "county"
+            },
+            {
+                "code": "AL-10",
+                "name": "Shkodër",
+                "type": "county"
+            },
+            {
+                "code": "AL-11",
+                "name": "Tiranë",
+                "type": "county"
+            },
+            {
+                "code": "AL-12",
+                "name": "Vlorë",
+                "type": "county"
+            }
+        ]
+    },
+    {
+        "name": "Algeria",
+        "alpha2": "DZ",
+        "alpha3": "DZA",
+        "numeric": "012",
+        "subdivisions": [
+            {
+                "code": "DZ-01",
+                "name": "Adrar",
+                "type": "province"
+            },
+            {
+                "code": "DZ-02",
+                "name": "Chlef",
+                "type": "province"
+            },
+            {
+                "code": "DZ-03",
+                "name": "Laghouat",
+                "type": "province"
+            },
+            {
+                "code": "DZ-04",
+                "name": "Oum El Bouaghi",
+                "type": "province"
+            },
+            {
+                "code": "DZ-05",
+                "name": "Batna",
+                "type": "province"
+            },
+            {
+                "code": "DZ-06",
+                "name": "Béjaïa",
+                "type": "province"
+            },
+            {
+                "code": "DZ-07",
+                "name": "Biskra",
+                "type": "province"
+            },
+            {
+                "code": "DZ-08",
+                "name": "Béchar",
+                "type": "province"
+            },
+            {
+                "code": "DZ-09",
+                "name": "Blida",
+                "type": "province"
+            },
+            {
+                "code": "DZ-10",
+                "name": "Bouira",
+                "type": "province"
+            },
+            {
+                "code": "DZ-11",
+                "name": "Tamanrasset",
+                "type": "province"
+            },
+            {
+                "code": "DZ-12",
+                "name": "Tébessa",
+                "type": "province"
+            },
+            {
+                "code": "DZ-13",
+                "name": "Tlemcen",
+                "type": "province"
+            },
+            {
+                "code": "DZ-14",
+                "name": "Tiaret",
+                "type": "province"
+            },
+            {
+                "code": "DZ-15",
+                "name": "Tizi Ouzou",
+                "type": "province"
+            },
+            {
+                "code": "DZ-16",
+                "name": "Alger",
+                "type": "province"
+            },
+            {
+                "code": "DZ-17",
+                "name": "Djelfa",
+                "type": "province"
+            },
+            {
+                "code": "DZ-18",
+                "name": "Jijel",
+                "type": "province"
+            },
+            {
+                "code": "DZ-19",
+                "name": "Sétif",
+                "type": "province"
+            },
+            {
+                "code": "DZ-20",
+                "name": "Saïda",
+                "type": "province"
+            },
+            {
+                "code": "DZ-21",
+                "name": "Skikda",
+                "type": "province"
+            },
+            {
+                "code": "DZ-22",
+                "name": "Sidi Bel Abbès",
+                "type": "province"
+            },
+            {
+                "code": "DZ-23",
+                "name": "Annaba",
+                "type": "province"
+            },
+            {
+                "code": "DZ-24",
+                "name": "Guelma",
+                "type": "province"
+            },
+            {
+                "code": "DZ-25",
+                "name": "Constantine",
+                "type": "province"
+            },
+            {
+                "code": "DZ-26",
+                "name": "Médéa",
+                "type": "province"
+            },
+            {
+                "code": "DZ-27",
+                "name": "Mostaganem",
+                "type": "province"
+            },
+            {
+                "code": "DZ-28",
+                "name": "M'Sila",
+                "type": "province"
+            },
+            {
+                "code": "DZ-29",
+                "name": "Mascara",
+                "type": "province"
+            },
+            {
+                "code": "DZ-30",
+                "name": "Ouargla",
+                "type": "province"
+            },
+            {
+                "code": "DZ-31",
+                "name": "Oran",
+                "type": "province"
+            },
+            {
+                "code": "DZ-32",
+                "name": "El Bayadh",
+                "type": "province"
+            },
+            {
+                "code": "DZ-33",
+                "name": "Illizi",
+                "type": "province"
+            },
+            {
+                "code": "DZ-34",
+                "name": "Bordj Bou Arréridj",
+                "type": "province"
+            },
+            {
+                "code": "DZ-35",
+                "name": "Boumerdès",
+                "type": "province"
+            },
+            {
+                "code": "DZ-36",
+                "name": "El Tarf",
+                "type": "province"
+            },
+            {
+                "code": "DZ-37",
+                "name": "Tindouf",
+                "type": "province"
+            },
+            {
+                "code": "DZ-38",
+                "name": "Tissemsilt",
+                "type": "province"
+            },
+            {
+                "code": "DZ-39",
+                "name": "El Oued",
+                "type": "province"
+            },
+            {
+                "code": "DZ-40",
+                "name": "Khenchela",
+                "type": "province"
+            },
+            {
+                "code": "DZ-41",
+                "name": "Souk Ahras",
+                "type": "province"
+            },
+            {
+                "code": "DZ-42",
+                "name": "Tipaza",
+                "type": "province"
+            },
+            {
+                "code": "DZ-43",
+                "name": "Mila",
+                "type": "province"
+            },
+            {
+                "code": "DZ-44",
+                "name": "Aïn Defla",
+                "type": "province"
+            },
+            {
+                "code": "DZ-45",
+                "name": "Naâma",
+                "type": "province"
+            },
+            {
+                "code": "DZ-46",
+                "name": "Aïn Témouchent",
+                "type": "province"
+            },
+            {
+                "code": "DZ-47",
+                "name": "Ghardaïa",
+                "type": "province"
+            },
+            {
+                "code": "DZ-48",
+                "name": "Relizane",
+                "type": "province"
+            },
+            {
+                "code": "DZ-49",
+                "name": "El M'Ghair",
+                "type": "province"
+            },
+            {
+                "code": "DZ-50",
+                "name": "El Meniaa",
+                "type": "province"
+            },
+            {
+                "code": "DZ-51",
+                "name": "Ouled Djellal",
+                "type": "province"
+            },
+            {
+                "code": "DZ-52",
+                "name": "Bordj Badji Mokhtar",
+                "type": "province"
+            },
+            {
+                "code": "DZ-53",
+                "name": "Béni Abbès",
+                "type": "province"
+            },
+            {
+                "code": "DZ-54",
+                "name": "Timimoun",
+                "type": "province"
+            },
+            {
+                "code": "DZ-55",
+                "name": "Touggourt",
+                "type": "province"
+            },
+            {
+                "code": "DZ-56",
+                "name": "Djanet",
+                "type": "province"
+            },
+            {
+                "code": "DZ-57",
+                "name": "In Salah",
+                "type": "province"
+            },
+            {
+                "code": "DZ-58",
+                "name": "In Guezzam",
+                "type": "province"
+            }
+        ]
+    },
+    {
+        "name": "Andorra",
+        "alpha2": "AD",
+        "alpha3": "AND",
+        "numeric": "020",
+        "subdivisions": [
+            {
+                "code": "AD-02",
+                "name": "Canillo",
+                "type": "parish"
+            },
+            {
+                "code": "AD-03",
+                "name": "Encamp",
+                "type": "parish"
+            },
+            {
+                "code": "AD-04",
+                "name": "La Massana",
+                "type": "parish"
+            },
+            {
+                "code": "AD-05",
+                "name": "Ordino",
+                "type": "parish"
+            },
+            {
+                "code": "AD-06",
+                "name": "Sant Julià de Lòria",
+                "type": "parish"
+            },
+            {
+                "code": "AD-07",
+                "name": "Andorra la Vella",
+                "type": "parish"
+            },
+            {
+                "code": "AD-08",
+                "name": "Escaldes-Engordany",
+                "type": "parish"
+            }
+        ]
+    },
+    {
+        "name": "Angola",
+        "alpha2": "AO",
+        "alpha3": "AGO",
+        "numeric": "024",
+        "subdivisions": [
+            {
+                "code": "AO-BGO",
+                "name": "Bengo",
+                "type": "province"
+            },
+            {
+                "code": "AO-BGU",
+                "name": "Benguela",
+                "type": "province"
+            },
+            {
+                "code": "AO-BIE",
+                "name": "Bié",
+                "type": "province"
+            },
+            {
+                "code": "AO-CAB",
+                "name": "Cabinda",
+                "type": "province"
+            },
+            {
+                "code": "AO-CCU",
+                "name": "Cuando Cubango",
+                "type": "province"
+            },
+            {
+                "code": "AO-CNO",
+                "name": "Cuanza Norte",
+                "type": "province"
+            },
+            {
+                "code": "AO-CUS",
+                "name": "Cuanza Sul",
+                "type": "province"
+            },
+            {
+                "code": "AO-CNN",
+                "name": "Cunene",
+                "type": "province"
+            },
+            {
+                "code": "AO-HUA",
+                "name": "Huambo",
+                "type": "province"
+            },
+            {
+                "code": "AO-HUI",
+                "name": "Huíla",
+                "type": "province"
+            },
+            {
+                "code": "AO-LUA",
+                "name": "Luanda",
+                "type": "province"
+            },
+            {
+                "code": "AO-LNO",
+                "name": "Lunda Norte",
+                "type": "province"
+            },
+            {
+                "code": "AO-LSU",
+                "name": "Lunda Sul",
+                "type": "province"
+            },
+            {
+                "code": "AO-MAL",
+                "name": "Malanje",
+                "type": "province"
+            },
+            {
+                "code": "AO-MOX",
+                "name": "Moxico",
+                "type": "province"
+            },
+            {
+                "code": "AO-NAM",
+                "name": "Namibe",
+                "type": "province"
+            },
+            {
+                "code": "AO-UIG",
+                "name": "Uíge",
+                "type": "province"
+            },
+            {
+                "code": "AO-ZAI",
+                "name": "Zaire",
+                "type": "province"
+            }
+        ]
+    },
+    {
+        "name": "Argentina",
+        "alpha2": "AR",
+        "alpha3": "ARG",
+        "numeric": "032",
+        "subdivisions": [
+            {
+                "code": "AR-C",
+                "name": "Ciudad Autónoma de Buenos Aires",
+                "type": "city"
+            },
+            {
+                "code": "AR-B",
+                "name": "Buenos Aires",
+                "type": "province"
+            },
+            {
+                "code": "AR-K",
+                "name": "Catamarca",
+                "type": "province"
+            },
+            {
+                "code": "AR-H",
+                "name": "Chaco",
+                "type": "province"
+            },
+            {
+                "code": "AR-U",
+                "name": "Chubut",
+                "type": "province"
+            },
+            {
+                "code": "AR-X",
+                "name": "Córdoba",
+                "type": "province"
+            },
+            {
+                "code": "AR-W",
+                "name": "Corrientes",
+                "type": "province"
+            },
+            {
+                "code": "AR-E",
+                "name": "Entre Ríos",
+                "type": "province"
+            },
+            {
+                "code": "AR-P",
+                "name": "Formosa",
+                "type": "province"
+            },
+            {
+                "code": "AR-Y",
+                "name": "Jujuy",
+                "type": "province"
+            },
+            {
+                "code": "AR-L",
+                "name": "La Pampa",
+                "type": "province"
+            },
+            {
+                "code": "AR-F",
+                "name": "La Rioja",
+                "type": "province"
+            },
+            {
+                "code": "AR-M",
+                "name": "Mendoza",
+                "type": "province"
+            },
+            {
+                "code": "AR-N",
+                "name": "Misiones",
+                "type": "province"
+            },
+            {
+                "code": "AR-Q",
+                "name": "Neuquén",
+                "type": "province"
+            },
+            {
+                "code": "AR-R",
+                "name": "Río Negro",
+                "type": "province"
+            },
+            {
+                "code": "AR-A",
+                "name": "Salta",
+                "type": "province"
+            },
+            {
+                "code": "AR-J",
+                "name": "San Juan",
+                "type": "province"
+            },
+            {
+                "code": "AR-D",
+                "name": "San Luis",
+                "type": "province"
+            },
+            {
+                "code": "AR-Z",
+                "name": "Santa Cruz",
+                "type": "province"
+            },
+            {
+                "code": "AR-S",
+                "name": "Santa Fe",
+                "type": "province"
+            },
+            {
+                "code": "AR-G",
+                "name": "Santiago del Estero",
+                "type": "province"
+            },
+            {
+                "code": "AR-V",
+                "name": "Tierra del Fuego",
+                "type": "province"
+            },
+            {
+                "code": "AR-T",
+                "name": "Tucumán",
+                "type": "province"
+            }
+        ]
+    },
+    {
+        "name": "Armenia",
+        "alpha2": "AM",
+        "alpha3": "ARM",
+        "numeric": "051",
+        "subdivisions": [
+            {
+                "code": "AM-AG",
+                "name": "Aragatsotn",
+                "type": "province"
+            },
+            {
+                "code": "AM-AR",
+                "name": "Ararat",
+                "type": "province"
+            },
+            {
+                "code": "AM-AV",
+                "name": "Armavir",
+                "type": "province"
+            },
+            {
+                "code": "AM-ER",
+                "name": "Yerevan",
+                "type": "city"
+            },
+            {
+                "code": "AM-GR",
+                "name": "Gegharkunik",
+                "type": "province"
+            },
+            {
+                "code": "AM-KT",
+                "name": "Kotayk",
+                "type": "province"
+            },
+            {
+                "code": "AM-LO",
+                "name": "Lori",
+                "type": "province"
+            },
+            {
+                "code": "AM-SH",
+                "name": "Shirak",
+                "type": "province"
+            },
+            {
+                "code": "AM-SU",
+                "name": "Syunik",
+                "type": "province"
+            },
+            {
+                "code": "AM-TV",
+                "name": "Tavush",
+                "type": "province"
+            },
+            {
+                "code": "AM-VD",
+                "name": "Vayots Dzor",
+                "type": "province"
+            }
+        ]
+    },
+    {
+        "name": "Australia",
+        "alpha2": "AU",
+        "alpha3": "AUS",
+        "numeric": "036",
+        "subdivisions": [
+            {
+                "code": "AU-ACT",
+                "name": "Australian Capital Territory",
+                "type": "territory"
+            },
+            {
+                "code": "AU-NSW",
+                "name": "New South Wales",
+                "type": "state"
+            },
+            {
+                "code": "AU-NT",
+                "name": "Northern Territory",
+                "type": "territory"
+            },
+            {
+                "code": "AU-QLD",
+                "name": "Queensland",
+                "type": "state"
+            },
+            {
+                "code": "AU-SA",
+                "name": "South Australia",
+                "type": "state"
+            },
+            {
+                "code": "AU-TAS",
+                "name": "Tasmania",
+                "type": "state"
+            },
+            {
+                "code": "AU-VIC",
+                "name": "Victoria",
+                "type": "state"
+            },
+            {
+                "code": "AU-WA",
+                "name": "Western Australia",
+                "type": "state"
+            },
+            {
+                "code": "AU-JBT",
+                "name": "Jervis Bay Territory",
+                "type": "territory"
+            }
+        ]
+    },
+    {
+        "name": "Austria",
+        "alpha2": "AT",
+        "alpha3": "AUT",
+        "numeric": "040",
+        "subdivisions": [
+            {
+                "code": "AT-1",
+                "name": "Burgenland",
+                "type": "state"
+            },
+            {
+                "code": "AT-2",
+                "name": "Kärnten",
+                "type": "state"
+            },
+            {
+                "code": "AT-3",
+                "name": "Niederösterreich",
+                "type": "state"
+            },
+            {
+                "code": "AT-4",
+                "name": "Oberösterreich",
+                "type": "state"
+            },
+            {
+                "code": "AT-5",
+                "name": "Salzburg",
+                "type": "state"
+            },
+            {
+                "code": "AT-6",
+                "name": "Steiermark",
+                "type": "state"
+            },
+            {
+                "code": "AT-7",
+                "name": "Tirol",
+                "type": "state"
+            },
+            {
+                "code": "AT-8",
+                "name": "Vorarlberg",
+                "type": "state"
+            },
+            {
+                "code": "AT-9",
+                "name": "Wien",
+                "type": "state"
+            }
+        ]
+    },
+    {
+        "name": "Azerbaijan",
+        "alpha2": "AZ",
+        "alpha3": "AZE",
+        "numeric": "031",
+        "subdivisions": [
+            {
+                "code": "AZ-BA",
+                "name": "Bakı",
+                "type": "city"
+            },
+            {
+                "code": "AZ-GA",
+                "name": "Gəncə",
+                "type": "city"
+            },
+            {
+                "code": "AZ-LA",
+                "name": "Lənkəran",
+                "type": "city"
+            },
+            {
+                "code": "AZ-MI",
+                "name": "Mingəçevir",
+                "type": "city"
+            },
+            {
+                "code": "AZ-NA",
+                "name": "Naftalan",
+                "type": "city"
+            },
+            {
+                "code": "AZ-NV",
+                "name": "Naxçıvan (city)",
+                "type": "city"
+            },
+            {
+                "code": "AZ-NX",
+                "name": "Naxçıvan Muxtar Respublikası",
+                "type": "autonomous republic"
+            },
+            {
+                "code": "AZ-ABS",
+                "name": "Abşeron",
+                "type": "district"
+            },
+            {
+                "code": "AZ-AGC",
+                "name": "Ağcabədi",
+                "type": "district"
+            },
+            {
+                "code": "AZ-AGM",
+                "name": "Ağdam",
+                "type": "district"
+            },
+            {
+                "code": "AZ-AGS",
+                "name": "Ağdaş",
+                "type": "district"
+            },
+            {
+                "code": "AZ-AGA",
+                "name": "Ağstafa",
+                "type": "district"
+            },
+            {
+                "code": "AZ-AGU",
+                "name": "Ağsu",
+                "type": "district"
+            },
+            {
+                "code": "AZ-AST",
+                "name": "Astara",
+                "type": "district"
+            },
+            {
+                "code": "AZ-BAB",
+                "name": "Babək",
+                "type": "district"
+            },
+            {
+                "code": "AZ-BAL",
+                "name": "Balakən",
+                "type": "district"
+            },
+            {
+                "code": "AZ-BAR",
+                "name": "Bərdə",
+                "type": "district"
+            },
+            {
+                "code": "AZ-BEY",
+                "name": "Beyləqan",
+                "type": "district"
+            },
+            {
+                "code": "AZ-BIL",
+                "name": "Biləsuvar",
+                "type": "district"
+            },
+            {
+                "code": "AZ-CAB",
+                "name": "Cəbrayıl",
+                "type": "district"
+            },
+            {
+                "code": "AZ-CAL",
+                "name": "Cəlilabad",
+                "type": "district"
+            },
+            {
+                "code": "AZ-CUL",
+                "name": "Culfa",
+                "type": "district"
+            },
+            {
+                "code": "AZ-DAS",
+                "name": "Daşkəsən",
+                "type": "district"
+            },
+            {
+                "code": "AZ-FUZ",
+                "name": "Füzuli",
+                "type": "district"
+            },
+            {
+                "code": "AZ-GAD",
+                "name": "Gədəbəy",
+                "type": "district"
+            },
+            {
+                "code": "AZ-GOR",
+                "name": "Goranboy",
+                "type": "district"
+            },
+            {
+                "code": "AZ-GOY",
+                "name": "Göyçay",
+                "type": "district"
+            },
+            {
+                "code": "AZ-GYG",
+                "name": "Göygöl",
+                "type": "district"
+            },
+            {
+                "code": "AZ-HAC",
+                "name": "Hacıqabul",
+                "type": "district"
+            },
+            {
+                "code": "AZ-IMI",
+                "name": "İmişli",
+                "type": "district"
+            },
+            {
+                "code": "AZ-ISM",
+                "name": "İsmayıllı",
+                "type": "district"
+            },
+            {
+                "code": "AZ-KAL",
+                "name": "Kəlbəcər",
+                "type": "district"
+            },
+            {
+                "code": "AZ-KUR",
+                "name": "Kürdəmir",
+                "type": "district"
+            },
+            {
+                "code": "AZ-LAC",
+                "name": "Laçın",
+                "type": "district"
+            },
+            {
+                "code": "AZ-LAN",
+                "name": "Lənkəran (district)",
+                "type": "district"
+            },
+            {
+                "code": "AZ-LER",
+                "name": "Lerik",
+                "type": "district"
+            },
+            {
+                "code": "AZ-MAS",
+                "name": "Masallı",
+                "type": "district"
+            },
+            {
+                "code": "AZ-NEF",
+                "name": "Neftçala",
+                "type": "district"
+            },
+            {
+                "code": "AZ-OGU",
+                "name": "Oğuz",
+                "type": "district"
+            },
+            {
+                "code": "AZ-ORD",
+                "name": "Ordubad",
+                "type": "district"
+            },
+            {
+                "code": "AZ-QAB",
+                "name": "Qəbələ",
+                "type": "district"
+            },
+            {
+                "code": "AZ-QAX",
+                "name": "Qax",
+                "type": "district"
+            },
+            {
+                "code": "AZ-QAZ",
+                "name": "Qazax",
+                "type": "district"
+            },
+            {
+                "code": "AZ-QBA",
+                "name": "Quba",
+                "type": "district"
+            },
+            {
+                "code": "AZ-QBI",
+                "name": "Qubadlı",
+                "type": "district"
+            },
+            {
+                "code": "AZ-QUS",
+                "name": "Qusar",
+                "type": "district"
+            },
+            {
+                "code": "AZ-QOB",
+                "name": "Qobustan",
+                "type": "district"
+            },
+            {
+                "code": "AZ-SAT",
+                "name": "Saatlı",
+                "type": "district"
+            },
+            {
+                "code": "AZ-SAB",
+                "name": "Sabirabad",
+                "type": "district"
+            },
+            {
+                "code": "AZ-SAL",
+                "name": "Salyan",
+                "type": "district"
+            },
+            {
+                "code": "AZ-SBN",
+                "name": "Şabran",
+                "type": "district"
+            },
+            {
+                "code": "AZ-SMI",
+                "name": "Şamaxı",
+                "type": "district"
+            },
+            {
+                "code": "AZ-SAK",
+                "name": "Şəki",
+                "type": "district"
+            },
+            {
+                "code": "AZ-SKR",
+                "name": "Şəmkir",
+                "type": "district"
+            },
+            {
+                "code": "AZ-SIY",
+                "name": "Siyəzən",
+                "type": "district"
+            },
+            {
+                "code": "AZ-SUS",
+                "name": "Şuşa (district)",
+                "type": "district"
+            },
+            {
+                "code": "AZ-TAR",
+                "name": "Tərtər",
+                "type": "district"
+            },
+            {
+                "code": "AZ-TOV",
+                "name": "Tovuz",
+                "type": "district"
+            },
+            {
+                "code": "AZ-UCA",
+                "name": "Ucar",
+                "type": "district"
+            },
+            {
+                "code": "AZ-XAC",
+                "name": "Xaçmaz",
+                "type": "district"
+            },
+            {
+                "code": "AZ-XIZ",
+                "name": "Xızı",
+                "type": "district"
+            },
+            {
+                "code": "AZ-XCI",
+                "name": "Xocalı",
+                "type": "district"
+            },
+            {
+                "code": "AZ-XVD",
+                "name": "Xocavənd",
+                "type": "district"
+            },
+            {
+                "code": "AZ-YAR",
+                "name": "Yardımlı",
+                "type": "district"
+            },
+            {
+                "code": "AZ-YEV",
+                "name": "Yevlax (district)",
+                "type": "district"
+            },
+            {
+                "code": "AZ-ZAQ",
+                "name": "Zaqatala",
+                "type": "district"
+            },
+            {
+                "code": "AZ-ZAN",
+                "name": "Zəngilan",
+                "type": "district"
+            },
+            {
+                "code": "AZ-ZAR",
+                "name": "Zərdab",
+                "type": "district"
+            },
+            {
+                "code": "AZ-SA",
+                "name": "Şəki (city)",
+                "type": "city"
+            },
+            {
+                "code": "AZ-SM",
+                "name": "Sumqayıt",
+                "type": "city"
+            },
+            {
+                "code": "AZ-SR",
+                "name": "Şirvan",
+                "type": "city"
+            },
+            {
+                "code": "AZ-SS",
+                "name": "Şuşa (city)",
+                "type": "city"
+            },
+            {
+                "code": "AZ-XA",
+                "name": "Xankəndi",
+                "type": "city"
+            },
+            {
+                "code": "AZ-YE",
+                "name": "Yevlax (city)",
+                "type": "city"
+            },
+            {
+                "code": "AZ-KAN",
+                "name": "Kəngərli",
+                "type": "district"
+            },
+            {
+                "code": "AZ-SAD",
+                "name": "Sədərək",
+                "type": "district"
+            },
+            {
+                "code": "AZ-SAH",
+                "name": "Şahbuz",
+                "type": "district"
+            },
+            {
+                "code": "AZ-SAR",
+                "name": "Şərur",
+                "type": "district"
+            }
+        ]
+    },
+    {
+        "name": "Bahamas",
+        "alpha2": "BS",
+        "alpha3": "BHS",
+        "numeric": "044",
+        "subdivisions": [
+            {
+                "code": "BS-AC",
+                "name": "Acklins",
+                "type": "district"
+            },
+            {
+                "code": "BS-BI",
+                "name": "Bimini",
+                "type": "district"
+            },
+            {
+                "code": "BS-BY",
+                "name": "Berry Islands",
+                "type": "district"
+            },
+            {
+                "code": "BS-BP",
+                "name": "Black Point",
+                "type": "district"
+            },
+            {
+                "code": "BS-CI",
+                "name": "Cat Island",
+                "type": "district"
+            },
+            {
+                "code": "BS-CO",
+                "name": "Central Abaco",
+                "type": "district"
+            },
+            {
+                "code": "BS-CS",
+                "name": "Central Andros",
+                "type": "district"
+            },
+            {
+                "code": "BS-CE",
+                "name": "Central Eleuthera",
+                "type": "district"
+            },
+            {
+                "code": "BS-FP",
+                "name": "City of Freeport",
+                "type": "district"
+            },
+            {
+                "code": "BS-CK",
+                "name": "Crooked Island and Long Cay",
+                "type": "district"
+            },
+            {
+                "code": "BS-EG",
+                "name": "East Grand Bahama",
+                "type": "district"
+            },
+            {
+                "code": "BS-EX",
+                "name": "Exuma",
+                "type": "district"
+            },
+            {
+                "code": "BS-GC",
+                "name": "Grand Cay",
+                "type": "district"
+            },
+            {
+                "code": "BS-HI",
+                "name": "Harbour Island",
+                "type": "district"
+            },
+            {
+                "code": "BS-HT",
+                "name": "Hope Town",
+                "type": "district"
+            },
+            {
+                "code": "BS-IN",
+                "name": "Inagua",
+                "type": "district"
+            },
+            {
+                "code": "BS-LI",
+                "name": "Long Island",
+                "type": "district"
+            },
+            {
+                "code": "BS-MC",
+                "name": "Mangrove Cay",
+                "type": "district"
+            },
+            {
+                "code": "BS-MG",
+                "name": "Mayaguana",
+                "type": "district"
+            },
+            {
+                "code": "BS-MI",
+                "name": "Moore's Island",
+                "type": "district"
+            },
+            {
+                "code": "BS-NP",
+                "name": "New Providence",
+                "type": "district"
+            },
+            {
+                "code": "BS-NO",
+                "name": "North Abaco",
+                "type": "district"
+            },
+            {
+                "code": "BS-NS",
+                "name": "North Andros",
+                "type": "district"
+            },
+            {
+                "code": "BS-NE",
+                "name": "North Eleuthera",
+                "type": "district"
+            },
+            {
+                "code": "BS-RC",
+                "name": "Rum Cay",
+                "type": "district"
+            },
+            {
+                "code": "BS-RI",
+                "name": "Ragged Island",
+                "type": "district"
+            },
+            {
+                "code": "BS-SS",
+                "name": "San Salvador",
+                "type": "district"
+            },
+            {
+                "code": "BS-SA",
+                "name": "South Abaco",
+                "type": "district"
+            },
+            {
+                "code": "BS-SO",
+                "name": "South Andros",
+                "type": "district"
+            },
+            {
+                "code": "BS-SE",
+                "name": "South Eleuthera",
+                "type": "district"
+            },
+            {
+                "code": "BS-SW",
+                "name": "Spanish Wells",
+                "type": "district"
+            },
+            {
+                "code": "BS-WG",
+                "name": "West Grand Bahama",
+                "type": "district"
+            }
+        ]
+    },
+    {
+        "name": "Bahrain",
+        "alpha2": "BH",
+        "alpha3": "BHR",
+        "numeric": "048",
+        "subdivisions": [
+            {
+                "code": "BH-13",
+                "name": "Capital",
+                "type": "governorate"
+            },
+            {
+                "code": "BH-15",
+                "name": "Muharraq",
+                "type": "governorate"
+            },
+            {
+                "code": "BH-17",
+                "name": "Northern",
+                "type": "governorate"
+            },
+            {
+                "code": "BH-14",
+                "name": "Southern",
+                "type": "governorate"
+            }
+        ]
+    },
+    {
+        "name": "Bangladesh",
+        "alpha2": "BD",
+        "alpha3": "BGD",
+        "numeric": "050",
+        "subdivisions": [
+            {
+                "code": "BD-A",
+                "name": "Barishal",
+                "type": "division"
+            },
+            {
+                "code": "BD-B",
+                "name": "Chattogram",
+                "type": "division"
+            },
+            {
+                "code": "BD-C",
+                "name": "Dhaka",
+                "type": "division"
+            },
+            {
+                "code": "BD-D",
+                "name": "Khulna",
+                "type": "division"
+            },
+            {
+                "code": "BD-E",
+                "name": "Rajshahi",
+                "type": "division"
+            },
+            {
+                "code": "BD-F",
+                "name": "Rangpur",
+                "type": "division"
+            },
+            {
+                "code": "BD-G",
+                "name": "Sylhet",
+                "type": "division"
+            },
+            {
+                "code": "BD-M",
+                "name": "Mymensingh",
+                "type": "division"
+            },
+            {
+                "code": "BD-02",
+                "name": "Barguna",
+                "type": "district"
+            },
+            {
+                "code": "BD-06",
+                "name": "Barishal",
+                "type": "district"
+            },
+            {
+                "code": "BD-07",
+                "name": "Bhola",
+                "type": "district"
+            },
+            {
+                "code": "BD-25",
+                "name": "Jhalokati",
+                "type": "district"
+            },
+            {
+                "code": "BD-49",
+                "name": "Patuakhali",
+                "type": "district"
+            },
+            {
+                "code": "BD-48",
+                "name": "Pirojpur",
+                "type": "district"
+            },
+            {
+                "code": "BD-01",
+                "name": "Bandarban",
+                "type": "district"
+            },
+            {
+                "code": "BD-04",
+                "name": "Brahmanbaria",
+                "type": "district"
+            },
+            {
+                "code": "BD-09",
+                "name": "Chandpur",
+                "type": "district"
+            },
+            {
+                "code": "BD-10",
+                "name": "Chattogram",
+                "type": "district"
+            },
+            {
+                "code": "BD-08",
+                "name": "Cumilla",
+                "type": "district"
+            },
+            {
+                "code": "BD-11",
+                "name": "Cox's Bazar",
+                "type": "district"
+            },
+            {
+                "code": "BD-16",
+                "name": "Feni",
+                "type": "district"
+            },
+            {
+                "code": "BD-64",
+                "name": "Khagrachhari",
+                "type": "district"
+            },
+            {
+                "code": "BD-29",
+                "name": "Lakshmipur",
+                "type": "district"
+            },
+            {
+                "code": "BD-45",
+                "name": "Noakhali",
+                "type": "district"
+            },
+            {
+                "code": "BD-54",
+                "name": "Rangamati",
+                "type": "district"
+            },
+            {
+                "code": "BD-13",
+                "name": "Dhaka",
+                "type": "district"
+            },
+            {
+                "code": "BD-15",
+                "name": "Faridpur",
+                "type": "district"
+            },
+            {
+                "code": "BD-18",
+                "name": "Gazipur",
+                "type": "district"
+            },
+            {
+                "code": "BD-17",
+                "name": "Gopalganj",
+                "type": "district"
+            },
+            {
+                "code": "BD-26",
+                "name": "Kishoreganj",
+                "type": "district"
+            },
+            {
+                "code": "BD-34",
+                "name": "Madaripur",
+                "type": "district"
+            },
+            {
+                "code": "BD-31",
+                "name": "Manikganj",
+                "type": "district"
+            },
+            {
+                "code": "BD-33",
+                "name": "Munshiganj",
+                "type": "district"
+            },
+            {
+                "code": "BD-38",
+                "name": "Narayanganj",
+                "type": "district"
+            },
+            {
+                "code": "BD-40",
+                "name": "Narsingdi",
+                "type": "district"
+            },
+            {
+                "code": "BD-51",
+                "name": "Rajbari",
+                "type": "district"
+            },
+            {
+                "code": "BD-60",
+                "name": "Shariatpur",
+                "type": "district"
+            },
+            {
+                "code": "BD-61",
+                "name": "Tangail",
+                "type": "district"
+            },
+            {
+                "code": "BD-05",
+                "name": "Bagerhat",
+                "type": "district"
+            },
+            {
+                "code": "BD-12",
+                "name": "Chuadanga",
+                "type": "district"
+            },
+            {
+                "code": "BD-22",
+                "name": "Jashore",
+                "type": "district"
+            },
+            {
+                "code": "BD-23",
+                "name": "Jhenaidah",
+                "type": "district"
+            },
+            {
+                "code": "BD-27",
+                "name": "Khulna",
+                "type": "district"
+            },
+            {
+                "code": "BD-28",
+                "name": "Kushtia",
+                "type": "district"
+            },
+            {
+                "code": "BD-35",
+                "name": "Magura",
+                "type": "district"
+            },
+            {
+                "code": "BD-37",
+                "name": "Meherpur",
+                "type": "district"
+            },
+            {
+                "code": "BD-41",
+                "name": "Narail",
+                "type": "district"
+            },
+            {
+                "code": "BD-56",
+                "name": "Satkhira",
+                "type": "district"
+            },
+            {
+                "code": "BD-03",
+                "name": "Bogura",
+                "type": "district"
+            },
+            {
+                "code": "BD-43",
+                "name": "Chapainawabganj",
+                "type": "district"
+            },
+            {
+                "code": "BD-24",
+                "name": "Joypurhat",
+                "type": "district"
+            },
+            {
+                "code": "BD-46",
+                "name": "Naogaon",
+                "type": "district"
+            },
+            {
+                "code": "BD-42",
+                "name": "Natore",
+                "type": "district"
+            },
+            {
+                "code": "BD-47",
+                "name": "Pabna",
+                "type": "district"
+            },
+            {
+                "code": "BD-52",
+                "name": "Rajshahi",
+                "type": "district"
+            },
+            {
+                "code": "BD-57",
+                "name": "Sirajganj",
+                "type": "district"
+            },
+            {
+                "code": "BD-14",
+                "name": "Dinajpur",
+                "type": "district"
+            },
+            {
+                "code": "BD-19",
+                "name": "Gaibandha",
+                "type": "district"
+            },
+            {
+                "code": "BD-63",
+                "name": "Kurigram",
+                "type": "district"
+            },
+            {
+                "code": "BD-30",
+                "name": "Lalmonirhat",
+                "type": "district"
+            },
+            {
+                "code": "BD-44",
+                "name": "Nilphamari",
+                "type": "district"
+            },
+            {
+                "code": "BD-50",
+                "name": "Panchagarh",
+                "type": "district"
+            },
+            {
+                "code": "BD-53",
+                "name": "Rangpur",
+                "type": "district"
+            },
+            {
+                "code": "BD-62",
+                "name": "Thakurgaon",
+                "type": "district"
+            },
+            {
+                "code": "BD-20",
+                "name": "Habiganj",
+                "type": "district"
+            },
+            {
+                "code": "BD-36",
+                "name": "Moulvibazar",
+                "type": "district"
+            },
+            {
+                "code": "BD-59",
+                "name": "Sunamganj",
+                "type": "district"
+            },
+            {
+                "code": "BD-58",
+                "name": "Sylhet",
+                "type": "district"
+            },
+            {
+                "code": "BD-21",
+                "name": "Jamalpur",
+                "type": "district"
+            },
+            {
+                "code": "BD-32",
+                "name": "Mymensingh",
+                "type": "district"
+            },
+            {
+                "code": "BD-39",
+                "name": "Netrokona",
+                "type": "district"
+            },
+            {
+                "code": "BD-55",
+                "name": "Sherpur",
+                "type": "district"
+            }
+        ]
+    },
+    {
+        "name": "Barbados",
+        "alpha2": "BB",
+        "alpha3": "BRB",
+        "numeric": "052",
+        "subdivisions": [
+            {
+                "code": "BB-01",
+                "name": "Christ Church",
+                "type": "parish"
+            },
+            {
+                "code": "BB-02",
+                "name": "Saint Andrew",
+                "type": "parish"
+            },
+            {
+                "code": "BB-03",
+                "name": "Saint George",
+                "type": "parish"
+            },
+            {
+                "code": "BB-04",
+                "name": "Saint James",
+                "type": "parish"
+            },
+            {
+                "code": "BB-05",
+                "name": "Saint John",
+                "type": "parish"
+            },
+            {
+                "code": "BB-06",
+                "name": "Saint Joseph",
+                "type": "parish"
+            },
+            {
+                "code": "BB-07",
+                "name": "Saint Lucy",
+                "type": "parish"
+            },
+            {
+                "code": "BB-08",
+                "name": "Saint Michael",
+                "type": "parish"
+            },
+            {
+                "code": "BB-09",
+                "name": "Saint Peter",
+                "type": "parish"
+            },
+            {
+                "code": "BB-10",
+                "name": "Saint Philip",
+                "type": "parish"
+            },
+            {
+                "code": "BB-11",
+                "name": "Saint Thomas",
+                "type": "parish"
+            }
+        ]
+    },
+    {
+        "name": "Germany",
+        "alpha2": "DE",
+        "alpha3": "DEU",
+        "numeric": "276",
+        "subdivisions": [
+            {
+                "code": "DE-BW",
+                "name": "Baden-Württemberg",
+                "type": "state"
+            },
+            {
+                "code": "DE-BY",
+                "name": "Bayern",
+                "type": "state"
+            },
+            {
+                "code": "DE-BE",
+                "name": "Berlin",
+                "type": "state"
+            },
+            {
+                "code": "DE-BB",
+                "name": "Brandenburg",
+                "type": "state"
+            },
+            {
+                "code": "DE-HB",
+                "name": "Bremen",
+                "type": "state"
+            },
+            {
+                "code": "DE-HH",
+                "name": "Hamburg",
+                "type": "state"
+            },
+            {
+                "code": "DE-HE",
+                "name": "Hessen",
+                "type": "state"
+            },
+            {
+                "code": "DE-MV",
+                "name": "Mecklenburg-Vorpommern",
+                "type": "state"
+            },
+            {
+                "code": "DE-NI",
+                "name": "Niedersachsen",
+                "type": "state"
+            },
+            {
+                "code": "DE-NW",
+                "name": "Nordrhein-Westfalen",
+                "type": "state"
+            },
+            {
+                "code": "DE-RP",
+                "name": "Rheinland-Pfalz",
+                "type": "state"
+            },
+            {
+                "code": "DE-SL",
+                "name": "Saarland",
+                "type": "state"
+            },
+            {
+                "code": "DE-SN",
+                "name": "Sachsen",
+                "type": "state"
+            },
+            {
+                "code": "DE-ST",
+                "name": "Sachsen-Anhalt",
+                "type": "state"
+            },
+            {
+                "code": "DE-SH",
+                "name": "Schleswig-Holstein",
+                "type": "state"
+            },
+            {
+                "code": "DE-TH",
+                "name": "Thüringen",
+                "type": "state"
+            }
+        ]
+    },
+    {
+        "name": "United States of America",
+        "alpha2": "US",
+        "alpha3": "USA",
+        "numeric": "840",
+        "subdivisions": [
+            {
+                "code": "US-AL",
+                "name": "Alabama",
+                "type": "state"
+            },
+            {
+                "code": "US-AK",
+                "name": "Alaska",
+                "type": "state"
+            },
+            {
+                "code": "US-AZ",
+                "name": "Arizona",
+                "type": "state"
+            },
+            {
+                "code": "US-AR",
+                "name": "Arkansas",
+                "type": "state"
+            },
+            {
+                "code": "US-CA",
+                "name": "California",
+                "type": "state"
+            },
+            {
+                "code": "US-CO",
+                "name": "Colorado",
+                "type": "state"
+            },
+            {
+                "code": "US-CT",
+                "name": "Connecticut",
+                "type": "state"
+            },
+            {
+                "code": "US-DE",
+                "name": "Delaware",
+                "type": "state"
+            },
+            {
+                "code": "US-FL",
+                "name": "Florida",
+                "type": "state"
+            },
+            {
+                "code": "US-GA",
+                "name": "Georgia",
+                "type": "state"
+            },
+            {
+                "code": "US-HI",
+                "name": "Hawaii",
+                "type": "state"
+            },
+            {
+                "code": "US-ID",
+                "name": "Idaho",
+                "type": "state"
+            },
+            {
+                "code": "US-IL",
+                "name": "Illinois",
+                "type": "state"
+            },
+            {
+                "code": "US-IN",
+                "name": "Indiana",
+                "type": "state"
+            },
+            {
+                "code": "US-IA",
+                "name": "Iowa",
+                "type": "state"
+            },
+            {
+                "code": "US-KS",
+                "name": "Kansas",
+                "type": "state"
+            },
+            {
+                "code": "US-KY",
+                "name": "Kentucky",
+                "type": "state"
+            },
+            {
+                "code": "US-LA",
+                "name": "Louisiana",
+                "type": "state"
+            },
+            {
+                "code": "US-ME",
+                "name": "Maine",
+                "type": "state"
+            },
+            {
+                "code": "US-MD",
+                "name": "Maryland",
+                "type": "state"
+            },
+            {
+                "code": "US-MA",
+                "name": "Massachusetts",
+                "type": "state"
+            },
+            {
+                "code": "US-MI",
+                "name": "Michigan",
+                "type": "state"
+            },
+            {
+                "code": "US-MN",
+                "name": "Minnesota",
+                "type": "state"
+            },
+            {
+                "code": "US-MS",
+                "name": "Mississippi",
+                "type": "state"
+            },
+            {
+                "code": "US-MO",
+                "name": "Missouri",
+                "type": "state"
+            },
+            {
+                "code": "US-MT",
+                "name": "Montana",
+                "type": "state"
+            },
+            {
+                "code": "US-NE",
+                "name": "Nebraska",
+                "type": "state"
+            },
+            {
+                "code": "US-NV",
+                "name": "Nevada",
+                "type": "state"
+            },
+            {
+                "code": "US-NH",
+                "name": "New Hampshire",
+                "type": "state"
+            },
+            {
+                "code": "US-NJ",
+                "name": "New Jersey",
+                "type": "state"
+            },
+            {
+                "code": "US-NM",
+                "name": "New Mexico",
+                "type": "state"
+            },
+            {
+                "code": "US-NY",
+                "name": "New York",
+                "type": "state"
+            },
+            {
+                "code": "US-NC",
+                "name": "North Carolina",
+                "type": "state"
+            },
+            {
+                "code": "US-ND",
+                "name": "North Dakota",
+                "type": "state"
+            },
+            {
+                "code": "US-OH",
+                "name": "Ohio",
+                "type": "state"
+            },
+            {
+                "code": "US-OK",
+                "name": "Oklahoma",
+                "type": "state"
+            },
+            {
+                "code": "US-OR",
+                "name": "Oregon",
+                "type": "state"
+            },
+            {
+                "code": "US-PA",
+                "name": "Pennsylvania",
+                "type": "state"
+            },
+            {
+                "code": "US-RI",
+                "name": "Rhode Island",
+                "type": "state"
+            },
+            {
+                "code": "US-SC",
+                "name": "South Carolina",
+                "type": "state"
+            },
+            {
+                "code": "US-SD",
+                "name": "South Dakota",
+                "type": "state"
+            },
+            {
+                "code": "US-TN",
+                "name": "Tennessee",
+                "type": "state"
+            },
+            {
+                "code": "US-TX",
+                "name": "Texas",
+                "type": "state"
+            },
+            {
+                "code": "US-UT",
+                "name": "Utah",
+                "type": "state"
+            },
+            {
+                "code": "US-VT",
+                "name": "Vermont",
+                "type": "state"
+            },
+            {
+                "code": "US-VA",
+                "name": "Virginia",
+                "type": "state"
+            },
+            {
+                "code": "US-WA",
+                "name": "Washington",
+                "type": "state"
+            },
+            {
+                "code": "US-WV",
+                "name": "West Virginia",
+                "type": "state"
+            },
+            {
+                "code": "US-WI",
+                "name": "Wisconsin",
+                "type": "state"
+            },
+            {
+                "code": "US-WY",
+                "name": "Wyoming",
+                "type": "state"
+            },
+            {
+                "code": "US-DC",
+                "name": "District of Columbia",
+                "type": "district"
+            },
+            {
+                "code": "US-AS",
+                "name": "American Samoa",
+                "type": "outlying area"
+            },
+            {
+                "code": "US-GU",
+                "name": "Guam",
+                "type": "outlying area"
+            },
+            {
+                "code": "US-MP",
+                "name": "Northern Mariana Islands",
+                "type": "outlying area"
+            },
+            {
+                "code": "US-PR",
+                "name": "Puerto Rico",
+                "type": "outlying area"
+            },
+            {
+                "code": "US-UM",
+                "name": "U.S. Minor Outlying Islands",
+                "type": "outlying area"
+            },
+            {
+                "code": "US-VI",
+                "name": "U.S. Virgin Islands",
+                "type": "outlying area"
+            }
+        ]
+    }
+]
