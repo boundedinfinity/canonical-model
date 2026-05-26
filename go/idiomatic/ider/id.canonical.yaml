@@ -1,4 +1,4 @@
-kind: uuid
+kind: language
 name: id
 description:
   public: An univerally unique identifier

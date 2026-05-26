@@ -1,40 +1,41 @@
-package gen
+package sql
 
 import (
-	"strings"
-
 	"github.com/boundedinfinity/canonical-model/go/gen/model"
 	"github.com/boundedinfinity/go-commoner/errorer"
 	o "github.com/boundedinfinity/go-commoner/functional/optioner"
+	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 
 var (
-	errKindFunc = errorer.Func(model.ErrKind)
+	ErrSql      = errorer.New("sql")
+	errKindFunc = errorer.Func(model.ErrKind, ErrSql)
 )
 
 type generator struct {
 }
 
-func (this generator) Validate(config model.Config) error {
-	switch config.Language {
-	default:
-		errKindFunc("config.language not supported: %s", config.Language)
-	}
+func (this generator) GenerateSql(config model.Config) (string, error) {
+	database := sqlDatabase{}
 
-	for i, k := range config.Kinds {
-		switch k.(type) {
+	for ki, kind := range config.Kinds {
+		switch k := kind.(type) {
+		case *model.ObjectModel:
+			table := &sqlTable{Name: k.Name}
+			for pi, property := range k.Properties {
+				if err := this.processSqlProperty(table, ki, kind, pi, property); err != nil {
+					return "", err
+				}
+			}
+			database.Tables = append(database.Tables, table)
 		default:
-			errKindFunc("config.kinds[%d] not supported: %s", i, k.GetKind())
+			errKindFunc("config.kinds[%d]: not supported: %s", ki, kind.GetKind())
 		}
 	}
 
-	return nil
-}
+	var lines []string
 
-func (this generator) Generate() (string, error) {
-	var sb strings.Builder
-
-	return sb.String(), nil
+	return stringer.Join("\n", lines...), nil
 }
 
 func (this generator) sqlTableName(kind Kind) string {
@@ -42,24 +43,24 @@ func (this generator) sqlTableName(kind Kind) string {
 	return ""
 }
 
-func (this generator) processSqlProperty(table *sqlTable, ki int, kind Kind, pi int, property Property) error {
+func (this generator) processSqlProperty(table *sqlTable, ki int, kind model.Model, pi int, property model.Property) error {
 	var names []o.Option[string]
 	var types []o.Option[string]
 	column := sqlColumn{}
 
 	switch k := property.Kind.(type) {
-	case *FloatKind:
+	case *model.FloatModel:
 		column.Name = k.Name
-		column.Type = SqliteTypes.Real.String()
-	case *IntegerKind:
+		column.Type = Kinds.Real.String()
+	case *model.IntegerModel:
 		column.Name = k.Name
-		column.Type = SqliteTypes.Integer.String()
-	case *StringKind:
+		column.Type = Kinds.Integer.String()
+	case *model.StringModel:
 		column.Name = k.Name
-		column.Type = SqliteTypes.Text.String()
-	case *BooleanKind:
+		column.Type = Kinds.String.String()
+	case *model.BooleanModel:
 		column.Name = k.Name
-		column.Type = SqliteTypes.Integer.String()
+		column.Type = Kinds.Boolean.String()
 		// TODO: add CHECK constraint for boolean values
 		// CHECK (column IN (0, 1))
 		// CHECK (column IN (0, 1) OR column IS NULL) -- if optional
@@ -68,9 +69,9 @@ func (this generator) processSqlProperty(table *sqlTable, ki int, kind Kind, pi 
 		// CHECK (column IN (0, 1) OR column IS NULL) -- if not optional and nullable
 		// CHECK (column IN (0, 1) OR column IS NULL) -- if optional and nullable
 		// CHECK (column IN (0, 1) OR column IS NULL) -- if optional and nullable
-	case *EnumerationKind:
+	case *model.EnumerationModel:
 		column.Name = k.Name
-		column.Type = SqliteTypes.Text.String()
+		column.Type = Kinds.String.String()
 		// TODO: add CHECK constraint for enumeration values
 		// CHECK (column IN ('value1', 'value2', ...))
 		// CHECK (column IN ('value1', 'value2', ...) OR column IS NULL) -- if optional
@@ -78,7 +79,7 @@ func (this generator) processSqlProperty(table *sqlTable, ki int, kind Kind, pi 
 		// CHECK (column IN ('value1', 'value2', ...) OR column IS NULL) -- if optional and nullable
 		// CHECK (column IN ('value1', 'value2', ...)) -- if not optional and not null
 		// CHECK (column IN ('value1', 'value2', ...) OR column IS NULL) -- if not optional and nullable
-	case *LanguageKind:
+	case *model.LanguageModel:
 		if k.Database.Defined() {
 			names = append(names, k.Database.Get().Name)
 		}
@@ -88,7 +89,7 @@ func (this generator) processSqlProperty(table *sqlTable, ki int, kind Kind, pi 
 			types = append(types, k.Database.Get().Type)
 		}
 		types = append(types, o.Some("TEXT"))
-	case *ReferenceKind:
+	case *model.ReferenceModel:
 	default:
 		errKindFunc("config.kinds[%d].properties[%d]: not supported: %s", ki, pi, property.Kind.GetKind())
 	}
