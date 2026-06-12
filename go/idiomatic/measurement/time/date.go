@@ -1,13 +1,21 @@
 package time
 
+import gtime "time"
+
 type Date struct {
-	Year  Year
-	Month Month
-	Day   DayOfMonth
+	Year   Year
+	Month  Month
+	Day    DayOfMonth
+	Format TimeFormat
 }
 
 func (this Date) String() string {
-	return "Date"
+	return ""
+
+}
+
+func (this Date) Native() gtime.Time {
+	return gtime.Date(int(this.Year), gtime.Month(this.Month.native), int(this.Day), 0, 0, 0, 0, gtime.UTC)
 }
 
 func (this Date) IsZero() bool {

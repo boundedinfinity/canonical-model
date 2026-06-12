@@ -1,62 +1,65 @@
 package time
 
 import (
+	ntime "time"
+
 	"github.com/boundedinfinity/go-commoner/errorer"
 	"github.com/boundedinfinity/go-commoner/idiomatic/stringer"
 )
 
-// Month represents a month of the year, such as "January", "February", etc. It can be represented as an interface to allow for different implementations (e.g., using an enum, a string, or a custom struct).
-type Month string
+// Month represents a month of the year, such as "January", "February", etc.
+type Month struct {
+	native ntime.Month
+}
+
+// DateInMonth checks if the given date falls within this month.
+func (this Month) DateInMonth(date Date) bool {
+	return this == date.Month
+}
 
 func (this Month) String() string {
-	return string(this)
+	return ntime.Month(this.native).String()
 }
 
-func (this Month) Number() int {
-	switch this {
-	case Months.January:
-		return 1
-	case Months.February:
-		return 2
-	case Months.March:
-		return 3
-	case Months.April:
-		return 4
-	case Months.May:
-		return 5
-	case Months.June:
-		return 6
-	case Months.July:
-		return 7
-	case Months.August:
-		return 8
-	case Months.September:
-		return 9
-	case Months.October:
-		return 10
-	case Months.November:
-		return 11
-	case Months.December:
-		return 12
-	default:
-		panic("invalid month")
-	}
+func (this Month) Native() ntime.Month {
+	return this.native
 }
+
+func (this Month) IsZero() bool {
+	return this == zeroMonth
+}
+
+var zeroMonth = Month{-1}
 
 var Months = months{
-	January:   "measurement.time.month.january",
-	February:  "measurement.time.month.february",
-	March:     "measurement.time.month.march",
-	April:     "measurement.time.month.april",
-	May:       "measurement.time.month.may",
-	June:      "measurement.time.month.june",
-	July:      "measurement.time.month.july",
-	August:    "measurement.time.month.august",
-	September: "measurement.time.month.september",
-	October:   "measurement.time.month.october",
-	November:  "measurement.time.month.november",
-	December:  "measurement.time.month.december",
+	January:   Month{ntime.January},
+	February:  Month{ntime.February},
+	March:     Month{ntime.March},
+	April:     Month{ntime.April},
+	May:       Month{ntime.May},
+	June:      Month{ntime.June},
+	July:      Month{ntime.July},
+	August:    Month{ntime.August},
+	September: Month{ntime.September},
+	October:   Month{ntime.October},
+	November:  Month{ntime.November},
+	December:  Month{ntime.December},
 }
+
+// var Months = months{
+// 	January:   "measurement.time.month.january",
+// 	February:  "measurement.time.month.february",
+// 	March:     "measurement.time.month.march",
+// 	April:     "measurement.time.month.april",
+// 	May:       "measurement.time.month.may",
+// 	June:      "measurement.time.month.june",
+// 	July:      "measurement.time.month.july",
+// 	August:    "measurement.time.month.august",
+// 	September: "measurement.time.month.september",
+// 	October:   "measurement.time.month.october",
+// 	November:  "measurement.time.month.november",
+// 	December:  "measurement.time.month.december",
+// }
 
 type months struct {
 	January   Month
@@ -80,7 +83,7 @@ var (
 
 func MonthErr(month int) (Month, error) {
 	if month < 1 || month > 12 {
-		return "", errMonthFn("month must be between 1 and 12")
+		return Month{-1}, errMonthFn("month must be between 1 and 12")
 	}
 
 	switch month {
@@ -109,7 +112,7 @@ func MonthErr(month int) (Month, error) {
 	case 12:
 		return Months.December, nil
 	default:
-		return "", errMonthFn("invalid month: %d", month)
+		return zeroMonth, errMonthFn("invalid month: %d", month)
 	}
 }
 
@@ -140,6 +143,6 @@ func MonthParseErr(month string) (Month, error) {
 	case "december", "dec", "12":
 		return Months.December, nil
 	default:
-		return "", errMonthFn("invalid month: %s", month)
+		return zeroMonth, errMonthFn("invalid month: %s", month)
 	}
 }
